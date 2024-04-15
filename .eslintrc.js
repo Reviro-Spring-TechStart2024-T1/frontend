@@ -1,0 +1,11 @@
+module.exports = {
+    "extends": ["next/core-web-vitals", "@feature-sliced"],
+    "parser": "@typescript-eslint/parser",
+    "settings": {
+        "import/resolver": {
+            "typescript": {
+                "alwaysTryTypes": true
+            }
+        }
+    }
+}
