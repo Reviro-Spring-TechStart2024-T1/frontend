@@ -3,10 +3,10 @@ import { UsersList } from '@/entities/user'
 import { NO_INDEX_PAGE } from '@/shared'
 
 export const metadata: Metadata = {
-    title: 'Users',
-    ...NO_INDEX_PAGE
-}
+  title: 'Users',
+  ...NO_INDEX_PAGE,
+};
 
 export default async function Page() {
-    return <UsersList />
+  return <UsersList />;
 }
