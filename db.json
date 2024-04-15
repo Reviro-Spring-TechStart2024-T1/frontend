@@ -1,46 +1,46 @@
 {
-    "users": [
-        {
-            "name": "Ilias",
-            "email": "ilias.kadyrkulov@gmail.com",
-            "phone": 700205314
-        },
-        {
-            "name": "Aktan",
-            "email": "aktan.moldokeev@gmail.com",
-            "phone": 708632227
-        },
-        {
-            "name": "Eldiyar",
-            "email": "eldiyar.backend@gmail.com",
-            "phone": 123123213
-        },
-        {
-            "name": "Talant",
-            "email": "talant.backend@gmail.com",
-            "phone": 323132132
-        }
-    ],
-    "partners": [
-        {
-            "name": "Bublik",
-            "email": "bublik.partner@gmail.com",
-            "phone": 678678678
-        },
-        {
-            "name": "Capito",
-            "email": "capito.partner@gmail.com",
-            "phone": 890890890
-        },
-        {
-            "name": "Kulikov",
-            "email": "kulikov.partner@gmail.com",
-            "phone": 456546546
-        },
-        {
-            "name": "Adriano",
-            "email": "adriano.partner@gmail.com",
-            "phone": 123321321
-        }
-    ]
+  "users": [
+    {
+      "name": "Ilias",
+      "email": "ilias.kadyrkulov@gmail.com",
+      "phone": 700205314
+    },
+    {
+      "name": "Aktan",
+      "email": "aktan.moldokeev@gmail.com",
+      "phone": 708632227
+    },
+    {
+      "name": "Eldiyar",
+      "email": "eldiyar.backend@gmail.com",
+      "phone": 123123213
+    },
+    {
+      "name": "Talant",
+      "email": "talant.backend@gmail.com",
+      "phone": 323132132
+    }
+  ],
+  "partners": [
+    {
+      "name": "Bublik",
+      "email": "bublik.partner@gmail.com",
+      "phone": 678678678
+    },
+    {
+      "name": "Capito",
+      "email": "capito.partner@gmail.com",
+      "phone": 890890890
+    },
+    {
+      "name": "Kulikov",
+      "email": "kulikov.partner@gmail.com",
+      "phone": 456546546
+    },
+    {
+      "name": "Adriano",
+      "email": "adriano.partner@gmail.com",
+      "phone": 123321321
+    }
+  ]
 }
