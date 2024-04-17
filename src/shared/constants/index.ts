@@ -1,3 +1,4 @@
-import { NO_INDEX_PAGE } from './seo.constants'
+import { CREATE_BEVERAGE_FORM, EDIT_BEVERAGE_FORM } from './forms.constatnts';
+import { NO_INDEX_PAGE } from './seo.constants';
 
-export { NO_INDEX_PAGE }
+export { CREATE_BEVERAGE_FORM, EDIT_BEVERAGE_FORM, NO_INDEX_PAGE };

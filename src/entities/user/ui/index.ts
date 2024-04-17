@@ -1,4 +1,4 @@
-import { User } from './User'
-import UsersList from './UsersList'
+import { User } from './User';
+import UsersList from './UsersList';
 
-export { UsersList, User }
+export { User, UsersList };

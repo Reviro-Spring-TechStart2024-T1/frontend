@@ -1,4 +1,3 @@
-import { Beverage } from './Beverage'
-import { Menu } from './Menu'
+import { Beverage } from './Beverage';
 
-export { Beverage, Menu }
+export { Beverage };

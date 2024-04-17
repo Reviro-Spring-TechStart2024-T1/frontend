@@ -1,4 +1,4 @@
-import type { TBeverage } from './model'
-import { Beverage, Menu } from './ui'
+import { type TBeverage, type TModal } from './model';
+import { Beverage } from './ui';
 
-export { TBeverage, Beverage, Menu }
+export { Beverage, TBeverage, TModal };

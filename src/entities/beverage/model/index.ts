@@ -1,3 +1,3 @@
-import type { TBeverage } from './types'
+import type { TBeverage, TModal } from './types';
 
-export { TBeverage }
+export { TBeverage, TModal };

@@ -1,3 +1,3 @@
-import type { TUser } from './types'
+import type { TUser } from './types';
 
-export { TUser }
+export { TUser };
