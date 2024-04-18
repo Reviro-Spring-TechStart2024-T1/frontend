@@ -4,7 +4,7 @@ import {
   NO_INDEX_PAGE,
 } from './constants';
 import { useBeverages, useCloseForm, useUsers } from './hooks';
-import { delete as delete_, edit } from './icons';
+import { addImage, delete as delete_, download, edit } from './icons';
 import { beverage } from './imgs';
 import { fetcher } from './lib';
 import {
@@ -14,12 +14,12 @@ import {
   useEditModal,
 } from './providers';
 import { AddBeverageButton } from './ui';
-beverage;
-edit;
 
 export {
   AddBeverageButton,
+  addImage,
   beverage,
+  download,
   CREATE_BEVERAGE_FORM,
   CreateModalFormContext,
   delete_,

@@ -1,6 +1,12 @@
+'use client';
+
 import { useFormStatus } from 'react-dom';
 
-export const SubmitButton = ({ type }: { type: 'create' | 'edit' }) => {
+export const SubmitButton = ({
+  type,
+}: {
+  type: 'create' | 'edit' | 'save';
+}) => {
   const { pending } = useFormStatus();
 
   const className = 'w-2/4 rounded-md bg-[#292b74] text-sm font-normal';
@@ -15,6 +21,11 @@ export const SubmitButton = ({ type }: { type: 'create' | 'edit' }) => {
       {type === 'edit' && (
         <button type="submit" className={className}>
           {pending ? 'Editing...' : 'Edit'}
+        </button>
+      )}
+      {type === 'save' && (
+        <button type="submit" className={className}>
+          {pending ? 'Saving...' : 'Save'}
         </button>
       )}
     </>
