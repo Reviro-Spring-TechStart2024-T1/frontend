@@ -1,21 +1,25 @@
 {
   "users": [
     {
+      "id": "1",
       "name": "Ilias",
       "email": "ilias.kadyrkulov@gmail.com",
       "phone": 700205314
     },
     {
+      "id": "2",
       "name": "Aktan",
       "email": "aktan.moldokeev@gmail.com",
       "phone": 708632227
     },
     {
+      "id": "3",
       "name": "Eldiyar",
       "email": "eldiyar.backend@gmail.com",
       "phone": 123123213
     },
     {
+      "id": "4",
       "name": "Talant",
       "email": "talant.backend@gmail.com",
       "phone": 323132132
@@ -25,22 +29,109 @@
     {
       "name": "Bublik",
       "email": "bublik.partner@gmail.com",
-      "phone": 678678678
+      "phone": 678678678,
+      "id": "cb7d"
     },
     {
       "name": "Capito",
       "email": "capito.partner@gmail.com",
-      "phone": 890890890
+      "phone": 890890890,
+      "id": "bc4d"
     },
     {
       "name": "Kulikov",
       "email": "kulikov.partner@gmail.com",
-      "phone": 456546546
+      "phone": 456546546,
+      "id": "68be"
     },
     {
       "name": "Adriano",
       "email": "adriano.partner@gmail.com",
-      "phone": 123321321
+      "phone": 123321321,
+      "id": "a851"
+    }
+  ],
+  "beverages": [
+    {
+      "name": "Strawberry milkshakedsadsa12321321",
+      "category": "milkshake",
+      "price": "200",
+      "desc": null,
+      "image": {},
+      "isAvailable": "on",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Classic milkshake",
+      "category": "milkshake",
+      "price": 100,
+      "desc": "An aromatic cold drink based on milk and ice cream with a delicate creamy taste and airy consistency.",
+      "image": "",
+      "isAvailable": true
+    },
+    {
+      "id": "3",
+      "name": "Blackberry milkshake",
+      "category": "milkshake",
+      "price": 180,
+      "desc": "A sweet beverage made by blending milk, ice cream, and blackberry.",
+      "image": "",
+      "isAvailable": true
+    },
+    {
+      "id": "4",
+      "name": "Apple juice",
+      "category": "juice",
+      "price": 80,
+      "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
+      "image": "",
+      "isAvailable": true
+    },
+    {
+      "id": "5",
+      "name": "Orange juice",
+      "category": "juice",
+      "price": 80,
+      "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
+      "image": "",
+      "isAvailable": false
+    },
+    {
+      "id": "6",
+      "name": "Peach juice",
+      "category": "juice",
+      "price": 80,
+      "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
+      "image": "",
+      "isAvailable": true
+    },
+    {
+      "id": "e224",
+      "name": "dsad",
+      "category": "dsadsa",
+      "price": "21321",
+      "desc": "adsadsa",
+      "image": {},
+      "isAvailable": "on"
+    },
+    {
+      "id": "5f9d",
+      "name": "dsadsa",
+      "category": "dsadsa",
+      "price": "1231",
+      "desc": "dsadsa",
+      "image": {},
+      "isAvailable": "on"
+    },
+    {
+      "id": "26de",
+      "name": "dsadsa",
+      "category": "dsadsa",
+      "price": "123",
+      "desc": "dsa",
+      "image": {},
+      "isAvailable": "on"
     }
   ]
 }

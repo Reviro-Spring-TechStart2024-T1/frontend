@@ -1,4 +1,4 @@
-import type { TUser } from './model/types';
-import UsersList from './ui/UsersList';
+import type { TUser } from './model';
+import { User, UsersList } from './ui';
 
-export { TUser, UsersList };
+export { TUser, User, UsersList };
