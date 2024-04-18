@@ -8,6 +8,7 @@ module.exports = {
   rules: {
     'no-var': 'error',
     'prefer-const': 'warn',
+    'react/display-name': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'prettier/prettier': [
