@@ -1,3 +1,9 @@
+import { Typography } from '@/shared/ui';
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <Typography variant="h1">Home</Typography>
+    </div>
+  );
 }
