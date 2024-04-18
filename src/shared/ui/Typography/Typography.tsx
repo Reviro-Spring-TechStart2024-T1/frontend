@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import { createElement, FC } from 'react';
 import { cva } from 'cva';
 import { twMerge } from 'tailwind-merge';
 
@@ -14,18 +14,19 @@ const typographyVariants = cva('text-black', {
       caption: 'text-sm',
       link: 'text-base',
     },
+    format: {
+      normal: 'normal-case',
+      capitalize: 'capitalize',
+      uppercase: 'uppercase',
+    },
+  },
+  defaultVariants: {
+    format: 'normal',
   },
 });
 
-function Typography({
-  className,
-  variant,
-  children,
-  ...props
-}: TypographyProps) {
-  const classNameGenerated = twMerge(
-    typographyVariants({ variant, className }),
-  );
+const Typography: FC<TypographyProps> = props => {
+  const { children, className, variant, format, ...rest } = props;
 
   const Tags = {
     h1: 'h1',
@@ -38,9 +39,12 @@ function Typography({
 
   return createElement(
     Tags[variant as keyof TypographyTags],
-    { className: classNameGenerated, ...props },
+    {
+      className: twMerge(typographyVariants({ variant, format }), className),
+      ...rest,
+    },
     children,
   );
-}
+};
 
 export { Typography, typographyVariants };

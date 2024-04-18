@@ -1,12 +1,6 @@
 import { ReactNode } from 'react';
 import { ClassNameValue } from 'tailwind-merge';
 
-export interface TypographyProps {
-  className?: ClassNameValue;
-  variant: TypographyVariants;
-  children: ReactNode;
-}
-
 export type TypographyVariants =
   | 'h1'
   | 'h2'
@@ -14,6 +8,14 @@ export type TypographyVariants =
   | 'paragraph'
   | 'caption'
   | 'link';
+
+export type TypographyFormats = 'capitalize' | 'uppercase';
+export interface TypographyProps {
+  children: ReactNode;
+  variant: TypographyVariants;
+  className?: ClassNameValue;
+  format?: TypographyFormats;
+}
 
 export interface TypographyTags {
   h1: string;
