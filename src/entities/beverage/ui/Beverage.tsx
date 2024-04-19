@@ -1,11 +1,12 @@
 'use client';
 
+import { useCallback } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback } from 'react';
 
 import { TBeverage } from '@/entities/beverage';
 import { beverage, delete_, edit } from '@/shared';
+import { Button, Typography } from '@/shared/ui';
 
 export const Beverage = ({
   id,
@@ -31,7 +32,7 @@ export const Beverage = ({
 
   return (
     <>
-      <li className="flex flex-col justify-between rounded-lg border border-gray-300 bg-white">
+      <li className="flex flex-col justify-between overflow-hidden rounded-lg border border-gray-300 bg-white">
         <div className="relative shrink-0">
           <Image
             src={beverage}
@@ -39,25 +40,37 @@ export const Beverage = ({
             className="rounded-l-lg rounded-bl-lg object-cover"
             style={{ width: '100%', height: '300px' }}
           />
-          <span className="absolute bottom-3 right-3 text-blue-500">
+          <Typography
+            variant="caption"
+            className="absolute bottom-3 right-3 text-blue-500"
+          >
             {isAvailable ? 'Available' : 'Unavailable'}
-          </span>
+          </Typography>
         </div>
         <div className="flex flex-1 flex-col justify-between p-2">
           <div className="flex flex-col justify-between gap-5 md:flex-row">
-            <h2 className="break-words font-semibold md:w-2/4">{name}</h2>
-            <span className="font-semibold">{price} ⃀</span>
+            <Typography variant="h5" className="break-words md:w-2/4">
+              {name}
+            </Typography>
+
+            <Typography variant="h5" weight="bold">
+              {price} ⃀
+            </Typography>
           </div>
-          <div className="flex justify-between">{/* <p>#{category}</p> */}</div>
-          <h3 className="line-clamp-4 flex-1">{desc}</h3>
+          <Typography variant="caption" className="line-clamp-4 flex-1">
+            {desc}
+          </Typography>
         </div>
-        <div className="buttons">
-          <button
+        <div className="flex divide-x divide-theme-grey-300 border-t">
+          <Button
+            variant="ghost"
+            btnType="icon"
+            width="full"
+            className="rounded-none"
             onClick={() => {
               router.push(`?${handleEditOnClick('id', String(id))}`);
               showEditModal();
             }}
-            className="min-h-12 w-2/4 border-r border-t border-gray-300 pb-0"
           >
             <Image
               src={edit}
@@ -65,15 +78,21 @@ export const Beverage = ({
               style={{ width: '20px', height: '20px' }}
               className="mx-auto"
             />
-          </button>
-          <button className="min-h-12 w-2/4 border-t transition-colors duration-300 hover:bg-red-200">
+          </Button>
+
+          <Button
+            variant="delete"
+            btnType="icon"
+            width="full"
+            className="rounded-none"
+          >
             <Image
               src={delete_}
               alt="edit"
               style={{ width: '20px', height: '20px' }}
               className="mx-auto"
             />
-          </button>
+          </Button>
         </div>
       </li>
     </>

@@ -38,7 +38,17 @@ const buttonVariants = cva(
           'border-2',
           'border-theme-grey-200',
           'active:bg-theme-grey-300',
-          'focus-visible:bg-theme-grey-300',
+          'focus-visible:bg-theme-white',
+          'disabled:bg-theme-grey-100',
+          'disabled:text-theme-grey-400',
+          'ring-theme-grey-200',
+        ],
+        ghost: [
+          'bg-transparent',
+          'text-theme-black',
+          'hover:bg-theme-grey-200',
+          'active:bg-theme-grey-300',
+          'focus-visible:bg-theme-white',
           'disabled:bg-theme-grey-100',
           'disabled:text-theme-grey-400',
           'ring-theme-grey-200',
@@ -53,33 +63,55 @@ const buttonVariants = cva(
           'disabled:text-theme-grey-400',
           'ring-theme-red-400',
         ],
-        icon: ['bg-transparent'],
+        none: [''],
       },
       size: {
+        sm: ['text-sm', 'py-1.5', 'px-3'],
         md: ['text-base', 'py-2.5', 'px-6'],
+      },
+      btnType: {
+        button: '',
+        icon: ['p-0', 'bg-transparent'],
       },
       width: {
         auto: 'w-auto',
         full: 'w-full',
       },
     },
-    compoundVariants: [{ variant: 'icon', size: 'md', class: 'p-0 h-6 w-6' }],
+    compoundVariants: [
+      { btnType: 'icon', size: 'sm', class: 'h-6 w-6' },
+      { btnType: 'icon', size: 'md', class: 'h-11 w-11' },
+
+      { btnType: 'icon', size: 'sm', width: 'full', class: 'h-6 w-full' },
+      { btnType: 'icon', size: 'md', width: 'full', class: 'h-11 w-full' },
+    ],
     defaultVariants: {
       variant: 'primary',
       size: 'md',
+      btnType: 'button',
       width: 'auto',
     },
   },
 );
 
 const Button = forwardRef<ComponentProps<'button'>, ButtonProps>(props => {
-  const { children, variant, size, width, className, disabled, ref, ...rest } =
-    props;
+  const {
+    children,
+    variant,
+    size,
+    btnType,
+    width,
+    className,
+    disabled,
+    ref,
+    ...rest
+  } = props;
 
   const classNameGenerated = twMerge(
     buttonVariants({
       variant,
       size,
+      btnType,
       width,
     }),
     className,

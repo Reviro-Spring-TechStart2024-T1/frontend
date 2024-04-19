@@ -2,6 +2,8 @@
 
 import { useFormStatus } from 'react-dom';
 
+import { Button } from '@/shared/ui';
+
 export const SubmitButton = ({
   type,
 }: {
@@ -9,24 +11,16 @@ export const SubmitButton = ({
 }) => {
   const { pending } = useFormStatus();
 
-  const className = 'w-2/4 rounded-md bg-[#292b74] text-sm font-normal';
-
   return (
     <>
       {type === 'create' && (
-        <button type="submit" className={className}>
-          {pending ? 'Creating...' : 'Create'}
-        </button>
+        <Button width="full">{pending ? 'Creating...' : 'Create'}</Button>
       )}
       {type === 'edit' && (
-        <button type="submit" className={className}>
-          {pending ? 'Editing...' : 'Edit'}
-        </button>
+        <Button width="full">{pending ? 'Editing...' : 'Edit'}</Button>
       )}
       {type === 'save' && (
-        <button type="submit" className={className}>
-          {pending ? 'Saving...' : 'Save'}
-        </button>
+        <Button width="full">{pending ? 'Saving...' : 'Save'}</Button>
       )}
     </>
   );
