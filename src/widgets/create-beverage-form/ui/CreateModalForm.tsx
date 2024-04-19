@@ -47,28 +47,28 @@ export const CreateModalForm: FC = () => {
           <input
             type="text"
             name="name"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
+            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
             placeholder="Name"
             required
           />
           <input
             type="text"
             name="category"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
+            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
             placeholder="Category"
             required
           />
           <input
             type="number"
             name="price"
-            className="appearance-[textfield] rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
+            className="appearance-[textfield] rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
             placeholder="Price"
             required
           />
           <input
             type="text"
             name="desc"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
+            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
             placeholder="Description"
             required
           />
@@ -87,7 +87,7 @@ export const CreateModalForm: FC = () => {
             <input
               type="checkbox"
               name="isAvailable"
-              className="h-4 w-4 border-l-2 border-red-600 p-10"
+              className="h-4 w-4 border-l-2 border-red-600 p-10 xl:h-[50px]"
             />
             <Typography variant="caption">isAvailable</Typography>
           </label>
