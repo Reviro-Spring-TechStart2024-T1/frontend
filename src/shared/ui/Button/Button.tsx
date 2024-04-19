@@ -12,7 +12,6 @@ const buttonVariants = cva(
     'items-center',
     'justify-center',
     'outline-none',
-    'focus:outline-none',
     'focus-visible:ring-4',
     'transition-all',
     'rounded-md',
@@ -29,7 +28,7 @@ const buttonVariants = cva(
           'focus-visible:bg-theme-primary-300',
           'disabled:bg-theme-grey-100',
           'disabled:text-theme-grey-400',
-          'ring-theme-primary-100',
+          'focus-visible:ring-theme-primary-100',
         ],
         outline: [
           'bg-theme-white',
@@ -41,7 +40,7 @@ const buttonVariants = cva(
           'focus-visible:bg-theme-white',
           'disabled:bg-theme-grey-100',
           'disabled:text-theme-grey-400',
-          'ring-theme-grey-200',
+          'focus-visible:ring-theme-blue-400',
         ],
         ghost: [
           'bg-transparent',
@@ -51,7 +50,7 @@ const buttonVariants = cva(
           'focus-visible:bg-theme-white',
           'disabled:bg-theme-grey-100',
           'disabled:text-theme-grey-400',
-          'ring-theme-grey-200',
+          'focus-visible:ring-theme-blue-400',
         ],
         delete: [
           'bg-theme-red-200',
@@ -61,7 +60,7 @@ const buttonVariants = cva(
           'focus-visible:bg-theme-red-200',
           'disabled:bg-theme-grey-100',
           'disabled:text-theme-grey-400',
-          'ring-theme-red-400',
+          'focus-visible:ring-theme-red-400',
         ],
         none: [''],
       },
@@ -95,17 +94,8 @@ const buttonVariants = cva(
 );
 
 const Button = forwardRef<ComponentProps<'button'>, ButtonProps>(props => {
-  const {
-    children,
-    variant,
-    size,
-    btnType,
-    width,
-    className,
-    disabled,
-    ref,
-    ...rest
-  } = props;
+  const { children, variant, size, btnType, width, className, ref, ...rest } =
+    props;
 
   const classNameGenerated = twMerge(
     buttonVariants({
@@ -122,7 +112,6 @@ const Button = forwardRef<ComponentProps<'button'>, ButtonProps>(props => {
       ref={ref}
       {...rest}
       aria-label="button"
-      disabled={disabled}
       className={classNameGenerated}
     >
       {children}

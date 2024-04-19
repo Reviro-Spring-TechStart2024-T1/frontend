@@ -24,6 +24,8 @@ const config: Config = {
         'theme-red-400': '#e7181875',
         'theme-red-500': '#E71818',
 
+        'theme-blue-400': '#292b7475',
+
         'theme-grey-100': '#f8f9fa',
         'theme-grey-200': '#e9ecef',
         'theme-grey-300': '#ced4da',
