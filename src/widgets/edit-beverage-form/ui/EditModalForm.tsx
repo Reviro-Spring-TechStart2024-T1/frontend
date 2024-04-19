@@ -1,19 +1,19 @@
 'use client';
-
-import clsx from 'clsx';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
+import clsx from 'clsx';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-import { editBeverage } from '@/widgets/edit-beverage-form';
-import { SubmitButton } from '@/features';
 import { TBeverage } from '@/entities/beverage';
+import { SubmitButton } from '@/features';
 import {
   EDIT_BEVERAGE_FORM,
   useBeverages,
   useCloseForm,
   useEditModal,
 } from '@/shared';
+import { Button, Typography } from '@/shared/ui';
+import { editBeverage } from '@/widgets/edit-beverage-form';
 
 export const EditModalForm: FC = () => {
   const { isActive, setModalState } = useEditModal();
@@ -80,7 +80,7 @@ export const EditModalForm: FC = () => {
     >
       <div className="rounded-lg bg-white p-3 shadow-[0px_0px_30px_10000px_rgba(0,0,0,0.7)]">
         <div>
-          <h2 className="mb-3 text-base font-medium">Edit beverage</h2>
+          <Typography variant="paragraph">Edit beverage</Typography>
           {beverageInfo && (
             <form action={formAction} className="flex flex-col gap-2">
               <input
@@ -120,16 +120,17 @@ export const EditModalForm: FC = () => {
                   value={beverageInfo.isAvailable ? 'on' : undefined}
                   onChange={e => handleBeverageInfoOnChange(e, 'isAvailable')}
                 />
-                <span>isAvailable</span>
+                <Typography variant="caption">isAvailable</Typography>
               </label>
-              <div>
-                <button
-                  type="button"
+              <div className="flex gap-2.5">
+                <Button
+                  variant="outline"
+                  width="full"
                   onClick={handleEditModalOnClose}
-                  className="w-2/4 px-4 py-1"
                 >
                   Close
-                </button>
+                </Button>
+
                 <SubmitButton type="edit" />
               </div>
             </form>
