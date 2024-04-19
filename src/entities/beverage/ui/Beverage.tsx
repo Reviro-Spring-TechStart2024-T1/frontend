@@ -1,8 +1,8 @@
 'use client';
 
+import { useCallback } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback } from 'react';
 
 import { TBeverage } from '@/entities/beverage';
 import { beverage, delete_, edit } from '@/shared';

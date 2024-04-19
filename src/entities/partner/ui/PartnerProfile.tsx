@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import { SubmitButton } from '@/features';
 import { addImage, delete_, download } from '@/shared';
 
@@ -57,7 +58,7 @@ export const PartnerProfile = () => {
                   height={40}
                 />
               </button>
-              <span className='text-sm xl:text-lg'>Choose image</span>
+              <span className="text-sm xl:text-lg">Choose image</span>
             </div>
             <div className="flex gap-2">
               <button>

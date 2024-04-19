@@ -1,12 +1,12 @@
 'use client';
 
-import clsx from 'clsx';
 import { FC } from 'react';
 import { useFormState } from 'react-dom';
+import clsx from 'clsx';
 
-import { createBeverage } from '@/widgets/create-beverage-form';
 import { SubmitButton } from '@/features';
 import { CREATE_BEVERAGE_FORM, useCloseForm, useCreateModal } from '@/shared';
+import { createBeverage } from '@/widgets/create-beverage-form';
 
 export const CreateModalForm: FC = () => {
   const { isActive, setModalState } = useCreateModal();
@@ -45,34 +45,36 @@ export const CreateModalForm: FC = () => {
         },
       )}
     >
-      <div className="flex w-[80dvw] flex-col justify-between rounded-lg bg-white p-5 shadow-[0px_0px_30px_10000px_rgba(0,0,0,0.7)] sm:h-[40dvh] md:w-[30dvw]">
-        <h2 className="mb-3 text-base font-medium">Add new beverage</h2>
-        <form action={formAction} className="flex flex-col gap-5">
+      <div className="flex w-[80dvw] flex-col justify-between rounded-lg bg-white p-5 shadow-[0px_0px_30px_10000px_rgba(0,0,0,0.7)] sm:gap-10 md:w-[50dvw]">
+        <h2 className="mb-3 text-base font-medium lg:text-xl">
+          Add new beverage
+        </h2>
+        <form action={formAction} className="flex flex-col gap-2">
           <input
             type="text"
             name="name"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
+            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
             placeholder="Name"
             required
           />
           <input
             type="text"
             name="category"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
+            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
             placeholder="Category"
             required
           />
           <input
             type="number"
             name="price"
-            className="appearance-[textfield] rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
+            className="appearance-[textfield] rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
             placeholder="Price"
             required
           />
           <input
             type="text"
             name="desc"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
+            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
             placeholder="Description"
             required
           />
@@ -85,7 +87,7 @@ export const CreateModalForm: FC = () => {
             />
             <button
               type="button"
-              className="relative inline-block rounded-md border border-gray-300 px-3 py-1 text-xs transition-colors duration-200 hover:bg-[#292b74] hover:text-slate-200"
+              className="relative inline-block rounded-md border border-gray-300 px-3 py-1 text-xs transition-colors duration-200 hover:bg-[#292b74] hover:text-slate-200  xl:h-[50px]"
             >
               Choose image
             </button>
@@ -94,7 +96,7 @@ export const CreateModalForm: FC = () => {
             <input
               type="checkbox"
               name="isAvailable"
-              className="h-4 w-4 border-l-2 border-red-600 p-10"
+              className="h-4 w-4 border-l-2 border-red-600 p-10 xl:h-[50px]"
             />
             <span>isAvailable</span>
           </label>

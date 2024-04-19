@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
 import { Suspense } from 'react';
+import type { Metadata } from 'next';
 
+import { AddBeverageButton } from '@/shared';
 import { BeverageList } from '@/widgets/beverage-list';
 import { CreateModalForm } from '@/widgets/create-beverage-form';
 import { EditModalForm } from '@/widgets/edit-beverage-form';
-import { AddBeverageButton } from '@/shared';
 
 export const metadata: Metadata = {
   title: 'Menu',
