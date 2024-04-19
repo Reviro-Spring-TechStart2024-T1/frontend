@@ -28,6 +28,7 @@ const config: Config = {
         'theme-grey-200': '#e9ecef',
         'theme-grey-300': '#ced4da',
         'theme-grey-400': '#ADB5BD',
+        'theme-grey-500': '#3c3c3cd1',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

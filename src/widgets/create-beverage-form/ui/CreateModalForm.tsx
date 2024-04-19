@@ -6,6 +6,7 @@ import clsx from 'clsx';
 
 import { SubmitButton } from '@/features';
 import { CREATE_BEVERAGE_FORM, useCloseForm, useCreateModal } from '@/shared';
+import { Button, Typography } from '@/shared/ui';
 import { createBeverage } from '@/widgets/create-beverage-form';
 
 export const CreateModalForm: FC = () => {
@@ -26,12 +27,6 @@ export const CreateModalForm: FC = () => {
 
   const [formState, formAction] = useFormState(createBeverage, initialState);
 
-  // useEffect(() => {
-  //   if (formState.message === 'success') {
-  //     closeModal();
-  //   }
-  // }, [formState, closeModal]);
-
   useCloseForm(CREATE_BEVERAGE_FORM, setModalState);
 
   return (
@@ -45,11 +40,10 @@ export const CreateModalForm: FC = () => {
         },
       )}
     >
-      <div className="flex w-[80dvw] flex-col justify-between rounded-lg bg-white p-5 shadow-[0px_0px_30px_10000px_rgba(0,0,0,0.7)] sm:gap-10 md:w-[50dvw]">
-        <h2 className="mb-3 text-base font-medium lg:text-xl">
-          Add new beverage
-        </h2>
-        <form action={formAction} className="flex flex-col gap-2">
+      <div className="flex w-[80dvw] flex-col justify-between rounded-lg bg-white p-5 shadow-[0px_0px_30px_10000px_rgba(0,0,0,0.7)] sm:h-[40dvh] md:w-[30dvw]">
+        <Typography variant="paragraph">Add new beverage</Typography>
+        <h2 className="mb-3 text-base font-medium"></h2>
+        <form action={formAction} className="flex flex-col gap-5">
           <input
             type="text"
             name="name"
@@ -85,12 +79,9 @@ export const CreateModalForm: FC = () => {
               className="absolute -z-10 block h-0 w-0 opacity-0"
               placeholder="Choose image"
             />
-            <button
-              type="button"
-              className="relative inline-block rounded-md border border-gray-300 px-3 py-1 text-xs transition-colors duration-200 hover:bg-[#292b74] hover:text-slate-200  xl:h-[50px]"
-            >
+            <Button variant="outline" size="sm" className="bg-theme-grey-200">
               Choose image
-            </button>
+            </Button>
           </label>
           <label className="flex items-center gap-2">
             <input
@@ -98,16 +89,17 @@ export const CreateModalForm: FC = () => {
               name="isAvailable"
               className="h-4 w-4 border-l-2 border-red-600 p-10 xl:h-[50px]"
             />
-            <span>isAvailable</span>
+            <Typography variant="caption">isAvailable</Typography>
           </label>
-          <div className="flex">
-            <button
-              type="reset"
+          <div className="flex gap-2.5">
+            <Button
+              variant="outline"
+              width="full"
               onClick={() => setModalState(false)}
-              className="w-2/4 rounded-lg border border-gray-400 px-4 py-1"
             >
               Close
-            </button>
+            </Button>
+
             <SubmitButton type="create" />
           </div>
         </form>
