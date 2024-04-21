@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { SubmitButton } from '@/features';
 import { addImage, delete_, download } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
+import { Input } from '@/shared/ui/Input/Input';
 
 export const PartnerProfile = () => {
   return (
@@ -18,36 +19,20 @@ export const PartnerProfile = () => {
       <form className="grid grid-cols-1 gap-5 rounded-md border border-gray-300 sm:grid-cols-2">
         <div className="grid grid-rows-[40px_50px_50px_100px] gap-2 p-5 2xl:grid-rows-[50px_100_100px_1fr]">
           <Typography variant="paragraph">General</Typography>
-          <input
-            type="text"
-            name="name"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 2xl:placeholder:text-2xl"
-            placeholder="Name"
-            required
-          />
-          <input
-            type="text"
-            name="location"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 2xl:placeholder:text-2xl"
-            placeholder="Location"
-            required
-          />
-          <input
-            type="text"
-            name="desc"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 2xl:placeholder:text-2xl"
-            placeholder="Description"
-            required
-          />
+
+          <Input type="text" name="name" placeholder="Name" required />
+          <Input type="text" name="location" placeholder="Location" required />
+          <Input type="text" name="desc" placeholder="Description" required />
         </div>
         <div className="grid grid-rows-[80px_1fr_1fr_100px_100_100px_auto] gap-2 p-5 pt-5 2xl:grid-rows-[100px_100_100px_auto]">
           <label className="relative flex items-center justify-between rounded-md border border-gray-300 p-3 px-5">
             <div className="flex items-center gap-2 ">
-              <input
+              <Input
                 type="file"
                 name="image"
                 className="absolute -z-10 block h-0 w-0 opacity-0"
               />
+
               <Button
                 variant="outline"
                 btnType="icon"
@@ -78,42 +63,22 @@ export const PartnerProfile = () => {
               </Button>
             </div>
           </label>
+
           <div>
-            <label className="mb-2 flex flex-col gap-2">
+            <div className="mb-2 flex flex-col gap-2">
               <Typography variant="h5">Add happy hours</Typography>
 
-              <input
-                type="text"
-                name="start"
-                className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 "
-                placeholder="Start"
-                required
-              />
-            </label>
-            <input
-              type="text"
-              name="end"
-              className="w-full rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
-              placeholder="End"
-              required
-            />
+              <Input type="text" name="start" placeholder="Start" required />
+              <Input type="text" name="end" placeholder="End" required />
+            </div>
           </div>
           <div>
-            <label className="mb-2 flex flex-col gap-2">
+            <div className="mb-2 flex flex-col gap-2">
               <Typography variant="h5">Contacts</Typography>
-              <input
-                type="text"
-                name="email"
-                className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
-                placeholder="Email"
-              />
-            </label>
-            <input
-              type="text"
-              name="phone"
-              className="w-full rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
-              placeholder="Phone number"
-            />
+
+              <Input type="text" name="email" placeholder="Email" />
+              <Input type="text" name="phone" placeholder="Phone number" />
+            </div>
           </div>
           <div className=" flex justify-end">
             <SubmitButton type="save" />
