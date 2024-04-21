@@ -14,6 +14,7 @@ import {
   useEditModal,
 } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
+import { Input } from '@/shared/ui/Input/Input';
 import { editBeverage } from '@/widgets/edit-beverage-form';
 
 export const EditModalForm: FC = () => {
@@ -84,34 +85,32 @@ export const EditModalForm: FC = () => {
           <Typography variant="paragraph">Edit beverage</Typography>
           {beverageInfo && (
             <form action={formAction} className="flex flex-col gap-2">
-              <input
+              <Input
                 type="text"
                 name="name"
-                className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
                 value={beverageInfo.name || ''}
                 onChange={e => handleBeverageInfoOnChange(e, 'name')}
               />
-              <input
+              <Input
                 type="text"
                 name="category"
-                className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
                 value={beverageInfo.category || ''}
                 onChange={e => handleBeverageInfoOnChange(e, 'category')}
               />
-              <input
+              <Input
                 type="text"
                 name="price"
-                className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
                 value={beverageInfo.price || ''}
                 onChange={e => handleBeverageInfoOnChange(e, 'price')}
               />
-              <input
+              <Input
                 type="text"
                 name="description"
                 className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
                 value={beverageInfo.desc || ''}
                 onChange={e => handleBeverageInfoOnChange(e, 'desc')}
               />
+
               <input type="file" name="image" className="" />
               <label className="flex items-center gap-2">
                 <input

@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { SubmitButton } from '@/features';
 import { CREATE_BEVERAGE_FORM, useCloseForm, useCreateModal } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
+import { Input } from '@/shared/ui/Input/Input';
 import { createBeverage } from '@/widgets/create-beverage-form';
 
 export const CreateModalForm: FC = () => {
@@ -44,41 +45,19 @@ export const CreateModalForm: FC = () => {
         <Typography variant="paragraph">Add new beverage</Typography>
         <h2 className="mb-3 text-base font-medium"></h2>
         <form action={formAction} className="flex flex-col gap-5">
-          <input
-            type="text"
-            name="name"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
-            placeholder="Name"
-            required
-          />
-          <input
-            type="text"
-            name="category"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
-            placeholder="Category"
-            required
-          />
-          <input
-            type="number"
-            name="price"
-            className="appearance-[textfield] rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
-            placeholder="Price"
-            required
-          />
-          <input
-            type="text"
-            name="desc"
-            className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400 xl:h-[50px]"
-            placeholder="Description"
-            required
-          />
+          <Input type="text" name="name" placeholder="Name" required />
+          <Input type="text" name="category" placeholder="Category" required />
+          <Input type="number" name="price" placeholder="Price" required />
+          <Input type="text" name="desc" placeholder="Description" required />
+
           <label className="relative inline-block">
-            <input
+            <Input
               type="file"
               name="image"
               className="absolute -z-10 block h-0 w-0 opacity-0"
               placeholder="Choose image"
             />
+
             <Button variant="outline" size="sm" className="bg-theme-grey-200">
               Choose image
             </Button>
