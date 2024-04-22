@@ -11,8 +11,9 @@
     "server": "json-server --watch db.json -p 5000"
   },
   "dependencies": {
-    "cva": "npm:class-variance-authority",
+    "@remixicon/react": "^4.2.0",
     "clsx": "^2.1.0",
+    "cva": "npm:class-variance-authority",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
