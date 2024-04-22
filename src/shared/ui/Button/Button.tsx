@@ -88,7 +88,7 @@ const buttonVariants = cva(
       },
     },
     compoundVariants: [
-      { variant: 'link', class: 'px-4 py-5' },
+      { variant: 'link', class: 'px-4 py-6' },
 
       { btnType: 'icon', size: 'sm', class: 'h-6 w-6' },
       { btnType: 'icon', size: 'md', class: 'h-11 w-11' },

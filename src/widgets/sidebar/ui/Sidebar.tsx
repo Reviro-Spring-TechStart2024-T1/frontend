@@ -37,10 +37,10 @@ export default function Sidebar() {
               </Link>
             </li>
             <li>
-              <Link href="/partner/customer">
+              <Link href="/partner/customer_data">
                 <Button variant="link" width="full" className="flex flex-col">
                   <RiVipCrownLine />
-                  <span>Customer Data</span>
+                  <span>Customers</span>
                 </Button>
               </Link>
             </li>
@@ -55,7 +55,7 @@ export default function Sidebar() {
           </ul>
         </nav>
 
-        <div className="pb-9">
+        <div className="w-full pb-9">
           <Link href="/partner/logout">
             <Button variant="link" width="full" className="flex flex-col">
               <RiLogoutBoxRLine />
