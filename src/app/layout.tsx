@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import Sidebar from '@/widgets/sidebar/ui/Sidebar';
+
 import { Providers } from './providers';
 
 import './globals.css';
@@ -24,7 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <div className="grid grid-cols-[138px_auto]">
+          <Sidebar />
+          <Providers>{children}</Providers>
+        </div>
       </body>
     </html>
   );
