@@ -1,4 +1,5 @@
 import { User } from './User';
+import { UsersFiltersList } from './UsersFiltersList';
 import UsersList from './UsersList';
 
-export { User, UsersList };
+export { User, UsersFiltersList, UsersList };
