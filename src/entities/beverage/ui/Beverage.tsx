@@ -14,7 +14,7 @@ export const Beverage = ({
   category,
   price,
   desc,
-  isAvailable,
+  quantity,
   showEditModal,
 }: TBeverage & { showEditModal: () => void }) => {
   const router = useRouter();
@@ -40,16 +40,15 @@ export const Beverage = ({
             className="rounded-l-lg rounded-bl-lg object-cover"
             style={{ width: '100%', height: '300px' }}
           />
-          <Typography
-            variant="caption"
-            className="absolute bottom-3 right-3 text-blue-500"
-          >
-            {isAvailable ? 'Available' : 'Unavailable'}
-          </Typography>
+          <div className="absolute bottom-[6px] right-[6px] rounded-md bg-[#00b3ff78] p-2">
+            <Typography variant="caption" className="   text-white ">
+              quantity: {quantity}
+            </Typography>
+          </div>
         </div>
-        <div className="flex flex-1 flex-col justify-between p-2">
-          <div className="flex flex-col justify-between gap-5 md:flex-row">
-            <Typography variant="h5" className="break-words md:w-2/4">
+        <div className="flex flex-1 flex-col justify-between gap-1 p-2">
+          <div className="flex flex-col justify-between gap-1">
+            <Typography variant="h5" className="break-words">
               {name}
             </Typography>
 
@@ -57,7 +56,10 @@ export const Beverage = ({
               {price} ⃀
             </Typography>
           </div>
-          <Typography variant="caption" className="line-clamp-4 flex-1">
+          <Typography
+            variant="caption"
+            className="line-clamp-4 flex-1 text-[#3C3C3C]"
+          >
             {desc}
           </Typography>
         </div>

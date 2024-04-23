@@ -56,19 +56,19 @@
       "name": "Strawberry milkshakedsadsa12321321",
       "category": "milkshake",
       "price": "200",
-      "desc": null,
+      "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
       "image": {},
-      "isAvailable": "on",
+      "quantity": 2,
       "id": "1"
     },
     {
-      "id": "2",
       "name": "Classic milkshake",
       "category": "milkshake",
-      "price": 100,
-      "desc": "An aromatic cold drink based on milk and ice cream with a delicate creamy taste and airy consistency.",
-      "image": "",
-      "isAvailable": true
+      "price": "100",
+      "desc": null,
+      "image": {},
+      "quantity": 5,
+      "id": "2"
     },
     {
       "id": "3",
@@ -77,16 +77,16 @@
       "price": 180,
       "desc": "A sweet beverage made by blending milk, ice cream, and blackberry.",
       "image": "",
-      "isAvailable": true
+      "quantity": 6
     },
     {
-      "id": "4",
       "name": "Apple juice",
       "category": "juice",
-      "price": 80,
-      "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
-      "image": "",
-      "isAvailable": true
+      "price": "321",
+      "desc": null,
+      "image": {},
+      "isAvailable": null,
+      "id": "4"
     },
     {
       "id": "5",
@@ -95,7 +95,7 @@
       "price": 80,
       "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
       "image": "",
-      "isAvailable": false
+      "quantity": 8
     },
     {
       "id": "6",
@@ -104,7 +104,7 @@
       "price": 80,
       "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
       "image": "",
-      "isAvailable": true
+      "quantity": 10
     },
     {
       "id": "e224",
@@ -113,7 +113,7 @@
       "price": "21321",
       "desc": "adsadsa",
       "image": {},
-      "isAvailable": "on"
+      "quantity": 2
     },
     {
       "id": "5f9d",
@@ -122,7 +122,7 @@
       "price": "1231",
       "desc": "dsadsa",
       "image": {},
-      "isAvailable": "on"
+      "quantity": 4
     },
     {
       "id": "26de",
@@ -131,7 +131,7 @@
       "price": "123",
       "desc": "dsa",
       "image": {},
-      "isAvailable": "on"
+      "quantity": 7
     }
   ]
 }

@@ -14,19 +14,20 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="menu-page min-h-dvh  p-5 sm:px-10">
-      <Suspense fallback={<div>Loading...</div>}>
-        <div className="menu relative">
-          <div className="mb-5 flex justify-between px-10">
-            <Typography variant="h2" weight="bold">
-              Menu
-            </Typography>
-            <AddBeverageButton />
-          </div>
+      <div className="mb-5 flex justify-between">
+        <Typography variant="h2" weight="bold">
+          Menu
+        </Typography>
+        <AddBeverageButton />
+      </div>
+
+      <div className="menu relative">
+        <Suspense fallback={<div>Loading...</div>}>
           <BeverageList />
-          <CreateModalForm />
-          <EditModalForm />
-        </div>
-      </Suspense>
+        </Suspense>
+        <CreateModalForm />
+        <EditModalForm />
+      </div>
     </div>
   );
 }

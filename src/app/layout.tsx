@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="grid grid-cols-[138px_auto]">
+        <div className="grid grid-cols-[138px_auto] bg-[#EBF2FA]">
           <Sidebar />
           <Providers>{children}</Providers>
         </div>
