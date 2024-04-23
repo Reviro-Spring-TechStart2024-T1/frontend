@@ -51,10 +51,6 @@ export const EditModalForm: FC = () => {
     e: ChangeEvent<HTMLInputElement>,
     field: keyof TBeverage,
   ) => {
-    if (field === 'isAvailable') {
-      setBeverageInfo(prev => ({ ...prev, [field]: e.target.checked }));
-    }
-
     setBeverageInfo(prev => ({ ...prev, [field]: e.target.value }));
   };
 
@@ -80,62 +76,79 @@ export const EditModalForm: FC = () => {
         },
       )}
     >
-      <div className="rounded-lg bg-white p-3 shadow-[0px_0px_30px_10000px_rgba(0,0,0,0.7)]">
-        <div>
-          <Typography variant="paragraph">Edit beverage</Typography>
-          {beverageInfo && (
-            <form action={formAction} className="flex flex-col gap-2">
+      <div className="w-[320px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[560px]">
+        <Typography variant="paragraph" weight="medium">
+          Edit beverage
+        </Typography>
+        {beverageInfo && (
+          <form action={formAction} className="mt-[16px] flex flex-col gap-3">
+            <Input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={beverageInfo.name || ''}
+              onChange={e => handleBeverageInfoOnChange(e, 'name')}
+            />
+            <Input
+              type="text"
+              name="category"
+              placeholder="Category"
+              value={beverageInfo.category || ''}
+              onChange={e => handleBeverageInfoOnChange(e, 'category')}
+            />
+            <Input
+              type="number"
+              name="price"
+              placeholder="Price"
+              value={beverageInfo.price || ''}
+              onChange={e => handleBeverageInfoOnChange(e, 'price')}
+            />
+            <Input
+              type="text"
+              name="description"
+              placeholder="Description"
+              className="rounded-md border border-gray-300 px-2 py-1 pb-[50px] placeholder:text-gray-400"
+              value={beverageInfo.desc || ''}
+              onChange={e => handleBeverageInfoOnChange(e, 'desc')}
+            />
+
+            <label className="relative inline-block">
               <Input
-                type="text"
-                name="name"
-                value={beverageInfo.name || ''}
-                onChange={e => handleBeverageInfoOnChange(e, 'name')}
-              />
-              <Input
-                type="text"
-                name="category"
-                value={beverageInfo.category || ''}
-                onChange={e => handleBeverageInfoOnChange(e, 'category')}
-              />
-              <Input
-                type="text"
-                name="price"
-                value={beverageInfo.price || ''}
-                onChange={e => handleBeverageInfoOnChange(e, 'price')}
-              />
-              <Input
-                type="text"
-                name="description"
-                className="rounded-md border border-gray-300 px-2 py-1 placeholder:text-gray-400"
-                value={beverageInfo.desc || ''}
-                onChange={e => handleBeverageInfoOnChange(e, 'desc')}
+                type="file"
+                name="image"
+                className="absolute -z-10 block h-0 w-0 opacity-0"
+                placeholder="Choose image"
               />
 
-              <input type="file" name="image" className="" />
-              <label className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  name="isAvailable"
-                  className="h-4 w-4 border-l-2 border-red-600 p-10"
-                  value={beverageInfo.isAvailable ? 'on' : undefined}
-                  onChange={e => handleBeverageInfoOnChange(e, 'isAvailable')}
-                />
-                <Typography variant="caption">isAvailable</Typography>
-              </label>
-              <div className="flex gap-2.5">
-                <Button
-                  variant="outline"
-                  width="full"
-                  onClick={handleEditModalOnClose}
-                >
-                  Close
-                </Button>
-
-                <SubmitButton type="edit" />
-              </div>
-            </form>
-          )}
-        </div>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="bg-theme-grey-200"
+              >
+                Choose image
+              </Button>
+            </label>
+            <Input
+              type="text"
+              name="quantity"
+              placeholder="Quantity"
+              value={beverageInfo.quantity || ''}
+              onChange={e => handleBeverageInfoOnChange(e, 'quantity')}
+            />
+            <div className="flex gap-2.5">
+              <Button
+                type="button"
+                variant="outline"
+                width="full"
+                onClick={handleEditModalOnClose}
+              >
+                Close
+              </Button>
+              <SubmitButton type="edit" />
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );

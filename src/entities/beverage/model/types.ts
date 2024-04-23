@@ -5,7 +5,7 @@ export type TBeverage = {
   price: number | null;
   desc: string;
   image: undefined | null;
-  isAvailable: boolean;
+  quantity: number;
 };
 
 export type TModal = {

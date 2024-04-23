@@ -41,24 +41,35 @@ export const CreateModalForm: FC = () => {
         },
       )}
     >
-      <div className="flex w-[80dvw] flex-col justify-between rounded-lg bg-white p-5 shadow-[0px_0px_30px_10000px_rgba(0,0,0,0.7)] sm:h-[40dvh] md:w-[30dvw]">
-        <Typography variant="paragraph">Add new beverage</Typography>
-        <h2 className="mb-3 text-base font-medium"></h2>
-        <form action={formAction} className="flex flex-col gap-5">
+      <div className="w-[320px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[560px]">
+        <Typography variant="paragraph" weight="medium">
+          Add new beverage
+        </Typography>
+        <form action={formAction} className="mt-[16px] flex flex-col gap-3">
           <Input type="text" name="name" placeholder="Name" required />
           <Input type="text" name="category" placeholder="Category" required />
           <Input type="number" name="price" placeholder="Price" required />
-          <Input type="text" name="desc" placeholder="Description" required />
+          <Input
+            type="text"
+            className="pb-[50px]"
+            name="desc"
+            placeholder="Description"
+            required
+          />
 
           <label className="relative inline-block">
-            <Input
-              type="file"
-              name="image"
-              className="absolute -z-10 block h-0 w-0 opacity-0"
-              placeholder="Choose image"
-            />
-
-            <Button variant="outline" size="sm" className="bg-theme-grey-200">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="w-[109px] bg-theme-grey-200"
+            >
+              <Input
+                type="file"
+                name="image"
+                className="absolute left-0 top-0 z-10 block h-full w-full opacity-0"
+                placeholder="Choose image"
+              />
               Choose image
             </Button>
           </label>
@@ -72,6 +83,7 @@ export const CreateModalForm: FC = () => {
           </label>
           <div className="flex gap-2.5">
             <Button
+              type="button"
               variant="outline"
               width="full"
               onClick={() => setModalState(false)}

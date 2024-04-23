@@ -37,7 +37,7 @@ export default function Sidebar() {
               </Link>
             </li>
             <li>
-              <Link href="/partner/customer">
+              <Link href="/partner/customer-data">
                 <Button variant="link" width="full" className="flex flex-col">
                   <RiVipCrownLine />
                   <span>Customer Data</span>
@@ -45,10 +45,10 @@ export default function Sidebar() {
               </Link>
             </li>
             <li>
-              <Link href="/partner/order">
+              <Link href="/partner/orders">
                 <Button variant="link" width="full" className="flex flex-col">
                   <RiMoneyDollarCircleLine />
-                  Order
+                  Orders
                 </Button>
               </Link>
             </li>
