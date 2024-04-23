@@ -1,3 +1,4 @@
-import type { TUser } from './types';
+import type { TFiltersList, TUser } from './types';
+import { users_filters } from './users-filters.data';
 
-export { TUser };
+export { TFiltersList, TUser, users_filters };
