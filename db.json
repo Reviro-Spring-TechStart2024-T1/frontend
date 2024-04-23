@@ -2,27 +2,39 @@
   "users": [
     {
       "id": "1",
-      "name": "Ilias",
+      "firstName": "Ilias",
+      "lastName": "Kadyrkulov",
+      "age": 22,
       "email": "ilias.kadyrkulov@gmail.com",
-      "phone": 700205314
+      "phone": 700205314,
+      "joinedAt": "2024-04-04"
     },
     {
       "id": "2",
-      "name": "Aktan",
+      "firstName": "Aktan",
+      "age": 20,
+      "lastName": "Moldokeev",
       "email": "aktan.moldokeev@gmail.com",
-      "phone": 708632227
+      "phone": 708632227,
+      "joinedAt": "2024-05-04"
     },
     {
       "id": "3",
-      "name": "Eldiyar",
+      "firstName": "Eldiyar",
+      "lastName": "Mirlanov",
+      "age": 32,
       "email": "eldiyar.backend@gmail.com",
-      "phone": 123123213
+      "phone": 123123213,
+      "joinedAt": "2024-06-04"
     },
     {
       "id": "4",
-      "name": "Talant",
+      "firstName": "Talant",
+      "lastName": "Kosmosbekov",
+      "age": 32,
       "email": "talant.backend@gmail.com",
-      "phone": 323132132
+      "phone": 323132132,
+      "joinedAt": "2024-07-04"
     }
   ],
   "partners": [
