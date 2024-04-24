@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { TypographyProps, TypographyTags } from './types/Typography.types';
 
-const typographyVariants = cva('text-theme-black', {
+const typographyVariants = cva('', {
   variants: {
     variant: {
       h1: 'text-5xl',
@@ -15,6 +15,10 @@ const typographyVariants = cva('text-theme-black', {
       paragraph: 'text-base',
       caption: 'text-sm',
       link: 'text-base',
+    },
+    color: {
+      black: 'text-theme-black',
+      grey: 'text-theme-grey-500',
     },
     weight: {
       regular: 'font-normal',
@@ -35,7 +39,8 @@ const typographyVariants = cva('text-theme-black', {
 });
 
 const Typography: FC<TypographyProps> = props => {
-  const { children, className, variant, weight, format, ...rest } = props;
+  const { children, className, variant, color, weight, format, ...rest } =
+    props;
 
   const Tags = {
     h1: 'h1',
@@ -52,7 +57,7 @@ const Typography: FC<TypographyProps> = props => {
     Tags[variant as keyof TypographyTags],
     {
       className: twMerge(
-        typographyVariants({ variant, weight, format }),
+        typographyVariants({ variant, weight, color, format }),
         className,
       ),
       ...rest,

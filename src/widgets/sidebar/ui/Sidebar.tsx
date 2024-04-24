@@ -23,7 +23,7 @@ export default function Sidebar() {
             <li>
               <Link href="/partner/dashboard">
                 <Button variant="link" width="full" className="flex flex-col">
-                  <RiPieChart2Line />
+                  <RiPieChart2Line size={30} />
                   <span>Dashboard</span>
                 </Button>
               </Link>
@@ -31,7 +31,7 @@ export default function Sidebar() {
             <li>
               <Link href="/partner/menu">
                 <Button variant="link" width="full" className="flex flex-col">
-                  <RiRestaurantLine />
+                  <RiRestaurantLine size={30} />
                   <span>Menu</span>
                 </Button>
               </Link>
@@ -39,15 +39,15 @@ export default function Sidebar() {
             <li>
               <Link href="/partner/customer">
                 <Button variant="link" width="full" className="flex flex-col">
-                  <RiVipCrownLine />
-                  <span>Customer Data</span>
+                  <RiVipCrownLine size={30} />
+                  <span>Customer</span>
                 </Button>
               </Link>
             </li>
             <li>
               <Link href="/partner/order">
                 <Button variant="link" width="full" className="flex flex-col">
-                  <RiMoneyDollarCircleLine />
+                  <RiMoneyDollarCircleLine size={30} />
                   Order
                 </Button>
               </Link>
@@ -55,10 +55,10 @@ export default function Sidebar() {
           </ul>
         </nav>
 
-        <div className="pb-9">
+        <div className="w-full pb-9">
           <Link href="/partner/logout">
             <Button variant="link" width="full" className="flex flex-col">
-              <RiLogoutBoxRLine />
+              <RiLogoutBoxRLine size={30} />
               Logout
             </Button>
           </Link>

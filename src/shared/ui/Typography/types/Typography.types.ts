@@ -13,11 +13,14 @@ export type TypographyVariants =
 
 export type TypographyFormats = 'capitalize' | 'uppercase';
 
+export type TypographyColors = 'black' | 'grey';
+
 export type TypographyWeights = 'regular' | 'medium' | 'semibold' | 'bold';
 export interface TypographyProps {
   children: ReactNode;
   variant: TypographyVariants;
   className?: ClassNameValue;
+  color?: TypographyColors;
   weight?: TypographyWeights;
   format?: TypographyFormats;
 }

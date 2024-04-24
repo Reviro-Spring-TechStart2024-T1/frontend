@@ -28,7 +28,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="grid grid-cols-[138px_auto]">
           <Sidebar />
-          <Providers>{children}</Providers>
+
+          <div className="h-screen overflow-auto">
+            <Providers>{children}</Providers>
+          </div>
         </div>
       </body>
     </html>

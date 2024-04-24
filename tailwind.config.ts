@@ -8,6 +8,10 @@ const config: Config = {
     './src/shared/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '45px',
+    },
     extend: {
       colors: {
         'theme-black': '#0C0F16',
@@ -28,10 +32,11 @@ const config: Config = {
         'theme-blue-400': '#292b7475',
 
         'theme-grey-100': '#f8f9fa',
+        'theme-grey-150': '#F5F5F5',
         'theme-grey-200': '#e9ecef',
         'theme-grey-300': '#ced4da',
         'theme-grey-400': '#ADB5BD',
-        'theme-grey-500': '#3c3c3cd1',
+        'theme-grey-500': '#52525B',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
