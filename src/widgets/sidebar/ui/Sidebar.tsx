@@ -12,7 +12,7 @@ import { Button } from '@/shared/ui';
 
 export default function Sidebar() {
   return (
-    <div className="relative">
+    <div className="relative bottom-16">
       <div className="fixed flex h-full w-[138px] flex-col items-center justify-between gap-10 bg-[#111828] px-4 text-theme-white">
         <div className="pt-9">
           <Logo />
