@@ -65,9 +65,9 @@ const buttonVariants = cva(
         link: [
           'bg-transparent',
           'text-theme-grey-100',
-          'hover:bg-theme-blue-100',
-          'active:bg-theme-blue-100',
-          'focus-visible:bg-theme-blue-100',
+          'hover:bg-theme-blue-400',
+          'active:bg-theme-blue-400',
+          'focus-visible:bg-theme-blue-400',
           'disabled:bg-theme-grey-100',
           'disabled:text-theme-grey-400',
           'focus-visible:ring-0',

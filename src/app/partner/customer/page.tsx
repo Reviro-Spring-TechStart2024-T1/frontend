@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { Typography } from '@/shared/ui';
+import { Container } from '@/shared/ui/Container/Container';
 import { UserTable } from '@/widgets/user-table/ui';
 
 export const metadata: Metadata = {
@@ -9,12 +9,8 @@ export const metadata: Metadata = {
 
 export default function CustomerData() {
   return (
-    <>
-      <Typography variant="h2" weight="bold">
-        Customer Data
-      </Typography>
-
+    <Container title="Customer Data">
       <UserTable />
-    </>
+    </Container>
   );
 }

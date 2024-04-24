@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { Typography } from '@/shared/ui';
+import { Container } from '@/shared/ui/Container/Container';
 import { BeverageTable } from '@/widgets/beverage-table';
 
 export const metadata: Metadata = {
@@ -17,12 +17,8 @@ export default function CustomerProfile({
   params: { id },
 }: CustomerProfileProps) {
   return (
-    <>
-      <Typography variant="h2" weight="bold">
-        Customer Profile {id}
-      </Typography>
-
+    <Container title="Customer Profile">
       <BeverageTable />
-    </>
+    </Container>
   );
 }
