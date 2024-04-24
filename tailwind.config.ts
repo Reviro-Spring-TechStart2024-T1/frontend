@@ -31,6 +31,7 @@ const config: Config = {
 
         'theme-blue-100': '#EBF2FA',
         'theme-blue-200': '#292b7475',
+        'theme-blue-300': '#137AF1',
         'theme-blue-400': '#28303D',
 
         'theme-grey-100': '#f8f9fa',
@@ -40,11 +41,8 @@ const config: Config = {
         'theme-grey-400': '#ADB5BD',
         'theme-grey-500': '#52525B',
       },
-      width: {
-        header: 'calc(100% - 138px)',
-      },
       height: {
-        main: 'calc(100vh - 64px)',
+        main: 'calc(100vh - 76px)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

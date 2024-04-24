@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import Header from '@/widgets/header/Header';
-import Sidebar from '@/widgets/sidebar/ui/Sidebar';
+import { Header } from '@/widgets/header';
+import { Sidebar } from '@/widgets/sidebar';
 
 import { Providers } from './providers';
 

@@ -133,5 +133,35 @@
       "image": {},
       "isAvailable": "on"
     }
+  ],
+  "order_history": [
+    {
+      "id": "1",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
+    },
+    {
+      "id": "2",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
+    },
+    {
+      "id": "3",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
+    },
+    {
+      "id": "4",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
+    }
   ]
 }
