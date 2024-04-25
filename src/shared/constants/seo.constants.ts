@@ -1,1 +1,1 @@
-export const NO_INDEX_PAGE = {};
+export const NO_INDEX_PAGE = {}

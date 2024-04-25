@@ -1,1 +1,0 @@
-export { BeverageTable } from './BeverageTable';
