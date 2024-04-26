@@ -19,7 +19,7 @@ export const useCreateModal = () => {
   return context;
 };
 
-export const CreateModalFormContext = ({
+export const CreateModalContextProvider = ({
   children,
 }: {
   children: ReactNode;
@@ -29,14 +29,6 @@ export const CreateModalFormContext = ({
   const setModalState = (state: boolean) => {
     setIsActive(state);
   };
-
-  // const [isActive, setModalState] = useMemo(() => {
-  //   const manipulateModal = (state: boolean) => {
-  //     setActive(state);
-  //   };
-
-  //   return [active, manipulateModal];
-  // }, [active]);
 
   return (
     <CreateModalContext.Provider value={{ isActive, setModalState }}>

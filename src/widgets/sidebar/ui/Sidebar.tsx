@@ -45,7 +45,7 @@ export const Sidebar = () => {
               </Link>
             </li>
             <li>
-              <Link href="/partner/order">
+              <Link href="/partner/orders">
                 <Button variant="link" width="full" className="flex flex-col">
                   <RiMoneyDollarCircleLine size={30} />
                   Order

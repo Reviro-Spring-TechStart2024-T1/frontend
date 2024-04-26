@@ -1,11 +1,8 @@
-import { ComponentProps } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { Typography } from '../Typography';
 
-export interface ContainerProps extends ComponentProps<'html'> {
-  title?: string;
-}
+import { ContainerProps } from './types/Container.types';
 
 export const Container = (props: ContainerProps) => {
   const { children, title, className, ...rest } = props;

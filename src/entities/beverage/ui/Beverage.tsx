@@ -1,26 +1,33 @@
 'use client';
 
-import { useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import { TBeverage } from '@/entities/beverage';
-import { beverage, delete_, edit } from '@/shared';
+import {
+  beverage,
+  delete_,
+  edit,
+  useDeleteModal,
+  useEditModal,
+} from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 
-export const Beverage = ({
+export const Beverage: FC<TBeverage> = ({
   id,
   name,
-  category,
   price,
   desc,
-  isAvailable,
-  showEditModal,
-}: TBeverage & { showEditModal: () => void }) => {
+  quantity,
+}) => {
+  const { setModalState: setEditModalState } = useEditModal();
+  const { setModalState: setDeleteModalState } = useDeleteModal();
+
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleEditOnClick = useCallback(
+  const handleIconOnClick = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams);
       params.set(name, value);
@@ -40,16 +47,15 @@ export const Beverage = ({
             className="rounded-l-lg rounded-bl-lg object-cover"
             style={{ width: '100%', height: '300px' }}
           />
-          <Typography
-            variant="caption"
-            className="absolute bottom-3 right-3 text-blue-500"
-          >
-            {isAvailable ? 'Available' : 'Unavailable'}
-          </Typography>
+          <div className="absolute bottom-[6px] right-[6px] rounded-md bg-[#00b3ff78] p-2">
+            <Typography variant="caption" className="   text-white ">
+              quantity: {quantity}
+            </Typography>
+          </div>
         </div>
-        <div className="flex flex-1 flex-col justify-between p-2">
-          <div className="flex flex-col justify-between gap-5 md:flex-row">
-            <Typography variant="h5" className="break-words md:w-2/4">
+        <div className="flex flex-1 flex-col justify-between gap-1 p-2">
+          <div className="flex flex-col justify-between gap-1">
+            <Typography variant="h5" className="break-words">
               {name}
             </Typography>
 
@@ -57,7 +63,10 @@ export const Beverage = ({
               {price} ⃀
             </Typography>
           </div>
-          <Typography variant="caption" className="line-clamp-4 flex-1">
+          <Typography
+            variant="caption"
+            className="line-clamp-4 flex-1 text-[#3C3C3C]"
+          >
             {desc}
           </Typography>
         </div>
@@ -68,8 +77,8 @@ export const Beverage = ({
             width="full"
             className="rounded-none"
             onClick={() => {
-              router.push(`?${handleEditOnClick('id', String(id))}`);
-              showEditModal();
+              router.push(`?${handleIconOnClick('id', String(id))}`);
+              setEditModalState(true);
             }}
           >
             <Image
@@ -85,10 +94,14 @@ export const Beverage = ({
             btnType="icon"
             width="full"
             className="rounded-none"
+            onClick={() => {
+              router.push(`?${handleIconOnClick('id', String(id))}`);
+              setDeleteModalState(true);
+            }}
           >
             <Image
               src={delete_}
-              alt="edit"
+              alt="delete"
               style={{ width: '20px', height: '20px' }}
               className="mx-auto"
             />

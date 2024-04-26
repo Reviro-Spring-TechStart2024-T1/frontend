@@ -4,7 +4,7 @@ import { PartnerProfile } from '@/entities/partner';
 import { NO_INDEX_PAGE } from '@/shared/';
 
 export const metadata: Metadata = {
-  title: '',
+  title: 'Profile',
   ...NO_INDEX_PAGE,
 };
 

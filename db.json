@@ -2,27 +2,39 @@
   "users": [
     {
       "id": "1",
-      "name": "Ilias",
+      "firstName": "Ilias",
+      "lastName": "Kadyrkulov",
+      "age": 22,
       "email": "ilias.kadyrkulov@gmail.com",
-      "phone": 700205314
+      "phone": 700205314,
+      "joinedAt": "2024-04-04"
     },
     {
       "id": "2",
-      "name": "Aktan",
+      "firstName": "Aktan",
+      "age": 20,
+      "lastName": "Moldokeev",
       "email": "aktan.moldokeev@gmail.com",
-      "phone": 708632227
+      "phone": 708632227,
+      "joinedAt": "2024-05-04"
     },
     {
       "id": "3",
-      "name": "Eldiyar",
+      "firstName": "Eldiyar",
+      "lastName": "Mirlanov",
+      "age": 32,
       "email": "eldiyar.backend@gmail.com",
-      "phone": 123123213
+      "phone": 123123213,
+      "joinedAt": "2024-06-04"
     },
     {
       "id": "4",
-      "name": "Talant",
+      "firstName": "Talant",
+      "lastName": "Kosmosbekov",
+      "age": 32,
       "email": "talant.backend@gmail.com",
-      "phone": 323132132
+      "phone": 323132132,
+      "joinedAt": "2024-07-04"
     }
   ],
   "partners": [
@@ -53,85 +65,48 @@
   ],
   "beverages": [
     {
-      "name": "Strawberry milkshakedsadsa12321321",
+      "name": "Strawberry milkshake",
       "category": "milkshake",
-      "price": "200",
-      "desc": null,
+      "price": 300,
+      "desc": "A drink made from the extraction o",
+      "quantity": 2,
       "image": {},
-      "isAvailable": "on",
       "id": "1"
     },
     {
-      "id": "2",
       "name": "Classic milkshake",
       "category": "milkshake",
       "price": 100,
-      "desc": "An aromatic cold drink based on milk and ice cream with a delicate creamy taste and airy consistency.",
-      "image": "",
-      "isAvailable": true
+      "desc": "2",
+      "quantity": 3,
+      "id": "2"
     },
     {
       "id": "3",
-      "name": "Blackberry milkshake",
-      "category": "milkshake",
-      "price": 180,
-      "desc": "A sweet beverage made by blending milk, ice cream, and blackberry.",
-      "image": "",
-      "isAvailable": true
-    },
-    {
-      "id": "4",
-      "name": "Apple juice",
-      "category": "juice",
-      "price": 80,
-      "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
-      "image": "",
-      "isAvailable": true
-    },
-    {
-      "id": "5",
       "name": "Orange juice",
       "category": "juice",
       "price": 80,
       "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
       "image": "",
-      "isAvailable": false
+      "quantity": 8
     },
     {
-      "id": "6",
-      "name": "Peach juice",
-      "category": "juice",
-      "price": 80,
-      "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
-      "image": "",
-      "isAvailable": true
-    },
-    {
-      "id": "e224",
-      "name": "dsad",
-      "category": "dsadsa",
-      "price": "21321",
-      "desc": "adsadsa",
+      "name": "Strawberry milkshake",
+      "category": "2",
+      "price": 1,
+      "desc": "2",
+      "quantity": 2,
       "image": {},
-      "isAvailable": "on"
+      "id": "4"
     },
     {
-      "id": "5f9d",
-      "name": "dsadsa",
-      "category": "dsadsa",
-      "price": "1231",
-      "desc": "dsadsa",
+      "name": "Ilias",
+      "category": "testcat",
+      "price": 123,
+      "desc": "descscs",
+      "quantity": 123,
       "image": {},
-      "isAvailable": "on"
-    },
-    {
-      "id": "26de",
-      "name": "dsadsa",
-      "category": "dsadsa",
-      "price": "123",
-      "desc": "dsa",
-      "image": {},
-      "isAvailable": "on"
+      "id": "5"
     }
   ],
   "order_history": [

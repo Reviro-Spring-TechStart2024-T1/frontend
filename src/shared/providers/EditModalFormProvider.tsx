@@ -19,20 +19,16 @@ export const useEditModal = () => {
   return context;
 };
 
-export const EditModalFormContext = ({ children }: { children: ReactNode }) => {
+export const EditModalContextProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const [isActive, setIsActive] = useState(false);
 
   const setModalState = (state: boolean) => {
     setIsActive(state);
   };
-
-  // const [isActive, setModalState] = useMemo(() => {
-  //   const manipulateModal = (state: boolean) => {
-  //     setActive(state);
-  //   };
-
-  //   return [active, manipulateModal];
-  // }, [active]);
 
   return (
     <EditModalContext.Provider value={{ isActive, setModalState }}>

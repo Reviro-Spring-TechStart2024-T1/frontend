@@ -52,9 +52,9 @@ export const UserTable = () => {
                       variant="caption"
                       color="grey"
                       weight="medium"
-                      className="group-hover:text-theme-blue-300 cursor-pointer hover:underline"
+                      className="cursor-pointer hover:underline group-hover:text-theme-blue-300"
                     >
-                      {user.name}
+                      {user.firstName}
                     </Typography>
                   </Link>
                 </td>

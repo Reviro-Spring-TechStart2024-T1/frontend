@@ -4,7 +4,7 @@ import { fetcher } from '@/shared';
 
 export interface Users {
   id: string;
-  name: string;
+  firstName: string;
   email: string;
   phone: number;
 }

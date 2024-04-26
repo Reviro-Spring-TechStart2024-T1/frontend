@@ -2,12 +2,18 @@
 
 import { ReactNode } from 'react';
 
-import { CreateModalFormContext, EditModalFormContext } from '@/shared';
+import {
+  CreateModalContextProvider,
+  DeleteModalProvider,
+  EditModalContextProvider,
+} from '@/shared';
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <CreateModalFormContext>
-      <EditModalFormContext>{children}</EditModalFormContext>
-    </CreateModalFormContext>
+    <CreateModalContextProvider>
+      <EditModalContextProvider>
+        <DeleteModalProvider>{children}</DeleteModalProvider>
+      </EditModalContextProvider>
+    </CreateModalContextProvider>
   );
 }
