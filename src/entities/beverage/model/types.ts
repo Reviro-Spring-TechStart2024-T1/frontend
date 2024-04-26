@@ -2,10 +2,10 @@ export type TBeverage = {
   id: number;
   name: string;
   category: string;
-  price: number | null;
+  price: string;
   desc: string;
-  image: undefined | null;
-  quantity: number;
+  quantity: string;
+  image: object | File;
 };
 
 export type TModal = {

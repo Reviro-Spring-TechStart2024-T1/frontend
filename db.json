@@ -65,43 +65,24 @@
   ],
   "beverages": [
     {
-      "name": "Strawberry milkshakedsadsa12321321",
+      "name": "Strawberry milkshake",
       "category": "milkshake",
-      "price": "200",
-      "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
-      "image": {},
+      "price": 300,
+      "desc": "A drink made from the extraction o",
       "quantity": 2,
+      "image": {},
       "id": "1"
     },
     {
       "name": "Classic milkshake",
       "category": "milkshake",
-      "price": "100",
-      "desc": null,
-      "image": {},
-      "quantity": 5,
+      "price": 100,
+      "desc": "2",
+      "quantity": 3,
       "id": "2"
     },
     {
       "id": "3",
-      "name": "Blackberry milkshake",
-      "category": "milkshake",
-      "price": 180,
-      "desc": "A sweet beverage made by blending milk, ice cream, and blackberry.",
-      "image": "",
-      "quantity": 6
-    },
-    {
-      "name": "Apple juice",
-      "category": "juice",
-      "price": "321",
-      "desc": null,
-      "image": {},
-      "isAvailable": null,
-      "id": "4"
-    },
-    {
-      "id": "5",
       "name": "Orange juice",
       "category": "juice",
       "price": 80,
@@ -110,40 +91,22 @@
       "quantity": 8
     },
     {
-      "id": "6",
-      "name": "Peach juice",
-      "category": "juice",
-      "price": 80,
-      "desc": "A drink made from the extraction or pressing of the natural liquid contained in fruit.",
-      "image": "",
-      "quantity": 10
+      "name": "Strawberry milkshake",
+      "category": "2",
+      "price": 1,
+      "desc": "2",
+      "quantity": 2,
+      "image": {},
+      "id": "4"
     },
     {
-      "id": "e224",
-      "name": "dsad",
-      "category": "dsadsa",
-      "price": "21321",
-      "desc": "adsadsa",
+      "name": "Ilias",
+      "category": "testcat",
+      "price": 123,
+      "desc": "descscs",
+      "quantity": 123,
       "image": {},
-      "quantity": 2
-    },
-    {
-      "id": "5f9d",
-      "name": "dsadsa",
-      "category": "dsadsa",
-      "price": "1231",
-      "desc": "dsadsa",
-      "image": {},
-      "quantity": 4
-    },
-    {
-      "id": "26de",
-      "name": "dsadsa",
-      "category": "dsadsa",
-      "price": "123",
-      "desc": "dsa",
-      "image": {},
-      "quantity": 7
+      "id": "5"
     }
   ]
 }

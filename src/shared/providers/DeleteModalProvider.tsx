@@ -2,28 +2,24 @@
 
 import { createContext, ReactNode, useContext, useState } from 'react';
 
-type TCreateFormContext = {
+type TDeleteContext = {
   isActive: boolean;
   setModalState: (bool: boolean) => void;
 };
 
-export const CreateModalContext = createContext<TCreateFormContext | undefined>(
+export const DeleteModalContext = createContext<TDeleteContext | undefined>(
   undefined,
 );
 
-export const useCreateModal = () => {
-  const context = useContext(CreateModalContext);
+export const useDeleteModal = () => {
+  const context = useContext(DeleteModalContext);
 
   if (!context) throw new Error('Error. No context.');
 
   return context;
 };
 
-export const CreateModalContextProvider = ({
-  children,
-}: {
-  children: ReactNode;
-}) => {
+export const DeleteModalProvider = ({ children }: { children: ReactNode }) => {
   const [isActive, setIsActive] = useState(false);
 
   const setModalState = (state: boolean) => {
@@ -31,8 +27,8 @@ export const CreateModalContextProvider = ({
   };
 
   return (
-    <CreateModalContext.Provider value={{ isActive, setModalState }}>
+    <DeleteModalContext.Provider value={{ isActive, setModalState }}>
       {children}
-    </CreateModalContext.Provider>
+    </DeleteModalContext.Provider>
   );
 };

@@ -1,5 +1,6 @@
 import {
   CREATE_BEVERAGE_FORM,
+  DELETE_BEVERAGE,
   EDIT_BEVERAGE_FORM,
   NO_INDEX_PAGE,
 } from './constants';
@@ -8,9 +9,11 @@ import { addImage, delete as delete_, download, edit } from './icons';
 import { beverage } from './imgs';
 import { fetcher } from './lib';
 import {
-  CreateModalFormContext,
-  EditModalFormContext,
+  CreateModalContextProvider,
+  DeleteModalProvider,
+  EditModalContextProvider,
   useCreateModal,
+  useDeleteModal,
   useEditModal,
 } from './providers';
 import { AddBeverageButton } from './ui';
@@ -20,17 +23,20 @@ export {
   addImage,
   beverage,
   CREATE_BEVERAGE_FORM,
-  CreateModalFormContext,
+  CreateModalContextProvider,
   delete_,
+  DELETE_BEVERAGE,
+  DeleteModalProvider,
   download,
   edit,
   EDIT_BEVERAGE_FORM,
-  EditModalFormContext,
+  EditModalContextProvider,
   fetcher,
   NO_INDEX_PAGE,
   useBeverages,
   useCloseForm,
   useCreateModal,
+  useDeleteModal,
   useEditModal,
   useUsers,
 };
