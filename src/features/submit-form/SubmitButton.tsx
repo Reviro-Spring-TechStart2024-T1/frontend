@@ -7,7 +7,7 @@ import { Button } from '@/shared/ui';
 export const SubmitButton = ({
   type,
 }: {
-  type: 'create' | 'edit' | 'save';
+  type: 'create' | 'edit' | 'save' | 'delete';
 }) => {
   const { pending } = useFormStatus();
 
@@ -21,6 +21,11 @@ export const SubmitButton = ({
       )}
       {type === 'save' && (
         <Button width="full">{pending ? 'Saving...' : 'Save'}</Button>
+      )}
+      {type === 'delete' && (
+        <Button variant="delete" width="full">
+          {pending ? 'Deleting...' : 'Delete'}
+        </Button>
       )}
     </>
   );

@@ -1,26 +1,33 @@
 'use client';
 
-import { useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import { TBeverage } from '@/entities/beverage';
-import { beverage, delete_, edit } from '@/shared';
+import {
+  beverage,
+  delete_,
+  edit,
+  useDeleteModal,
+  useEditModal,
+} from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 
-export const Beverage = ({
+export const Beverage: FC<TBeverage> = ({
   id,
   name,
-  category,
   price,
   desc,
   quantity,
-  showEditModal,
-}: TBeverage & { showEditModal: () => void }) => {
+}) => {
+  const { setModalState: setEditModalState } = useEditModal();
+  const { setModalState: setDeleteModalState } = useDeleteModal();
+
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleEditOnClick = useCallback(
+  const handleIconOnClick = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams);
       params.set(name, value);
@@ -70,8 +77,8 @@ export const Beverage = ({
             width="full"
             className="rounded-none"
             onClick={() => {
-              router.push(`?${handleEditOnClick('id', String(id))}`);
-              showEditModal();
+              router.push(`?${handleIconOnClick('id', String(id))}`);
+              setEditModalState(true);
             }}
           >
             <Image
@@ -87,10 +94,14 @@ export const Beverage = ({
             btnType="icon"
             width="full"
             className="rounded-none"
+            onClick={() => {
+              router.push(`?${handleIconOnClick('id', String(id))}`);
+              setDeleteModalState(true);
+            }}
           >
             <Image
               src={delete_}
-              alt="edit"
+              alt="delete"
               style={{ width: '20px', height: '20px' }}
               className="mx-auto"
             />

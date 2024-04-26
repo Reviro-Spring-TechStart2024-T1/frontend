@@ -1,12 +1,18 @@
 import {
-  CreateModalFormContext,
+  CreateModalContextProvider,
   useCreateModal,
 } from './CreateModalFormProvider';
-import { EditModalFormContext, useEditModal } from './EditModalFormProvider';
+import { DeleteModalProvider, useDeleteModal } from './DeleteModalProvider';
+import {
+  EditModalContextProvider,
+  useEditModal,
+} from './EditModalFormProvider';
 
 export {
-  CreateModalFormContext,
-  EditModalFormContext,
+  CreateModalContextProvider,
+  DeleteModalProvider,
+  EditModalContextProvider,
   useCreateModal,
+  useDeleteModal,
   useEditModal,
 };
