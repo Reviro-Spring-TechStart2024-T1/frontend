@@ -36,54 +36,57 @@ export const Pagination = ({
   };
 
   return (
-    <ul className="flex justify-center gap-2">
-      <li>
-        <Button
-          btnType="icon"
-          variant="outline"
-          size="sm"
-          disabled={currentPage === 1}
-          onClick={onPrevious}
-        >
-          <RiArrowLeftSLine />
-        </Button>
-      </li>
-      {paginationRange?.map((pageNumber, index) => {
-        if (pageNumber === 'DOTS') {
-          return <li key={index}>&#8230;</li>;
-        }
+    <div>
+      <ul className="flex justify-center gap-2">
+        <li>
+          <Button
+            btnType="icon"
+            variant="outline"
+            size="sm"
+            disabled={currentPage === 1}
+            onClick={onPrevious}
+          >
+            <RiArrowLeftSLine />
+          </Button>
+        </li>
 
-        return (
-          <li key={index}>
-            <Button
-              btnType="icon"
-              variant="primary"
-              size="sm"
-              className={clsx(
-                'bg-transparent text-theme-black hover:text-theme-white',
-                {
-                  ['bg-theme-primary-300 text-theme-white']:
-                    pageNumber === currentPage,
-                },
-              )}
-              onClick={() => onPageChange(pageNumber as number)}
-            >
-              {pageNumber}
-            </Button>
-          </li>
-        );
-      })}
-      <li>
-        <Button
-          btnType="icon"
-          variant="outline"
-          size="sm"
-          disabled={currentPage === lastPage}
-          onClick={onNext}
-        >
-          <RiArrowRightSLine />
-        </Button>
-      </li>
-    </ul>
+        {paginationRange?.map((pageNumber, index) => {
+          if (pageNumber === 'DOTS') {
+            return <li key={index}>&#8230;</li>;
+          }
+
+          return (
+            <li key={index}>
+              <Button
+                btnType="icon"
+                variant="primary"
+                size="sm"
+                className={clsx(
+                  'bg-transparent text-theme-black hover:text-theme-white',
+                  {
+                    ['bg-theme-primary-300 text-theme-white']:
+                      pageNumber === currentPage,
+                  },
+                )}
+                onClick={() => onPageChange(pageNumber as number)}
+              >
+                {pageNumber}
+              </Button>
+            </li>
+          );
+        })}
+        <li>
+          <Button
+            btnType="icon"
+            variant="outline"
+            size="sm"
+            disabled={currentPage === lastPage}
+            onClick={onNext}
+          >
+            <RiArrowRightSLine />
+          </Button>
+        </li>
+      </ul>
+    </div>
   );
 };

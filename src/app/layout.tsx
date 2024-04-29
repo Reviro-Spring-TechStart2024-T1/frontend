@@ -31,7 +31,7 @@ export default function RootLayout({
         <main className="grid grid-cols-[138px_auto]">
           <Sidebar />
 
-          <div className="h-main overflow-auto">
+          <div className="min-h-main overflow-auto">
             <Providers>{children}</Providers>
           </div>
         </main>

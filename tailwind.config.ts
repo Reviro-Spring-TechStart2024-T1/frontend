@@ -41,7 +41,7 @@ const config: Config = {
         'theme-grey-400': '#ADB5BD',
         'theme-grey-500': '#52525B',
       },
-      height: {
+      minHeight: {
         main: 'calc(100vh - 76px)',
       },
       backgroundImage: {
