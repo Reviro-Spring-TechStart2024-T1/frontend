@@ -1,13 +1,13 @@
+import { useBeverages, useCloseForm, useUsers } from './api/hooks';
 import {
   CREATE_BEVERAGE_FORM,
   DELETE_BEVERAGE,
   EDIT_BEVERAGE_FORM,
   NO_INDEX_PAGE,
 } from './constants';
-import { useBeverages, useCloseForm, useUsers } from './hooks';
+import { fetcher } from './helper';
 import { addImage, delete as delete_, download, edit } from './icons';
 import { beverage } from './imgs';
-import { fetcher } from './lib';
 import {
   CreateModalContextProvider,
   DeleteModalProvider,

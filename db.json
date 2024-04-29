@@ -137,6 +137,62 @@
       "price": "1200",
       "category": "alcohol",
       "creation_time": "04-23-2024 00:00"
+    },
+    {
+      "id": "5",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
+    },
+    {
+      "id": "6",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
+    },
+    {
+      "id": "7",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
+    },
+    {
+      "id": "8",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
+    },
+    {
+      "id": "9",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
+    },
+    {
+      "id": "10",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
+    },
+    {
+      "id": "11",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
+    },
+    {
+      "id": "12",
+      "beverage": "cola",
+      "price": "1200",
+      "category": "alcohol",
+      "creation_time": "04-23-2024 00:00"
     }
   ]
 }

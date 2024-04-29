@@ -80,7 +80,7 @@ const buttonVariants = cva(
       },
       btnType: {
         button: '',
-        icon: ['p-0', 'bg-transparent'],
+        icon: ['p-0'],
       },
       width: {
         auto: 'w-auto',
@@ -90,7 +90,7 @@ const buttonVariants = cva(
     compoundVariants: [
       { variant: 'link', class: 'px-4 py-6' },
 
-      { btnType: 'icon', size: 'sm', class: 'h-6 w-6' },
+      { btnType: 'icon', size: 'sm', class: 'h-8 w-8' },
       { btnType: 'icon', size: 'md', class: 'h-11 w-11' },
 
       { btnType: 'icon', size: 'sm', width: 'full', class: 'h-6 w-full' },
