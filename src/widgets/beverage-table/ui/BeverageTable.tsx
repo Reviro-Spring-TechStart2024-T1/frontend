@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { RiDeleteBinLine, RiEditLine } from '@remixicon/react';
+import clsx from 'clsx';
 
 import { useOrderHistory } from '@/shared/api/hooks/useOrderHistory';
 import { Typography } from '@/shared/ui';
@@ -28,10 +29,13 @@ export const BeverageTable = () => {
       </td>
     </tr>
   ) : (
-    order_history?.data.map(order => {
+    order_history?.data.map((order, index) => {
       return (
         <tr
-          className="divide-x-2 border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100"
+          className={clsx(
+            'divide-x-2 border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100',
+            { ['border-none']: index === 9 },
+          )}
           key={order.id}
         >
           <td data-cell="id" className="whitespace-nowrap p-[14px] text-center">
@@ -73,7 +77,7 @@ export const BeverageTable = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="relative h-[613px] overflow-auto rounded-lg border-2 border-theme-grey-200">
+      <div className="relative h-[596px] overflow-auto rounded-lg border-2 border-theme-grey-200">
         <table className="w-full">
           <thead>
             <tr className="divide-x-2 bg-theme-grey-150">
