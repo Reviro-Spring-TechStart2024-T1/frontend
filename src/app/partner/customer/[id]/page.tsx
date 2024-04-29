@@ -1,52 +1,36 @@
 import { RiCalendar2Line } from '@remixicon/react';
+import { Metadata } from 'next';
 import Image from 'next/image';
 
-import { TUser } from '@/entities/user';
-import { NO_INDEX_PAGE } from '@/shared';
 import { Typography } from '@/shared/ui';
+import { Container } from '@/shared/ui/Container/Container';
+import { BeverageTable } from '@/widgets/beverage-table';
 
-export const generateMetadata = ({
-  params,
-}: {
-  params: { userId: string };
-}) => {
-  return {
-    title: 'UserID: ' + params.userId,
-    ...NO_INDEX_PAGE,
+export const metadata: Metadata = {
+  title: 'Customer Profile',
+};
+
+interface CustomerProfileProps {
+  params: {
+    id: string;
   };
-};
+}
 
-const getUserById = async (id: number) => {
-  const res: TUser = await fetch(`${process.env.API_URL}/users/${id}`, {
-    next: {
-      revalidate: 5,
-    },
-  }).then(res => res.json());
-
-  return res;
-};
-
-export default async function Page({ params }: { params: { userId: string } }) {
-  const user = await getUserById(+params.userId);
-  console.log(user);
-
+export default function CustomerProfile({
+  params: { id },
+}: CustomerProfileProps) {
   return (
-    <div className="my-[72px] min-h-[calc(100dvh-144px)] px-[56px]">
-      <Typography variant="h2" weight="bold">
-        Customer Profile
-      </Typography>
-      <div className="mt-8 flex flex-col justify-between rounded-md border border-gray-300 bg-white">
+    <Container title="Customer Profile">
+      <div className="flex flex-col justify-between rounded-md border border-gray-300 bg-white">
         <div className="mx-8 mb-11 mt-8 flex">
           <Image src="/user.png" width={100} height={100} alt="user" />
           <div className="py-4 pl-5">
-            <Typography variant="h3">
-              {user.firstName} {user.lastName}
-            </Typography>
+            <Typography variant="h3">Aktan</Typography>
             <Typography
               variant="paragraph"
               className="text-[#3c3c3c] opacity-80"
             >
-              {user.email}
+              aktan@gmail.com
             </Typography>
           </div>
         </div>
@@ -58,7 +42,7 @@ export default async function Page({ params }: { params: { userId: string } }) {
                 Joined:
               </Typography>
               <Typography variant="paragraph" className="text-[#3c3c3c]">
-                {user.joinedAt}
+                01.01.2004
               </Typography>
             </div>
           </div>
@@ -69,12 +53,14 @@ export default async function Page({ params }: { params: { userId: string } }) {
                 Age:
               </Typography>
               <Typography variant="paragraph" className="text-[#3c3c3c]">
-                {user.age}
+                50
               </Typography>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <BeverageTable />
+    </Container>
   );
 }

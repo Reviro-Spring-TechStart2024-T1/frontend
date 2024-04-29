@@ -3,7 +3,7 @@ import { SearchUsers } from '@/features/search-users';
 
 export const CustomerSearchFilter = () => {
   return (
-    <div className="flex gap-4">
+    <div className="flex justify-end gap-4">
       <SearchUsers />
       <FilterUsers />
     </div>

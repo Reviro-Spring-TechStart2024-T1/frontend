@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import Sidebar from '@/widgets/sidebar/ui/Sidebar';
+import { Header } from '@/widgets/header';
+import { Sidebar } from '@/widgets/sidebar';
 
 import { Providers } from './providers';
 
@@ -24,12 +25,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-theme-blue-100">
       <body className={inter.className}>
-        <div className="grid grid-cols-[138px_auto] bg-[#EBF2FA]">
+        <Header />
+        <main className="grid grid-cols-[138px_auto]">
           <Sidebar />
-          <Providers>{children}</Providers>
-        </div>
+
+          <div className="min-h-main overflow-auto">
+            <Providers>{children}</Providers>
+          </div>
+        </main>
       </body>
     </html>
   );
