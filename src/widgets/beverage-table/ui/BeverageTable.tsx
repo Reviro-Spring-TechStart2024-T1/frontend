@@ -8,8 +8,8 @@ import { Typography } from '@/shared/ui';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
 
 export const BeverageTable = () => {
-  const [page, setPage] = useState(1);
-  const { order_history, isLoading } = useOrderHistory(page, 5);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { order_history } = useOrderHistory(currentPage, 5);
 
   return (
     <>
@@ -111,8 +111,8 @@ export const BeverageTable = () => {
       {order_history ? (
         <Pagination
           pages={order_history.pages}
-          currentPage={page}
-          onPageChange={page => setPage(page)}
+          currentPage={currentPage}
+          onPageChange={page => setCurrentPage(page)}
         />
       ) : null}
     </>

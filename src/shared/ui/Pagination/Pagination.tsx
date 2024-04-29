@@ -34,6 +34,7 @@ export const Pagination = ({
   const onPrevious = () => {
     onPageChange(currentPage - 1);
   };
+
   return (
     <ul className="flex justify-center gap-2">
       <li>

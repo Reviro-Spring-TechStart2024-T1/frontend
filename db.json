@@ -111,88 +111,578 @@
   ],
   "order_history": [
     {
-      "id": "1",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 1,
+      "beverage": "Quench",
+      "price": "$612.90",
+      "category": "smoothies",
+      "creation_time": "10/6/2023"
     },
     {
-      "id": "2",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 2,
+      "beverage": "SipSip",
+      "price": "$755.63",
+      "category": "tea",
+      "creation_time": "12/8/2023"
     },
     {
-      "id": "3",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 3,
+      "beverage": "ChillChill",
+      "price": "$57.64",
+      "category": "lemonade",
+      "creation_time": "8/17/2023"
     },
     {
-      "id": "4",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 4,
+      "beverage": "FizzBuzz",
+      "price": "$351.20",
+      "category": "milkshakes",
+      "creation_time": "9/12/2023"
     },
     {
-      "id": "5",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 5,
+      "beverage": "SipSip",
+      "price": "$157.22",
+      "category": "soda",
+      "creation_time": "12/2/2023"
     },
     {
-      "id": "6",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 6,
+      "beverage": "Zest",
+      "price": "$914.90",
+      "category": "milkshakes",
+      "creation_time": "8/29/2023"
     },
     {
-      "id": "7",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 7,
+      "beverage": "SipSip",
+      "price": "$259.11",
+      "category": "coffee",
+      "creation_time": "5/23/2023"
     },
     {
-      "id": "8",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 8,
+      "beverage": "ChillChill",
+      "price": "$11.00",
+      "category": "lemonade",
+      "creation_time": "6/23/2023"
     },
     {
-      "id": "9",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 9,
+      "beverage": "Quench",
+      "price": "$589.48",
+      "category": "tea",
+      "creation_time": "2/2/2024"
     },
     {
-      "id": "10",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 10,
+      "beverage": "Zest",
+      "price": "$896.39",
+      "category": "lemonade",
+      "creation_time": "7/24/2023"
     },
     {
-      "id": "11",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 11,
+      "beverage": "SodaPop",
+      "price": "$818.52",
+      "category": "beer",
+      "creation_time": "6/11/2023"
     },
     {
-      "id": "12",
-      "beverage": "cola",
-      "price": "1200",
-      "category": "alcohol",
-      "creation_time": "04-23-2024 00:00"
+      "id": 12,
+      "beverage": "SodaPop",
+      "price": "$260.72",
+      "category": "milkshakes",
+      "creation_time": "1/5/2024"
+    },
+    {
+      "id": 13,
+      "beverage": "Splash",
+      "price": "$474.48",
+      "category": "juice",
+      "creation_time": "9/12/2023"
+    },
+    {
+      "id": 14,
+      "beverage": "Quench",
+      "price": "$678.75",
+      "category": "beer",
+      "creation_time": "9/23/2023"
+    },
+    {
+      "id": 15,
+      "beverage": "SipSip",
+      "price": "$512.42",
+      "category": "juice",
+      "creation_time": "7/11/2023"
+    },
+    {
+      "id": 16,
+      "beverage": "SipSip",
+      "price": "$842.91",
+      "category": "beer",
+      "creation_time": "7/16/2023"
+    },
+    {
+      "id": 17,
+      "beverage": "FizzBuzz",
+      "price": "$319.12",
+      "category": "juice",
+      "creation_time": "3/16/2024"
+    },
+    {
+      "id": 18,
+      "beverage": "Splash",
+      "price": "$348.10",
+      "category": "juice",
+      "creation_time": "5/6/2023"
+    },
+    {
+      "id": 19,
+      "beverage": "FizzPop",
+      "price": "$785.36",
+      "category": "tea",
+      "creation_time": "4/25/2024"
+    },
+    {
+      "id": 20,
+      "beverage": "BrewBrew",
+      "price": "$509.18",
+      "category": "soda",
+      "creation_time": "3/23/2024"
+    },
+    {
+      "id": 21,
+      "beverage": "Zest",
+      "price": "$727.95",
+      "category": "juice",
+      "creation_time": "8/19/2023"
+    },
+    {
+      "id": 22,
+      "beverage": "BrewBrew",
+      "price": "$276.04",
+      "category": "smoothies",
+      "creation_time": "4/28/2024"
+    },
+    {
+      "id": 23,
+      "beverage": "GulpGulp",
+      "price": "$537.98",
+      "category": "smoothies",
+      "creation_time": "5/12/2023"
+    },
+    {
+      "id": 24,
+      "beverage": "FizzPop",
+      "price": "$470.55",
+      "category": "smoothies",
+      "creation_time": "1/24/2024"
+    },
+    {
+      "id": 25,
+      "beverage": "FizzPop",
+      "price": "$216.02",
+      "category": "lemonade",
+      "creation_time": "3/1/2024"
+    },
+    {
+      "id": 26,
+      "beverage": "Splash",
+      "price": "$230.16",
+      "category": "wine",
+      "creation_time": "11/20/2023"
+    },
+    {
+      "id": 27,
+      "beverage": "GulpGulp",
+      "price": "$585.35",
+      "category": "coffee",
+      "creation_time": "7/19/2023"
+    },
+    {
+      "id": 28,
+      "beverage": "SodaPop",
+      "price": "$67.85",
+      "category": "tea",
+      "creation_time": "9/29/2023"
+    },
+    {
+      "id": 29,
+      "beverage": "Splash",
+      "price": "$463.90",
+      "category": "smoothies",
+      "creation_time": "6/27/2023"
+    },
+    {
+      "id": 30,
+      "beverage": "Splash",
+      "price": "$808.88",
+      "category": "soda",
+      "creation_time": "7/28/2023"
+    },
+    {
+      "id": 31,
+      "beverage": "FizzBuzz",
+      "price": "$365.17",
+      "category": "juice",
+      "creation_time": "7/9/2023"
+    },
+    {
+      "id": 32,
+      "beverage": "SodaPop",
+      "price": "$954.40",
+      "category": "lemonade",
+      "creation_time": "8/10/2023"
+    },
+    {
+      "id": 33,
+      "beverage": "Zest",
+      "price": "$761.37",
+      "category": "cocktails",
+      "creation_time": "8/25/2023"
+    },
+    {
+      "id": 34,
+      "beverage": "BrewBrew",
+      "price": "$257.63",
+      "category": "beer",
+      "creation_time": "7/31/2023"
+    },
+    {
+      "id": 35,
+      "beverage": "FizzBuzz",
+      "price": "$868.93",
+      "category": "beer",
+      "creation_time": "6/11/2023"
+    },
+    {
+      "id": 36,
+      "beverage": "SipSip",
+      "price": "$285.25",
+      "category": "juice",
+      "creation_time": "7/9/2023"
+    },
+    {
+      "id": 37,
+      "beverage": "Zest",
+      "price": "$189.57",
+      "category": "soda",
+      "creation_time": "2/4/2024"
+    },
+    {
+      "id": 38,
+      "beverage": "Quench",
+      "price": "$780.77",
+      "category": "smoothies",
+      "creation_time": "1/1/2024"
+    },
+    {
+      "id": 39,
+      "beverage": "GulpGulp",
+      "price": "$690.59",
+      "category": "smoothies",
+      "creation_time": "1/22/2024"
+    },
+    {
+      "id": 40,
+      "beverage": "Quench",
+      "price": "$644.23",
+      "category": "tea",
+      "creation_time": "11/11/2023"
+    },
+    {
+      "id": 41,
+      "beverage": "FizzBuzz",
+      "price": "$186.11",
+      "category": "soda",
+      "creation_time": "11/17/2023"
+    },
+    {
+      "id": 42,
+      "beverage": "GulpGulp",
+      "price": "$161.39",
+      "category": "juice",
+      "creation_time": "4/21/2024"
+    },
+    {
+      "id": 43,
+      "beverage": "Zest",
+      "price": "$997.46",
+      "category": "milkshakes",
+      "creation_time": "9/15/2023"
+    },
+    {
+      "id": 44,
+      "beverage": "GulpGulp",
+      "price": "$138.21",
+      "category": "coffee",
+      "creation_time": "5/31/2023"
+    },
+    {
+      "id": 45,
+      "beverage": "SodaPop",
+      "price": "$167.44",
+      "category": "tea",
+      "creation_time": "1/1/2024"
+    },
+    {
+      "id": 46,
+      "beverage": "Quench",
+      "price": "$945.39",
+      "category": "smoothies",
+      "creation_time": "10/5/2023"
+    },
+    {
+      "id": 47,
+      "beverage": "Zest",
+      "price": "$702.67",
+      "category": "beer",
+      "creation_time": "7/27/2023"
+    },
+    {
+      "id": 48,
+      "beverage": "SodaPop",
+      "price": "$140.61",
+      "category": "soda",
+      "creation_time": "11/13/2023"
+    },
+    {
+      "id": 49,
+      "beverage": "Zest",
+      "price": "$624.61",
+      "category": "beer",
+      "creation_time": "8/18/2023"
+    },
+    {
+      "id": 50,
+      "beverage": "FizzBuzz",
+      "price": "$929.00",
+      "category": "smoothies",
+      "creation_time": "3/14/2024"
+    },
+    {
+      "id": 51,
+      "beverage": "ChillChill",
+      "price": "$192.73",
+      "category": "juice",
+      "creation_time": "4/19/2024"
+    },
+    {
+      "id": 52,
+      "beverage": "ChillChill",
+      "price": "$711.47",
+      "category": "soda",
+      "creation_time": "5/8/2023"
+    },
+    {
+      "id": 53,
+      "beverage": "SodaPop",
+      "price": "$266.33",
+      "category": "coffee",
+      "creation_time": "7/21/2023"
+    },
+    {
+      "id": 54,
+      "beverage": "ChillChill",
+      "price": "$339.32",
+      "category": "juice",
+      "creation_time": "12/19/2023"
+    },
+    {
+      "id": 55,
+      "beverage": "BrewBrew",
+      "price": "$368.45",
+      "category": "milkshakes",
+      "creation_time": "7/3/2023"
+    },
+    {
+      "id": 56,
+      "beverage": "Splash",
+      "price": "$887.29",
+      "category": "cocktails",
+      "creation_time": "11/18/2023"
+    },
+    {
+      "id": 57,
+      "beverage": "SodaPop",
+      "price": "$579.53",
+      "category": "wine",
+      "creation_time": "2/5/2024"
+    },
+    {
+      "id": 58,
+      "beverage": "FizzBuzz",
+      "price": "$830.77",
+      "category": "lemonade",
+      "creation_time": "1/22/2024"
+    },
+    {
+      "id": 59,
+      "beverage": "SodaPop",
+      "price": "$964.62",
+      "category": "tea",
+      "creation_time": "3/26/2024"
+    },
+    {
+      "id": 60,
+      "beverage": "SodaPop",
+      "price": "$248.01",
+      "category": "coffee",
+      "creation_time": "4/11/2024"
+    },
+    {
+      "id": 61,
+      "beverage": "FizzPop",
+      "price": "$72.71",
+      "category": "tea",
+      "creation_time": "10/13/2023"
+    },
+    {
+      "id": 62,
+      "beverage": "BrewBrew",
+      "price": "$855.44",
+      "category": "tea",
+      "creation_time": "5/29/2023"
+    },
+    {
+      "id": 63,
+      "beverage": "ChillChill",
+      "price": "$236.06",
+      "category": "smoothies",
+      "creation_time": "12/15/2023"
+    },
+    {
+      "id": 64,
+      "beverage": "Quench",
+      "price": "$205.18",
+      "category": "soda",
+      "creation_time": "6/7/2023"
+    },
+    {
+      "id": 65,
+      "beverage": "GulpGulp",
+      "price": "$915.86",
+      "category": "milkshakes",
+      "creation_time": "2/4/2024"
+    },
+    {
+      "id": 66,
+      "beverage": "ChillChill",
+      "price": "$469.95",
+      "category": "lemonade",
+      "creation_time": "5/16/2023"
+    },
+    {
+      "id": 67,
+      "beverage": "Quench",
+      "price": "$425.99",
+      "category": "milkshakes",
+      "creation_time": "3/8/2024"
+    },
+    {
+      "id": 68,
+      "beverage": "FizzPop",
+      "price": "$75.26",
+      "category": "lemonade",
+      "creation_time": "12/29/2023"
+    },
+    {
+      "id": 69,
+      "beverage": "SodaPop",
+      "price": "$268.52",
+      "category": "beer",
+      "creation_time": "5/12/2023"
+    },
+    {
+      "id": 70,
+      "beverage": "SipSip",
+      "price": "$718.84",
+      "category": "wine",
+      "creation_time": "10/8/2023"
+    },
+    {
+      "id": 71,
+      "beverage": "GulpGulp",
+      "price": "$387.87",
+      "category": "smoothies",
+      "creation_time": "2/7/2024"
+    },
+    {
+      "id": 72,
+      "beverage": "GulpGulp",
+      "price": "$882.80",
+      "category": "tea",
+      "creation_time": "1/30/2024"
+    },
+    {
+      "id": 73,
+      "beverage": "ChillChill",
+      "price": "$829.55",
+      "category": "coffee",
+      "creation_time": "10/19/2023"
+    },
+    {
+      "id": 74,
+      "beverage": "SipSip",
+      "price": "$625.21",
+      "category": "smoothies",
+      "creation_time": "4/23/2024"
+    },
+    {
+      "id": 75,
+      "beverage": "BrewBrew",
+      "price": "$124.91",
+      "category": "milkshakes",
+      "creation_time": "2/15/2024"
+    },
+    {
+      "id": 76,
+      "beverage": "Zest",
+      "price": "$821.57",
+      "category": "beer",
+      "creation_time": "5/29/2023"
+    },
+    {
+      "id": 77,
+      "beverage": "SodaPop",
+      "price": "$197.45",
+      "category": "milkshakes",
+      "creation_time": "8/10/2023"
+    },
+    {
+      "id": 78,
+      "beverage": "FizzBuzz",
+      "price": "$124.45",
+      "category": "beer",
+      "creation_time": "9/9/2023"
+    },
+    {
+      "id": 79,
+      "beverage": "ChillChill",
+      "price": "$549.00",
+      "category": "milkshakes",
+      "creation_time": "10/26/2023"
+    },
+    {
+      "id": 80,
+      "beverage": "SodaPop",
+      "price": "$769.84",
+      "category": "cocktails",
+      "creation_time": "3/9/2024"
+    },
+    {
+      "id": 81,
+      "beverage": "FizzPop",
+      "price": "$849.95",
+      "category": "beer",
+      "creation_time": "5/14/2023"
+    },
+    {
+      "id": 82,
+      "beverage": "FizzPop",
+      "price": "$651.36",
+      "category": "cocktails",
+      "creation_time": "7/3/2023"
     }
   ]
 }
