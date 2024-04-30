@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import type { Metadata } from 'next';
 
 import { AddBeverageButton } from '@/shared';
-import { Typography } from '@/shared/ui';
+import { Container } from '@/shared/ui/Container/Container';
 import { BeverageList } from '@/widgets/beverage-list';
 import { Modal } from '@/widgets/modal';
 
@@ -12,17 +12,14 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="menu-page relative min-h-dvh  p-5 sm:px-10">
-      <div className="mb-5 flex justify-between">
-        <Typography variant="h2" weight="bold">
-          Menu
-        </Typography>
-        <AddBeverageButton />
-      </div>
+    <Container title="Menu">
       <Suspense fallback={<div>Loading...</div>}>
+        <div className="flex justify-end">
+          <AddBeverageButton />
+        </div>
         <BeverageList />
+        <Modal />
       </Suspense>
-      <Modal />
-    </div>
+    </Container>
   );
 }

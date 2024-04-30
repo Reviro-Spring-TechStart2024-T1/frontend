@@ -10,9 +10,9 @@ import Link from 'next/link';
 import { Logo } from '@/shared/icons/Logo';
 import { Button } from '@/shared/ui';
 
-export default function Sidebar() {
+export const Sidebar = () => {
   return (
-    <div className="relative">
+    <div className="relative bottom-[76px]">
       <div className="fixed flex h-full w-[138px] flex-col items-center justify-between gap-10 bg-[#111828] px-4 text-theme-white">
         <div className="pt-9">
           <Logo />
@@ -23,7 +23,7 @@ export default function Sidebar() {
             <li>
               <Link href="/partner/dashboard">
                 <Button variant="link" width="full" className="flex flex-col">
-                  <RiPieChart2Line />
+                  <RiPieChart2Line size={30} />
                   <span>Dashboard</span>
                 </Button>
               </Link>
@@ -31,34 +31,34 @@ export default function Sidebar() {
             <li>
               <Link href="/partner/menu">
                 <Button variant="link" width="full" className="flex flex-col">
-                  <RiRestaurantLine />
+                  <RiRestaurantLine size={30} />
                   <span>Menu</span>
                 </Button>
               </Link>
             </li>
             <li>
-              <Link href="/partner/customer-data">
+              <Link href="/partner/customer">
                 <Button variant="link" width="full" className="flex flex-col">
-                  <RiVipCrownLine />
-                  <span>Customer Data</span>
+                  <RiVipCrownLine size={30} />
+                  <span>Customer</span>
                 </Button>
               </Link>
             </li>
             <li>
               <Link href="/partner/orders">
                 <Button variant="link" width="full" className="flex flex-col">
-                  <RiMoneyDollarCircleLine />
-                  Orders
+                  <RiMoneyDollarCircleLine size={30} />
+                  Order
                 </Button>
               </Link>
             </li>
           </ul>
         </nav>
 
-        <div className="pb-9">
+        <div className="w-full pb-9">
           <Link href="/partner/logout">
             <Button variant="link" width="full" className="flex flex-col">
-              <RiLogoutBoxRLine />
+              <RiLogoutBoxRLine size={30} />
               Logout
             </Button>
           </Link>
@@ -66,4 +66,4 @@ export default function Sidebar() {
       </div>
     </div>
   );
-}
+};
