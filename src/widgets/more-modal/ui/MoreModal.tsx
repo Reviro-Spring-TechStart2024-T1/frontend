@@ -15,6 +15,7 @@ export const MoreModal = ({ id }: { id: number }) => {
 
   return (
     <>
+      {/* FIX_ME: if the modal is opened next to the end of the tabel it got broken */}
       <Button
         variant="ghost"
         size="sm"

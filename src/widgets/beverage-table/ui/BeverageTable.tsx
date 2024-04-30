@@ -79,7 +79,7 @@ export const BeverageTable = () => {
     <Section title="Order history">
       <CustomerSearchFilter />
 
-      <div className="relative h-[596px] overflow-auto rounded-lg border-2 border-theme-grey-200">
+      <div className="relative h-[530px] overflow-auto rounded-lg border-2 border-theme-grey-200">
         <table className="w-full">
           <thead className="sticky top-0 z-10">
             <tr className="bg-theme-grey-150">

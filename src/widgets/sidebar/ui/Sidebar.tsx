@@ -1,9 +1,9 @@
 import {
+  RiFileListLine,
+  RiGroupLine,
   RiLogoutBoxRLine,
-  RiMoneyDollarCircleLine,
   RiPieChart2Line,
-  RiRestaurantLine,
-  RiVipCrownLine,
+  RiShoppingCartLine,
 } from '@remixicon/react';
 import Link from 'next/link';
 
@@ -31,7 +31,7 @@ export const Sidebar = () => {
             <li>
               <Link href="/partner/menu">
                 <Button variant="link" width="full" className="flex flex-col">
-                  <RiRestaurantLine size={30} />
+                  <RiFileListLine size={30} />
                   <span>Menu</span>
                 </Button>
               </Link>
@@ -39,7 +39,7 @@ export const Sidebar = () => {
             <li>
               <Link href="/partner/customer">
                 <Button variant="link" width="full" className="flex flex-col">
-                  <RiVipCrownLine size={30} />
+                  <RiGroupLine size={30} />
                   <span>Customers</span>
                 </Button>
               </Link>
@@ -47,7 +47,7 @@ export const Sidebar = () => {
             <li>
               <Link href="/partner/orders">
                 <Button variant="link" width="full" className="flex flex-col">
-                  <RiMoneyDollarCircleLine size={30} />
+                  <RiShoppingCartLine size={30} />
                   Orders
                 </Button>
               </Link>
