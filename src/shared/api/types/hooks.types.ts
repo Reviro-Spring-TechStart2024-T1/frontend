@@ -19,9 +19,13 @@ export interface OrderHistoryResponse {
 export interface UsersItem {
   id: number;
   firstName: string;
+  lastName: string;
+  age: number;
   email: string;
   phone: number;
+  joinedAt: number;
 }
+
 export interface UsersResponse {
   data: UsersItem[];
   first?: number;
@@ -30,4 +34,13 @@ export interface UsersResponse {
   next?: number;
   pages: number;
   prev?: number;
+}
+export interface UserResponse {
+  id: number;
+  firstName: string;
+  lastName: string;
+  age: number;
+  email: string;
+  phone: number;
+  joinedAt: number;
 }

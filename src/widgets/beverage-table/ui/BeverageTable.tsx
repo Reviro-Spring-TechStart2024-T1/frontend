@@ -1,24 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { RiDeleteBinLine, RiEditLine, RiMoreLine } from '@remixicon/react';
 import clsx from 'clsx';
 
 import { useOrderHistory } from '@/shared/api/hooks/useOrderHistory';
-import { Button, Section, Typography } from '@/shared/ui';
+import { Section, Typography } from '@/shared/ui';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
 import { CustomerSearchFilter } from '@/widgets/customer-search-filter';
+import { MoreModal } from '@/widgets/more-modal';
 
 export const BeverageTable = () => {
-  const [isMore, setIsMore] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const { order_history, isLoading } = useOrderHistory(currentPage);
-
-  const handleMore = (id: number) => {
-    if (id === isMore) return setIsMore(0);
-
-    setIsMore(id);
-  };
 
   const data = isLoading ? (
     <tr className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
@@ -75,41 +68,7 @@ export const BeverageTable = () => {
             data-cell="action"
             className="relative whitespace-nowrap pl-[14px]"
           >
-            <Button
-              variant="ghost"
-              size="sm"
-              className="font-semibold"
-              onBlur={() => handleMore(0)}
-              onClick={() => handleMore(order.id)}
-            >
-              <RiMoreLine size={24} className="text-theme-grey-500" />
-            </Button>
-
-            <div
-              className={clsx(
-                'absolute -left-16 z-10 mt-1 hidden w-32 rounded-md border border-theme-grey-200 bg-theme-white p-2 shadow-lg',
-                { ['!block']: isMore === order.id },
-              )}
-            >
-              <Button
-                variant="ghost"
-                size="sm"
-                width="full"
-                className="justify-start font-medium text-theme-grey-500"
-              >
-                <RiEditLine size={16} />
-                Edit
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                width="full"
-                className="justify-start font-medium text-theme-grey-500"
-              >
-                <RiDeleteBinLine size={16} />
-                Delete
-              </Button>
-            </div>
+            <MoreModal id={order.id} />
           </td>
         </tr>
       );
