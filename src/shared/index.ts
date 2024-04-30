@@ -7,7 +7,7 @@ import {
 } from './constants';
 import { fetcher } from './helper';
 import { addImage, delete as delete_, download, edit } from './icons';
-import { beverage } from './imgs';
+import { beverage, logo } from './imgs';
 import {
   CreateModalContextProvider,
   DeleteModalProvider,
@@ -32,6 +32,7 @@ export {
   EDIT_BEVERAGE_FORM,
   EditModalContextProvider,
   fetcher,
+  logo,
   NO_INDEX_PAGE,
   useBeverages,
   useCloseForm,
