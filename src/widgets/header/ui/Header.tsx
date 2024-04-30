@@ -4,8 +4,8 @@ import { Typography } from '@/shared/ui';
 
 export const Header = () => {
   return (
-    <header className="ml-[138px] h-[76px] bg-theme-white">
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between p-4 sm:p-8">
+    <header className="w-header fixed left-0 top-0 ml-[138px] h-[76px] bg-theme-white">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-8">
         <div className="flex">
           <Typography variant="paragraph" color="grey">
             Establishment

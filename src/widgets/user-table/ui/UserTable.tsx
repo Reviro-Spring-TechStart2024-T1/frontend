@@ -78,8 +78,8 @@ export const UserTable = () => {
 
       <div className="relative h-[596px] overflow-auto rounded-lg border-2 border-theme-grey-200">
         <table className="w-full">
-          <thead>
-            <tr className=" bg-theme-grey-150">
+          <thead className="sticky top-0 z-10">
+            <tr className="bg-theme-grey-150">
               <th className="min-w-[76px] p-[14px]">
                 <Typography variant="caption" color="grey" weight="medium">
                   ID

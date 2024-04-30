@@ -1,4 +1,6 @@
 export * from './Button';
+export * from './Container';
+export * from './Input';
+export * from './Pagination';
 export * from './Section';
-export * from './Title';
 export * from './Typography';
