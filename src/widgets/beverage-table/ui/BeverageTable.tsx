@@ -5,8 +5,9 @@ import { RiDeleteBinLine, RiEditLine, RiMoreLine } from '@remixicon/react';
 import clsx from 'clsx';
 
 import { useOrderHistory } from '@/shared/api/hooks/useOrderHistory';
-import { Button, Typography } from '@/shared/ui';
+import { Button, Section, Typography } from '@/shared/ui';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
+import { CustomerSearchFilter } from '@/widgets/customer-search-filter';
 
 export const BeverageTable = () => {
   const [isMore, setIsMore] = useState(0);
@@ -116,7 +117,9 @@ export const BeverageTable = () => {
   );
 
   return (
-    <div className="flex flex-col gap-6">
+    <Section title="Order history">
+      <CustomerSearchFilter />
+
       <div className="relative h-[596px] overflow-auto rounded-lg border-2 border-theme-grey-200">
         <table className="w-full">
           <thead>
@@ -161,6 +164,6 @@ export const BeverageTable = () => {
           onPageChange={page => setCurrentPage(page)}
         />
       ) : null}
-    </div>
+    </Section>
   );
 };

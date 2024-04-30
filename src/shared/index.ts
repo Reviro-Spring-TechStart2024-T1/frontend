@@ -16,10 +16,8 @@ import {
   useDeleteModal,
   useEditModal,
 } from './providers';
-import { AddBeverageButton } from './ui';
 
 export {
-  AddBeverageButton,
   addImage,
   beverage,
   CREATE_BEVERAGE_FORM,

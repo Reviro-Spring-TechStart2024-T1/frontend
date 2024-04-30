@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 
 import { useUsers } from '@/shared';
-import { Typography } from '@/shared/ui';
+import { Section, Typography } from '@/shared/ui';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
 import { CustomerSearchFilter } from '@/widgets/customer-search-filter';
 
@@ -73,7 +73,7 @@ export const UserTable = () => {
   );
 
   return (
-    <div className="flex flex-col gap-6">
+    <Section>
       <CustomerSearchFilter />
 
       <div className="relative h-[596px] overflow-auto rounded-lg border-2 border-theme-grey-200">
@@ -109,6 +109,6 @@ export const UserTable = () => {
           onPageChange={page => setCurrentPage(page)}
         />
       ) : null}
-    </div>
+    </Section>
   );
 };
