@@ -33,7 +33,7 @@ export const BeverageTable = () => {
       return (
         <tr
           className={clsx(
-            'divide-x-2 border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100',
+            'border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100',
             { ['border-none']: index === 9 },
           )}
           key={order.id}
@@ -80,7 +80,7 @@ export const BeverageTable = () => {
       <div className="relative h-[596px] overflow-auto rounded-lg border-2 border-theme-grey-200">
         <table className="w-full">
           <thead>
-            <tr className="divide-x-2 bg-theme-grey-150">
+            <tr className="bg-theme-grey-150">
               <th className="min-w-16 p-[14px]">
                 <Typography variant="caption" color="grey" weight="medium">
                   ID

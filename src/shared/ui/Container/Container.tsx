@@ -9,7 +9,7 @@ export const Container = (props: ContainerProps) => {
   return (
     <section {...rest} className={twMerge('h-full pb-14 pt-6', className)}>
       <div className="container flex h-full flex-col gap-8">
-        <Typography variant="h2" weight="bold">
+        <Typography variant="h3" weight="bold">
           {title}
         </Typography>
 

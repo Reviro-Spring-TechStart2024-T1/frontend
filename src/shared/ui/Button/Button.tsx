@@ -34,7 +34,7 @@ const buttonVariants = cva(
           'bg-theme-white',
           'text-theme-black',
           'hover:bg-theme-grey-200',
-          'border-2',
+          'border',
           'border-theme-grey-200',
           'active:bg-theme-grey-300',
           'focus-visible:bg-theme-white',

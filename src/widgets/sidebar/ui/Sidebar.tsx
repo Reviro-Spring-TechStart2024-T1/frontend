@@ -40,7 +40,7 @@ export const Sidebar = () => {
               <Link href="/partner/customer">
                 <Button variant="link" width="full" className="flex flex-col">
                   <RiVipCrownLine size={30} />
-                  <span>Customer</span>
+                  <span>Customers</span>
                 </Button>
               </Link>
             </li>
@@ -48,7 +48,7 @@ export const Sidebar = () => {
               <Link href="/partner/orders">
                 <Button variant="link" width="full" className="flex flex-col">
                   <RiMoneyDollarCircleLine size={30} />
-                  Order
+                  Orders
                 </Button>
               </Link>
             </li>
