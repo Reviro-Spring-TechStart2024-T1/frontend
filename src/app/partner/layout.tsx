@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 
-import './globals.css';
+import { Header } from '@/widgets/header';
+import { Sidebar } from '@/widgets/sidebar';
 
-const inter = Inter({ subsets: ['latin'] });
+import { Providers } from '../providers';
 
 export const metadata: Metadata = {
   title: {
@@ -20,8 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-theme-blue-100">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <>
+      <Header />
+      <main className="grid grid-cols-[138px_auto]">
+        <Sidebar />
+
+        <div className="min-h-main overflow-auto">
+          <Providers>{children}</Providers>
+        </div>
+      </main>
+    </>
   );
 }
