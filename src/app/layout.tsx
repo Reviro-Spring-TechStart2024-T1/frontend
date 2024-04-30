@@ -1,22 +1,17 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { Header } from '@/widgets/header';
-import { Sidebar } from '@/widgets/sidebar';
-
-import { Providers } from './providers';
-
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | DrinkJoy',
+    template: '%s | Auth | DrinkJoy',
     default: 'DrinkJoy',
   },
   description:
-    'A place wehere customers can enjoy free beverages at participating businesses duringduringduring specified hours.',
+    'A place where customers can enjoy free beverages at participating businesses during specified hours.',
 };
 
 export default function RootLayout({
@@ -26,16 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-theme-blue-100">
-      <body className={inter.className}>
-        <Header />
-        <main className="grid grid-cols-[138px_auto]">
-          <Sidebar />
-
-          <div className="min-h-main overflow-auto">
-            <Providers>{children}</Providers>
-          </div>
-        </main>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
