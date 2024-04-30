@@ -75,7 +75,7 @@ const buttonVariants = cva(
         none: [''],
       },
       size: {
-        sm: ['text-sm', 'py-1.5', 'px-3'],
+        sm: ['text-sm', 'py-1', 'px-3'],
         md: ['text-base', 'py-2.5', 'px-6'],
       },
       btnType: {

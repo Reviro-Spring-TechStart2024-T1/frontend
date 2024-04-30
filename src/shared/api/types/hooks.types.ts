@@ -1,5 +1,5 @@
 export interface OrderHistoryItem {
-  id: string;
+  id: number;
   beverage: string;
   price: string;
   category: string;
@@ -17,7 +17,7 @@ export interface OrderHistoryResponse {
 }
 
 export interface UsersItem {
-  id: string;
+  id: number;
   firstName: string;
   email: string;
   phone: number;

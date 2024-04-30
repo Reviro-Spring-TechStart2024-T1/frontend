@@ -1,16 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import { RiDeleteBinLine, RiEditLine } from '@remixicon/react';
+import { RiDeleteBinLine, RiEditLine, RiMoreLine } from '@remixicon/react';
 import clsx from 'clsx';
 
 import { useOrderHistory } from '@/shared/api/hooks/useOrderHistory';
-import { Typography } from '@/shared/ui';
+import { Button, Typography } from '@/shared/ui';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
 
 export const BeverageTable = () => {
+  const [isMore, setIsMore] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const { order_history, isLoading } = useOrderHistory(currentPage);
+
+  const handleMore = (id: number) => {
+    if (id === isMore) return setIsMore(0);
+
+    setIsMore(id);
+  };
 
   const data = isLoading ? (
     <tr className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
@@ -33,41 +40,74 @@ export const BeverageTable = () => {
       return (
         <tr
           className={clsx(
-            'border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100',
+            'cursor-pointer border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100',
             { ['border-none']: index === 9 },
           )}
           key={order.id}
         >
           <td data-cell="id" className="whitespace-nowrap p-[14px] text-center">
-            <Typography variant="caption" color="grey" weight="medium">
+            <Typography variant="caption" color="grey">
               {order.id}
             </Typography>
           </td>
           <td data-cell="beverage" className="whitespace-nowrap p-[14px]">
-            <Typography variant="caption" color="grey" weight="medium">
+            <Typography variant="caption" color="grey">
               {order.beverage}
             </Typography>
           </td>
           <td data-cell="price" className="whitespace-nowrap p-[14px]">
-            <Typography variant="caption" color="grey" weight="medium">
+            <Typography variant="caption" color="grey">
               {order.price}
             </Typography>
           </td>
           <td data-cell="category" className="whitespace-nowrap p-[14px]">
-            <Typography variant="caption" color="grey" weight="medium">
+            <Typography variant="caption" color="grey">
               {order.category}
             </Typography>
           </td>
-          <td data-cell="creation time" className="whitespace-nowrap p-[14px]">
-            <Typography variant="caption" color="grey" weight="medium">
+          <td data-cell="creation_time" className="whitespace-nowrap p-[14px]">
+            <Typography variant="caption" color="grey">
               {order.creation_time}
             </Typography>
           </td>
-          <td data-cell="action" className="whitespace-nowrap p-[14px]">
-            <div className="flex justify-evenly">
-              <RiEditLine className="cursor-pointer text-theme-blue-300" />
+          <td
+            data-cell="action"
+            className="relative whitespace-nowrap pl-[14px]"
+          >
+            <Button
+              variant="ghost"
+              size="sm"
+              className="font-semibold"
+              onBlur={() => handleMore(0)}
+              onClick={() => handleMore(order.id)}
+            >
+              <RiMoreLine size={24} className="text-theme-grey-500" />
+            </Button>
 
-              <RiDeleteBinLine className="cursor-pointer text-theme-red-500" />
+            <div
+              className={clsx(
+                'absolute -left-16 z-10 mt-1 hidden w-32 rounded-md border border-theme-grey-200 bg-theme-white p-2 shadow-lg',
+                { ['!block']: isMore === order.id },
+              )}
+            >
+              <Button
+                variant="ghost"
+                size="sm"
+                width="full"
+                className="justify-start font-medium text-theme-grey-500"
+              >
+                <RiEditLine size={16} />
+                Edit
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                width="full"
+                className="justify-start font-medium text-theme-grey-500"
+              >
+                <RiDeleteBinLine size={16} />
+                Delete
+              </Button>
             </div>
           </td>
         </tr>
@@ -106,11 +146,7 @@ export const BeverageTable = () => {
                   Creation Time
                 </Typography>
               </th>
-              <th className="min-w-20 p-[14px]">
-                <Typography variant="caption" color="grey" weight="medium">
-                  Action
-                </Typography>
-              </th>
+              <th className="min-w-10 p-[14px]"></th>
             </tr>
           </thead>
 

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import clsx from 'clsx';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { useUsers } from '@/shared';
 import { Typography } from '@/shared/ui';
@@ -10,6 +10,7 @@ import { Pagination } from '@/shared/ui/Pagination/Pagination';
 import { CustomerSearchFilter } from '@/widgets/customer-search-filter';
 
 export const UserTable = () => {
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const { users, isLoading } = useUsers(currentPage);
 
@@ -33,32 +34,37 @@ export const UserTable = () => {
     users?.data.map((user, index) => {
       return (
         <tr
+          key={user.id}
           className={clsx(
-            'group border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100',
+            'group cursor-pointer border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100 ',
             { ['border-none']: index === 9 },
           )}
-          key={user.id}
+          onClick={() => router.push(`/partner/customer/${user.id}`)}
         >
           <td data-cell="id" className="whitespace-nowrap p-[14px] text-center">
-            <Typography variant="caption" color="grey" weight="medium">
+            <Typography variant="caption" color="grey">
               {user.id}
             </Typography>
           </td>
-          <td data-cell="name" className="whitespace-nowrap p-[14px]">
-            <Link href={`/partner/customer/${user.id}`}>
-              <Typography
-                variant="caption"
-                color="grey"
-                weight="medium"
-                className="cursor-pointer hover:underline group-hover:text-theme-blue-300"
-              >
-                {user.firstName}
-              </Typography>
-            </Link>
-          </td>
-          <td data-cell="email" className="whitespace-nowrap p-[14px]">
-            <Typography variant="caption" color="grey" weight="medium">
+          <td
+            data-cell="name"
+            className="flex flex-col whitespace-nowrap p-[14px]"
+          >
+            <Typography
+              variant="caption"
+              color="grey"
+              weight="semibold"
+              className="group-hover:text-theme-blue-300"
+            >
+              {user.firstName} LastName
+            </Typography>
+            <Typography variant="caption" color="grey">
               {user.email}
+            </Typography>
+          </td>
+          <td data-cell="phone" className="whitespace-nowrap p-[14px]">
+            <Typography variant="caption" color="grey">
+              {user.phone}
             </Typography>
           </td>
         </tr>
@@ -86,7 +92,7 @@ export const UserTable = () => {
               </th>
               <th className="min-w-[400px] p-[14px] text-left">
                 <Typography variant="caption" color="grey" weight="medium">
-                  Email
+                  Phone
                 </Typography>
               </th>
             </tr>
