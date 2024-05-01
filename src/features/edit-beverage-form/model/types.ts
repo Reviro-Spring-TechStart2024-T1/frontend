@@ -1,14 +1,14 @@
 import { TBeverage } from '@/entities/beverage';
 
 export type TFormState = {
-  message?: 'success' | 'error' | '' | string | undefined;
+  message?: 'success' | 'error' | '' | string;
   errors?: {
-    name?: string[] | undefined;
-    category?: string[] | undefined;
-    price?: string[] | undefined;
-    desc?: string[] | undefined;
-    image?: string[] | undefined;
-    quantity?: string[] | undefined;
+    name?: string[];
+    category?: string[];
+    price?: string[];
+    desc?: string[];
+    image?: string[];
+    quantity?: string[];
   };
   errorMessage?: string;
   fieldValues?: Partial<TBeverage>;

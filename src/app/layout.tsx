@@ -7,11 +7,11 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | DrinkJoy',
+    template: '%s | Auth | DrinkJoy',
     default: 'DrinkJoy',
   },
   description:
-    'A place wehere customers can enjoy free beverages at participating businesses duringduringduring specified hours.',
+    'A place where customers can enjoy free beverages at participating businesses during specified hours.',
 };
 
 export default function RootLayout({
