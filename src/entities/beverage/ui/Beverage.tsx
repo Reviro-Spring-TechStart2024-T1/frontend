@@ -18,8 +18,8 @@ export const Beverage: FC<TBeverage> = ({
   id,
   name,
   price,
-  desc,
-  quantity,
+  description,
+  in_stock,
 }) => {
   const { setModalState: setEditModalState } = useEditModal();
   const { setModalState: setDeleteModalState } = useDeleteModal();
@@ -49,7 +49,7 @@ export const Beverage: FC<TBeverage> = ({
           />
           <div className="absolute bottom-[6px] right-[6px] rounded-md bg-[#00b3ff78] p-2">
             <Typography variant="caption" className="   text-white ">
-              quantity: {quantity}
+              quantity: {in_stock}
             </Typography>
           </div>
         </div>
@@ -67,7 +67,7 @@ export const Beverage: FC<TBeverage> = ({
             variant="caption"
             className="line-clamp-4 flex-1 text-[#3C3C3C]"
           >
-            {desc}
+            {description}
           </Typography>
         </div>
         <div className="flex divide-x divide-theme-grey-300 border-t">
