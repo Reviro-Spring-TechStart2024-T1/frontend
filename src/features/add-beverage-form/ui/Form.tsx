@@ -21,13 +21,19 @@ export const Form: FC = () => {
       name: '',
       category: '',
       price: '',
-      desc: '',
-      quantity: '',
+      description: '',
+      in_stock: '',
       image: {},
     },
   };
 
-  const [formState, formAction] = useFormState(createBeverage, initialState);
+  const menuId = 1; //TODO - localStorage menu_id
+
+  const createBeverageWithId = createBeverage.bind(null, +menuId!);
+  const [formState, formAction] = useFormState(
+    createBeverageWithId,
+    initialState,
+  );
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -45,6 +51,7 @@ export const Form: FC = () => {
     }
 
     return () => clearTimeout(timeoutId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive]);
 
   useEffect(() => {
@@ -110,15 +117,15 @@ export const Form: FC = () => {
 
       <Input
         type="text"
-        name="desc"
+        name="description"
         placeholder="Description"
         className={clsx('pb-[50px]', {
-          'border-red-400': formState.errors?.desc,
+          'border-red-400': formState.errors?.description,
         })}
-        defaultValue={formState.fieldValues?.desc}
+        defaultValue={formState.fieldValues?.description}
       />
       <Typography variant="paragraph" className="text-red-400">
-        {formState.errors?.desc}
+        {formState.errors?.description}
       </Typography>
 
       <label className="relative inline-block">
@@ -135,28 +142,28 @@ export const Form: FC = () => {
             className={clsx(
               'absolute left-0 top-0 z-10 block h-full w-full opacity-0',
               {
-                'border-red-400': formState.errors?.image,
+                // 'border-red-400': formState.errors?.image,
               },
             )}
           />
           Choose image
         </Button>
       </label>
-      <Typography variant="paragraph" className="text-red-400">
+      {/* <Typography variant="paragraph" className="text-red-400">
         {formState.errors?.image}
-      </Typography>
+      </Typography> */}
 
       <Input
         type="text"
-        name="quantity"
+        name="in_stock"
         placeholder="Quantity"
         className={clsx({
-          'border-red-400': formState.errors?.quantity,
+          'border-red-400': formState.errors?.in_stock,
         })}
-        defaultValue={formState.fieldValues?.quantity}
+        defaultValue={formState.fieldValues?.in_stock}
       />
       <Typography variant="paragraph" className="text-red-400">
-        {formState.errors?.quantity}
+        {formState.errors?.in_stock}
       </Typography>
 
       <div className="flex gap-2.5">

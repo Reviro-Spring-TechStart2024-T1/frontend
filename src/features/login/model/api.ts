@@ -29,7 +29,9 @@ export const handleLoginSubmit = async (
     return {
       status: 'success',
       message: 'Successful autorization!',
-      user_id: data.user_id,
+      user_id: data.decodedToken.user_id,
+      access: data.access,
+      refresh: data.refresh,
     };
   } catch (error) {
     return {

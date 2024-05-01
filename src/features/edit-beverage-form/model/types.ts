@@ -8,7 +8,7 @@ export type TFormState = {
     price?: string[];
     description?: string[];
     image?: string[];
-    quantity?: string[];
+    in_stock?: string[];
   };
   errorMessage?: string;
   fieldValues?: Partial<TBeverage>;

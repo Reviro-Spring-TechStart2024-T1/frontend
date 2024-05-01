@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache';
 
 export const deleteBeverage = async (id: number) => {
   try {
-    await fetch(`${process.env.API_URL}/beverages/${id}`, {
+    await fetch(`http://localhost:8080/api/partner/beverages/${id}`, {
       method: 'DELETE',
     }).then(res => res.json());
 

@@ -11,7 +11,7 @@ const FormSchema = z.object({
     .min(1, { message: 'Name should not be empty.' })
     .max(50, { message: 'Name should not be more than 50 characters.' }),
   category: z
-    .string({
+    .number({
       required_error: 'Category is required.',
     })
     .min(1, { message: 'Category should not be empty.' })
@@ -19,37 +19,38 @@ const FormSchema = z.object({
   price: z
     .number({ required_error: 'Price is required.' })
     .gt(0, { message: 'Please enter an amount greater than 0.' }),
-  desc: z
+  description: z
     .string({ required_error: 'Description is required.' })
     .min(1, { message: 'Description should not be empty.' })
     .max(100, {
       message: 'Description should not be more than 100 characters.',
     }),
-  quantity: z
+  in_stock: z
     .number({ required_error: 'Quantity is required.' })
     .gte(0, { message: 'Please enter an amount greater or equal than 0.' })
     .min(1, { message: 'Quantity should not be empty.' }),
-  image: z.object({}),
+  // image: z.object({}),
 });
 
 export const createBeverage = async (
+  menuId: number,
   currentState: TFormState,
   formData: FormData,
 ) => {
   const name = formData.get('name') as string;
   const category = formData.get('category') as string;
   const price = formData.get('price') as string;
-  const desc = formData.get('desc') as string;
-  const quantity = formData.get('quantity') as string;
-  const image = formData.get('image') as object;
+  const description = formData.get('description') as string;
+  const in_stock = formData.get('in_stock') as string;
+  // const image = formData.get('image') as object;
 
   const validatedFields = FormSchema.safeParse({
     name,
-    category,
+    category: Number(category),
     price: Number(price),
-    desc,
-    quantity: Number(quantity),
-    image,
+    description,
+    in_stock: Number(in_stock),
+    // image,
   });
 
   if (!validatedFields.success) {
@@ -59,11 +60,22 @@ export const createBeverage = async (
     };
   }
 
+  const reqBody = {
+    menu: menuId,
+    ...validatedFields.data,
+  };
+  console.log(reqBody, 'req body handler');
+
   try {
-    await fetch(`${process.env.API_URL}/beverages`, {
-      method: 'POST',
-      body: JSON.stringify(validatedFields.data),
-    }).then(res => res.json());
+    const response = await fetch(
+      `http://localhost:8080/api/partner/beverages`,
+      {
+        method: 'POST',
+        body: JSON.stringify(reqBody),
+      },
+    ).then(res => res.json());
+
+    console.log(response, 'add bev response handler');
 
     return {
       message: 'success',
@@ -72,9 +84,9 @@ export const createBeverage = async (
         name: '',
         category: '',
         price: '',
-        desc: '',
-        quantity: '',
-        image: {},
+        description: '',
+        in_stock: '',
+        // image: {},
       },
     };
   } catch (error) {
@@ -83,14 +95,14 @@ export const createBeverage = async (
     return {
       message: 'error',
       errors: undefined,
-      errorMessage: 'Could not edit the beverage.',
+      errorMessage: 'Could not add the beverage.',
       fieldValues: {
         name,
         category,
         price,
-        desc,
-        quantity,
-        image,
+        description,
+        in_stock,
+        // image,
       },
     };
   } finally {

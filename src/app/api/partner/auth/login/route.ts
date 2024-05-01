@@ -24,7 +24,11 @@ export const POST = async (req: NextRequest) => {
     const accessToken = jwt.verify(data.access, process.env.SECRET_KEY!);
     console.log(accessToken, 'accessToken route');
 
-    return Response.json(accessToken);
+    return Response.json({
+      access: data.access,
+      refresh: data.refresh,
+      decodedToken: accessToken,
+    });
   } catch (error) {
     return Response.json(
       //@ts-ignore

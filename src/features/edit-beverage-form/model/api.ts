@@ -11,7 +11,7 @@ const FormSchema = z.object({
     .min(1, { message: 'Name should not be empty.' })
     .max(50, { message: 'Name should not be more than 50 characters.' }),
   category: z
-    .string({
+    .number({
       required_error: 'Category is required.',
     })
     .min(1, { message: 'Category should not be empty.' })
@@ -25,16 +25,16 @@ const FormSchema = z.object({
     .max(100, {
       message: 'Description should not be more than 100 characters.',
     }),
-  quantity: z
+  in_stock: z
     .number({ required_error: 'Quantity is required.' })
     .gte(0, { message: 'Please enter an amount greater or equal than 0.' })
     .min(1, { message: 'Quantity should not be empty.' }),
-  image: z.object({}),
+  // image: z.object({}),
 });
 
 export const editBeverage = async (
   id: number,
-  // menuId: number,
+  menuId: number,
   currentState: TFormState,
   formData: FormData,
 ) => {
@@ -42,16 +42,16 @@ export const editBeverage = async (
   const category = formData.get('category') as string;
   const price = formData.get('price') as string;
   const description = formData.get('description') as string;
-  const quantity = formData.get('quantity') as string;
-  const image = formData.get('image') as object;
+  const in_stock = formData.get('in_stock') as string;
+  // const image = formData.get('image') as object;
 
   const validatedFields = FormSchema.safeParse({
     name,
-    category,
+    category: Number(category),
     price: Number(price),
     description,
-    quantity: Number(quantity),
-    image,
+    in_stock: Number(in_stock),
+    // image,
   });
 
   if (!validatedFields.success) {
@@ -61,20 +61,21 @@ export const editBeverage = async (
     };
   }
 
-  const { quantity: in_stock, ...rest } = validatedFields.data;
   const reqBody = {
-    // menuId,
-    in_stock,
-    rest,
+    menu: menuId,
+    ...validatedFields.data,
   };
 
   try {
-    const response = await fetch(`${process.env.API_URL}/beverages/${id}/`, {
-      method: 'PUT',
-      body: JSON.stringify(reqBody),
-    }).then(res => res.json());
+    const response = await fetch(
+      `http://localhost:8080/api/partner/beverages/${id}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(reqBody),
+      },
+    ).then(res => res.json());
 
-    console.log(response);
+    console.log(response, 'edit response');
 
     return {
       message: 'success',
@@ -84,8 +85,8 @@ export const editBeverage = async (
         category: '',
         price: '',
         description: '',
-        quantity: '',
-        image: {},
+        in_stock: '',
+        // image: {},
       },
     };
   } catch (error) {
@@ -100,8 +101,8 @@ export const editBeverage = async (
         category,
         price,
         description,
-        quantity,
-        image,
+        in_stock,
+        // image,
       },
     };
   } finally {
