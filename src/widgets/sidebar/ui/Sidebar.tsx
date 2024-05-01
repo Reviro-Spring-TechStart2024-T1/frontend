@@ -3,10 +3,12 @@ import {
   RiGroupLine,
   RiLogoutBoxRLine,
   RiPieChart2Line,
+  RiQrCodeLine,
   RiShoppingCartLine,
 } from '@remixicon/react';
 import Link from 'next/link';
 
+import { QR } from '@/entities/qr';
 import { Logo } from '@/shared/icons/Logo';
 import { Button } from '@/shared/ui';
 
@@ -51,6 +53,13 @@ export const Sidebar = () => {
                   Orders
                 </Button>
               </Link>
+            </li>
+            <li className="relative">
+              <Button variant="link" width="full" className="flex flex-col">
+                <RiQrCodeLine size={30} />
+                QR
+              </Button>
+              <QR />
             </li>
           </ul>
         </nav>

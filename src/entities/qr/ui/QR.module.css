@@ -1,0 +1,5 @@
+.arrow {
+    @apply absolute h-12 w-10 -left-10  bg-white;
+
+    clip-path: polygon(40px 0px, 100% 100%, 0 50%);
+} 

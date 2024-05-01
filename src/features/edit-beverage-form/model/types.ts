@@ -6,7 +6,7 @@ export type TFormState = {
     name?: string[];
     category?: string[];
     price?: string[];
-    desc?: string[];
+    description?: string[];
     image?: string[];
     quantity?: string[];
   };

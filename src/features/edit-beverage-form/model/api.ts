@@ -19,7 +19,7 @@ const FormSchema = z.object({
   price: z
     .number({ required_error: 'Price is required.' })
     .gt(0, { message: 'Please enter an amount greater than 0.' }),
-  desc: z
+  description: z
     .string({ required_error: 'Description is required.' })
     .min(1, { message: 'Description should not be empty.' })
     .max(100, {
@@ -34,13 +34,14 @@ const FormSchema = z.object({
 
 export const editBeverage = async (
   id: number,
+  // menuId: number,
   currentState: TFormState,
   formData: FormData,
 ) => {
   const name = formData.get('name') as string;
   const category = formData.get('category') as string;
   const price = formData.get('price') as string;
-  const desc = formData.get('desc') as string;
+  const description = formData.get('description') as string;
   const quantity = formData.get('quantity') as string;
   const image = formData.get('image') as object;
 
@@ -48,7 +49,7 @@ export const editBeverage = async (
     name,
     category,
     price: Number(price),
-    desc,
+    description,
     quantity: Number(quantity),
     image,
   });
@@ -59,13 +60,21 @@ export const editBeverage = async (
       message: 'error',
     };
   }
-  console.log(id);
+
+  const { quantity: in_stock, ...rest } = validatedFields.data;
+  const reqBody = {
+    // menuId,
+    in_stock,
+    rest,
+  };
 
   try {
-    await fetch(`${process.env.API_URL}/beverages/${id}`, {
+    const response = await fetch(`${process.env.API_URL}/beverages/${id}/`, {
       method: 'PUT',
-      body: JSON.stringify(validatedFields.data),
+      body: JSON.stringify(reqBody),
     }).then(res => res.json());
+
+    console.log(response);
 
     return {
       message: 'success',
@@ -74,7 +83,7 @@ export const editBeverage = async (
         name: '',
         category: '',
         price: '',
-        desc: '',
+        description: '',
         quantity: '',
         image: {},
       },
@@ -90,7 +99,7 @@ export const editBeverage = async (
         name,
         category,
         price,
-        desc,
+        description,
         quantity,
         image,
       },
