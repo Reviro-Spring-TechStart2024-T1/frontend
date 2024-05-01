@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import type { Metadata } from 'next';
 
 import { Container } from '@/shared/ui/Container/Container';
@@ -12,10 +11,8 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <Container title="Menu">
-      <Suspense fallback={<div>Loading...</div>}>
-        <BeverageList />
-        <Modal />
-      </Suspense>
+      <BeverageList />
+      <Modal />
     </Container>
   );
 }

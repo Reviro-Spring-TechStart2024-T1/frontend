@@ -1,3 +1,4 @@
+import { getQRCode, type TQRCode } from './model';
 import { QR } from './ui';
 
-export { QR };
+export { getQRCode, QR, TQRCode };

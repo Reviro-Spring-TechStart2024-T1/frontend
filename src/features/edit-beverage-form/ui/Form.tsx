@@ -22,8 +22,7 @@ export const Form: FC = () => {
 
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
-
-  // const menuId = localStorage.getItem('menu_id');
+  const menuId = 1;
 
   const router = useRouter();
 
@@ -36,16 +35,12 @@ export const Form: FC = () => {
       category: '',
       price: '',
       description: '',
-      quantity: '',
-      image: {},
+      in_stock: '',
+      // image: {},
     },
   };
 
-  const editBeverageWithId = editBeverage.bind(
-    null,
-    +id!,
-    // +menuId!
-  );
+  const editBeverageWithId = editBeverage.bind(null, +id!, +menuId!);
   const [formState, formAction] = useFormState(
     editBeverageWithId,
     initialState,
@@ -146,7 +141,7 @@ export const Form: FC = () => {
             className={clsx('pb-[50px]', {
               'border-red-400': formState.errors?.description,
             })}
-            defaultValue={beverageInfo.desc}
+            defaultValue={beverageInfo.description}
           />
           <Typography variant="paragraph" className="text-red-400">
             {formState.errors?.description}
@@ -157,7 +152,7 @@ export const Form: FC = () => {
               type="file"
               name="image"
               className={clsx('absolute -z-10 block h-0 w-0 opacity-0', {
-                'border-red-400': formState.errors?.image,
+                // 'border-red-400': formState.errors?.image,
               })}
               placeholder="Choose image"
             />
@@ -171,21 +166,21 @@ export const Form: FC = () => {
               Choose image
             </Button>
           </label>
-          <Typography variant="paragraph" className="text-red-400">
+          {/* <Typography variant="paragraph" className="text-red-400">
             {formState.errors?.image}
-          </Typography>
+          </Typography> */}
 
           <Input
-            type="number"
-            name="quantity"
+            type="text"
+            name="in_stock"
             placeholder="Quantity"
             className={clsx({
-              'border-red-400': formState.errors?.quantity,
+              'border-red-400': formState.errors?.in_stock,
             })}
-            defaultValue={beverageInfo.quantity}
+            defaultValue={beverageInfo.in_stock}
           />
           <Typography variant="paragraph" className="text-red-400">
-            {formState.errors?.quantity}
+            {formState.errors?.in_stock}
           </Typography>
 
           <div className="flex gap-2.5">

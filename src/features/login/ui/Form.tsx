@@ -18,6 +18,8 @@ export const Form = () => {
     status: '',
     message: '',
     user_id: null,
+    access: null,
+    refresh: null,
   });
 
   useEffect(() => {
