@@ -12,14 +12,18 @@ export const SearchUsers = () => {
   const debouncedValue = useDebounce(value, 400); //NOTE - For request
 
   return (
-    <div className="relative">
+    <div className="relative flex w-full items-center text-sm">
       <Input
-        placeholder="Search"
-        className="pl-14"
+        placeholder="Search by name or email"
+        className="w-full pl-12"
         value={value}
         onChange={e => setValue(e.target.value)}
       />
-      <RiSearchLine className="absolute left-6 top-2/4 -translate-y-2/4" />
+
+      <RiSearchLine
+        className="absolute left-4 cursor-pointer text-theme-grey-400"
+        size={20}
+      />
     </div>
   );
 };

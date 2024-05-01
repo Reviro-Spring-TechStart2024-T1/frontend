@@ -11,7 +11,7 @@ const typographyVariants = cva('', {
       h2: 'text-4xl',
       h3: 'text-3xl',
       h4: 'text-2xl',
-      h5: 'text-xl',
+      h5: 'text-lg',
       paragraph: 'text-base',
       caption: 'text-sm',
       link: 'text-base',

@@ -41,6 +41,9 @@ const config: Config = {
         'theme-grey-400': '#ADB5BD',
         'theme-grey-500': '#52525B',
       },
+      width: {
+        header: 'calc(100% - 138px)',
+      },
       minHeight: {
         main: 'calc(100vh - 76px)',
       },

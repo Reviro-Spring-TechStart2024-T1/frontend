@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { RiDeleteBinLine, RiEditLine } from '@remixicon/react';
 import clsx from 'clsx';
 
 import { useOrderHistory } from '@/shared/api/hooks/useOrderHistory';
-import { Typography } from '@/shared/ui';
+import { Section, Typography } from '@/shared/ui';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
+import { CustomerSearchFilter } from '@/widgets/customer-search-filter';
+import { MoreModal } from '@/widgets/more-modal';
 
 export const BeverageTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,42 +34,41 @@ export const BeverageTable = () => {
       return (
         <tr
           className={clsx(
-            'divide-x-2 border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100',
+            'cursor-pointer border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100',
             { ['border-none']: index === 9 },
           )}
           key={order.id}
         >
           <td data-cell="id" className="whitespace-nowrap p-[14px] text-center">
-            <Typography variant="caption" color="grey" weight="medium">
+            <Typography variant="caption" color="grey">
               {order.id}
             </Typography>
           </td>
           <td data-cell="beverage" className="whitespace-nowrap p-[14px]">
-            <Typography variant="caption" color="grey" weight="medium">
+            <Typography variant="caption" color="grey">
               {order.beverage}
             </Typography>
           </td>
           <td data-cell="price" className="whitespace-nowrap p-[14px]">
-            <Typography variant="caption" color="grey" weight="medium">
+            <Typography variant="caption" color="grey">
               {order.price}
             </Typography>
           </td>
           <td data-cell="category" className="whitespace-nowrap p-[14px]">
-            <Typography variant="caption" color="grey" weight="medium">
+            <Typography variant="caption" color="grey">
               {order.category}
             </Typography>
           </td>
-          <td data-cell="creation time" className="whitespace-nowrap p-[14px]">
-            <Typography variant="caption" color="grey" weight="medium">
+          <td data-cell="creation_time" className="whitespace-nowrap p-[14px]">
+            <Typography variant="caption" color="grey">
               {order.creation_time}
             </Typography>
           </td>
-          <td data-cell="action" className="whitespace-nowrap p-[14px]">
-            <div className="flex justify-evenly">
-              <RiEditLine className="cursor-pointer text-theme-blue-300" />
-
-              <RiDeleteBinLine className="cursor-pointer text-theme-red-500" />
-            </div>
+          <td
+            data-cell="action"
+            className="relative whitespace-nowrap pl-[14px]"
+          >
+            <MoreModal id={order.id} />
           </td>
         </tr>
       );
@@ -76,11 +76,13 @@ export const BeverageTable = () => {
   );
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="relative h-[596px] overflow-auto rounded-lg border-2 border-theme-grey-200">
+    <Section title="Order history">
+      <CustomerSearchFilter />
+
+      <div className="relative h-[530px] overflow-auto rounded-lg border-2 border-theme-grey-200">
         <table className="w-full">
-          <thead>
-            <tr className="divide-x-2 bg-theme-grey-150">
+          <thead className="sticky top-0 z-10">
+            <tr className="bg-theme-grey-150">
               <th className="min-w-16 p-[14px]">
                 <Typography variant="caption" color="grey" weight="medium">
                   ID
@@ -106,11 +108,7 @@ export const BeverageTable = () => {
                   Creation Time
                 </Typography>
               </th>
-              <th className="min-w-20 p-[14px]">
-                <Typography variant="caption" color="grey" weight="medium">
-                  Action
-                </Typography>
-              </th>
+              <th className="min-w-10 p-[14px]"></th>
             </tr>
           </thead>
 
@@ -125,6 +123,6 @@ export const BeverageTable = () => {
           onPageChange={page => setCurrentPage(page)}
         />
       ) : null}
-    </div>
+    </Section>
   );
 };

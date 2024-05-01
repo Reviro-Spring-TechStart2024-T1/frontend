@@ -20,7 +20,7 @@ export const Modal = () => {
         <div
           id="create-beverage-form"
           className={clsx(
-            'fixed left-2/4 top-2/4 flex -translate-x-2/4 -translate-y-2/4 flex-col items-center justify-center gap-1 transition-all duration-300',
+            'fixed left-2/4 top-2/4 z-50 flex -translate-x-2/4 -translate-y-2/4 flex-col items-center justify-center gap-1 transition-all duration-300',
             {
               'invisible opacity-0': !isCreateFormActive,
               'visible opacity-100': isCreateFormActive,
@@ -40,7 +40,7 @@ export const Modal = () => {
         <div
           id="edit-beverage-form"
           className={clsx(
-            'fixed left-2/4 top-2/4 flex -translate-x-2/4 -translate-y-2/4 flex-col items-center justify-center gap-1 transition-all duration-300',
+            'fixed left-2/4 top-2/4 z-50 flex -translate-x-2/4 -translate-y-2/4 flex-col items-center justify-center gap-1 transition-all duration-300',
             {
               'invisible opacity-0': !isEditFormActive,
               'visible opacity-100': isEditFormActive,
@@ -60,7 +60,7 @@ export const Modal = () => {
         <div
           id="delete-beverage"
           className={clsx(
-            'fixed left-2/4 top-2/4 flex -translate-x-2/4 -translate-y-2/4 flex-col items-center justify-center gap-1 transition-all duration-300',
+            'fixed left-2/4 top-2/4 z-50 flex -translate-x-2/4 -translate-y-2/4 flex-col items-center justify-center gap-1 transition-all duration-300',
             {
               'invisible opacity-0': !isDeleteModalActive,
               'visible opacity-100': isDeleteModalActive,
