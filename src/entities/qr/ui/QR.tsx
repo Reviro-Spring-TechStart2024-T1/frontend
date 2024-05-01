@@ -23,7 +23,7 @@ export const QR = () => {
   }, []);
 
   return (
-    <div className="absolute -right-20 top-2/4 z-[10000] flex h-full w-full -translate-y-2/4 items-center">
+    <div className="absolute -bottom-9 -right-36 z-[10000] flex w-full -translate-y-2/4 items-center">
       <div className={styles.arrow} />
       <div
         style={{
