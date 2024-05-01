@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 
-import { fetcher } from '@/shared';
+import { testFetcher } from '@/shared/helper/testFetcher';
 
 import { OrderHistoryResponse } from '../types';
 
@@ -11,12 +11,12 @@ export const useOrderHistory = (page: number) => {
 
   const { data, isLoading } = useSWR<OrderHistoryResponse>(
     `/order_history?_page=${page}&_per_page=${limit}`,
-    fetcher,
+    testFetcher,
   );
 
   useSWR<OrderHistoryResponse>(
     `/order_history?_page=${page + 1}&_per_page=${limit}`,
-    fetcher,
+    testFetcher,
   );
 
   return {

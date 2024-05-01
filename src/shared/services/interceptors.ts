@@ -9,6 +9,10 @@ const drinkjoyApi = axios.create({
   baseURL: 'https://backend-gvhy.onrender.com/api/v1',
 });
 
+const testApi = axios.create({
+  baseURL: 'http://localhost:5000',
+});
+
 drinkjoyApi.interceptors.request.use(
   async config => {
     const token: Token = JSON.parse(localStorage.getItem('token') ?? '');
@@ -21,4 +25,11 @@ drinkjoyApi.interceptors.request.use(
   error => Promise.reject(error),
 );
 
-export { drinkjoyApi };
+testApi.interceptors.request.use(
+  async config => {
+    return config;
+  },
+  error => Promise.reject(error),
+);
+
+export { drinkjoyApi, testApi };
