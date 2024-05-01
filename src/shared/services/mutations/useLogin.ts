@@ -1,17 +1,18 @@
 import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 
-import { createEstablishment } from '../api/establishment';
+import { authorize } from '../api/authorize';
 
-export const useCreateEstablishment = () => {
+export const useLogin = () => {
   const router = useRouter();
-  return useSWRMutation('/establishments/', createEstablishment, {
+  return useSWRMutation('/users/token/', authorize, {
     onError() {
       console.log('error');
     },
     onSuccess: () => {
       console.log('success');
-      router.push('/partner/menu');
+
+      router.push('/establishment');
     },
   });
 };

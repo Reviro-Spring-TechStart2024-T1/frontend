@@ -1,4 +1,4 @@
-import { useBeverages, useCloseForm, useUsers } from './api/hooks';
+import { useBeverages, useCloseForm, useUsers } from './services/hooks';
 import {
   CREATE_BEVERAGE_FORM,
   DELETE_BEVERAGE,
