@@ -1,4 +1,4 @@
-import { drinkjoyApi } from '../drinkjoyApi';
+import { drinkjoyApi } from '../interceptors';
 
 export const authorize = async (
   url: string,

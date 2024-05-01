@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 
-import { fetcher } from '@/shared';
+import { testFetcher } from '@/shared/helper/testFetcher';
 
 import { UsersResponse } from '../types';
 
@@ -11,10 +11,13 @@ export const useUsers = (page: number) => {
 
   const { data, isLoading } = useSWR<UsersResponse>(
     `/users?_page=${page}&_per_page=${limit}`,
-    fetcher,
+    testFetcher,
   );
 
-  useSWR<UsersResponse>(`/users?_page=${page + 1}&_per_page=${limit}`, fetcher);
+  useSWR<UsersResponse>(
+    `/users?_page=${page + 1}&_per_page=${limit}`,
+    testFetcher,
+  );
 
   return {
     users: data,
