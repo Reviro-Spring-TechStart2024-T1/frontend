@@ -1,39 +1,46 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useFormState } from 'react-dom';
+import { useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
-import { handleLoginSubmit } from '@/features/login';
 import { SubmitButton } from '@/features/submit-form';
 import { logo } from '@/shared';
+import { useLogin } from '@/shared/services/mutations/useLogin';
 import { Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
 export const Form = () => {
-  const { push } = useRouter();
+  // const [formState, formAction] = useFormState(handleLoginSubmit, {
+  //   status: '',
+  //   message: '',
+  //   user_id: null,
+  //   access: null,
+  //   refresh: null,
+  // });
 
-  const [formState, formAction] = useFormState(handleLoginSubmit, {
-    status: '',
-    message: '',
-    user_id: null,
-    access: null,
-    refresh: null,
-  });
+  // useEffect(() => {
+  //   if (formState.status === 'success') {
+  //     if (!!localStorage.getItem('user_id')) {
+  //       push('/partner/profile');
+  //     } else {
+  //       localStorage.setItem('user_id', formState.user_id);
+  //       push('/partner/profile');
+  //     }
+  //   }
+  //   console.log(formState, 'login form state');
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [formState]);
+  const { trigger } = useLogin();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    if (formState.status === 'success') {
-      if (!!localStorage.getItem('user_id')) {
-        push('/partner/profile');
-      } else {
-        localStorage.setItem('user_id', formState.user_id);
-        push('/partner/profile');
-      }
+  const handleLogin: React.FormEventHandler = e => {
+    e.preventDefault();
+
+    if (email && password) {
+      trigger({ email: email, password: password });
     }
-    console.log(formState, 'login form state');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formState]);
+  };
 
   return (
     <div className="flex w-[762px] rounded-xl bg-[#fdfdfd]">
@@ -41,18 +48,22 @@ export const Form = () => {
         <Typography variant="h2" weight="bold">
           Login
         </Typography>
-        <form action={formAction}>
+        <form onSubmit={handleLogin}>
           <Input
+            value={email}
             type="email"
             name="email"
             placeholder="Email"
             className="w-full"
+            onChange={e => setEmail(e.target.value)}
           />
           <Input
+            value={password}
             type="password"
             name="password"
             placeholder="Password"
             className="mb-6 mt-3 w-full"
+            onChange={e => setPassword(e.target.value)}
           />
           <SubmitButton type="login" />
         </form>

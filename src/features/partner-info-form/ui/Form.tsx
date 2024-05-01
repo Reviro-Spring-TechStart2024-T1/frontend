@@ -15,7 +15,7 @@ import {
 } from '@/features/partner-info-form';
 import { SubmitButton } from '@/features/submit-form';
 import { addImage, delete_, download, useCloseForm } from '@/shared';
-import { useCreateEstablishment } from '@/shared/api/mutations/useCreateEstablishment';
+import { useCreateEstablishment } from '@/shared/services/mutations/useCreateEstablishment';
 import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
