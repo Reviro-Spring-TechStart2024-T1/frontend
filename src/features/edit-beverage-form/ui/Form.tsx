@@ -23,6 +23,8 @@ export const Form: FC = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
 
+  // const menuId = localStorage.getItem('menu_id');
+
   const router = useRouter();
 
   const initialState = {
@@ -33,13 +35,17 @@ export const Form: FC = () => {
       name: '',
       category: '',
       price: '',
-      desc: '',
+      description: '',
       quantity: '',
       image: {},
     },
   };
 
-  const editBeverageWithId = editBeverage.bind(null, +id!);
+  const editBeverageWithId = editBeverage.bind(
+    null,
+    +id!,
+    // +menuId!
+  );
   const [formState, formAction] = useFormState(
     editBeverageWithId,
     initialState,
@@ -63,11 +69,10 @@ export const Form: FC = () => {
     }
 
     return () => clearTimeout(timeoutId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive]);
 
   useEffect(() => {
-    console.log(beverageInfo);
-    console.log(beverages);
     beverages && setBeverageInfo(beverages[+id! - 1]);
   }, [beverages, id, formState]);
 
@@ -136,15 +141,15 @@ export const Form: FC = () => {
 
           <Input
             type="text"
-            name="desc"
+            name="description"
             placeholder="Description"
             className={clsx('pb-[50px]', {
-              'border-red-400': formState.errors?.desc,
+              'border-red-400': formState.errors?.description,
             })}
             defaultValue={beverageInfo.desc}
           />
           <Typography variant="paragraph" className="text-red-400">
-            {formState.errors?.desc}
+            {formState.errors?.description}
           </Typography>
 
           <label className="relative inline-block">
