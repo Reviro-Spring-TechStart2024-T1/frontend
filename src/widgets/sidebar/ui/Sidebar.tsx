@@ -15,13 +15,15 @@ import { Button } from '@/shared/ui';
 export const Sidebar = () => {
   return (
     <div className="relative bottom-[76px]">
+      <QR />
+
       <div className="fixed flex h-full w-[138px] flex-col items-center justify-between gap-10 bg-[#111828] px-4 text-theme-white">
         <div className="pt-9">
           <Logo />
         </div>
 
         <nav className="flex flex-col items-center overflow-auto overflow-x-hidden">
-          <ul className="flex flex-col space-y-4">
+          <ul className="flex flex-col space-y-2">
             <li>
               <Link href="/partner/dashboard">
                 <Button variant="link" width="full" className="flex flex-col">
@@ -54,12 +56,11 @@ export const Sidebar = () => {
                 </Button>
               </Link>
             </li>
-            <li className="relative">
+            <li>
               <Button variant="link" width="full" className="flex flex-col">
                 <RiQrCodeLine size={30} />
                 QR
               </Button>
-              <QR />
             </li>
           </ul>
         </nav>

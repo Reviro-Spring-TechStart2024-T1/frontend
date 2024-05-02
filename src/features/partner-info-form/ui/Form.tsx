@@ -15,13 +15,20 @@ import {
 } from '@/features/partner-info-form';
 import { SubmitButton } from '@/features/submit-form';
 import { addImage, delete_, download, useCloseForm } from '@/shared';
+import { useCreateEstablishment } from '@/shared/services/mutations/useCreateEstablishment';
 import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
 export const Form = () => {
+  const { trigger } = useCreateEstablishment();
+
   const [startHappyHours, setStartHappyHours] = useState<Dayjs | null>(null);
   const [endHappyHours, setEndHappyHours] = useState<Dayjs | null>(null);
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [description, setDescription] = useState('');
   const [latitude, setLatitude] = useState(42.87656);
   const [longitude, setLongitude] = useState(74.588274);
   const [start, setStart] = useState('');
@@ -40,11 +47,36 @@ export const Form = () => {
   useCloseForm(START_TIME_PICKER, setIsStartPickerActive);
   useCloseForm(END_TIME_PICKER, setIsEndPickerActive);
 
+  const handleCreateEstablishment: React.FormEventHandler = e => {
+    e.preventDefault();
+
+    trigger({
+      owner: '7',
+      name: name,
+      email: email,
+      phone_number: phone,
+      latitude: latitude.toString(),
+      longitude: longitude.toString(),
+      happy_hour_start: startHappyHours?.toString(),
+      happy_hour_end: endHappyHours?.toString(),
+    });
+  };
+
   return (
-    <form className="grid grid-cols-1 gap-10 rounded-md bg-white p-9 md:grid-cols-2">
+    <form
+      className="grid grid-cols-1 gap-10 rounded-md bg-white p-9 md:grid-cols-2"
+      onSubmit={handleCreateEstablishment}
+    >
       <div className="grid grid-rows-[40px_50px_50px_100px] gap-2 2xl:grid-rows-[50px_100_100px_1fr]">
         <Typography variant="paragraph">General</Typography>
-        <Input type="text" name="name" placeholder="Name" required />
+        <Input
+          value={name}
+          type="text"
+          name="name"
+          placeholder="Name"
+          required
+          onChange={e => setName(e.target.value)}
+        />
         <div
           id="google-map"
           className={clsx(
@@ -85,7 +117,14 @@ export const Form = () => {
           aria-label="Longitude"
           value={longitude}
         />
-        <Input type="text" name="desc" placeholder="Description" required />
+        <Input
+          value={description}
+          type="text"
+          name="desc"
+          placeholder="Description"
+          required
+          onChange={e => setDescription(e.target.value)}
+        />
       </div>
       <div className="grid gap-[35px]">
         <label className="relative flex items-center justify-between rounded-md border border-gray-300 p-3">
@@ -201,11 +240,23 @@ export const Form = () => {
         <div className="flex flex-col gap-2">
           <Typography variant="h5">Contacts</Typography>
 
-          <Input type="text" name="email" placeholder="Email" />
-          <Input type="text" name="phone" placeholder="Phone number" />
+          <Input
+            value={email}
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={e => setEmail(e.target.value)}
+          />
+          <Input
+            value={phone}
+            type="text"
+            name="phone"
+            placeholder="Phone number"
+            onChange={e => setPhone(e.target.value)}
+          />
         </div>
         <div className="flex justify-end">
-          <SubmitButton type="save" />
+          <SubmitButton type="create" />
         </div>
       </div>
     </form>

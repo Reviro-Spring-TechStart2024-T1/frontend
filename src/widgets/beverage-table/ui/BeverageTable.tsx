@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 
-import { useOrderHistory } from '@/shared/api/hooks/useOrderHistory';
+import { useOrderHistory } from '@/shared/services/hooks/useOrderHistory';
 import { Section, Typography } from '@/shared/ui';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
 import { CustomerSearchFilter } from '@/widgets/customer-search-filter';
