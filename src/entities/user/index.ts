@@ -1,11 +1,4 @@
 import { type TFiltersList, type TUser, users_filters } from './model';
-import { User, UsersFiltersList, UsersList } from './ui';
+import { User, UsersFiltersList } from './ui';
 
-export {
-  TFiltersList,
-  TUser,
-  User,
-  users_filters,
-  UsersFiltersList,
-  UsersList,
-};
+export { TFiltersList, TUser, User, users_filters, UsersFiltersList };

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 
 import { PartnerProfile } from '@/entities/partner';
@@ -9,5 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <PartnerProfile />;
+  return (
+    <Suspense fallback="Loading...">
+      <PartnerProfile />
+    </Suspense>
+  );
 }
