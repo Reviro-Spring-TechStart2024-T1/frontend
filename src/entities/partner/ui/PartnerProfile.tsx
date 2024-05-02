@@ -1,5 +1,3 @@
-'use client';
-
 import { Form } from '@/features/partner-info-form';
 import { Typography } from '@/shared/ui';
 

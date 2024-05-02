@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 
 import { Container } from '@/shared/ui/Container/Container';
@@ -8,11 +9,17 @@ export const metadata: Metadata = {
   title: 'Menu',
 };
 
-export default function Page() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams: { id: string };
+}) {
   return (
     <Container title="Menu">
-      <BeverageList />
-      <Modal />
+      <Suspense key={searchParams.id} fallback={<div>Loading...</div>}>
+        <BeverageList />
+        <Modal />
+      </Suspense>
     </Container>
   );
 }
