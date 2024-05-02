@@ -17,5 +17,11 @@ export const createEstablishment = async (
     };
   },
 ) => {
-  await drinkjoyApi.post(url, { ...arg });
+  const { data } = await drinkjoyApi.post(url, { ...arg });
+
+  if (data) {
+    localStorage.setItem('establishment_id', data.id);
+  }
+
+  return data;
 };
