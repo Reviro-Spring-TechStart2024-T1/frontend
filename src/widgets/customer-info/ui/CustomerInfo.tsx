@@ -18,7 +18,9 @@ export const CustomerInfo = ({ id }: { id: number }) => {
             <Typography variant="h3">{user?.firstName.slice(0, 1)}</Typography>
           </div>
           <div className="py-4 pl-5">
-            <Typography variant="h3">{user?.firstName}</Typography>
+            <Typography variant="h3" weight="medium">
+              {user?.firstName}
+            </Typography>
             <Typography
               variant="paragraph"
               className="text-[#3c3c3c] opacity-80"
