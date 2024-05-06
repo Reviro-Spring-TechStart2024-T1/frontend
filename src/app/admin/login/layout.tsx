@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 
-import { Providers } from '../providers';
-
 export const metadata: Metadata = {
   title: {
     template: '%s | DrinkJoy',
@@ -17,9 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <main>
-      <div className="min-h-main overflow-auto">
-        <Providers>{children}</Providers>
-      </div>
+      <div className="min-h-main overflow-auto">{children}</div>
     </main>
   );
 }

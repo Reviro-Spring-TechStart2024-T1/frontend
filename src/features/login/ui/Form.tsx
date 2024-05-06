@@ -1,15 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import Image from 'next/image';
 
 import { SubmitButton } from '@/features/submit-form';
-import { logo } from '@/shared';
+import { logo, TLoginFormProps } from '@/shared';
 import { useLogin } from '@/shared/services/mutations/useLogin';
 import { Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
-export const Form = () => {
+export const Form: FC<TLoginFormProps> = ({ role }) => {
   // const [formState, formAction] = useFormState(handleLoginSubmit, {
   //   status: '',
   //   message: '',
@@ -30,7 +30,7 @@ export const Form = () => {
   //   console.log(formState, 'login form state');
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [formState]);
-  const { trigger } = useLogin();
+  const { trigger } = useLogin({ role });
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

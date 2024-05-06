@@ -17,6 +17,8 @@ import {
   useEditModal,
 } from './providers';
 
+export * from './types';
+
 export {
   addImage,
   beverage,

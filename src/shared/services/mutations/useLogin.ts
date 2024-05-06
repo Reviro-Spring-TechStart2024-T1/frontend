@@ -1,9 +1,11 @@
 import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 
+import { TLoginFormProps } from '@/shared';
+
 import { authorize } from '../api/authorize';
 
-export const useLogin = () => {
+export const useLogin = ({ role }: TLoginFormProps) => {
   const router = useRouter();
   return useSWRMutation('/users/token/', authorize, {
     onError() {
@@ -11,8 +13,9 @@ export const useLogin = () => {
     },
     onSuccess: () => {
       console.log('success');
-
-      router.push('/establishment');
+      role === 'partner'
+        ? router.push('/establishment')
+        : router.push('/admin/categories');
     },
   });
 };
