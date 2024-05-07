@@ -10,46 +10,55 @@ export const CustomerInfo = ({ id }: { id: number }) => {
 
   return (
     <Section>
-      <div className="flex flex-col justify-between rounded-md border border-gray-300 bg-theme-white">
-        <div className="m-8 flex">
-          {/* FIX_ME: Show user if the ava is available */}
-          {/* <Image src="/user.png" width={100} height={100} alt="user" /> */}
-          <div className="flex h-24 w-24 items-center justify-center rounded-full bg-theme-grey-400">
-            <Typography variant="h3">{user?.firstName.slice(0, 1)}</Typography>
-          </div>
-          <div className="py-4 pl-5">
-            <Typography variant="h3" weight="medium">
-              {user?.firstName}
-            </Typography>
-            <Typography
-              variant="paragraph"
-              className="text-[#3c3c3c] opacity-80"
-            >
-              {user?.email}
-            </Typography>
-          </div>
-        </div>
-        <div className="flex h-[54px] divide-x border-t border-gray-300">
-          <div className="flex h-full w-2/4 items-center justify-center border-r border-gray-300">
-            <RiCalendar2Line />
-            <div className="ml-2.5 flex gap-1">
-              <Typography variant="paragraph" weight="medium">
-                Joined:
+      <div className="divide-y border border-theme-grey-200 bg-theme-white sm:text-center">
+        <div className="p-8">
+          <div className="inline-flex items-center sm:flex-col sm:space-y-3">
+            <div className="flex">
+              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-theme-grey-300">
+                <Typography variant="h3" weight="medium">
+                  {user?.firstName.slice(0, 1)}
+                </Typography>
+              </div>
+            </div>
+
+            <div className="ml-5 sm:ml-0">
+              <Typography variant="h3" weight="medium">
+                {user?.firstName} {user?.lastName}
               </Typography>
-              <Typography variant="paragraph" className="text-[#3c3c3c]">
-                {user?.joinedAt}
+              <Typography variant="paragraph" color="grey">
+                {user?.email}
               </Typography>
             </div>
           </div>
-          <div className="flex w-2/4 items-center justify-center">
-            <RiCalendar2Line />
-            <div className="ml-2.5 flex gap-1">
-              <Typography variant="paragraph" weight="medium">
-                Age:
-              </Typography>
-              <Typography variant="paragraph" className="text-[#3c3c3c]">
-                {user?.age}
-              </Typography>
+        </div>
+
+        <div className="flex divide-x sm:flex-col sm:divide-y">
+          <div className="flex flex-1 justify-center p-4">
+            <div className="flex gap-3">
+              <RiCalendar2Line />
+
+              <div className="flex gap-1">
+                <Typography variant="paragraph" weight="medium">
+                  Joined:
+                </Typography>
+                <Typography variant="paragraph" color="grey">
+                  {user?.joinedAt}
+                </Typography>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-1 justify-center p-4">
+            <div className="flex gap-3">
+              <RiCalendar2Line />
+
+              <div className="flex gap-1">
+                <Typography variant="paragraph" weight="medium">
+                  Age:
+                </Typography>
+                <Typography variant="paragraph" color="grey">
+                  {user?.age}
+                </Typography>
+              </div>
             </div>
           </div>
         </div>

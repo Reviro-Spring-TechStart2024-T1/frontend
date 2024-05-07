@@ -20,7 +20,7 @@ export const useUsers = (page: number) => {
   );
 
   return {
-    users: data,
+    data,
     isLoading,
   };
 };
