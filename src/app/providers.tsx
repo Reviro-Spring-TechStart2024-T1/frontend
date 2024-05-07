@@ -6,6 +6,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import {
   CreateModalContextProvider,
+  CreatePartnerModalContextProvider,
   DeleteModalProvider,
   EditModalContextProvider,
 } from '@/shared';
@@ -15,9 +16,11 @@ export function Providers({ children }: { children: ReactNode }) {
     <CreateModalContextProvider>
       <EditModalContextProvider>
         <DeleteModalProvider>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            {children}
-          </LocalizationProvider>
+          <CreatePartnerModalContextProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              {children}
+            </LocalizationProvider>
+          </CreatePartnerModalContextProvider>
         </DeleteModalProvider>
       </EditModalContextProvider>
     </CreateModalContextProvider>

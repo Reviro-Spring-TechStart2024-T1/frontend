@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 

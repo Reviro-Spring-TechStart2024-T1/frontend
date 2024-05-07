@@ -8,6 +8,7 @@ export const createEstablishment = async (
     arg: {
       owner: string;
       name: string;
+      description: string;
       email: string;
       latitude: string;
       longitude: string;

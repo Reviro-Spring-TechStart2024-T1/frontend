@@ -1,9 +1,10 @@
 'use client';
 
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useFormState } from 'react-dom';
 import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useSWRConfig } from 'swr';
 
 import { TBeverage } from '@/entities/beverage';
 import { SubmitButton } from '@/features';
@@ -22,7 +23,7 @@ export const Form: FC = () => {
 
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
-  const menuId = 1;
+  const menuId = localStorage.getItem('menu_id');
 
   const router = useRouter();
 
@@ -46,8 +47,9 @@ export const Form: FC = () => {
     initialState,
   );
 
-  const { data: beverages } = useBeverages<TBeverage[]>();
-  const [beverageInfo, setBeverageInfo] = useState<TBeverage | null>();
+  const { mutate } = useSWRConfig();
+
+  const { data: beverage, isLoading } = useBeverages<TBeverage>(+id!);
 
   const handleEditModalOnClose = () => {
     setModalState(false);
@@ -68,14 +70,9 @@ export const Form: FC = () => {
   }, [isActive]);
 
   useEffect(() => {
-    beverages && setBeverageInfo(beverages[+id! - 1]);
-  }, [beverages, id, formState]);
-
-  useEffect(() => {
     if (formState.message === 'success') {
+      mutate(`/menus/${menuId}`);
       setModalState(false);
-
-      setBeverageInfo(null);
     }
     console.log(formState, 'edit');
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -84,118 +81,123 @@ export const Form: FC = () => {
   useCloseForm(EDIT_BEVERAGE_FORM, setModalState);
 
   return (
-    <form
-      action={formAction}
-      className="mt-[16px] flex min-h-[631px] flex-col gap-3"
-    >
-      {formState.errorMessage && (
-        <Typography variant="paragraph" className="text-red-400">
-          {formState.errorMessage}
-        </Typography>
+    <>
+      {isLoading && (
+        <div className="flex  min-h-[631px] items-center justify-center">
+          Loading
+        </div>
       )}
-      {beverageInfo && (
-        <>
-          <Input
-            type="text"
-            name="name"
-            placeholder="Name"
-            className={clsx({
-              'border-red-400': formState.errors?.name,
-            })}
-            defaultValue={beverageInfo.name}
-          />
-          <Typography variant="paragraph" className="text-red-400">
-            {formState.errors?.name}
-          </Typography>
 
-          <Input
-            type="text"
-            name="category"
-            placeholder="Category"
-            className={clsx({
-              'border-red-400': formState.errors?.category,
-            })}
-            defaultValue={beverageInfo.category}
-          />
-          <Typography variant="paragraph" className="text-red-400">
-            {formState.errors?.category}
-          </Typography>
-
-          <Input
-            type="text"
-            name="price"
-            placeholder="Price"
-            className={clsx({
-              'border-red-400': formState.errors?.price,
-            })}
-            defaultValue={beverageInfo.price}
-          />
-          <Typography variant="paragraph" className="text-red-400">
-            {formState.errors?.price}
-          </Typography>
-
-          <Input
-            type="text"
-            name="description"
-            placeholder="Description"
-            className={clsx('pb-[50px]', {
-              'border-red-400': formState.errors?.description,
-            })}
-            defaultValue={beverageInfo.description}
-          />
-          <Typography variant="paragraph" className="text-red-400">
-            {formState.errors?.description}
-          </Typography>
-
-          <label className="relative inline-block">
+      {beverage && (
+        <form action={formAction} className="mt-[16px] flex flex-col gap-3">
+          {formState.errorMessage && (
+            <Typography variant="paragraph" className="text-red-400">
+              {formState.errorMessage}
+            </Typography>
+          )}
+          <>
             <Input
-              type="file"
-              name="image"
-              className={clsx('absolute -z-10 block h-0 w-0 opacity-0', {
-                // 'border-red-400': formState.errors?.image,
+              type="text"
+              name="name"
+              placeholder="Name"
+              className={clsx({
+                'border-red-400': formState.errors?.name,
               })}
-              placeholder="Choose image"
+              defaultValue={beverage.name}
             />
+            <Typography variant="paragraph" className="text-red-400">
+              {formState.errors?.name}
+            </Typography>
 
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="bg-theme-grey-200"
-            >
-              Choose image
-            </Button>
-          </label>
-          {/* <Typography variant="paragraph" className="text-red-400">
+            <Input
+              type="text"
+              name="category"
+              placeholder="Category"
+              className={clsx({
+                'border-red-400': formState.errors?.category,
+              })}
+              defaultValue={beverage.category}
+            />
+            <Typography variant="paragraph" className="text-red-400">
+              {formState.errors?.category}
+            </Typography>
+
+            <Input
+              type="text"
+              name="price"
+              placeholder="Price"
+              className={clsx({
+                'border-red-400': formState.errors?.price,
+              })}
+              defaultValue={beverage.price}
+            />
+            <Typography variant="paragraph" className="text-red-400">
+              {formState.errors?.price}
+            </Typography>
+
+            <Input
+              type="text"
+              name="description"
+              placeholder="Description"
+              className={clsx('pb-[50px]', {
+                'border-red-400': formState.errors?.description,
+              })}
+              defaultValue={beverage.description}
+            />
+            <Typography variant="paragraph" className="text-red-400">
+              {formState.errors?.description}
+            </Typography>
+
+            <label className="relative inline-block">
+              <Input
+                type="file"
+                name="image"
+                className={clsx('absolute -z-10 block h-0 w-0 opacity-0', {
+                  // 'border-red-400': formState.errors?.image,
+                })}
+                placeholder="Choose image"
+              />
+
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="bg-theme-grey-200"
+              >
+                Choose image
+              </Button>
+            </label>
+            {/* <Typography variant="paragraph" className="text-red-400">
             {formState.errors?.image}
           </Typography> */}
 
-          <Input
-            type="text"
-            name="in_stock"
-            placeholder="Quantity"
-            className={clsx({
-              'border-red-400': formState.errors?.in_stock,
-            })}
-            defaultValue={beverageInfo.in_stock}
-          />
-          <Typography variant="paragraph" className="text-red-400">
-            {formState.errors?.in_stock}
-          </Typography>
+            <Input
+              type="text"
+              name="in_stock"
+              placeholder="Quantity"
+              className={clsx({
+                'border-red-400': formState.errors?.in_stock,
+              })}
+              defaultValue={beverage.in_stock}
+            />
+            <Typography variant="paragraph" className="text-red-400">
+              {formState.errors?.in_stock}
+            </Typography>
 
-          <div className="flex gap-2.5">
-            <Button
-              type="button"
-              variant="outline"
-              width="full"
-              onClick={handleEditModalOnClose}
-            >
-              Close
-            </Button>
-            <SubmitButton type="edit" />
-          </div>
-        </>
+            <div className="flex gap-2.5">
+              <Button
+                type="button"
+                variant="outline"
+                width="full"
+                onClick={handleEditModalOnClose}
+              >
+                Close
+              </Button>
+              <SubmitButton type="edit" />
+            </div>
+          </>
+        </form>
       )}
-    </form>
+    </>
   );
 };

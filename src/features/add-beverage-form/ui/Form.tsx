@@ -3,6 +3,7 @@
 import { FC, useEffect, useRef } from 'react';
 import { useFormState } from 'react-dom';
 import clsx from 'clsx';
+import { useSWRConfig } from 'swr';
 
 import { SubmitButton } from '@/features';
 import { createBeverage } from '@/features/add-beverage-form';
@@ -27,13 +28,15 @@ export const Form: FC = () => {
     },
   };
 
-  const menuId = 1; //TODO - localStorage menu_id
+  const menuId = localStorage.getItem('menu_id'); //TODO - localStorage menu_id
 
   const createBeverageWithId = createBeverage.bind(null, +menuId!);
   const [formState, formAction] = useFormState(
     createBeverageWithId,
     initialState,
   );
+
+  const { mutate } = useSWRConfig();
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -56,6 +59,7 @@ export const Form: FC = () => {
 
   useEffect(() => {
     if (formState.message === 'success') {
+      mutate(`/menus/${menuId}`);
       setModalState(false);
       formRef.current?.reset();
     }
