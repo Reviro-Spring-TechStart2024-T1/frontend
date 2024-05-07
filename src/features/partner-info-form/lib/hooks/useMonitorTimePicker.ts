@@ -9,7 +9,7 @@ export const useMonitorTimePicker = (
 ) => {
   useEffect(() => {
     if (dayjsTime) {
-      const neededFormat = dayjsTime.format('HH:mm');
+      const neededFormat = dayjsTime.format('hh:mm');
       console.log(neededFormat);
       setter(neededFormat);
     }

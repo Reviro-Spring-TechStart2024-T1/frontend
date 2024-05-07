@@ -1,25 +1,25 @@
 'use client';
 
 import { RiMenu2Line } from '@remixicon/react';
-import useSWR from 'swr';
 
 import { Beverage } from '@/entities/beverage';
-import { fetcher, useCreateModal } from '@/shared';
+import { useCreateModal } from '@/shared';
 import { Button, Section, Typography } from '@/shared/ui';
-import { createMenu, TMenusResponse } from '@/widgets/beverage-list';
+import { useCreateMenu, useMenu } from '@/widgets/beverage-list';
 
 export const BeverageList = () => {
-  const establishmentId = 1; //TODO - establishment_id from localStorage'
-
-  const {
-    data: menu,
-    isLoading,
-    error,
-  } = useSWR<TMenusResponse>(`/menus/${establishmentId}`, fetcher);
-
-  // const { trigger } = useSWRMutation(`/menus/${establishmentId}`, fetcher); //TODO - maybe use SWR
-
   const { setModalState } = useCreateModal();
+
+  const establishmentId = localStorage.getItem('establishment_id'); //TODO - establishment_id from localStorage'
+
+  const { data: menu, isLoading, error } = useMenu();
+  const { trigger } = useCreateMenu();
+
+  const handleOnCreateMenu = () => {
+    trigger({
+      establishment: establishmentId!,
+    });
+  };
 
   return (
     <div className="min-h-[calc(100dvh-340px)]">
@@ -28,14 +28,11 @@ export const BeverageList = () => {
       }
       {error && (
         <div className="flex flex-col items-center justify-center gap-4">
-          <Typography variant="h2">
+          <Typography variant="h2" className="text-center">
             Establishment does not possess any menu.
           </Typography>
           <RiMenu2Line className="h-[70px] w-[70px]" />
-          <Button
-            onClick={() => createMenu(establishmentId)}
-            className="w-2/4 text-xl"
-          >
+          <Button onClick={handleOnCreateMenu} className="w-2/4 text-xl">
             Create Menu
           </Button>
         </div>

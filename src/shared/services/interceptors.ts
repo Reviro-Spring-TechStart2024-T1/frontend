@@ -15,10 +15,11 @@ const testApi = axios.create({
 
 drinkjoyApi.interceptors.request.use(
   async config => {
-    const token: Token = JSON.parse(localStorage.getItem('token') ?? '');
+    const token = localStorage.getItem('token');
 
     if (token) {
-      config.headers['Authorization'] = `Bearer ${token.access}`;
+      const parsedToken: Token = JSON.parse(token);
+      config.headers['Authorization'] = `Bearer ${parsedToken.access}`;
     }
     return config;
   },

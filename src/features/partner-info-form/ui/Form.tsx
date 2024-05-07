@@ -22,8 +22,8 @@ import { Input } from '@/shared/ui/Input/Input';
 export const Form = () => {
   const { trigger } = useCreateEstablishment();
 
-  const [startHappyHours, setStartHappyHours] = useState<Dayjs | null>(null);
-  const [endHappyHours, setEndHappyHours] = useState<Dayjs | null>(null);
+  const [startTimepicker, setStartTimepicker] = useState<Dayjs | null>(null);
+  const [endTimepicker, setEndTimepicker] = useState<Dayjs | null>(null);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -31,8 +31,8 @@ export const Form = () => {
   const [description, setDescription] = useState('');
   const [latitude, setLatitude] = useState(42.87656);
   const [longitude, setLongitude] = useState(74.588274);
-  const [start, setStart] = useState('');
-  const [end, setEnd] = useState('');
+  const [startHappyHours, setStartHappyHours] = useState('');
+  const [endHappyHours, setEndHappyHours] = useState('');
 
   //TODO - onSubmit handler SWR
 
@@ -40,8 +40,8 @@ export const Form = () => {
   const [isStartPickerActive, setIsStartPickerActive] = useState(false);
   const [isEndPickerActive, setIsEndPickerActive] = useState(false);
 
-  useMonitorTimePicker(startHappyHours, setStart);
-  useMonitorTimePicker(endHappyHours, setEnd);
+  useMonitorTimePicker(startTimepicker, setStartHappyHours);
+  useMonitorTimePicker(endTimepicker, setEndHappyHours);
 
   useCloseForm(GOOGLE_MAP, setIsGoogleMapActive);
   useCloseForm(START_TIME_PICKER, setIsStartPickerActive);
@@ -52,13 +52,14 @@ export const Form = () => {
 
     trigger({
       owner: '7',
-      name: name,
-      email: email,
+      name,
+      email,
+      description,
       phone_number: phone,
       latitude: latitude.toString(),
       longitude: longitude.toString(),
-      happy_hour_start: startHappyHours?.toString(),
-      happy_hour_end: endHappyHours?.toString(),
+      happy_hour_start: startHappyHours,
+      happy_hour_end: endHappyHours,
     });
   };
 
@@ -177,10 +178,10 @@ export const Form = () => {
               >
                 <div className="w-[320px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[560px]">
                   <StaticTimePicker
-                    onChange={newVal => setStartHappyHours(newVal)}
-                    value={startHappyHours}
+                    onChange={newVal => setStartTimepicker(newVal)}
+                    value={startTimepicker}
                     onAccept={newVal => {
-                      setStartHappyHours(newVal);
+                      setStartTimepicker(newVal);
                       setIsStartPickerActive(false);
                     }}
                     onClose={() => {
@@ -195,7 +196,7 @@ export const Form = () => {
                 name="start"
                 placeholder="Start of happy hours"
                 className="w-full"
-                value={start}
+                value={startHappyHours}
                 readOnly
                 onClick={() => setIsStartPickerActive(true)}
               />
@@ -213,10 +214,10 @@ export const Form = () => {
               >
                 <div className="w-[320px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[560px]">
                   <StaticTimePicker
-                    onChange={newVal => setEndHappyHours(newVal)}
-                    value={endHappyHours}
+                    onChange={newVal => setEndTimepicker(newVal)}
+                    value={endTimepicker}
                     onAccept={newVal => {
-                      setEndHappyHours(newVal);
+                      setEndTimepicker(newVal);
                       setIsEndPickerActive(false);
                     }}
                     onClose={() => {
@@ -230,7 +231,7 @@ export const Form = () => {
                 name="end"
                 placeholder="End of happy hours"
                 className="w-full"
-                value={end}
+                value={endHappyHours}
                 readOnly
                 onClick={() => setIsEndPickerActive(true)}
               />

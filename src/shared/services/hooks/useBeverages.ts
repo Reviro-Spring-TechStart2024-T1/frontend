@@ -4,5 +4,7 @@ import useSWR from 'swr';
 
 import { fetcher } from '@/shared';
 
-export const useBeverages = <T>() =>
-  useSWR<T>(`${process.env.NEXT_PUBLIC_API_URL}/beverages`, fetcher);
+export const useBeverages = <T>(id: number) =>
+  useSWR<T>(`${process.env.NEXT_PUBLIC_API_URL}/beverages/${id}`, fetcher, {
+    refreshInterval: 0,
+  });

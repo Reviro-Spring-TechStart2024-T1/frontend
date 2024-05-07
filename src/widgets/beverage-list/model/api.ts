@@ -1,21 +1,24 @@
 'use client';
 
-import { type TMenusResponse } from '@/widgets/beverage-list';
+import { drinkjoyApi } from '@/shared/services';
 
-export const createMenu = async (establishmentId: number) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menus/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1MTc1Njc5LCJpYXQiOjE3MTQ1NzA4NzksImp0aSI6IjAxMDViM2YyOGJhZTQ1MjNiNGZlZWRmOGQ4ZTA2ODQ2IiwidXNlcl9pZCI6NX0.eO9Zwcz77ZQTb2hUofIbKGs5YDHZgAZcVEMCWqTJuPE',
-    },
-    body: JSON.stringify({
-      establishment: establishmentId,
-    }),
-  });
+import { TMenusResponse } from './types';
 
-  const data: TMenusResponse = await response.json();
+export const createMenu = async (
+  url: string,
+  {
+    arg,
+  }: {
+    arg: {
+      establishment: string;
+    };
+  },
+) => {
+  const { data } = await drinkjoyApi.post<TMenusResponse>(url, { ...arg });
+
+  if (data) {
+    localStorage.setItem('menu_id', String(data.id));
+  }
 
   return data;
 };
