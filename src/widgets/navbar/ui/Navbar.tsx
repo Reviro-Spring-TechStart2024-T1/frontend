@@ -40,13 +40,13 @@ export const Navbar = () => {
     {
       label: 'QR',
       icon: <RiQrCodeLine size={30} />,
-      path: '#',
+      path: '',
     },
   ];
 
   return (
-    <nav className="flex flex-col items-center overflow-auto overflow-x-hidden sm:block sm:border-t sm:border-theme-grey-300 sm:border-opacity-20">
-      <ul className="flex flex-col space-y-3 p-4">
+    <nav className="mt-8 flex-1 overflow-auto overflow-x-hidden p-4 sm:mt-0 sm:block sm:border-t sm:border-theme-grey-300 sm:border-opacity-20">
+      <ul className="space-y-3">
         {Links.map((link, index) => {
           return (
             /* FIX_ME: Use reusable Link component */
@@ -58,9 +58,8 @@ export const Navbar = () => {
                   className={clsx(
                     'flex flex-col text-theme-grey-400 sm:flex-row sm:justify-start sm:p-3',
                     {
-                      ['bg-theme-blue-400 text-theme-white']: pathname.includes(
-                        link.path,
-                      ),
+                      ['bg-theme-blue-400 text-theme-white']:
+                        link.path.length && pathname.includes(link.path),
                     },
                   )}
                 >

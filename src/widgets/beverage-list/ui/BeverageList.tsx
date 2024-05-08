@@ -22,7 +22,7 @@ export const BeverageList = () => {
   const { setModalState } = useCreateModal();
 
   return (
-    <div className="min-h-[calc(100dvh-340px)]">
+    <div>
       {
         isLoading && <div>Loading...</div> // TODO - Menu Skeleton
       }
@@ -50,7 +50,7 @@ export const BeverageList = () => {
 
           <ul className="sm:px grid grid-cols-4 gap-10 lg:grid-cols-3 lg:px-0 md:grid-cols-2 sm:grid-cols-1">
             {menu.beverages &&
-              menu.beverages?.map(beverage => (
+              menu.beverages.map(beverage => (
                 <Beverage key={beverage.id} {...beverage} />
               ))}
           </ul>

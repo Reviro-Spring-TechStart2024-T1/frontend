@@ -11,18 +11,20 @@ export const Sidebar = () => {
     <div className="relative bottom-[76px] sm:hidden">
       <QR />
 
-      <div className="fixed flex h-full w-[138px] flex-col items-center justify-between gap-10 bg-[#111828] text-theme-white">
-        <div className="pt-9">
-          <Logo />
-        </div>
+      <div className="fixed flex h-full w-[138px] flex-col items-center bg-[#111828] py-9 text-theme-white">
+        <Logo />
 
         <Navbar />
 
-        <div className="w-full pb-9">
-          <Link href="/partner/logout">
-            <Button variant="link" width="full" className="flex flex-col">
+        <div className="w-full p-4">
+          <Link href="/logout">
+            <Button
+              variant="link"
+              width="full"
+              className="flex flex-col text-theme-grey-400 sm:flex-row sm:justify-start sm:p-3"
+            >
               <RiLogoutBoxRLine size={30} />
-              Logout
+              <span>Logout</span>
             </Button>
           </Link>
         </div>
