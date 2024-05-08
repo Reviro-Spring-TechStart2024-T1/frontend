@@ -1,14 +1,20 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RiMenuFill, RiProfileLine } from '@remixicon/react';
+import { usePathname } from 'next/navigation';
 
 import { useGetEstablishment } from '@/shared/services/hooks/useGetEstablishment';
 import { Button, Typography } from '@/shared/ui';
 import { Dropdown } from '@/widgets/dropdown';
 
 export const Header = () => {
+  const pathname = usePathname();
   const [showDropDown, setShowDropDown] = useState(false);
   const { establishment } = useGetEstablishment();
+
+  useEffect(() => {
+    setShowDropDown(false);
+  }, [pathname]);
 
   return (
     <header className="ml-[138px] w-header bg-theme-white sm:ml-0 sm:w-full sm:bg-[#111828] sm:text-theme-white">
@@ -34,7 +40,7 @@ export const Header = () => {
 
       <div className="mx-auto flex h-[76px] max-w-7xl items-center px-8 shadow-sm sm:hidden ">
         <div className="flex-1">
-          <Typography variant="paragraph" color="grey">
+          <Typography variant="caption" color="grey">
             Establishment
           </Typography>
         </div>

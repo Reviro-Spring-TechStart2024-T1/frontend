@@ -11,7 +11,7 @@ export const Sidebar = () => {
     <div className="relative bottom-[76px] sm:hidden">
       <QR />
 
-      <div className="fixed flex h-full w-[138px] flex-col items-center justify-between gap-10 bg-[#111828] px-4 text-theme-white">
+      <div className="fixed flex h-full w-[138px] flex-col items-center justify-between gap-10 bg-[#111828] text-theme-white">
         <div className="pt-9">
           <Logo />
         </div>
