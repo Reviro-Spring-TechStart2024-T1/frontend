@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import type { Metadata } from 'next';
 
 import { CreatePartner } from '@/features/create-partner';
@@ -13,9 +12,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <Container title="Partners">
-      <Suspense fallback={<div>Loading...</div>}>
-        <CreatePartner />
-      </Suspense>
+      <CreatePartner />
     </Container>
   );
 }

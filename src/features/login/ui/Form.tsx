@@ -4,12 +4,12 @@ import { FC, useState } from 'react';
 import Image from 'next/image';
 
 import { SubmitButton } from '@/features/submit-form';
-import { logo, TLoginFormProps } from '@/shared';
+import { logo, TRole } from '@/shared';
 import { useLogin } from '@/shared/services/mutations/useLogin';
 import { Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
-export const Form: FC<TLoginFormProps> = ({ role }) => {
+export const Form: FC<TRole> = ({ role }) => {
   // const [formState, formAction] = useFormState(handleLoginSubmit, {
   //   status: '',
   //   message: '',

@@ -1,6 +1,5 @@
 import { FormEvent } from 'react';
 
-import { SubmitButton } from '@/features/submit-form';
 import { useCreatePartnerModal } from '@/shared';
 import { useCreatePartner } from '@/shared/services';
 import { Button, Input } from '@/shared/ui';
@@ -8,7 +7,7 @@ import { Button, Input } from '@/shared/ui';
 export const Form = () => {
   const { setModalState } = useCreatePartnerModal();
 
-  const { trigger } = useCreatePartner();
+  const { trigger, isMutating } = useCreatePartner();
 
   const handleOnClose = () => {
     setModalState(false);
@@ -37,7 +36,7 @@ export const Form = () => {
           Close
         </Button>
 
-        <SubmitButton type="create" />
+        <Button>{isMutating ? 'Creating...' : 'Create'}</Button>
       </div>
     </form>
   );

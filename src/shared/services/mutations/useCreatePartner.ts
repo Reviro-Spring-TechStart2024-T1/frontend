@@ -5,7 +5,7 @@ import useSWRMutation from 'swr/mutation';
 import { createPartner } from '../api/createPartner';
 
 export const useCreatePartner = () => {
-  return useSWRMutation('/admin/partners', createPartner, {
+  return useSWRMutation('/users/register/partner/', createPartner, {
     onSuccess() {
       console.log('success');
     },

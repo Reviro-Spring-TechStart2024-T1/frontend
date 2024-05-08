@@ -1,29 +1,19 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { useState } from 'react';
+import QRCode from 'react-qr-code';
 
-import { getQRCode, TQRCode } from '@/entities/qr';
 import { Button } from '@/shared/ui';
 
 import styles from './QR.module.css';
 
 export const QR = () => {
   const [isQRClicked, setIsQRClicked] = useState(false); //TODO - show QR on click
-  const [QR, setQR] = useState<TQRCode | undefined>();
 
-  const qrResponse = async () => {
-    const response = await getQRCode(3); //TODO - what ID?
-
-    setQR(response);
-  };
-
-  useEffect(() => {
-    qrResponse();
-  }, []);
+  const menuId = localStorage.getItem('menu_id');
 
   return (
-    <div className="absolute -bottom-9 -right-36 z-[10000] flex hidden w-full -translate-y-2/4 items-center">
+    <div className="absolute -bottom-9 -right-36 z-[10000] flex w-full -translate-y-2/4 items-center">
       <div className={styles.arrow} />
       <div
         style={{
@@ -32,11 +22,15 @@ export const QR = () => {
           maxWidth: 300,
           width: '100%',
         }}
-        className=" rounded-md bg-white"
+        className="rounded-md bg-white"
       >
-        {QR && (
-          <Image src={QR.qr_code_image} alt="qr" width={143} height={143} />
-        )}
+        <QRCode
+          size={256}
+          style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
+          value={menuId!}
+          viewBox={`0 0 256 256`}
+          className="p-4"
+        />
 
         <div className="rounded-md border-t-[0.5px] border-gray-300 p-4">
           <Button type="button" variant="primary" width="full">
