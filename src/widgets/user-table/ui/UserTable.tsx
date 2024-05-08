@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 
 import { useUsers } from '@/shared';
@@ -12,9 +11,9 @@ import { CustomerSearchFilter } from '@/widgets/customer-search-filter';
 export const UserTable = () => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
-  const { users, isLoading } = useUsers(currentPage);
+  const { data, isLoading } = useUsers(currentPage);
 
-  const data = isLoading ? (
+  const content = isLoading ? (
     <tr className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
       <td>
         <Typography variant="h5" color="grey">
@@ -22,7 +21,7 @@ export const UserTable = () => {
         </Typography>
       </td>
     </tr>
-  ) : !users?.data ? (
+  ) : !data?.data ? (
     <tr className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
       <td>
         <Typography variant="h5" color="grey">
@@ -31,14 +30,11 @@ export const UserTable = () => {
       </td>
     </tr>
   ) : (
-    users?.data.map((user, index) => {
+    data?.data.map(user => {
       return (
         <tr
           key={user.id}
-          className={clsx(
-            'group cursor-pointer border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100 ',
-            { ['border-none']: index === 9 },
-          )}
+          className="group cursor-pointer border-b border-t border-theme-grey-200 bg-theme-white last:border-none hover:bg-theme-grey-100"
           onClick={() => router.push(`/partner/customer/${user.id}`)}
         >
           <td data-cell="id" className="whitespace-nowrap p-[14px] text-center">
@@ -56,7 +52,7 @@ export const UserTable = () => {
               weight="semibold"
               className="group-hover:text-theme-blue-300"
             >
-              {user.firstName} LastName
+              {user.firstName} {user.lastName}
             </Typography>
             <Typography variant="caption" color="grey">
               {user.email}
@@ -76,7 +72,7 @@ export const UserTable = () => {
     <Section>
       <CustomerSearchFilter />
 
-      <div className="relative h-[530px] overflow-auto rounded-lg border-2 border-theme-grey-200">
+      <div className="relative overflow-x-auto rounded-lg border border-theme-grey-200">
         <table className="w-full">
           <thead className="sticky top-0 z-10">
             <tr className="bg-theme-grey-150">
@@ -98,13 +94,13 @@ export const UserTable = () => {
             </tr>
           </thead>
 
-          <tbody>{data}</tbody>
+          <tbody>{content}</tbody>
         </table>
       </div>
 
-      {users ? (
+      {data ? (
         <Pagination
-          pages={users.pages}
+          pages={1}
           currentPage={currentPage}
           onPageChange={page => setCurrentPage(page)}
         />

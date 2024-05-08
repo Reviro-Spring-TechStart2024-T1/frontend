@@ -35,6 +35,10 @@ export const Pagination = ({
     onPageChange(currentPage - 1);
   };
 
+  if (currentPage === 0 || (paginationRange && paginationRange?.length < 2)) {
+    return null;
+  }
+
   return (
     <div>
       <ul className="flex justify-center gap-2">

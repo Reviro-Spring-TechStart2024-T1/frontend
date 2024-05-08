@@ -1,75 +1,30 @@
-import {
-  RiFileListLine,
-  RiGroupLine,
-  RiLogoutBoxRLine,
-  RiPieChart2Line,
-  RiQrCodeLine,
-  RiShoppingCartLine,
-} from '@remixicon/react';
+import { RiLogoutBoxRLine } from '@remixicon/react';
 import Link from 'next/link';
 
 import { QR } from '@/entities/qr';
 import { Logo } from '@/shared/icons/Logo';
 import { Button } from '@/shared/ui';
+import { Navbar } from '@/widgets/navbar';
 
 export const Sidebar = () => {
   return (
-    <div className="relative bottom-[76px]">
+    <div className="relative bottom-[76px] sm:hidden">
       <QR />
 
-      <div className="fixed flex h-full w-[138px] flex-col items-center justify-between gap-10 bg-[#111828] px-4 text-theme-white">
-        <div className="pt-9">
-          <Logo />
-        </div>
+      <div className="fixed flex h-full w-[138px] flex-col items-center bg-[#111828] py-9 text-theme-white">
+        <Logo />
 
-        <nav className="flex flex-col items-center overflow-auto overflow-x-hidden">
-          <ul className="flex flex-col space-y-2">
-            <li>
-              <Link href="/partner/dashboard">
-                <Button variant="link" width="full" className="flex flex-col">
-                  <RiPieChart2Line size={30} />
-                  <span>Dashboard</span>
-                </Button>
-              </Link>
-            </li>
-            <li>
-              <Link href="/partner/menu">
-                <Button variant="link" width="full" className="flex flex-col">
-                  <RiFileListLine size={30} />
-                  <span>Menu</span>
-                </Button>
-              </Link>
-            </li>
-            <li>
-              <Link href="/partner/customer">
-                <Button variant="link" width="full" className="flex flex-col">
-                  <RiGroupLine size={30} />
-                  <span>Customers</span>
-                </Button>
-              </Link>
-            </li>
-            <li>
-              <Link href="/partner/orders">
-                <Button variant="link" width="full" className="flex flex-col">
-                  <RiShoppingCartLine size={30} />
-                  Orders
-                </Button>
-              </Link>
-            </li>
-            <li>
-              <Button variant="link" width="full" className="flex flex-col">
-                <RiQrCodeLine size={30} />
-                QR
-              </Button>
-            </li>
-          </ul>
-        </nav>
+        <Navbar />
 
-        <div className="w-full pb-9">
-          <Link href="/partner/logout">
-            <Button variant="link" width="full" className="flex flex-col">
+        <div className="w-full p-4">
+          <Link href="/logout">
+            <Button
+              variant="link"
+              width="full"
+              className="flex flex-col text-theme-grey-400 sm:flex-row sm:justify-start sm:p-3"
+            >
               <RiLogoutBoxRLine size={30} />
-              Logout
+              <span>Logout</span>
             </Button>
           </Link>
         </div>

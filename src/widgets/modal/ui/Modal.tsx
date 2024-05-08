@@ -27,7 +27,7 @@ export const Modal = () => {
             },
           )}
         >
-          <div className="w-[320px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[560px]">
+          <div className="w-[560px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[320px]">
             <Typography variant="paragraph" weight="medium">
               Add new beverage
             </Typography>
@@ -47,7 +47,7 @@ export const Modal = () => {
             },
           )}
         >
-          <div className="w-[320px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[560px]">
+          <div className="w-[560px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[320px]">
             <Typography variant="paragraph" weight="medium">
               Edit beverage
             </Typography>
@@ -67,7 +67,7 @@ export const Modal = () => {
             },
           )}
         >
-          <div className="w-[320px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[560px]">
+          <div className="w-[560px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[320px]">
             <Typography variant="h5" weight="medium" className="text-center">
               Do you want to delete the beverage?
             </Typography>

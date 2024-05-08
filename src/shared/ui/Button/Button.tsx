@@ -70,6 +70,8 @@ const buttonVariants = cva(
           'focus-visible:bg-theme-blue-400',
           'disabled:bg-theme-grey-100',
           'disabled:text-theme-grey-400',
+          'sm:bg-transparent',
+          'sm:hover:bg-transparent',
           'focus-visible:ring-0',
         ],
         none: [''],
@@ -88,7 +90,9 @@ const buttonVariants = cva(
       },
     },
     compoundVariants: [
-      { variant: 'link', class: 'px-4 py-6' },
+      { variant: 'link', class: 'px-3 py-4' },
+
+      { variant: 'none', class: 'p-0' },
 
       { btnType: 'icon', size: 'sm', class: 'h-8 w-8' },
       { btnType: 'icon', size: 'md', class: 'h-11 w-11' },

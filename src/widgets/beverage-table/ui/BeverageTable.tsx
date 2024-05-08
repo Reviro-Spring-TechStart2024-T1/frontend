@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import clsx from 'clsx';
 
 import { useOrderHistory } from '@/shared/services/hooks/useOrderHistory';
 import { Section, Typography } from '@/shared/ui';
@@ -30,13 +29,10 @@ export const BeverageTable = () => {
       </td>
     </tr>
   ) : (
-    order_history?.data.map((order, index) => {
+    order_history?.data.map(order => {
       return (
         <tr
-          className={clsx(
-            'cursor-pointer border-b-2 border-t-2 border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100',
-            { ['border-none']: index === 9 },
-          )}
+          className="cursor-pointer border-b border-t border-theme-grey-200 bg-theme-white last:border-none hover:bg-theme-grey-100"
           key={order.id}
         >
           <td data-cell="id" className="whitespace-nowrap p-[14px] text-center">
@@ -79,7 +75,7 @@ export const BeverageTable = () => {
     <Section title="Order history">
       <CustomerSearchFilter />
 
-      <div className="relative h-[530px] overflow-auto rounded-lg border-2 border-theme-grey-200">
+      <div className="relative overflow-x-auto rounded-lg border border-theme-grey-200">
         <table className="w-full">
           <thead className="sticky top-0 z-10">
             <tr className="bg-theme-grey-150">
