@@ -23,7 +23,7 @@ export const Container = (props: ContainerProps) => {
           </Typography>
         </div>
 
-        <div className="h-full space-y-8 rounded-md bg-theme-white p-6">
+        <div className="h-full space-y-8 overflow-hidden rounded-md bg-theme-white p-6">
           {children}
         </div>
       </div>
