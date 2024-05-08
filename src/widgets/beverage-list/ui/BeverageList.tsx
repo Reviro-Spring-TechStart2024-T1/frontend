@@ -48,7 +48,7 @@ export const BeverageList = () => {
             </Button>
           </div>
 
-          <ul className="px grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:px-0 xl:grid-cols-4 2xl:grid-cols-5">
+          <ul className="sm:px grid grid-cols-4 gap-10 lg:grid-cols-3 lg:px-0 md:grid-cols-2 sm:grid-cols-1">
             {menu.beverages &&
               menu.beverages?.map(beverage => (
                 <Beverage key={beverage.id} {...beverage} />
