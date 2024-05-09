@@ -7,14 +7,14 @@ import { TMenusResponse } from './types';
 export const createMenu = async (
   url: string,
   {
-    args,
+    arg,
   }: {
-    args: {
+    arg: {
       establishment: string;
     };
   },
 ) => {
-  const { data } = await drinkjoyApi.post<TMenusResponse>(url, { ...args });
+  const { data } = await drinkjoyApi.post<TMenusResponse>(url, { ...arg });
 
   if (data) {
     localStorage.setItem('menu_id', String(data.id));

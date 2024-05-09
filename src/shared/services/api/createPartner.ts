@@ -2,9 +2,9 @@ import { drinkjoyApi } from '../interceptors';
 
 export const createPartner = async (
   url: string,
-  { args }: { args: { email: FormDataEntryValue | null } },
+  { arg }: { arg: { email: FormDataEntryValue | null } },
 ) => {
-  const { data } = await drinkjoyApi.post(url, { ...args });
+  const { data } = await drinkjoyApi.post(url, { ...arg });
 
   return data;
 };
