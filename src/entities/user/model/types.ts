@@ -1,4 +1,4 @@
-import { TFilters } from '@/features/filter-users';
+import { TFilters } from '@/features/filter';
 
 export type TUser = {
   id: number;

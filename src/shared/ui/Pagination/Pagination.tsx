@@ -6,21 +6,24 @@ import { usePagination } from '@/shared/helper';
 import { Button } from '../Button';
 
 interface PaginationProps {
-  onPageChange: (value: number) => void;
-  pages: number;
-  siblingCount?: number;
   currentPage: number;
+  totalCount: number;
+  limit: number;
+  siblingCount?: number;
+  onPageChange: (value: number) => void;
 }
 
 export const Pagination = ({
-  onPageChange,
-  pages,
   currentPage,
+  totalCount,
+  limit,
   siblingCount = 1,
+  onPageChange,
 }: PaginationProps) => {
   const paginationRange = usePagination({
-    pages,
     currentPage,
+    totalCount,
+    limit,
     siblingCount,
   });
 

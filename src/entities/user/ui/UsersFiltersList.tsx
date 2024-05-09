@@ -2,7 +2,7 @@ import { FC } from 'react';
 import clsx from 'clsx';
 
 import { TFiltersList, users_filters } from '@/entities/user';
-import { TFilters } from '@/features/filter-users';
+import { TFilters } from '@/features/filter';
 
 export const UsersFiltersList: FC<TFiltersList> = ({ isActive, setFilter }) => {
   return (

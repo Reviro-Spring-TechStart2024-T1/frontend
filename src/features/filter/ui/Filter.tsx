@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { RiFilter3Line } from '@remixicon/react';
 
-import { handleFilterDropdown, TFilters } from '@/features/filter-users';
+import { handleFilterDropdown, TFilters } from '@/features/filter';
 import { Button, Typography } from '@/shared/ui';
 
-export const FilterUsers = () => {
+export const Filter = () => {
   const [isFilterDropdownActive, setIsFilterDropdownActive] = useState(false);
   const [filter, setFilter] = useState<TFilters>('ID');
 
@@ -25,10 +25,6 @@ export const FilterUsers = () => {
       <Typography variant="caption">Filter</Typography>
 
       <RiFilter3Line size={20} />
-      {/* <UsersFiltersList
-        isActive={isFilterDropdownActive}
-        setFilter={handleFilterOnChosen}
-      /> */}
     </Button>
   );
 };

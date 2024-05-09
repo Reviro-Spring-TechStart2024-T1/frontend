@@ -5,12 +5,13 @@ import { useState } from 'react';
 import { useOrderHistory } from '@/shared/services/hooks/useOrderHistory';
 import { Section, Typography } from '@/shared/ui';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
-import { CustomerSearchFilter } from '@/widgets/customer-search-filter';
 import { MoreModal } from '@/widgets/more-modal';
+import { SearchFilter } from '@/widgets/search-filter';
 
 export const BeverageTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { order_history, isLoading } = useOrderHistory(currentPage);
+  const [search, setSearch] = useState('');
+  const { order_history, isLoading } = useOrderHistory(currentPage, search);
 
   const data = isLoading ? (
     <tr className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
@@ -20,7 +21,7 @@ export const BeverageTable = () => {
         </Typography>
       </td>
     </tr>
-  ) : !order_history?.data ? (
+  ) : !order_history ? (
     <tr className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
       <td>
         <Typography variant="h5" color="grey">
@@ -29,7 +30,7 @@ export const BeverageTable = () => {
       </td>
     </tr>
   ) : (
-    order_history?.data.map(order => {
+    order_history?.map((order, index) => {
       return (
         <tr
           className="cursor-pointer border-b border-t border-theme-grey-200 bg-theme-white last:border-none hover:bg-theme-grey-100"
@@ -73,7 +74,10 @@ export const BeverageTable = () => {
 
   return (
     <Section title="Order history">
-      <CustomerSearchFilter />
+      <SearchFilter
+        onSearch={search => setSearch(search)}
+        searchPlaceholder="Search by beverage or category"
+      />
 
       <div className="relative overflow-x-auto rounded-lg border border-theme-grey-200">
         <table className="w-full">
@@ -114,8 +118,9 @@ export const BeverageTable = () => {
 
       {order_history ? (
         <Pagination
-          pages={order_history.pages}
           currentPage={currentPage}
+          totalCount={order_history.length}
+          limit={10}
           onPageChange={page => setCurrentPage(page)}
         />
       ) : null}
