@@ -9,7 +9,7 @@ export const authorize = async (
   });
 
   if (data) {
-    localStorage.setItem('token', JSON.stringify(data));
+    localStorage.setItem('current_user', JSON.stringify(data));
   }
 
   return data;

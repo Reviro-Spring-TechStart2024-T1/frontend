@@ -9,7 +9,6 @@ import { DeleteCategoryConfirmation } from '@/features/delete-category';
 import { EditCategory } from '@/features/edit-category';
 import { setId, useCategories } from '@/shared';
 import { Button, Section, Typography } from '@/shared/ui';
-import { CustomerSearchFilter } from '@/widgets/customer-search-filter';
 
 export const CategoriesTable = () => {
   // const [currentPage, setCurrentPage] = useState(1);
@@ -118,8 +117,6 @@ export const CategoriesTable = () => {
         setModalState={setIsDeleteModalActive}
       />
       <Section>
-        <CustomerSearchFilter />
-
         <div className="relative overflow-x-auto rounded-lg border border-theme-grey-200">
           <table className="w-full">
             <thead className="sticky top-0 z-10">

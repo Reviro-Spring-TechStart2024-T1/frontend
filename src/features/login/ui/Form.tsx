@@ -1,36 +1,16 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 
 import { SubmitButton } from '@/features/submit-form';
-import { logo, TRole } from '@/shared';
+import { logo } from '@/shared';
 import { useLogin } from '@/shared/services/mutations/useLogin';
 import { Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
-export const Form: FC<TRole> = ({ role }) => {
-  // const [formState, formAction] = useFormState(handleLoginSubmit, {
-  //   status: '',
-  //   message: '',
-  //   user_id: null,
-  //   access: null,
-  //   refresh: null,
-  // });
-
-  // useEffect(() => {
-  //   if (formState.status === 'success') {
-  //     if (!!localStorage.getItem('user_id')) {
-  //       push('/partner/profile');
-  //     } else {
-  //       localStorage.setItem('user_id', formState.user_id);
-  //       push('/partner/profile');
-  //     }
-  //   }
-  //   console.log(formState, 'login form state');
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [formState]);
-  const { trigger } = useLogin({ role });
+export const Form = () => {
+  const { trigger } = useLogin();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
