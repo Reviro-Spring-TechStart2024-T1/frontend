@@ -1,15 +1,15 @@
 'use client';
 
 import { useEffect } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+// import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export const useCloseForm = (
   elementId: string,
   setter: (bool: boolean) => void,
 ) => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
+  // const searchParams = useSearchParams();
+  // const router = useRouter();
+  // const pathname = usePathname();
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
