@@ -14,10 +14,10 @@ export const useUsers = (page: number, search?: string) => {
     testFetcher,
   );
 
-  // useSWR<UsersResponse>(
-  //   `/users?_page=${page + 1}&_limit=${limit}`,
-  //   testFetcher,
-  // );
+  useSWR<UsersResponse>(
+    `/users?_page=${page + 1}&_limit=${limit}`,
+    testFetcher,
+  );
 
   return {
     users: data,

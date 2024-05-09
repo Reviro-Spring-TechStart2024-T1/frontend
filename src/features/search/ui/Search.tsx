@@ -19,7 +19,6 @@ export const Search = ({ onSearch, placeholder }: SearchProps) => {
   const handleSearch: React.FormEventHandler = e => {
     e.preventDefault();
 
-    console.log(searchValue, 'check search');
     onSearch(searchValue);
   };
 

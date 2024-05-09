@@ -6,12 +6,10 @@ import { useOrderHistory } from '@/shared/services/hooks/useOrderHistory';
 import { Section, Typography } from '@/shared/ui';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
 import { MoreModal } from '@/widgets/more-modal';
-import { SearchFilter } from '@/widgets/search-filter';
 
 export const BeverageTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState('');
-  const { order_history, isLoading } = useOrderHistory(currentPage, search);
+  const { order_history, isLoading } = useOrderHistory(currentPage);
 
   const data = isLoading ? (
     <tr className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
@@ -74,11 +72,6 @@ export const BeverageTable = () => {
 
   return (
     <Section title="Order history">
-      <SearchFilter
-        onSearch={search => setSearch(search)}
-        searchPlaceholder="Search by beverage or category"
-      />
-
       <div className="relative overflow-x-auto rounded-lg border border-theme-grey-200">
         <table className="w-full">
           <thead className="sticky top-0 z-10">
