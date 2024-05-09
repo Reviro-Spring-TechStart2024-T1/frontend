@@ -3,9 +3,9 @@ import { drinkjoyApi } from '../interceptors';
 export const createEstablishment = async (
   url: string,
   {
-    args,
+    arg,
   }: {
-    args: {
+    arg: {
       owner: string;
       name: string;
       description: string;
@@ -18,7 +18,7 @@ export const createEstablishment = async (
     };
   },
 ) => {
-  const { data } = await drinkjoyApi.post(url, { ...args });
+  const { data } = await drinkjoyApi.post(url, { ...arg });
 
   if (data) {
     localStorage.setItem('establishment_id', data.id);
