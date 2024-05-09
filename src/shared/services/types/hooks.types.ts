@@ -44,3 +44,15 @@ export interface UserResponse {
   phone: number;
   joinedAt: number;
 }
+
+export type TCategoriesResponse = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: TCategory[];
+};
+
+type TCategory = {
+  id: number;
+  name: string;
+};
