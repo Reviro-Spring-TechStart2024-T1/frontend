@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-interface Token {
+interface User {
   refresh: string;
   access: string;
+  role: 'admin' | 'partner';
 }
 
 const drinkjoyApi = axios.create({
@@ -18,7 +19,7 @@ drinkjoyApi.interceptors.request.use(
     const user = localStorage.getItem('current_user');
 
     if (user) {
-      const parsedUser: Token = JSON.parse(user);
+      const parsedUser: User = JSON.parse(user);
       config.headers['Authorization'] = `Bearer ${parsedUser.access}`;
     }
     return config;
