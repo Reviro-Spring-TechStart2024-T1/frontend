@@ -1,17 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 import { fetcher } from '@/shared/helper';
 
 export const useGetEstablishment = () => {
-  const [id, setId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const id = localStorage.getItem('establishment_id');
-    setId(id);
-  }, []);
+  const id =
+    typeof window !== 'undefined'
+      ? window.localStorage.getItem('establishment_id')
+      : false;
 
   const { data } = useSWR(`/establishments/${id}`, fetcher);
 

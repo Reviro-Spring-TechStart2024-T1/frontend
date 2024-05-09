@@ -6,12 +6,13 @@ import { useRouter } from 'next/navigation';
 import { useUsers } from '@/shared';
 import { Section, Typography } from '@/shared/ui';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
-import { CustomerSearchFilter } from '@/widgets/customer-search-filter';
+import { SearchFilter } from '@/widgets/search-filter';
 
 export const UserTable = () => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading } = useUsers(currentPage);
+  const [search, setSearch] = useState('');
+  const { users, isLoading } = useUsers(currentPage, search);
 
   const content = isLoading ? (
     <tr className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
@@ -21,7 +22,7 @@ export const UserTable = () => {
         </Typography>
       </td>
     </tr>
-  ) : !data?.data ? (
+  ) : !users ? (
     <tr className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
       <td>
         <Typography variant="h5" color="grey">
@@ -30,7 +31,7 @@ export const UserTable = () => {
       </td>
     </tr>
   ) : (
-    data?.data.map(user => {
+    users?.map((user, index) => {
       return (
         <tr
           key={user.id}
@@ -70,7 +71,10 @@ export const UserTable = () => {
 
   return (
     <Section>
-      <CustomerSearchFilter />
+      <SearchFilter
+        onSearch={search => setSearch(search)}
+        searchPlaceholder="Search by name or email"
+      />
 
       <div className="relative overflow-x-auto rounded-lg border border-theme-grey-200">
         <table className="w-full">
@@ -98,10 +102,11 @@ export const UserTable = () => {
         </table>
       </div>
 
-      {data ? (
+      {users ? (
         <Pagination
-          pages={1}
           currentPage={currentPage}
+          totalCount={users.length}
+          limit={10}
           onPageChange={page => setCurrentPage(page)}
         />
       ) : null}

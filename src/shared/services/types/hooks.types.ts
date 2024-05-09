@@ -1,4 +1,4 @@
-export interface OrderHistoryItem {
+export interface OrderHistoryResponse {
   id: number;
   beverage: string;
   price: string;
@@ -6,17 +6,7 @@ export interface OrderHistoryItem {
   creation_time: string;
 }
 
-export interface OrderHistoryResponse {
-  data: OrderHistoryItem[];
-  first?: number;
-  items?: number;
-  last?: number;
-  next?: number;
-  pages: number;
-  prev?: number;
-}
-
-export interface UsersItem {
+export interface UsersResponse {
   id: number;
   firstName: string;
   lastName: string;
@@ -26,15 +16,6 @@ export interface UsersItem {
   joinedAt: number;
 }
 
-export interface UsersResponse {
-  data: UsersItem[];
-  first?: number;
-  items?: number;
-  last?: number;
-  next?: number;
-  pages: number;
-  prev?: number;
-}
 export interface UserResponse {
   id: number;
   firstName: string;

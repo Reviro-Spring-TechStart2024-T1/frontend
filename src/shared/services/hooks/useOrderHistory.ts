@@ -9,13 +9,13 @@ import { OrderHistoryResponse } from '../types';
 export const useOrderHistory = (page: number) => {
   const limit = 10;
 
-  const { data, isLoading } = useSWR<OrderHistoryResponse>(
-    `/order_history?_page=${page}&_per_page=${limit}`,
+  const { data, isLoading } = useSWR<OrderHistoryResponse[]>(
+    `/order_history?_page=${page}&_limit=${limit}`,
     testFetcher,
   );
 
   useSWR<OrderHistoryResponse>(
-    `/order_history?_page=${page + 1}&_per_page=${limit}`,
+    `/order_history?_page=${page + 1}&_limit=${limit}`,
     testFetcher,
   );
 
