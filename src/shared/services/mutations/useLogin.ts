@@ -3,19 +3,18 @@
 import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 
-import { TRole } from '@/shared';
-
 import { authorize } from '../api/authorize';
 
-export const useLogin = ({ role }: TRole) => {
+export const useLogin = () => {
   const router = useRouter();
   return useSWRMutation('/users/token/', authorize, {
     onError() {
       console.log('error');
     },
-    onSuccess: () => {
+    onSuccess: data => {
       console.log('success');
-      role === 'partner'
+
+      data?.role === 'partner'
         ? router.push('/establishment')
         : router.push('/admin/menu');
     },

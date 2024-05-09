@@ -24,13 +24,15 @@ export const QR = () => {
         }}
         className="rounded-md bg-white"
       >
-        <QRCode
-          size={256}
-          style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-          value={menuId!}
-          viewBox={`0 0 256 256`}
-          className="p-4"
-        />
+        {menuId && (
+          <QRCode
+            size={256}
+            style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
+            value={menuId!}
+            viewBox={`0 0 256 256`}
+            className="p-4"
+          />
+        )}
 
         <div className="rounded-md border-t-[0.5px] border-gray-300 p-4">
           <Button type="button" variant="primary" width="full">

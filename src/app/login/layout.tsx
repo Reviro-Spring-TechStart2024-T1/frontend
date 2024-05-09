@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | DrinkJoy',
+    template: 'Login | DrinkJoy',
     default: 'DrinkJoy',
   },
   description: '',
@@ -13,9 +13,5 @@ export default function LoginLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <main>
-      <div className="min-h-main overflow-auto">{children}</div>
-    </main>
-  );
+  return <div className="min-h-main overflow-auto">{children}</div>;
 }

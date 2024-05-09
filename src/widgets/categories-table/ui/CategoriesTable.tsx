@@ -9,7 +9,6 @@ import { DeleteCategoryConfirmation } from '@/features/delete-category';
 import { EditCategory } from '@/features/edit-category';
 import { setId, useCategories } from '@/shared';
 import { Button, Section, Typography } from '@/shared/ui';
-import { CustomerSearchFilter } from '@/widgets/customer-search-filter';
 
 export const CategoriesTable = () => {
   // const [currentPage, setCurrentPage] = useState(1);
@@ -56,52 +55,47 @@ export const CategoriesTable = () => {
   ) : (
     data?.results.map(category => {
       return (
-        <>
-          <tr
-            key={category.id}
-            className="group cursor-pointer border-b border-t border-theme-grey-200 bg-theme-white last:border-none hover:bg-theme-grey-100"
+        <tr
+          key={category.id}
+          className="group cursor-pointer border-b border-t border-theme-grey-200 bg-theme-white last:border-none hover:bg-theme-grey-100"
+        >
+          <td data-cell="id" className="whitespace-nowrap p-[14px] text-center">
+            <Typography variant="caption" color="grey">
+              {category.id}
+            </Typography>
+          </td>
+          <td
+            data-cell="name"
+            className="flex flex-col whitespace-nowrap p-[14px]"
           >
-            <td
-              data-cell="id"
-              className="whitespace-nowrap p-[14px] text-center"
+            <Typography
+              variant="caption"
+              color="grey"
+              weight="semibold"
+              className="group-hover:text-theme-blue-300"
             >
-              <Typography variant="caption" color="grey">
-                {category.id}
-              </Typography>
-            </td>
-            <td
-              data-cell="name"
-              className="flex flex-col whitespace-nowrap p-[14px]"
+              {category.name}
+            </Typography>
+          </td>
+          <td>
+            <Button
+              variant="ghost"
+              btnType="icon"
+              onClick={() => handleOnEdit(category.id)}
             >
-              <Typography
-                variant="caption"
-                color="grey"
-                weight="semibold"
-                className="group-hover:text-theme-blue-300"
-              >
-                {category.name}
-              </Typography>
-            </td>
-            <td>
-              <Button
-                variant="ghost"
-                btnType="icon"
-                onClick={() => handleOnEdit(category.id)}
-              >
-                <RiEdit2Line />
-              </Button>
-            </td>
-            <td>
-              <Button
-                variant="ghost"
-                btnType="icon"
-                onClick={() => handleOnDelete(category.id)}
-              >
-                <RiDeleteBin6Line className="hover:fill-red-500" />
-              </Button>
-            </td>
-          </tr>
-        </>
+              <RiEdit2Line />
+            </Button>
+          </td>
+          <td>
+            <Button
+              variant="ghost"
+              btnType="icon"
+              onClick={() => handleOnDelete(category.id)}
+            >
+              <RiDeleteBin6Line className="hover:fill-red-500" />
+            </Button>
+          </td>
+        </tr>
       );
     })
   );
@@ -118,8 +112,6 @@ export const CategoriesTable = () => {
         setModalState={setIsDeleteModalActive}
       />
       <Section>
-        <CustomerSearchFilter />
-
         <div className="relative overflow-x-auto rounded-lg border border-theme-grey-200">
           <table className="w-full">
             <thead className="sticky top-0 z-10">

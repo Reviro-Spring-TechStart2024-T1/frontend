@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      <main className="mt-[76px] grid grid-cols-[138px_auto]">
+      <main className="grid grid-cols-[138px_auto] sm:block">
         <Sidebar />
 
         <div className="min-h-main overflow-auto">
