@@ -13,11 +13,19 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button } from '@/shared/ui';
 
+interface User {
+  refresh: string;
+  access: string;
+  role: 'admin' | 'partner';
+}
+
 export const Navbar = () => {
+  const [user] = useLocalStorage<User | null>('current_user', null);
+
   const pathname = usePathname();
-  const user = JSON.parse(localStorage.getItem('current_user') ?? '');
 
   const Links =
     user?.role === 'partner'

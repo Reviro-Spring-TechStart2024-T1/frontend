@@ -3,11 +3,12 @@
 import useSWR from 'swr';
 
 import { fetcher } from '@/shared';
+import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 
 import { TMenusResponse } from '../model';
 
 export const useMenu = () => {
-  const menuId = localStorage.getItem('menu_id');
+  const [menuId] = useLocalStorage('menu_id', null);
 
   return useSWR<TMenusResponse>(`/menus/${menuId}`, fetcher, {
     onSuccess: () => {

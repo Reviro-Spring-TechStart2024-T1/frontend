@@ -4,13 +4,14 @@ import { RiMenu2Line } from '@remixicon/react';
 
 import { Beverage } from '@/entities/beverage';
 import { useCreateModal } from '@/shared';
+import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Section, Typography } from '@/shared/ui';
 import { useCreateMenu, useMenu } from '@/widgets/beverage-list';
 
 export const BeverageList = () => {
   const { setModalState } = useCreateModal();
 
-  const establishmentId = localStorage.getItem('establishment_id'); //TODO - establishment_id from localStorage'
+  const [establishmentId] = useLocalStorage('establishment_id', null);
 
   const { data: menu, isLoading, error } = useMenu();
   const { trigger } = useCreateMenu();
