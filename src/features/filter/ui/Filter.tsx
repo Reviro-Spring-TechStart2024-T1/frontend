@@ -14,6 +14,7 @@ export const Filter = () => {
     <div className="relative">
       <Button
         variant="outline"
+        width="full"
         onClick={() => setIsOpen(!isOpen)}
         onBlur={() => setIsOpen(false)}
       >

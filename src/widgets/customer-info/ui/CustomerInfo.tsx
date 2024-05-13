@@ -10,9 +10,9 @@ export const CustomerInfo = ({ id }: { id: number }) => {
 
   return (
     <Section>
-      <div className="divide-y border border-theme-grey-200 bg-theme-white sm:text-center">
+      <div className="divide-y border border-theme-grey-200 bg-theme-white md:text-center">
         <div className="p-8">
-          <div className="inline-flex items-center sm:flex-col sm:space-y-3">
+          <div className="inline-flex items-center md:flex-col md:space-y-3">
             <div className="flex">
               <div className="flex h-24 w-24 items-center justify-center rounded-full bg-theme-grey-300">
                 <Typography variant="h3" weight="medium">
@@ -21,7 +21,7 @@ export const CustomerInfo = ({ id }: { id: number }) => {
               </div>
             </div>
 
-            <div className="ml-5 sm:ml-0">
+            <div className="ml-5 md:ml-0">
               <Typography variant="h3" weight="medium">
                 {user?.firstName} {user?.lastName}
               </Typography>
@@ -32,7 +32,7 @@ export const CustomerInfo = ({ id }: { id: number }) => {
           </div>
         </div>
 
-        <div className="flex divide-x sm:flex-col sm:divide-y">
+        <div className="flex divide-x md:flex-col md:divide-y">
           <div className="flex flex-1 justify-center p-4">
             <div className="flex gap-3">
               <RiCalendar2Line />
