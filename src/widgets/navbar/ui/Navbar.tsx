@@ -80,7 +80,7 @@ export const Navbar = () => {
         ];
 
   return (
-    <nav className="mt-9 w-full flex-1 overflow-auto overflow-x-hidden px-4 pb-6 pt-6 md:mt-0 md:block md:border-t md:border-theme-grey-300 md:border-opacity-20">
+    <nav className="no-scrollbar mt-9 w-full flex-1 overflow-auto overflow-x-hidden px-4 pb-6 pt-6 md:mt-0 md:block md:border-t md:border-theme-grey-300 md:border-opacity-20">
       <ul className="space-y-3">
         {Links.map((link, index) => {
           return (
