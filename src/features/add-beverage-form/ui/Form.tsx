@@ -8,6 +8,7 @@ import { useSWRConfig } from 'swr';
 import { SubmitButton } from '@/features';
 import { createBeverage } from '@/features/add-beverage-form';
 import { CREATE_BEVERAGE_FORM, useCloseForm, useCreateModal } from '@/shared';
+import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
@@ -28,7 +29,7 @@ export const Form: FC = () => {
     },
   };
 
-  const menuId = localStorage.getItem('menu_id'); //TODO - localStorage menu_id
+  const [menuId] = useLocalStorage('menu_id', null);
 
   const createBeverageWithId = createBeverage.bind(null, +menuId!);
   const [formState, formAction] = useFormState(

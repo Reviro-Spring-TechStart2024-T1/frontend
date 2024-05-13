@@ -3,14 +3,12 @@
 import useSWR from 'swr';
 
 import { fetcher } from '@/shared/helper';
+import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 
 export const useGetEstablishment = () => {
-  const id =
-    typeof window !== 'undefined'
-      ? window.localStorage.getItem('establishment_id')
-      : false;
+  const [establishmentId] = useLocalStorage('establishment_id', null);
 
-  const { data } = useSWR(`/establishments/${id}`, fetcher);
+  const { data } = useSWR(`/establishments/${establishmentId}`, fetcher);
 
   return {
     establishment: data,

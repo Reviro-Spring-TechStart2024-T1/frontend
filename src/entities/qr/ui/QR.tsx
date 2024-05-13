@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import QRCode from 'react-qr-code';
 
+import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button } from '@/shared/ui';
 
 import styles from './QR.module.css';
@@ -10,7 +11,7 @@ import styles from './QR.module.css';
 export const QR = () => {
   const [isQRClicked, setIsQRClicked] = useState(false); //TODO - show QR on click
 
-  const menuId = localStorage.getItem('menu_id');
+  const [menuId] = useLocalStorage('menu_id', null);
 
   return (
     <div className="absolute -bottom-9 -right-36 z-[10000] flex w-full -translate-y-2/4 items-center">

@@ -15,15 +15,16 @@ import {
   useCloseForm,
   useEditModal,
 } from '@/shared';
+import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
 export const Form: FC = () => {
+  const [menuId] = useLocalStorage('menu_id', null);
   const { isActive, setModalState } = useEditModal();
 
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
-  const menuId = localStorage.getItem('menu_id');
 
   const router = useRouter();
 

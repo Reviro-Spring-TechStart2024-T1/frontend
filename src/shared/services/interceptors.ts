@@ -7,11 +7,11 @@ interface User {
 }
 
 const drinkjoyApi = axios.create({
-  baseURL: 'https://backend-gvhy.onrender.com/api/v1',
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
 const testApi = axios.create({
-  baseURL: 'http://localhost:5000',
+  baseURL: process.env.NEXT_PUBLIC_TEST_API_URL,
 });
 
 drinkjoyApi.interceptors.request.use(
