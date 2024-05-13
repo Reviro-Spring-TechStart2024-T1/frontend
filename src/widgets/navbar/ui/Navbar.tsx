@@ -32,55 +32,55 @@ export const Navbar = () => {
       ? [
           {
             label: 'Dashboard',
-            icon: <RiPieChart2Line size={30} />,
+            icon: <RiPieChart2Line />,
             path: '/partner/dashboard',
           },
           {
             label: 'Menu',
-            icon: <RiFileListLine size={30} />,
+            icon: <RiFileListLine />,
             path: '/partner/menu',
           },
           {
             label: 'Customers',
-            icon: <RiUserSmileLine size={30} />,
+            icon: <RiUserSmileLine />,
             path: '/partner/customer',
           },
           {
             label: 'Orders',
-            icon: <RiShoppingCartLine size={30} />,
+            icon: <RiShoppingCartLine />,
             path: '/partner/orders',
           },
           {
             label: 'QR',
-            icon: <RiQrCodeLine size={30} />,
+            icon: <RiQrCodeLine />,
             path: '',
           },
         ]
       : [
           {
             label: 'Users',
-            icon: <RiUserSmileLine size={30} />,
+            icon: <RiUserSmileLine />,
             path: '/admin/users',
           },
           {
             label: 'Partners',
-            icon: <RiTeamLine size={30} />,
+            icon: <RiTeamLine />,
             path: '/admin/partners',
           },
           {
             label: 'Menu',
-            icon: <RiFileListLine size={30} />,
+            icon: <RiFileListLine />,
             path: '/admin/menu',
           },
           {
             label: 'Support',
-            icon: <RiQuestionAnswerLine size={30} />,
+            icon: <RiQuestionAnswerLine />,
             path: '/admin/support',
           },
         ];
 
   return (
-    <nav className="mt-8 w-full flex-1 overflow-auto overflow-x-hidden p-4 sm:mt-0 sm:block sm:border-t sm:border-theme-grey-300 sm:border-opacity-20">
+    <nav className="mt-9 w-full flex-1 overflow-auto overflow-x-hidden px-4 pb-6 pt-6 md:mt-0 md:block md:border-t md:border-theme-grey-300 md:border-opacity-20">
       <ul className="space-y-3">
         {Links.map((link, index) => {
           return (
@@ -90,8 +90,9 @@ export const Navbar = () => {
                 <Button
                   variant="link"
                   width="full"
+                  size="sm"
                   className={clsx(
-                    'flex flex-col text-theme-grey-400 sm:flex-row sm:justify-start sm:p-3',
+                    'flex flex-col text-theme-grey-400 md:flex-row md:justify-start md:p-3',
                     {
                       ['bg-theme-blue-400 text-theme-white']:
                         link.path.length && pathname.includes(link.path),

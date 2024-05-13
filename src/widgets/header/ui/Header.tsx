@@ -17,8 +17,8 @@ export const Header = () => {
   }, [pathname]);
 
   return (
-    <header className="ml-[138px] w-header bg-theme-white sm:ml-0 sm:w-full sm:bg-[#111828] sm:text-theme-white">
-      <div className="mx-auto hidden h-[60px] max-w-none items-center px-4 sm:flex">
+    <header className="ml-[128px] w-header bg-theme-white md:ml-0 md:w-full md:bg-[#111828] md:text-theme-white">
+      <div className="mx-auto hidden h-[60px] max-w-none items-center px-4 md:flex">
         <div className="flex flex-1 gap-4">
           <Button variant="none" onClick={() => setShowDropDown(!showDropDown)}>
             <RiMenuFill />
@@ -38,7 +38,7 @@ export const Header = () => {
 
       {showDropDown ? <Dropdown /> : null}
 
-      <div className="mx-auto flex h-[76px] max-w-7xl items-center px-8 shadow-sm sm:hidden ">
+      <div className="mx-auto flex h-[76px] max-w-7xl items-center px-8 shadow-md md:hidden ">
         <div className="flex-1">
           <Typography variant="caption" color="grey">
             Establishment
