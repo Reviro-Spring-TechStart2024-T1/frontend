@@ -6,7 +6,7 @@ import { testFetcher } from '@/shared/helper/testFetcher';
 
 import { UsersResponse } from '../types';
 
-export const useUsers = (page: number, search?: string) => {
+export const useUsers = (page: number, search = '') => {
   const limit = 10;
 
   const { data, isLoading } = useSWR<UsersResponse[]>(

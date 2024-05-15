@@ -33,7 +33,7 @@ export type TCategoriesResponse = {
   results: TCategory[];
 };
 
-type TCategory = {
+export type TCategory = {
   id: number;
   name: string;
 };

@@ -1,11 +1,9 @@
-'use client';
-
 import { RiCalendar2Line } from '@remixicon/react';
 
 import { useGetUser } from '@/shared/services/hooks/useGetUser';
 import { Section, Typography } from '@/shared/ui';
 
-export const CustomerInfo = ({ id }: { id: number }) => {
+export const CustomerInfo = ({ id }: { id: string | number }) => {
   const { user } = useGetUser(id);
 
   return (
