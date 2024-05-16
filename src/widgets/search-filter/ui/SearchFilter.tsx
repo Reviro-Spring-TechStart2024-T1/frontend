@@ -1,4 +1,3 @@
-import { Filter } from '@/features/filter';
 import { Search } from '@/features/search';
 
 export interface SearchFilterProps {
@@ -9,13 +8,13 @@ export interface SearchFilterProps {
 
 export const SearchFilter = ({
   onSearch,
-  onFilter,
+  // onFilter,
   searchPlaceholder,
 }: SearchFilterProps) => {
   return (
     <div className="flex gap-4 md:flex-col">
       <Search onSearch={onSearch} placeholder={searchPlaceholder} />
-      <Filter />
+      {/* <Filter /> //TODO - put on discussion as to whether use SearchFilter or not */}
     </div>
   );
 };

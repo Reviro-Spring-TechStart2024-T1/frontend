@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { RiSearchLine } from '@remixicon/react';
 
-import { useDebounce } from '@/features/search';
 import { Input } from '@/shared/ui/Input/Input';
 
 export interface SearchProps {
@@ -14,7 +13,7 @@ export interface SearchProps {
 export const Search = ({ onSearch, placeholder }: SearchProps) => {
   const [searchValue, setSearchValue] = useState('');
 
-  const debouncedValue = useDebounce(searchValue, 400); //NOTE - For request
+  // const debouncedValue = useDebounce(searchValue, 400); //NOTE - For request
 
   const handleSearch: React.FormEventHandler = e => {
     e.preventDefault();

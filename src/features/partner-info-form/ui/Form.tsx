@@ -56,8 +56,8 @@ export const Form = () => {
       email,
       description,
       phone_number: phone,
-      latitude: latitude.toString(),
-      longitude: longitude.toString(),
+      latitude: latitude.toFixed(7).toString(),
+      longitude: longitude.toFixed(7).toString(),
       happy_hour_start: startHappyHours,
       happy_hour_end: endHappyHours,
     });
@@ -68,7 +68,7 @@ export const Form = () => {
       className="grid grid-cols-1 gap-10 rounded-md bg-white p-9 md:grid-cols-2"
       onSubmit={handleCreateEstablishment}
     >
-      <div className="grid grid-rows-[40px_50px_50px_100px] gap-2 2xl:grid-rows-[50px_100_100px_1fr]">
+      <div className="2xl:grid-rows-[50px_100_100px_1fr] grid grid-rows-[40px_50px_50px_100px] gap-2">
         <Typography variant="paragraph">General</Typography>
         <Input
           value={name}

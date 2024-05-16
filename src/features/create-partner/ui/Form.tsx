@@ -20,6 +20,7 @@ export const Form = () => {
     const email = formData.get('email');
 
     trigger({ email: email });
+    setModalState(false);
   };
 
   return (

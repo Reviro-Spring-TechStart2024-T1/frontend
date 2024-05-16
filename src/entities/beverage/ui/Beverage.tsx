@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useCallback } from 'react';
+import { FC } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -9,6 +9,7 @@ import {
   beverage,
   delete_,
   edit,
+  setId,
   useDeleteModal,
   useEditModal,
 } from '@/shared';
@@ -27,15 +28,18 @@ export const Beverage: FC<TBeverage> = ({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleIconOnClick = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams);
-      params.set(name, value);
+  const handleSetId = (id: number) =>
+    router.push(`?${setId(String(id), searchParams)}`, { scroll: false });
 
-      return params.toString();
-    },
-    [searchParams],
-  );
+  const handleOnEdit = () => {
+    handleSetId(id);
+    setEditModalState(true);
+  };
+
+  const handleOnDelete = () => {
+    handleSetId(id);
+    setDeleteModalState(true);
+  };
 
   return (
     <>
@@ -76,10 +80,7 @@ export const Beverage: FC<TBeverage> = ({
             btnType="icon"
             width="full"
             className="rounded-none"
-            onClick={() => {
-              router.push(`?${handleIconOnClick('id', String(id))}`);
-              setEditModalState(true);
-            }}
+            onClick={handleOnEdit}
           >
             <Image
               src={edit}
@@ -94,10 +95,7 @@ export const Beverage: FC<TBeverage> = ({
             btnType="icon"
             width="full"
             className="rounded-none"
-            onClick={() => {
-              router.push(`?${handleIconOnClick('id', String(id))}`);
-              setDeleteModalState(true);
-            }}
+            onClick={handleOnDelete}
           >
             <Image
               src={delete_}

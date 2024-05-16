@@ -4,19 +4,19 @@ import { FC, useState } from 'react';
 import { RiFilter3Line } from '@remixicon/react';
 import clsx from 'clsx';
 
-import { TFilter, TOrdersFilters } from '@/shared';
+import { TOrdersSortBy, TSort } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 
-type TFilterProps = {
-  filters: TFilter[];
-  setFilter: (filter: TOrdersFilters) => void;
+type TSortProps = {
+  sortBy: TSort[];
+  setSortBy: (sortBy: TOrdersSortBy) => void;
 };
 
-export const Filter: FC<TFilterProps> = ({ filters, setFilter }) => {
+export const Sort: FC<TSortProps> = ({ sortBy, setSortBy }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOnFilterChosen = (filter: TFilter) => () => {
-    setFilter({ status: filter });
+  const handleOnSortChosen = (sort: TSort) => () => {
+    setSortBy({ time: sort });
     setIsOpen(false);
   };
 
@@ -28,7 +28,7 @@ export const Filter: FC<TFilterProps> = ({ filters, setFilter }) => {
         onClick={() => setIsOpen(!isOpen)}
         onBlur={() => setIsOpen(false)}
       >
-        <Typography variant="caption">Filter</Typography>
+        <Typography variant="caption">Sort by</Typography>
         <RiFilter3Line size={20} />
       </Button>
 
@@ -38,7 +38,7 @@ export const Filter: FC<TFilterProps> = ({ filters, setFilter }) => {
           { ['!block']: isOpen },
         )}
       >
-        {filters.map((filter, index) => {
+        {sortBy.map((sort, index) => {
           return (
             <Button
               key={index}
@@ -46,9 +46,9 @@ export const Filter: FC<TFilterProps> = ({ filters, setFilter }) => {
               size="sm"
               width="full"
               className="justify-start"
-              onMouseDown={handleOnFilterChosen(filter)}
+              onMouseDown={handleOnSortChosen(sort)}
             >
-              {filter}
+              {sort}
             </Button>
           );
         })}

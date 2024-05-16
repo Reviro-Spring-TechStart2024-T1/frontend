@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import QRCode from 'react-qr-code';
 
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
@@ -9,7 +8,7 @@ import { Button } from '@/shared/ui';
 import styles from './QR.module.css';
 
 export const QR = () => {
-  const [isQRClicked, setIsQRClicked] = useState(false); //TODO - show QR on click
+  // const [isQRClicked, setIsQRClicked] = useState(false); //TODO - show QR on click
 
   const [menuId] = useLocalStorage('menu_id', null);
 
@@ -29,7 +28,7 @@ export const QR = () => {
           <QRCode
             size={256}
             style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-            value={menuId!}
+            value={menuId}
             viewBox={`0 0 256 256`}
             className="p-4"
           />

@@ -17,9 +17,10 @@ export const BeverageList = () => {
   const { trigger } = useCreateMenu();
 
   const handleOnCreateMenu = () => {
-    trigger({
-      establishment: establishmentId!,
-    });
+    establishmentId &&
+      trigger({
+        establishment: establishmentId,
+      });
   };
 
   return (

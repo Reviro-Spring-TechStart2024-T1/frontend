@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Menu',
 };
 
-export default function Page({
+export default function PartnerMenuPage({
   searchParams,
 }: {
   searchParams: { id: string };
