@@ -1,18 +1,39 @@
-import type { Metadata } from 'next';
+'use client';
 
-import { NO_INDEX_PAGE } from '@/shared';
-import { Container } from '@/shared/ui';
-import { AdminUserTable } from '@/widgets/user-table copy';
+import {
+  AdminUsers,
+  useAdminUsers,
+} from '@/shared/services/hooks/useAdminUsers';
+import { Container, Typography } from '@/shared/ui';
+import { ColumnsType, Table } from '@/shared/ui/Table';
 
-export const metadata: Metadata = {
-  title: 'Users',
-  ...NO_INDEX_PAGE,
-};
+export default function Page() {
+  const { users } = useAdminUsers();
 
-export default async function Page() {
+  const columns: ColumnsType<AdminUsers> = [
+    { key: 'id', title: '№' },
+    {
+      key: 'firstName',
+      title: 'Name',
+      render: record => {
+        return (
+          <div className="flex flex-col">
+            <Typography variant="caption" color="grey" weight="semibold">
+              {record.first_name} {record.last_name}
+            </Typography>
+            <Typography variant="caption" color="grey">
+              {record.email}
+            </Typography>
+          </div>
+        );
+      },
+    },
+    { key: 'date_of_birth', title: 'Birth' },
+  ];
+
   return (
     <Container title="Users">
-      <AdminUserTable />
+      <Table<AdminUsers> columns={columns} data={users?.results} />
     </Container>
   );
 }

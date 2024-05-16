@@ -2,7 +2,7 @@ import useSWR from 'swr';
 
 import { fetcher } from '@/shared/helper';
 
-interface AdminPartners {
+export interface AdminPartners {
   id: number;
   first_name: string;
   last_name: string;

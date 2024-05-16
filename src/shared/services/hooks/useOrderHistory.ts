@@ -14,10 +14,7 @@ export const useOrderHistory = (page: number) => {
     testFetcher,
   );
 
-  useSWR<OrderHistoryResponse>(
-    `/order_history?_page=${page + 1}&_limit=${limit}`,
-    testFetcher,
-  );
+  useSWR(`/order_history?_page=${page + 1}&_limit=${limit}`, testFetcher);
 
   return {
     order_history: data,

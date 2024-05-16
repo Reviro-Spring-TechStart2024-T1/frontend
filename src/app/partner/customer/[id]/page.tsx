@@ -1,26 +1,32 @@
-import { Metadata } from 'next';
+'use client';
 
+import { useParams } from 'next/navigation';
+
+import { OrderHistoryResponse, useOrderHistory } from '@/shared';
+import { Section } from '@/shared/ui';
 import { Container } from '@/shared/ui/Container/Container';
-import { BeverageTable } from '@/widgets/beverage-table';
+import { ColumnsType, Table } from '@/shared/ui/Table';
 import { CustomerInfo } from '@/widgets/customer-info';
 
-export const metadata: Metadata = {
-  title: 'Customer Profile',
-};
+export default function CustomerProfile() {
+  const params = useParams<{ id: string }>();
+  const { order_history } = useOrderHistory(1);
 
-interface CustomerProfileProps {
-  params: {
-    id: number;
-  };
-}
+  const columns: ColumnsType<OrderHistoryResponse> = [
+    { key: 'id', title: '№' },
+    { key: 'beverage', title: 'Beverage' },
+    { key: 'price', title: 'Price' },
+    { key: 'category', title: 'Category' },
+    { key: 'creation_time', title: 'Creation time' },
+  ];
 
-export default function CustomerProfile({
-  params: { id },
-}: CustomerProfileProps) {
   return (
     <Container title="Customer Profile">
-      <CustomerInfo id={id} />
-      <BeverageTable />
+      <CustomerInfo id={params.id} />
+
+      <Section title="Order history">
+        <Table<OrderHistoryResponse> columns={columns} data={order_history} />
+      </Section>
     </Container>
   );
 }
