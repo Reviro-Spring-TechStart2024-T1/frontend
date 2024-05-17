@@ -5,6 +5,7 @@ import { useFormState } from 'react-dom';
 import clsx from 'clsx';
 import { useSWRConfig } from 'swr';
 
+import { IUserJwtPayload } from '@/entities/user';
 import { SubmitButton } from '@/features';
 import { createBeverage } from '@/features/add-beverage-form';
 import { CREATE_BEVERAGE_FORM, useCloseForm, useCreateModal } from '@/shared';
@@ -30,8 +31,9 @@ export const Form: FC = () => {
   };
 
   const [menuId] = useLocalStorage('menu_id', null);
+  const [user] = useLocalStorage<IUserJwtPayload | null>('current_user', null);
 
-  const createBeverageWithId = createBeverage.bind(null, +menuId!);
+  const createBeverageWithId = createBeverage.bind(null, +menuId!, user!);
   const [formState, formAction] = useFormState(
     createBeverageWithId,
     initialState,

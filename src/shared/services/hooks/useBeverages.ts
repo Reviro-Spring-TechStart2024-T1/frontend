@@ -6,5 +6,8 @@ import { fetcher } from '@/shared';
 
 export const useBeverages = <T>(id: number) =>
   useSWR<T>(`${process.env.NEXT_PUBLIC_API_URL}/beverages/${id}`, fetcher, {
-    refreshInterval: 0,
+    refreshInterval: 10000,
+    refreshWhenOffline: false,
+    refreshWhenHidden: false,
+    revalidateOnFocus: false,
   });

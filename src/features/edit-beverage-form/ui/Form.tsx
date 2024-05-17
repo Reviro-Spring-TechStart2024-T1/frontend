@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
 import { TBeverage } from '@/entities/beverage';
+import { IUserJwtPayload } from '@/entities/user';
 import { SubmitButton } from '@/features';
 import { editBeverage } from '@/features/edit-beverage-form';
 import {
@@ -42,7 +43,9 @@ export const Form: FC = () => {
     },
   };
 
-  const editBeverageWithId = editBeverage.bind(null, +id!, +menuId!);
+  const [user] = useLocalStorage<IUserJwtPayload | null>('current_user', null);
+
+  const editBeverageWithId = editBeverage.bind(null, +id!, +menuId!, user!);
   const [formState, formAction] = useFormState(
     editBeverageWithId,
     initialState,
@@ -54,7 +57,7 @@ export const Form: FC = () => {
 
   const handleEditModalOnClose = () => {
     setModalState(false);
-    router.push('/partner/menu');
+    // router.push('/partner/menu', { scroll: false });
   };
 
   useEffect(() => {

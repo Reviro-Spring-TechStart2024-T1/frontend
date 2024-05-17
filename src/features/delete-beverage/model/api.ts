@@ -2,11 +2,21 @@
 
 import { revalidatePath } from 'next/cache';
 
-export const deleteBeverage = async (id: number) => {
+import { IUserJwtPayload } from '@/entities/user';
+
+export const deleteBeverage = async (id: number, user: IUserJwtPayload) => {
   try {
-    await fetch(`http://localhost:8080/api/partner/beverages/${id}`, {
-      method: 'DELETE',
-    }).then(res => res.json());
+    const response = await fetch(
+      `${process.env.API_URL}/api/partner/beverages/${id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${user.access}`,
+        },
+      },
+    ).then(res => res.json());
+
+    console.log(response, 'delete response');
 
     return {
       message: 'success',

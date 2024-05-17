@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
+import { IUserJwtPayload } from '@/entities/user';
 import { TFormState } from '@/features/add-beverage-form';
 
 const FormSchema = z.object({
@@ -34,6 +35,7 @@ const FormSchema = z.object({
 
 export const createBeverage = async (
   menuId: number,
+  user: IUserJwtPayload,
   currentState: TFormState,
   formData: FormData,
 ) => {
@@ -68,9 +70,12 @@ export const createBeverage = async (
 
   try {
     const response = await fetch(
-      `http://localhost:8080/api/partner/beverages`,
+      `${process.env.API_URL}/api/partner/beverages`,
       {
         method: 'POST',
+        headers: {
+          Authorization: `Bearer ${user.access}`,
+        },
         body: JSON.stringify(reqBody),
       },
     ).then(res => res.json());

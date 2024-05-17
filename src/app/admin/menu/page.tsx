@@ -52,12 +52,11 @@ export default function AdminMenuPage({
   const router = useRouter();
 
   const handleSetId = (id: number) =>
-    router.push(`?${setId(String(id), searchParams)}`);
+    router.push(`?${setId(String(id), searchParams)}`, { scroll: false });
 
   const handleOnEdit = (id: number) => {
     setIsEditModalActive(true);
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     handleSetId(id);
   };
 

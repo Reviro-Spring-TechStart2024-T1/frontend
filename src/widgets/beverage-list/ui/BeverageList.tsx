@@ -1,6 +1,7 @@
 'use client';
 
 import { RiMenu2Line } from '@remixicon/react';
+import { useSWRConfig } from 'swr';
 
 import { Beverage } from '@/entities/beverage';
 import { useCreateModal } from '@/shared';
@@ -12,6 +13,9 @@ export const BeverageList = () => {
   const { setModalState } = useCreateModal();
 
   const [establishmentId] = useLocalStorage('establishment_id', null);
+  const [menuId] = useLocalStorage('menu_id', null);
+
+  const { mutate } = useSWRConfig();
 
   const { data: menu, isLoading, error } = useMenu();
   const { trigger } = useCreateMenu();
@@ -21,6 +25,8 @@ export const BeverageList = () => {
       trigger({
         establishment: establishmentId,
       });
+
+    mutate(`/menus/${menuId}`);
   };
 
   return (
