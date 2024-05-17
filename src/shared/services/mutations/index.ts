@@ -4,6 +4,7 @@ import { useCreatePartner } from './useCreatePartner';
 import { useDeleteCategory } from './useDeleteCategory';
 import { useEditCategory } from './useEditCategory';
 import { useLogin } from './useLogin';
+import { useOrderStatus } from './useOrderStatus';
 
 export {
   useCreateCategory,
@@ -12,4 +13,5 @@ export {
   useDeleteCategory,
   useEditCategory,
   useLogin,
+  useOrderStatus,
 };

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useState } from 'react';
+import { ReadonlyURLSearchParams, useRouter } from 'next/navigation';
 
 import { CreateCategory } from '@/features/create-category';
 import { DeleteCategoryConfirmation } from '@/features/delete-category';
@@ -11,7 +11,11 @@ import { Container } from '@/shared/ui';
 import { ColumnsType, Table } from '@/shared/ui/Table';
 import { MoreModal } from '@/widgets/more-modal';
 
-export default function AdminMenuPage() {
+export default function AdminMenuPage({
+  searchParams,
+}: {
+  searchParams: ReadonlyURLSearchParams;
+}) {
   const { data } = useCategories();
   const [show, setShow] = useState(0);
 
@@ -46,7 +50,6 @@ export default function AdminMenuPage() {
   const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
 
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const handleSetId = (id: number) =>
     router.push(`?${setId(String(id), searchParams)}`);
@@ -65,7 +68,7 @@ export default function AdminMenuPage() {
   };
 
   return (
-    <>
+    <Suspense fallback="Loading...">
       <EditCategory
         isActive={isEditModalActive}
         setModalState={setIsEditModalActive}
@@ -75,10 +78,9 @@ export default function AdminMenuPage() {
         setModalState={setIsDeleteModalActive}
       />
       <Container title="Categories">
-        {/* <CategoriesTable /> */}
         <CreateCategory />
         <Table<TCategory> columns={columns} data={data?.results} />
       </Container>
-    </>
+    </Suspense>
   );
 }

@@ -3,14 +3,13 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-import { SubmitButton } from '@/features/submit-form';
 import { logo } from '@/shared';
 import { useLogin } from '@/shared/services/mutations/useLogin';
-import { Typography } from '@/shared/ui';
+import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
 export const Form = () => {
-  const { trigger } = useLogin();
+  const { trigger, isMutating } = useLogin();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -45,7 +44,11 @@ export const Form = () => {
             className="mb-6 mt-3 w-full"
             onChange={e => setPassword(e.target.value)}
           />
-          <SubmitButton type="login" />
+          <Button className="w-full">
+            <Typography variant="paragraph">
+              {isMutating ? 'Logging in...' : 'Login'}
+            </Typography>
+          </Button>
         </form>
       </div>
       <div className="w-2/4 rounded-r-xl bg-[#292B74] px-[70px] py-[56px]">
