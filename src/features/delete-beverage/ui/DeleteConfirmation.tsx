@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 import { useSearchParams } from 'next/navigation';
 
+import { IUserJwtPayload } from '@/entities/user';
 import { deleteBeverage } from '@/features/delete-beverage';
 import { SubmitButton } from '@/features/submit-form';
 import { DELETE_BEVERAGE, useCloseForm, useDeleteModal } from '@/shared';
+import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 
 export const DeleteConfirmation = () => {
@@ -20,7 +22,9 @@ export const DeleteConfirmation = () => {
     setModalState(false);
   };
 
-  const deleteBeverateWithId = deleteBeverage.bind(null, +id!);
+  const [user] = useLocalStorage<IUserJwtPayload | null>('current_user', null);
+
+  const deleteBeverateWithId = deleteBeverage.bind(null, +id!, user!);
   const [formState, formAction] = useFormState(deleteBeverateWithId, {
     message: '',
     errorMessage: '',

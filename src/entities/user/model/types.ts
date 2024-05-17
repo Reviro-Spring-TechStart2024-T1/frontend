@@ -10,6 +10,12 @@ export type TUser = {
   phone: number;
 };
 
+export interface IUserJwtPayload {
+  refresh: string;
+  access: string;
+  role: 'admin' | 'partner';
+}
+
 export type TFiltersList = {
   isActive: boolean;
   setFilter: (filter: TFilters) => void;
