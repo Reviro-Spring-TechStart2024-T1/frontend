@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 import { CreatePartner } from '@/features/create-partner';
 import {
   AdminPartners,
@@ -9,7 +11,8 @@ import { Container, Typography } from '@/shared/ui';
 import { ColumnsType, Table } from '@/shared/ui/Table';
 
 export default function Page() {
-  const { partners } = useAdminPartners();
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data } = useAdminPartners(currentPage, 10);
 
   const columns: ColumnsType<AdminPartners> = [
     { key: 'id', title: '№' },
@@ -35,7 +38,13 @@ export default function Page() {
   return (
     <Container title="Partners">
       <CreatePartner />
-      <Table<AdminPartners> columns={columns} data={partners?.results} />
+      <Table<AdminPartners>
+        columns={columns}
+        data={data?.results}
+        currentPage={currentPage}
+        pages={data.pages}
+        onChange={offset => setCurrentPage(offset)}
+      />
     </Container>
   );
 }
