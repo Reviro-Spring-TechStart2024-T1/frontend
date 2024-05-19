@@ -12,4 +12,7 @@ export type ColumnsType<T> = ColumnType<T>[];
 export interface TableProps<T extends { id: string | number }> {
   columns: ColumnsType<T>;
   data?: T[];
+  currentPage?: number;
+  pages?: number;
+  onChange?: (value: number) => void;
 }
