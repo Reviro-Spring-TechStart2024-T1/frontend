@@ -1,46 +1,56 @@
 'use client';
 
 import { useState } from 'react';
-import { RiFilter3Line } from '@remixicon/react';
-import clsx from 'clsx';
 
-import { Button, Typography } from '@/shared/ui';
+import { Typography } from '@/shared/ui';
+import { Select } from '@/shared/ui/Select';
+
+import { FilterValues } from '../model/types';
+
+const options = [
+  { id: 1, label: 'Any' },
+  { id: 2, label: 'Coca-Cola' },
+  { id: 3, label: 'Fanta' },
+];
 
 export const Filter = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const Filters = [{ label: 'Name' }, { label: 'Email' }];
+  const [filterValues, setFilterValues] = useState<FilterValues>({
+    beverage: options[0],
+    price: options[0],
+    amount: options[0],
+  });
 
   return (
-    <div className="relative">
-      <Button
-        variant="outline"
-        width="full"
-        onClick={() => setIsOpen(!isOpen)}
-        onBlur={() => setIsOpen(false)}
-      >
-        <Typography variant="caption">Filter</Typography>
-        <RiFilter3Line size={20} />
-      </Button>
-
-      <div
-        className={clsx(
-          'absolute right-0 z-20 mt-2 hidden w-48 rounded-md border border-theme-grey-200 bg-theme-white p-2 shadow-lg',
-          { ['!block']: isOpen },
-        )}
-      >
-        {Filters.map((filter, index) => {
-          return (
-            <Button
-              key={index}
-              variant="ghost"
-              size="sm"
-              width="full"
-              className="justify-start"
-            >
-              {filter.label}
-            </Button>
-          );
-        })}
+    <div className="flex flex-wrap gap-4 rounded-md bg-theme-grey-150 p-4 lg:flex-col">
+      <div className="flex-1 space-y-1">
+        <Typography variant="caption">Beverage</Typography>
+        <Select
+          value={filterValues.beverage}
+          options={options}
+          onChange={option =>
+            setFilterValues({ ...filterValues, beverage: option })
+          }
+        />
+      </div>
+      <div className="flex-1 space-y-1">
+        <Typography variant="caption">Price</Typography>
+        <Select
+          value={filterValues.price}
+          options={options}
+          onChange={option =>
+            setFilterValues({ ...filterValues, price: option })
+          }
+        />
+      </div>
+      <div className="flex-1 space-y-1">
+        <Typography variant="caption">Amount</Typography>
+        <Select
+          value={filterValues.amount}
+          options={options}
+          onChange={option =>
+            setFilterValues({ ...filterValues, amount: option })
+          }
+        />
       </div>
     </div>
   );

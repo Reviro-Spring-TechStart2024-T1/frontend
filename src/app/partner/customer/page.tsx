@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
+import { Search } from '@/features/search';
 import { UsersResponse, useUsers } from '@/shared';
 import { Typography } from '@/shared/ui';
 import { Container } from '@/shared/ui/Container/Container';
@@ -42,6 +43,7 @@ export default function CustomerData() {
 
   return (
     <Container title="Customers">
+      <Search placeholder="Search by name or email" />
       <Table columns={columns} data={users} />
     </Container>
   );
