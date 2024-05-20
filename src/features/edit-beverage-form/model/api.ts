@@ -70,7 +70,7 @@ export const editBeverage = async (
 
   try {
     const response = await fetch(
-      `${process.env.API_URL}/api/partner/beverages/${id}`,
+      `${process.env.DEPLOY_URL}/api/partner/beverages/${id}`,
       {
         method: 'PUT',
         headers: {

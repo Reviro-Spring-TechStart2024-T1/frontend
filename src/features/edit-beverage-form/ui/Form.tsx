@@ -1,9 +1,9 @@
 'use client';
 
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useLayoutEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 import clsx from 'clsx';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
 import { TBeverage } from '@/entities/beverage';
@@ -27,7 +27,7 @@ export const Form: FC = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const initialState = {
     message: '',
@@ -53,7 +53,13 @@ export const Form: FC = () => {
 
   const { mutate } = useSWRConfig();
 
-  const { data: beverage, isLoading } = useBeverages<TBeverage>(+id!);
+  const [url, setUrl] = useState<string | null>(null);
+
+  const { data: beverage, isLoading } = useBeverages<TBeverage>(url!);
+
+  useLayoutEffect(() => {
+    id && setUrl(`${process.env.NEXT_PUBLIC_API_URL}/beverages/${id}`);
+  }, [id]);
 
   const handleEditModalOnClose = () => {
     setModalState(false);
@@ -93,7 +99,7 @@ export const Form: FC = () => {
       )}
 
       {beverage && (
-        <form action={formAction} className="mt-[16px] flex flex-col gap-3">
+        <form action={formAction} className="mt-[16px] flex flex-col gap-2">
           {formState.errorMessage && (
             <Typography variant="paragraph" className="text-red-400">
               {formState.errorMessage}

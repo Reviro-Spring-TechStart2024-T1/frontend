@@ -70,7 +70,7 @@ export const createBeverage = async (
 
   try {
     const response = await fetch(
-      `${process.env.API_URL}/api/partner/beverages`,
+      `${process.env.DEPLOY_URL}/api/partner/beverages`,
       {
         method: 'POST',
         headers: {

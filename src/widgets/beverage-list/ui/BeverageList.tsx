@@ -13,24 +13,24 @@ export const BeverageList = () => {
   const { setModalState } = useCreateModal();
 
   const [establishmentId] = useLocalStorage('establishment_id', null);
-  const [menuId] = useLocalStorage('menu_id', null);
 
   const { mutate } = useSWRConfig();
 
   const { data: menu, isLoading, error } = useMenu();
   const { trigger } = useCreateMenu();
 
-  const handleOnCreateMenu = () => {
-    establishmentId &&
-      trigger({
+  const handleOnCreateMenu = async () => {
+    if (establishmentId) {
+      const res = await trigger({
         establishment: establishmentId,
       });
 
-    mutate(`/menus/${menuId}`);
+      res && mutate(`/menus/${res.id}`);
+    }
   };
 
   return (
-    <div>
+    <>
       {
         isLoading && <div>Loading...</div> // TODO - Menu Skeleton
       }
@@ -53,7 +53,7 @@ export const BeverageList = () => {
             </Button>
           </div>
 
-          <ul className="grid grid-cols-4 gap-10 lg:grid-cols-3 lg:px-0 md:grid-cols-2 sm:grid-cols-1">
+          <ul className="grid grid-cols-4 gap-10 xl:grid-cols-3 xl:px-0 lg:grid-cols-2 sm:grid-cols-1">
             {menu.beverages &&
               menu.beverages.map(beverage => (
                 <Beverage key={beverage.id} {...beverage} />
@@ -61,6 +61,6 @@ export const BeverageList = () => {
           </ul>
         </Section>
       )}
-    </div>
+    </>
   );
 };

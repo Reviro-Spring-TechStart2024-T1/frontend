@@ -76,7 +76,7 @@ export const Form: FC = () => {
     <form
       ref={formRef}
       action={formAction}
-      className="mt-[16px] flex flex-col gap-3"
+      className="mt-[16px] flex flex-col gap-2"
     >
       {formState.errorMessage && (
         <Typography variant="paragraph" className="text-red-400">
