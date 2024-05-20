@@ -14,6 +14,7 @@ export const useCategories = (page: number, limit: number) => {
     {
       refreshInterval: 20000,
       revalidateOnFocus: false,
+      keepPreviousData: true,
     },
   );
 

@@ -25,6 +25,7 @@ export const useAdminUsers = (page: number, limit: number) => {
   const { data: userData, isLoading } = useSWR<AdminUsersResponse>(
     `/users/?offset=${offset}&limit=${limit}`,
     fetcher,
+    { keepPreviousData: true },
   );
 
   useSWR(`/users/?offset=${offset + limit}&limit=${limit}`, fetcher);

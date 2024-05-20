@@ -25,6 +25,7 @@ export const useAdminPartners = (page: number, limit: number) => {
   const { data: partnerData, isLoading } = useSWR<AdminPartnersResponse>(
     `/users/register/partner/?offset=${offset}&limit=${limit}`,
     fetcher,
+    { keepPreviousData: true },
   );
 
   useSWR(
