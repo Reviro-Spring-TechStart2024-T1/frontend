@@ -16,8 +16,8 @@ export default function PartnerMenuPage({
 }) {
   return (
     <Container title="Menu">
+      <BeverageList />
       <Suspense key={searchParams.id} fallback={<div>Loading...</div>}>
-        <BeverageList />
         <Modal />
       </Suspense>
     </Container>

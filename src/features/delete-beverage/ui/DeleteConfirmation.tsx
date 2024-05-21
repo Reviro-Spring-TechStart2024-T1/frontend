@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 import { useSearchParams } from 'next/navigation';
+import { useSWRConfig } from 'swr';
 
 import { IUserJwtPayload } from '@/entities/user';
 import { deleteBeverage } from '@/features/delete-beverage';
@@ -18,10 +19,13 @@ export const DeleteConfirmation = () => {
 
   const searchParams = useSearchParams();
 
+  const { mutate } = useSWRConfig();
+
   const handleDeleteModalOnClose = () => {
     setModalState(false);
   };
 
+  const [menuId] = useLocalStorage('menu_id', null);
   const [user] = useLocalStorage<IUserJwtPayload | null>('current_user', null);
 
   const deleteBeverateWithId = deleteBeverage.bind(null, +id!, user!);
@@ -32,6 +36,7 @@ export const DeleteConfirmation = () => {
 
   useEffect(() => {
     if (formState.message === 'success') {
+      mutate(`/menus/${menuId}`);
       setModalState(false);
     }
   }, [formState, setModalState]);
