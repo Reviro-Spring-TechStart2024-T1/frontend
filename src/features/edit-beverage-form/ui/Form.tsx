@@ -178,6 +178,7 @@ export const Form: FC<{ categories: TCategory[] | undefined }> = ({
                     className={clsx('w-full', {
                       'border-red-400': formState.errors?.category,
                     })}
+                    value={category.name}
                     defaultValue={categories[+beverage.category - 1].name}
                     onClick={handleOnCategoryClicked}
                   />
