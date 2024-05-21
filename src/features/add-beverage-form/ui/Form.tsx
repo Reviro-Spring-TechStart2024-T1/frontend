@@ -1,20 +1,39 @@
 'use client';
 
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useFormState } from 'react-dom';
+import toast from 'react-hot-toast';
 import clsx from 'clsx';
+import Image from 'next/image';
 import { useSWRConfig } from 'swr';
 
 import { IUserJwtPayload } from '@/entities/user';
 import { SubmitButton } from '@/features';
 import { createBeverage } from '@/features/add-beverage-form';
-import { CREATE_BEVERAGE_FORM, useCloseForm, useCreateModal } from '@/shared';
+import {
+  addImage,
+  CREATE_BEVERAGE_FORM,
+  delete_,
+  TCategory,
+  useCloseForm,
+  useCreateModal,
+} from '@/shared';
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
-export const Form: FC = () => {
+export const Form: FC<{ categories: TCategory[] | undefined }> = ({
+  categories,
+}) => {
   const { isActive, setModalState } = useCreateModal();
+
+  const [isCategoryListActive, setIsCategoryListActive] = useState(false);
+  const [category, setCategory] = useState<Partial<TCategory>>({
+    id: undefined,
+    name: undefined,
+  });
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imageName, setImageName] = useState('Choose image');
 
   const initialState = {
     message: '',
@@ -26,7 +45,7 @@ export const Form: FC = () => {
       price: '',
       description: '',
       in_stock: '',
-      image: {},
+      image: null,
     },
   };
 
@@ -47,6 +66,30 @@ export const Form: FC = () => {
     setModalState(false);
   };
 
+  const handleOnCategoryClicked = () => {
+    setIsCategoryListActive(true);
+  };
+
+  const handleOnCategoryChosen =
+    ({ id, name }: TCategory) =>
+    () => {
+      setCategory({ id, name });
+      setIsCategoryListActive(false);
+    };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      setSelectedImage(file);
+      setImageName(file.name);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setSelectedImage(null);
+    setImageName('Choose image');
+  };
+
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
@@ -65,6 +108,7 @@ export const Form: FC = () => {
       mutate(`/menus/${menuId}`);
       setModalState(false);
       formRef.current?.reset();
+      toast.success('New drink has been successfully added!');
     }
     console.log(formState, 'create');
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,10 +120,10 @@ export const Form: FC = () => {
     <form
       ref={formRef}
       action={formAction}
-      className="mt-[16px] flex flex-col gap-3"
+      className="mt-[16px] flex flex-col gap-2"
     >
       {formState.errorMessage && (
-        <Typography variant="paragraph" className="text-red-400">
+        <Typography variant="paragraph" className="text-sm text-red-400">
           {formState.errorMessage}
         </Typography>
       )}
@@ -92,20 +136,51 @@ export const Form: FC = () => {
         })}
         defaultValue={formState.fieldValues?.name}
       />
-      <Typography variant="paragraph" className="text-red-400">
+      <Typography variant="paragraph" className="text-sm text-red-400">
         {formState.errors?.name}
       </Typography>
 
-      <Input
-        type="text"
-        name="category"
-        placeholder="Category"
-        className={clsx({
-          'border-red-400': formState.errors?.category,
-        })}
-        defaultValue={formState.fieldValues?.category}
-      />
-      <Typography variant="paragraph" className="text-red-400">
+      <div
+        className="relative"
+        onBlur={() => {
+          setIsCategoryListActive(false);
+        }}
+      >
+        <Input type="hidden" name="category" value={category.id} />
+        <Input
+          type="text"
+          placeholder="Category"
+          className={clsx('w-full', {
+            'border-red-400': formState.errors?.category,
+          })}
+          value={category.name}
+          defaultValue={formState.fieldValues?.category}
+          onClick={handleOnCategoryClicked}
+        />
+        <ul
+          className={clsx(
+            'absolute -top-2 left-0 z-20 flex min-w-full flex-wrap gap-2 rounded-md bg-theme-blue-100 p-2 transition-all duration-300',
+            {
+              'invisible opacity-0': !isCategoryListActive,
+              'visible opacity-100 shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)]':
+                isCategoryListActive,
+            },
+          )}
+        >
+          {categories?.map(category => {
+            return (
+              <li
+                key={category.id}
+                className="cursor-pointer rounded-xl border border-gray-300 p-2 hover:opacity-80"
+                onClick={handleOnCategoryChosen(category)}
+              >
+                {category.name}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <Typography variant="paragraph" className="text-sm text-red-400">
         {formState.errors?.category}
       </Typography>
 
@@ -118,7 +193,7 @@ export const Form: FC = () => {
         })}
         defaultValue={formState.fieldValues?.price}
       />
-      <Typography variant="paragraph" className="text-red-400">
+      <Typography variant="paragraph" className="text-sm text-red-400">
         {formState.errors?.price}
       </Typography>
 
@@ -131,34 +206,53 @@ export const Form: FC = () => {
         })}
         defaultValue={formState.fieldValues?.description}
       />
-      <Typography variant="paragraph" className="text-red-400">
+      <Typography variant="paragraph" className="text-sm text-red-400">
         {formState.errors?.description}
       </Typography>
 
-      <label className="relative inline-block">
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          className="bg-theme-grey-200"
-        >
-          <Input
-            type="file"
-            name="image"
-            placeholder="Choose image"
-            className={clsx(
-              'absolute left-0 top-0 z-10 block h-full w-full opacity-0',
-              {
-                // 'border-red-400': formState.errors?.image,
-              },
+      <div
+        className={clsx(
+          'relative flex items-center justify-between rounded-md border border-gray-300 p-3',
+          {
+            'border-red-400': formState.errors?.image,
+          },
+        )}
+      >
+        <label>
+          <div className="flex items-center gap-2">
+            <Input
+              type="file"
+              name="image"
+              className="absolute left-0 top-0 z-10 w-1/4 opacity-0"
+              onChange={handleImageChange}
+            />
+            {selectedImage ? (
+              <Image
+                src={URL.createObjectURL(selectedImage)}
+                alt="selected"
+                width={40}
+                height={40}
+              />
+            ) : (
+              <Image src={addImage} alt="add-image" width={40} height={40} />
             )}
-          />
-          Choose image
-        </Button>
-      </label>
-      {/* <Typography variant="paragraph" className="text-red-400">
+            <Typography variant="paragraph">{imageName}</Typography>
+          </div>
+        </label>
+        {selectedImage && (
+          <Button
+            variant="none"
+            size="sm"
+            btnType="icon"
+            onClick={handleRemoveImage}
+          >
+            <Image src={delete_} alt="delete" className="fill-red-500" />
+          </Button>
+        )}
+      </div>
+      <Typography variant="paragraph" className="text-sm text-red-400">
         {formState.errors?.image}
-      </Typography> */}
+      </Typography>
 
       <Input
         type="text"
@@ -169,7 +263,7 @@ export const Form: FC = () => {
         })}
         defaultValue={formState.fieldValues?.in_stock}
       />
-      <Typography variant="paragraph" className="text-red-400">
+      <Typography variant="paragraph" className="text-sm text-red-400">
         {formState.errors?.in_stock}
       </Typography>
 

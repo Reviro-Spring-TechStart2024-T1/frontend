@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { StaticTimePicker } from '@mui/x-date-pickers';
+import { useMask } from '@react-input/mask';
 import clsx from 'clsx';
 import { Dayjs } from 'dayjs';
 import Image from 'next/image';
@@ -20,12 +21,18 @@ import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
 export const Form = () => {
-  const { trigger } = useCreateEstablishment();
+  const { trigger } = useCreateEstablishment(); //NOTE - GET establishment
 
-  const [startTimepicker, setStartTimepicker] = useState<Dayjs | null>(null);
+  const [startTimepicker, setStartTimepicker] = useState<Dayjs | null>(null); //NOTE - MUI Timepicker state in dayjs
   const [endTimepicker, setEndTimepicker] = useState<Dayjs | null>(null);
 
-  const [name, setName] = useState('');
+  const inputRef = useMask({
+    //NOTE - Mask placeholder for phone number
+    mask: '+996-___-______',
+    replacement: { _: /\d/ },
+  });
+
+  const [name, setName] = useState(''); //SECTION - Inputs' data
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [description, setDescription] = useState('');
@@ -33,39 +40,68 @@ export const Form = () => {
   const [longitude, setLongitude] = useState(74.588274);
   const [startHappyHours, setStartHappyHours] = useState('');
   const [endHappyHours, setEndHappyHours] = useState('');
+  const [streetName, setStreetName] = useState('');
+  const [houseNumber, setHouseNumber] = useState('');
+  const [logo, setLogo] = useState<File | null>(null); //!SECTION
 
-  //TODO - onSubmit handler SWR
+  const [selectedImage, setSelectedImage] = useState(''); //NOTE - Image's interactive data
+  const [imageName, setImageName] = useState('Choose image');
 
-  const [isGoogleMapActive, setIsGoogleMapActive] = useState(false);
+  const [isGoogleMapActive, setIsGoogleMapActive] = useState(false); //NOTE - Google Map and Timepicker modal windows' states
   const [isStartPickerActive, setIsStartPickerActive] = useState(false);
   const [isEndPickerActive, setIsEndPickerActive] = useState(false);
 
-  useMonitorTimePicker(startTimepicker, setStartHappyHours);
+  useMonitorTimePicker(startTimepicker, setStartHappyHours); //NOTE - For time formatting (dayjs => HH:mm)
   useMonitorTimePicker(endTimepicker, setEndHappyHours);
 
-  useCloseForm(GOOGLE_MAP, setIsGoogleMapActive);
+  useCloseForm(GOOGLE_MAP, setIsGoogleMapActive); //NOTE - 'close' listeners for modal windows
   useCloseForm(START_TIME_PICKER, setIsStartPickerActive);
   useCloseForm(END_TIME_PICKER, setIsEndPickerActive);
 
-  const handleCreateEstablishment: React.FormEventHandler = e => {
+  const handleCreateEstablishment: React.FormEventHandler = (
+    e: React.FormEvent<HTMLFormElement>,
+  ) => {
     e.preventDefault();
 
-    trigger({
-      owner: '7',
-      name,
-      email,
-      description,
-      phone_number: phone,
-      latitude: latitude.toFixed(7).toString(),
-      longitude: longitude.toFixed(7).toString(),
-      happy_hour_start: startHappyHours,
-      happy_hour_end: endHappyHours,
-    });
+    if (latitude && longitude && logo) {
+      trigger({
+        owner: '7', //FIXME - HARDCODE - maybe verify token on server side, send it to client, so we can use user_id which is inside accessToken?
+        name,
+        email,
+        description,
+        phone_number: phone,
+        latitude: latitude.toFixed(7).toString(),
+        longitude: longitude.toFixed(7).toString(),
+        happy_hour_start: startHappyHours,
+        happy_hour_end: endHappyHours,
+        street_name: streetName,
+        street_number: houseNumber,
+        logo: logo,
+      });
+    }
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      setLogo(file);
+      setSelectedImage(URL.createObjectURL(file));
+      setImageName(file.name);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    if (selectedImage) {
+      URL.revokeObjectURL(selectedImage);
+    }
+    setLogo(null);
+    setSelectedImage('');
+    setImageName('Choose image');
   };
 
   return (
     <form
-      className="grid grid-cols-1 gap-10 rounded-md bg-white p-9 md:grid-cols-2"
+      className="grid grid-cols-2 gap-10 rounded-md bg-white p-9 lg:grid-cols-1 sm:p-4"
       onSubmit={handleCreateEstablishment}
     >
       <div className="2xl:grid-rows-[50px_100_100px_1fr] grid grid-rows-[40px_50px_50px_100px] gap-2">
@@ -103,7 +139,7 @@ export const Form = () => {
           type="text"
           placeholder="Location"
           className="cursor-pointer"
-          defaultValue={`Lat: ${latitude || null}; Lng: ${longitude || null}`}
+          value={`Lat: ${latitude.toFixed(7) || ''}; Lng: ${longitude.toFixed(7) || ''};`}
           onClick={() => setIsGoogleMapActive(true)}
         />
         <Input
@@ -128,39 +164,46 @@ export const Form = () => {
         />
       </div>
       <div className="grid gap-[35px]">
-        <label className="relative flex items-center justify-between rounded-md border border-gray-300 p-3">
-          <div className="flex items-center gap-2">
-            <Button
-              type="button"
-              variant="outline"
-              btnType="icon"
-              className="bg-theme-grey-200"
-            >
+        <div className="relative flex items-center justify-between rounded-md border border-gray-300 p-3">
+          <label>
+            <div className="flex items-center gap-2">
               <Input
                 type="file"
                 name="image"
-                className="absolute left-0 top-0 z-10 block h-full w-2/4 opacity-0"
+                className="absolute left-0 top-0 z-10 w-1/4 opacity-0"
+                onChange={handleImageChange}
               />
-              <Image
-                src={addImage}
-                alt="add-image"
-                className=""
-                width={40}
-                height={40}
-              />
-            </Button>
-            <Typography variant="paragraph">Choose image</Typography>
-          </div>
+              {selectedImage ? (
+                <Image
+                  src={selectedImage}
+                  alt="selected"
+                  width={40}
+                  height={40}
+                />
+              ) : (
+                <Image src={addImage} alt="add-image" width={40} height={40} />
+              )}
+              <Typography variant="paragraph">{imageName}</Typography>
+            </div>
+          </label>
           <div className="flex gap-2">
-            <Button variant="none" size="sm" btnType="icon">
-              <Image src={delete_} alt="delete" className="fill-red-500" />
-            </Button>
-
-            <Button variant="none" size="sm" btnType="icon">
-              <Image src={download} alt="download" className="" />
+            {selectedImage && (
+              <Button
+                variant="none"
+                size="sm"
+                btnType="icon"
+                onClick={handleRemoveImage}
+              >
+                <Image src={delete_} alt="delete" className="fill-red-500" />
+              </Button>
+            )}
+            <Button variant="none" size="sm" btnType="button" type="button">
+              {
+                <Image src={download} alt="download" className="" /> //TODO - Do we need DOWNLOAD button at all?
+              }
             </Button>
           </div>
-        </label>
+        </div>
 
         <div className="flex flex-col gap-2">
           <Typography variant="h5">Add happy hours</Typography>
@@ -176,7 +219,7 @@ export const Form = () => {
                   },
                 )}
               >
-                <div className="w-[320px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[560px]">
+                <div className="rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)]">
                   <StaticTimePicker
                     onChange={newVal => setStartTimepicker(newVal)}
                     value={startTimepicker}
@@ -212,7 +255,7 @@ export const Form = () => {
                   },
                 )}
               >
-                <div className="w-[320px] rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)] sm:w-[560px]">
+                <div className="rounded-lg bg-white p-[24px] shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)]">
                   <StaticTimePicker
                     onChange={newVal => setEndTimepicker(newVal)}
                     value={endTimepicker}
@@ -239,6 +282,24 @@ export const Form = () => {
           </div>
         </div>
         <div className="flex flex-col gap-2">
+          <Typography variant="h5">Address</Typography>
+
+          <Input
+            value={streetName}
+            type="text"
+            name="street_name"
+            placeholder="Street name"
+            onChange={e => setStreetName(e.target.value)}
+          />
+          <Input
+            value={houseNumber}
+            type="text"
+            name="street_number"
+            placeholder="House number"
+            onChange={e => setHouseNumber(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col gap-2">
           <Typography variant="h5">Contacts</Typography>
 
           <Input
@@ -249,10 +310,11 @@ export const Form = () => {
             onChange={e => setEmail(e.target.value)}
           />
           <Input
+            ref={inputRef}
             value={phone}
             type="text"
             name="phone"
-            placeholder="Phone number"
+            placeholder="+996-___-______"
             onChange={e => setPhone(e.target.value)}
           />
         </div>
