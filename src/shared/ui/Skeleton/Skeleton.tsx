@@ -11,7 +11,7 @@ export const Skeleton = (props: SkeletonProps) => {
 
   const skeletonVariants = cva(['animate-pulse rounded-lg bg-theme-grey-300'], {
     variants: {
-      variant: { rectangle: ['h-4 w-1/3'] },
+      variant: { rectangle: ['h-4 w-2/5'] },
     },
     defaultVariants: {
       variant: 'rectangle',

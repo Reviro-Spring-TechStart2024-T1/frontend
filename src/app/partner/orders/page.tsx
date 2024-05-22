@@ -20,7 +20,7 @@ export default function Page() {
     time: null,
   });
   const { beveragesOptions } = useGetBeverages();
-  const { data } = useGetOrders(
+  const { data, isLoading } = useGetOrders(
     currentPage,
     10,
     search,
@@ -114,6 +114,7 @@ export default function Page() {
         data={data?.results}
         currentPage={currentPage}
         pages={data.pages}
+        loading={isLoading}
         onChange={value => setCurrentPage(value)}
       />
     </Container>
