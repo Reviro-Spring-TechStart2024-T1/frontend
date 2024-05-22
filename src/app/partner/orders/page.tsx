@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 import { FilterItem } from '@/features/filter';
 import { dateToDayHour, TOrder, useGetBeverages, useGetOrders } from '@/shared';
-import { Container, Typography } from '@/shared/ui';
+import { Button, Container, Typography } from '@/shared/ui';
 import { Select } from '@/shared/ui/Select';
 import { ColumnsType, Table } from '@/shared/ui/Table';
 import { SearchFilter } from '@/widgets/search-filter';
@@ -68,6 +69,11 @@ export default function Page() {
 
   return (
     <Container title="Orders">
+      <div className="flex justify-end">
+        <Button variant="primary">
+          <Link href="/partner/orders/order-for-client">Order for client</Link>
+        </Button>
+      </div>
       <SearchFilter
         searchPlaceholder="Search by order id"
         onSearch={value => setSearch(value)}

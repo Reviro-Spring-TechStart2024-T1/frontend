@@ -1,3 +1,5 @@
+import { TCategory } from '@/entities/category';
+
 export interface OrderHistoryResponse {
   id: number;
   beverage: string;
@@ -37,11 +39,6 @@ export type TCategoriesResponse = {
   next: string | null;
   previous: string | null;
   results: TCategory[];
-};
-
-export type TCategory = {
-  id: number;
-  name: string;
 };
 
 export type TOrdersResponse = {
