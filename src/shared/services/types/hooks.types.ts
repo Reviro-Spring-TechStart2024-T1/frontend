@@ -5,28 +5,33 @@ export interface OrderHistoryResponse {
   beverage: string;
   price: string;
   category: string;
-  creation_time: string;
+  order_date: string;
 }
 
-export interface UsersResponse {
-  id: number;
-  firstName: string;
-  lastName: string;
-  age: number;
-  email: string;
-  phone: number;
-  joinedAt: number;
-}
-
-export interface UserResponse {
+export interface Customer {
   id: number;
   first_name: string;
   last_name: string;
-  joinedAt: number;
-  age: number;
   email: string;
   sex: string;
   date_of_birth: string;
+}
+
+export interface CustomersResponse {
+  count: number;
+  next: string;
+  previous: string;
+  results: Customer[];
+}
+
+export interface CustomerResponse {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  sex: string;
+  date_of_birth: string;
+  orders: [];
 }
 
 export type TCategoriesResponse = {

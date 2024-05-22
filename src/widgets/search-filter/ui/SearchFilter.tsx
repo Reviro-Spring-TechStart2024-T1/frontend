@@ -23,16 +23,10 @@ export const SearchFilter = ({
       <div className="flex gap-4 md:flex-col">
         <Search onSearch={onSearch} placeholder={searchPlaceholder} />
 
-        <div>
-          <Button
-            variant="outline"
-            width="full"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <Typography variant="caption">Filters</Typography>
-            <RiFilter3Line size={20} />
-          </Button>
-        </div>
+        <Button variant="outline" onClick={() => setIsOpen(!isOpen)}>
+          <Typography variant="caption">Filters</Typography>
+          <RiFilter3Line size={20} />
+        </Button>
       </div>
 
       <div

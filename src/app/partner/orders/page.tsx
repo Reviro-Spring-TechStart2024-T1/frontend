@@ -1,11 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import dayjs from 'dayjs';
 import Link from 'next/link';
 
 import { FilterItem } from '@/features/filter';
-import { TOrder, useGetBeverages, useGetOrders } from '@/shared';
+import { dateToDayHour, TOrder, useGetBeverages, useGetOrders } from '@/shared';
 import { Button, Container, Typography } from '@/shared/ui';
 import { Select } from '@/shared/ui/Select';
 import { ColumnsType, Table } from '@/shared/ui/Table';
@@ -56,14 +55,11 @@ export default function Page() {
     },
     {
       key: 'order_date',
-      title: 'Creation time',
+      title: 'Order date',
       render: record => {
-        const formattedTime = dayjs(record.order_date).format(
-          'DD-MM-YYYY | HH:mm:ss',
-        );
         return (
           <Typography variant="caption" color="grey">
-            {formattedTime}
+            {dateToDayHour(record.order_date)}
           </Typography>
         );
       },
@@ -74,7 +70,7 @@ export default function Page() {
   return (
     <Container title="Orders">
       <div className="flex justify-end">
-        <Button variant="link" className="bg-gray-500">
+        <Button variant="primary">
           <Link href="/partner/orders/order-for-client">Order for client</Link>
         </Button>
       </div>
@@ -101,7 +97,7 @@ export default function Page() {
           }
         />
         <Select
-          title="Creation time"
+          title="Order date"
           value={filterItems.time}
           options={timeOptions}
           any="All time"
