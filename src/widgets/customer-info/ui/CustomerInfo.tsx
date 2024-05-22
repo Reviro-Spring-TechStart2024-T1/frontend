@@ -1,11 +1,21 @@
-import { RiCalendar2Line } from '@remixicon/react';
+import { RiCalendarEventLine, RiUser4Line } from '@remixicon/react';
 
-import { useGetUser } from '@/shared/services/hooks/useGetUser';
 import { Section, Typography } from '@/shared/ui';
 
-export const CustomerInfo = ({ id }: { id: string | number }) => {
-  const { user } = useGetUser(id);
+interface Customer {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  sex: string;
+  date_of_birth: string;
+  orders: [];
+}
+interface CustomerProps {
+  customer?: Customer;
+}
 
+export const CustomerInfo = ({ customer }: CustomerProps) => {
   return (
     <Section>
       <div className="divide-y rounded-md border border-theme-grey-200 bg-theme-white md:text-center">
@@ -14,17 +24,17 @@ export const CustomerInfo = ({ id }: { id: string | number }) => {
             <div className="flex">
               <div className="flex h-24 w-24 items-center justify-center rounded-full bg-theme-grey-300">
                 <Typography variant="h3" weight="medium">
-                  {user?.firstName.slice(0, 1)}
+                  {customer?.first_name?.slice(0, 1)}
                 </Typography>
               </div>
             </div>
 
             <div className="ml-5 md:ml-0">
               <Typography variant="h3" weight="medium">
-                {user?.firstName} {user?.lastName}
+                {customer?.first_name} {customer?.last_name}
               </Typography>
               <Typography variant="paragraph" color="grey">
-                {user?.email}
+                {customer?.email}
               </Typography>
             </div>
           </div>
@@ -33,28 +43,28 @@ export const CustomerInfo = ({ id }: { id: string | number }) => {
         <div className="flex divide-x md:flex-col md:divide-y">
           <div className="flex flex-1 justify-center p-4">
             <div className="flex gap-3">
-              <RiCalendar2Line />
+              <RiCalendarEventLine />
 
               <div className="flex gap-1">
                 <Typography variant="paragraph" weight="medium">
-                  Joined:
+                  Birth:
                 </Typography>
                 <Typography variant="paragraph" color="grey">
-                  {user?.joinedAt}
+                  {customer?.date_of_birth}
                 </Typography>
               </div>
             </div>
           </div>
           <div className="flex flex-1 justify-center p-4">
             <div className="flex gap-3">
-              <RiCalendar2Line />
+              <RiUser4Line />
 
               <div className="flex gap-1">
                 <Typography variant="paragraph" weight="medium">
-                  Age:
+                  Sex:
                 </Typography>
                 <Typography variant="paragraph" color="grey">
-                  {user?.age}
+                  {customer?.sex}
                 </Typography>
               </div>
             </div>

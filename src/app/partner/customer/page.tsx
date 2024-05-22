@@ -1,21 +1,24 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Search } from '@/features/search';
-import { UsersResponse, useUsers } from '@/shared';
+import { Customer, useGetCustomers } from '@/shared';
 import { Typography } from '@/shared/ui';
 import { Container } from '@/shared/ui/Container/Container';
 import { ColumnsType, Table } from '@/shared/ui/Table';
 
 export default function CustomerData() {
   const router = useRouter();
-  const { users } = useUsers(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState('');
+  const { data } = useGetCustomers(currentPage, 10, search);
 
-  const columns: ColumnsType<UsersResponse> = [
+  const columns: ColumnsType<Customer> = [
     { key: 'id', title: '№' },
     {
-      key: 'firstName',
+      key: 'name',
       title: 'Name',
       render: record => {
         return (
@@ -29,7 +32,7 @@ export default function CustomerData() {
               weight="semibold"
               className="group-hover:text-theme-blue-300"
             >
-              {record.firstName}
+              {record.first_name} {record.last_name}
             </Typography>
             <Typography variant="caption" color="grey">
               {record.email}
@@ -43,8 +46,17 @@ export default function CustomerData() {
 
   return (
     <Container title="Customers">
-      <Search placeholder="Search by name or email" />
-      <Table columns={columns} data={users} />
+      <Search
+        placeholder="Search by name or email"
+        onSearch={value => setSearch(value)}
+      />
+      <Table
+        columns={columns}
+        data={data?.results}
+        currentPage={currentPage}
+        pages={data.pages}
+        onChange={value => setCurrentPage(value)}
+      />
     </Container>
   );
 }
