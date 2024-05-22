@@ -1,11 +1,14 @@
 export interface FilterOption {
   id: number;
+  key: string;
   label: string;
 }
-export interface FilterValues {
-  beverage: FilterOption;
-  price: FilterOption;
-  amount: FilterOption;
+export interface FilterItem {
+  beverage: FilterOption | null;
+  status: FilterOption | null;
+  time: FilterOption | null;
 }
-
-export type TFilters = 'ID' | 'Name';
+export interface FilterProps {
+  filterItems: FilterItem[];
+  setFilterItems: (value: FilterItem[]) => void;
+}

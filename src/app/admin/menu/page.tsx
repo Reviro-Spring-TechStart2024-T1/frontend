@@ -16,8 +16,6 @@ export default function AdminMenuPage({
 }: {
   searchParams: ReadonlyURLSearchParams;
 }) {
-  const { data } = useCategories();
-export default function AdminMenuPage() {
   const [show, setShow] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const { data } = useCategories(currentPage, 10);

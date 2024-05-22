@@ -1,20 +1,20 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { RiFilter3Line } from '@remixicon/react';
+import clsx from 'clsx';
 
-import { Filter } from '@/features/filter';
 import { Search } from '@/features/search';
 import { Button, Typography } from '@/shared/ui';
 
 export interface SearchFilterProps {
-  onSearch: (value: string) => void;
-  onFilter?: (value: string) => void;
   searchPlaceholder?: string;
+  onSearch: (value: string) => void;
+  children: ReactNode;
 }
 
 export const SearchFilter = ({
-  onSearch,
-  // onFilter,
   searchPlaceholder,
+  onSearch,
+  children,
 }: SearchFilterProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,7 +35,14 @@ export const SearchFilter = ({
         </div>
       </div>
 
-      {isOpen ? <Filter /> : null}
+      <div
+        className={clsx(
+          'hidden flex-wrap gap-4 rounded-md bg-theme-grey-150 p-4 lg:flex-col',
+          { ['!flex']: isOpen },
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 };
