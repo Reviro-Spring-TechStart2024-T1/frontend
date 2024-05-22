@@ -319,7 +319,7 @@ export const Form = () => {
           />
         </div>
         <div className="flex justify-end">
-          <SubmitButton type="create" />
+          <SubmitButton>Create</SubmitButton>
         </div>
       </div>
     </form>

@@ -1,24 +1,40 @@
 'use client';
 
-import { Toaster } from 'react-hot-toast';
+import { FC, useMemo } from 'react';
 import { RiMenu2Line } from '@remixicon/react';
+import { usePathname } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
 import { Beverage } from '@/entities/beverage';
+import { TCategory } from '@/entities/category';
 import { useCreateModal } from '@/shared';
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
-import { Button, Section, Typography } from '@/shared/ui';
+import { Button, Typography } from '@/shared/ui';
 import { useCreateMenu, useMenu } from '@/widgets/beverage-list';
 
-export const BeverageList = () => {
+export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
+  category,
+}) => {
   const { setModalState } = useCreateModal();
 
   const [establishmentId] = useLocalStorage('establishment_id', null);
+
+  const pathname = usePathname();
 
   const { mutate } = useSWRConfig();
 
   const { data: menu, isLoading, error } = useMenu();
   const { trigger } = useCreateMenu();
+
+  const beverages = useMemo(() => {
+    if (category) {
+      return menu?.beverages.filter(
+        beverage => +beverage.category === category.id,
+      );
+    }
+
+    return menu?.beverages;
+  }, [category, menu?.beverages]);
 
   const handleOnCreateMenu = async () => {
     if (establishmentId) {
@@ -47,31 +63,21 @@ export const BeverageList = () => {
         </div>
       )}
       {menu && (
-        <Section>
-          <Toaster
-            position="top-right"
-            // toastOptions={{ //NOTE - Can be configured
-            //   success: {
-            //     icon: <RiCheckboxCircleLine className="fill-green-500" />,
-            //   },
-            //   error: {
-            //     icon: <RiCloseCircleLine className="fill-red-500" />,
-            //   },
-            // }}
-          />
-          <div className="flex justify-end">
-            <Button variant="primary" onClick={() => setModalState(true)}>
-              <Typography variant="paragraph">Create beverage</Typography>
-            </Button>
-          </div>
+        <>
+          {pathname !== '/partner/orders/order-for-client' && (
+            <div className="flex justify-end">
+              <Button variant="primary" onClick={() => setModalState(true)}>
+                <Typography variant="paragraph">Create beverage</Typography>
+              </Button>
+            </div>
+          )}
 
           <ul className="grid grid-cols-4 gap-10 xl:grid-cols-3 xl:px-0 lg:grid-cols-2 sm:grid-cols-1">
-            {menu.beverages &&
-              menu.beverages.map(beverage => (
-                <Beverage key={beverage.id} {...beverage} />
-              ))}
+            {beverages?.map(beverage => (
+              <Beverage key={beverage.id} {...beverage} />
+            ))}
           </ul>
-        </Section>
+        </>
       )}
     </>
   );

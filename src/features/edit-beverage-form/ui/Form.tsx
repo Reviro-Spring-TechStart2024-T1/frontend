@@ -8,14 +8,14 @@ import { useSearchParams } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
 import { TBeverage } from '@/entities/beverage';
-import { IUserJwtPayload } from '@/entities/user';
+import { TCategory } from '@/entities/category';
 import { SubmitButton } from '@/features';
 import { editBeverage } from '@/features/edit-beverage-form';
+import { IUserJwtPayload, useCategories } from '@/shared';
 import {
   addImage,
   delete_,
   EDIT_BEVERAGE_FORM,
-  TCategory,
   useBeverages,
   useCloseForm,
   useEditModal,
@@ -24,11 +24,12 @@ import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
-export const Form: FC<{ categories: TCategory[] | undefined }> = ({
-  categories,
-}) => {
+export const Form: FC = () => {
   const [menuId] = useLocalStorage('menu_id', null);
   const { isActive, setModalState } = useEditModal();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const { categories } = useCategories(currentPage, 10);
 
   const [isCategoryListActive, setIsCategoryListActive] = useState(false);
   const [category, setCategory] = useState<Partial<TCategory>>({
@@ -309,7 +310,7 @@ export const Form: FC<{ categories: TCategory[] | undefined }> = ({
               >
                 Close
               </Button>
-              <SubmitButton type="edit" />
+              <SubmitButton>Edit</SubmitButton>
             </div>
           </>
         </form>

@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -49,6 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-theme-blue-100">
       <body className={clsx(inter.className, sf_pro.className)}>
+        <Toaster position="top-right" />
         {children}
       </body>
     </html>

@@ -1,35 +1,39 @@
 'use client';
 
+import { ComponentPropsWithoutRef, FC } from 'react';
 import { useFormStatus } from 'react-dom';
+import clsx from 'clsx';
 
-import { Button } from '@/shared/ui';
+import { Button, Typography } from '@/shared/ui';
 
-export const SubmitButton = ({
-  type,
-}: {
-  type: 'create' | 'edit' | 'save' | 'delete' | 'login';
+type TSubmitButton = ComponentPropsWithoutRef<'button'> & {
+  isMutating?: boolean;
+};
+
+export const SubmitButton: FC<TSubmitButton> = ({
+  className,
+  children,
+  isMutating,
+  ...rest
 }) => {
   const { pending } = useFormStatus();
+  const isLoading = pending || isMutating;
 
   return (
-    <>
-      {type === 'create' && (
-        <Button width="full">{pending ? 'Creating...' : 'Create'}</Button>
+    <Button
+      type="submit"
+      width="full"
+      {...rest}
+      className={clsx(className, {
+        'cursor-not-allowed opacity-50': isLoading,
+      })}
+      disabled={isLoading}
+    >
+      {isLoading ? (
+        <Typography variant="paragraph">Loading...</Typography>
+      ) : (
+        children
       )}
-      {type === 'edit' && (
-        <Button width="full">{pending ? 'Editing...' : 'Edit'}</Button>
-      )}
-      {type === 'save' && (
-        <Button width="full">{pending ? 'Saving...' : 'Save'}</Button>
-      )}
-      {type === 'login' && (
-        <Button width="full">{pending ? 'Logging in...' : 'Login'}</Button>
-      )}
-      {type === 'delete' && (
-        <Button variant="delete" width="full">
-          {pending ? 'Deleting...' : 'Delete'}
-        </Button>
-      )}
-    </>
+    </Button>
   );
 };
