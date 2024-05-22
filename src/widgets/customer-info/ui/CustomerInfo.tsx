@@ -1,6 +1,7 @@
 import { RiCalendarEventLine, RiUser4Line } from '@remixicon/react';
 
 import { Section, Typography } from '@/shared/ui';
+import { Skeleton } from '@/shared/ui/Skeleton';
 
 interface Customer {
   id: number;
@@ -50,7 +51,7 @@ export const CustomerInfo = ({ customer }: CustomerProps) => {
                   Birth:
                 </Typography>
                 <Typography variant="paragraph" color="grey">
-                  {customer?.date_of_birth}
+                  {customer?.date_of_birth || <Skeleton variant="rectangle" />}
                 </Typography>
               </div>
             </div>

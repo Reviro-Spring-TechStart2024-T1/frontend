@@ -13,7 +13,7 @@ export default function CustomerData() {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
-  const { data } = useGetCustomers(currentPage, 10, search);
+  const { data, isLoading } = useGetCustomers(currentPage, 10, search);
 
   const columns: ColumnsType<Customer> = [
     { key: 'id', title: '№' },
@@ -55,6 +55,7 @@ export default function CustomerData() {
         data={data?.results}
         currentPage={currentPage}
         pages={data.pages}
+        loading={isLoading}
         onChange={value => setCurrentPage(value)}
       />
     </Container>
