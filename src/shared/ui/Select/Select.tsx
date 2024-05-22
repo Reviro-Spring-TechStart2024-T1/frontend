@@ -26,7 +26,7 @@ export const Select = ({
       {title ? <Typography variant="caption">{title}</Typography> : null}
 
       <div
-        className="relative  select-none "
+        className="relative select-none"
         onBlur={() => setIsOpen(false)}
         onClick={() => setIsOpen(!isOpen)}
         tabIndex={0}

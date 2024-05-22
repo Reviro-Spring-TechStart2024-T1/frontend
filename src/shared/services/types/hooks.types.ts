@@ -3,7 +3,7 @@ export interface OrderHistoryResponse {
   beverage: string;
   price: string;
   category: string;
-  creation_time: string;
+  order_date: string;
 }
 
 export interface Customer {
