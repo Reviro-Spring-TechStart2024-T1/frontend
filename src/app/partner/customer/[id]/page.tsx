@@ -11,7 +11,7 @@ import { CustomerInfo } from '@/widgets/customer-info';
 
 export default function CustomerProfile() {
   const params = useParams<{ id: string }>();
-  const { customer } = useGetCustomer(params.id);
+  const { customer, isLoading } = useGetCustomer(params.id);
 
   const columns: ColumnsType<OrderHistoryResponse> = [
     { key: 'id', title: '№' },
@@ -38,6 +38,7 @@ export default function CustomerProfile() {
         <Table<OrderHistoryResponse>
           columns={columns}
           data={customer?.orders}
+          loading={isLoading}
         />
       </Section>
     </Container>

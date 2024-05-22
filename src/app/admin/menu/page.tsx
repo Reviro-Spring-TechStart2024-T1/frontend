@@ -19,7 +19,7 @@ export default function AdminMenuPage({
 }) {
   const [show, setShow] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const { data } = useCategories(currentPage, 10);
+  const { data, isLoading } = useCategories(currentPage, 10);
 
   const columns: ColumnsType<TCategory> = [
     { key: 'id', title: '№' },
@@ -85,6 +85,7 @@ export default function AdminMenuPage({
           data={data?.results}
           currentPage={currentPage}
           pages={data.pages}
+          loading={isLoading}
           onChange={offset => setCurrentPage(offset)}
         />
       </Container>

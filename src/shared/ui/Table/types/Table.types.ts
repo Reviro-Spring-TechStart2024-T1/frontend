@@ -14,5 +14,6 @@ export interface TableProps<T extends { id: string | number }> {
   data?: T[];
   currentPage?: number;
   pages?: number;
+  loading?: boolean;
   onChange?: (value: number) => void;
 }

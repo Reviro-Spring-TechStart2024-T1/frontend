@@ -15,7 +15,7 @@ export const useGetOrders = (
 ) => {
   const offset = (page - 1) * limit;
 
-  const { data: orderData } = useSWR<TOrdersResponse>(
+  const { data: orderData, isLoading } = useSWR<TOrdersResponse>(
     `/orders/partners/?offset=${offset}&limit=${limit}&id=${search}&beverage__name=${beverage_name}&status=${status}&time=${time}`,
     fetcher,
     {
@@ -32,5 +32,6 @@ export const useGetOrders = (
 
   return {
     data,
+    isLoading,
   };
 };

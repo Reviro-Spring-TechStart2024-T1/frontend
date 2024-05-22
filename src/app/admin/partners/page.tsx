@@ -12,7 +12,7 @@ import { ColumnsType, Table } from '@/shared/ui/Table';
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useState(1);
-  const { data } = useAdminPartners(currentPage, 10);
+  const { data, isLoading } = useAdminPartners(currentPage, 10);
 
   const columns: ColumnsType<AdminPartners> = [
     { key: 'id', title: '№' },
@@ -43,6 +43,7 @@ export default function Page() {
         data={data?.results}
         currentPage={currentPage}
         pages={data.pages}
+        loading={isLoading}
         onChange={offset => setCurrentPage(offset)}
       />
     </Container>
