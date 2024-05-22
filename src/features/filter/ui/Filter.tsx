@@ -1,58 +1,32 @@
 'use client';
 
-import { FC, useState } from 'react';
-import { RiFilter3Line } from '@remixicon/react';
-import clsx from 'clsx';
+import { Typography } from '@/shared/ui';
+import { Select } from '@/shared/ui/Select';
 
-import { TFilter, TOrdersFilters } from '@/shared';
-import { Button, Typography } from '@/shared/ui';
+import { FilterOption, FilterProps } from '../model';
 
-type TFilterProps = {
-  filters: TFilter[];
-  setFilter: (filter: TOrdersFilters) => void;
-};
-
-export const Filter: FC<TFilterProps> = ({ filters, setFilter }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOnFilterChosen = (filter: TFilter) => () => {
-    setFilter({ status: filter });
-    setIsOpen(false);
+export const Filter = ({ filterItems, setFilterItems }: FilterProps) => {
+  const handleFilter = (option: FilterOption, index: number) => {
+    const newFilterItems = [...filterItems];
+    newFilterItems[index].value = option;
+    setFilterItems(newFilterItems);
   };
 
   return (
-    <div className="relative">
-      <Button
-        variant="outline"
-        width="full"
-        onClick={() => setIsOpen(!isOpen)}
-        onBlur={() => setIsOpen(false)}
-      >
-        <Typography variant="caption">Filter</Typography>
-        <RiFilter3Line size={20} />
-      </Button>
+    <div className="flex flex-wrap gap-4 rounded-md bg-theme-grey-150 p-4 lg:flex-col">
+      {filterItems.map((item, index) => {
+        return (
+          <div className="flex-1 space-y-1" key={index}>
+            <Typography variant="caption">{item.label}</Typography>
 
-      <div
-        className={clsx(
-          'absolute right-0 z-20 mt-2 hidden w-48 rounded-md border border-theme-grey-200 bg-theme-white p-2 shadow-lg',
-          { ['!block']: isOpen },
-        )}
-      >
-        {filters.map((filter, index) => {
-          return (
-            <Button
-              key={index}
-              variant="ghost"
-              size="sm"
-              width="full"
-              className="justify-start"
-              onMouseDown={handleOnFilterChosen(filter)}
-            >
-              {filter}
-            </Button>
-          );
-        })}
-      </div>
+            <Select
+              value={item.value}
+              options={item.options}
+              onChange={option => handleFilter(option, index)}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };

@@ -19,14 +19,27 @@ export interface AdminPartnersResponse {
   results: AdminPartners[];
 }
 
-export const useAdminPartners = () => {
-  const { data, isLoading } = useSWR<AdminPartnersResponse>(
-    '/users/register/partner/',
+export const useAdminPartners = (page: number, limit: number) => {
+  const offset = (page - 1) * limit;
+
+  const { data: partnerData, isLoading } = useSWR<AdminPartnersResponse>(
+    `/users/register/partner/?offset=${offset}&limit=${limit}`,
+    fetcher,
+    { keepPreviousData: true },
+  );
+
+  useSWR(
+    `/users/register/partner/?offset=${offset + limit}&limit=${limit}`,
     fetcher,
   );
 
+  const data = {
+    ...partnerData,
+    pages: partnerData && Math.ceil(partnerData.count / limit),
+  };
+
   return {
-    partners: data,
+    data,
     isLoading,
   };
 };

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 
+import { Pagination } from '../Pagination';
 import { Typography } from '../Typography';
 
 import { TableProps } from './types/Table.types';
@@ -7,10 +8,13 @@ import { TableProps } from './types/Table.types';
 export const Table = <T extends { id: string | number }>({
   columns,
   data,
+  currentPage,
+  pages,
+  onChange,
 }: TableProps<T>) => {
   return (
-    <>
-      <div className="relative overflow-x-auto rounded-lg border border-theme-grey-200">
+    <div className="overflow-hidden rounded-lg border border-theme-grey-200">
+      <div className="relative overflow-x-auto">
         <table className="w-full">
           <thead className="bg-theme-grey-150">
             <tr>
@@ -37,13 +41,18 @@ export const Table = <T extends { id: string | number }>({
               return (
                 <tr
                   key={item.id}
-                  className="group cursor-pointer border-b border-t border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100"
+                  className="group cursor-pointer border-t border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100"
                 >
                   {columns.map(header => {
                     return (
                       <td
                         key={header.key}
-                        className="relative whitespace-nowrap p-[14px] first:text-center"
+                        className={clsx(
+                          'relative whitespace-nowrap p-[14px] first:text-center',
+                          {
+                            ['!py-0 pl-[14px] pr-0']: header.key === 'actions',
+                          },
+                        )}
                       >
                         {header.render ? (
                           header.render(item)
@@ -62,14 +71,13 @@ export const Table = <T extends { id: string | number }>({
         </table>
       </div>
 
-      {/* {data ? (
+      {currentPage && pages && onChange ? (
         <Pagination
           currentPage={currentPage}
-          totalCount={order_history.length}
-          limit={10}
-          onPageChange={page => setCurrentPage(page)}
+          pages={pages}
+          onChange={onChange}
         />
-      ) : null} */}
-    </>
+      ) : null}
+    </div>
   );
 };

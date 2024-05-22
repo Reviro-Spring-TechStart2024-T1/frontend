@@ -16,8 +16,9 @@ export default function AdminMenuPage({
 }: {
   searchParams: ReadonlyURLSearchParams;
 }) {
-  const { data } = useCategories();
   const [show, setShow] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data } = useCategories(currentPage, 10);
 
   const columns: ColumnsType<TCategory> = [
     { key: 'id', title: '№' },
@@ -78,7 +79,13 @@ export default function AdminMenuPage({
       />
       <Container title="Categories">
         <CreateCategory />
-        <Table<TCategory> columns={columns} data={data?.results} />
+        <Table<TCategory>
+          columns={columns}
+          data={data?.results}
+          currentPage={currentPage}
+          pages={data.pages}
+          onChange={offset => setCurrentPage(offset)}
+        />
       </Container>
     </Suspense>
   );

@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 import {
   AdminUsers,
   useAdminUsers,
@@ -8,7 +10,8 @@ import { Container, Typography } from '@/shared/ui';
 import { ColumnsType, Table } from '@/shared/ui/Table';
 
 export default function Page() {
-  const { users } = useAdminUsers();
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data } = useAdminUsers(currentPage, 10);
 
   const columns: ColumnsType<AdminUsers> = [
     { key: 'id', title: '№' },
@@ -33,7 +36,13 @@ export default function Page() {
 
   return (
     <Container title="Users">
-      <Table<AdminUsers> columns={columns} data={users?.results} />
+      <Table<AdminUsers>
+        columns={columns}
+        data={data.results}
+        currentPage={currentPage}
+        pages={data.pages}
+        onChange={offset => setCurrentPage(offset)}
+      />
     </Container>
   );
 }

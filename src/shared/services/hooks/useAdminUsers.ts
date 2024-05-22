@@ -19,11 +19,24 @@ export interface AdminUsersResponse {
   results: AdminUsers[];
 }
 
-export const useAdminUsers = () => {
-  const { data, isLoading } = useSWR<AdminUsersResponse>('/users', fetcher);
+export const useAdminUsers = (page: number, limit: number) => {
+  const offset = (page - 1) * limit;
+
+  const { data: userData, isLoading } = useSWR<AdminUsersResponse>(
+    `/users/?offset=${offset}&limit=${limit}`,
+    fetcher,
+    { keepPreviousData: true },
+  );
+
+  useSWR(`/users/?offset=${offset + limit}&limit=${limit}`, fetcher);
+
+  const data = {
+    ...userData,
+    pages: userData && Math.ceil(userData.count / limit),
+  };
 
   return {
-    users: data,
+    data,
     isLoading,
   };
 };

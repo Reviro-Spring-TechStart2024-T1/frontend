@@ -8,7 +8,7 @@ export const CustomerInfo = ({ id }: { id: string | number }) => {
 
   return (
     <Section>
-      <div className="divide-y border border-theme-grey-200 bg-theme-white md:text-center">
+      <div className="divide-y rounded-md border border-theme-grey-200 bg-theme-white md:text-center">
         <div className="p-8">
           <div className="inline-flex items-center md:flex-col md:space-y-3">
             <div className="flex">

@@ -1,4 +1,8 @@
-import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/react';
+import {
+  RiArrowLeftSLine,
+  RiArrowRightSLine,
+  RiMoreLine,
+} from '@remixicon/react';
 import clsx from 'clsx';
 
 import { usePagination } from '@/shared/helper';
@@ -7,23 +11,20 @@ import { Button } from '../Button';
 
 interface PaginationProps {
   currentPage: number;
-  totalCount: number;
-  limit: number;
+  pages: number;
   siblingCount?: number;
-  onPageChange: (value: number) => void;
+  onChange: (value: number) => void;
 }
 
 export const Pagination = ({
   currentPage,
-  totalCount,
-  limit,
+  pages,
   siblingCount = 1,
-  onPageChange,
+  onChange,
 }: PaginationProps) => {
   const paginationRange = usePagination({
     currentPage,
-    totalCount,
-    limit,
+    pages,
     siblingCount,
   });
 
@@ -31,11 +32,11 @@ export const Pagination = ({
     paginationRange && paginationRange[paginationRange?.length - 1];
 
   const onNext = () => {
-    onPageChange(currentPage + 1);
+    onChange(currentPage + 1);
   };
 
   const onPrevious = () => {
-    onPageChange(currentPage - 1);
+    onChange(currentPage - 1);
   };
 
   if (currentPage === 0 || (paginationRange && paginationRange?.length < 2)) {
@@ -43,8 +44,8 @@ export const Pagination = ({
   }
 
   return (
-    <div>
-      <ul className="flex justify-center gap-2">
+    <div className="border-t p-6">
+      <ul className="flex justify-end gap-2">
         <li>
           <Button
             btnType="icon"
@@ -57,31 +58,41 @@ export const Pagination = ({
           </Button>
         </li>
 
-        {paginationRange?.map((pageNumber, index) => {
-          if (pageNumber === 'DOTS') {
-            return <li key={index}>&#8230;</li>;
-          }
+        <div className="flex gap-2 sm:hidden">
+          {paginationRange?.map((pageNumber, index) => {
+            if (pageNumber === 'DOTS') {
+              return (
+                <li
+                  key={index}
+                  className="flex w-8 items-center justify-center"
+                >
+                  <RiMoreLine size={20} />
+                </li>
+              );
+            }
 
-          return (
-            <li key={index}>
-              <Button
-                btnType="icon"
-                variant="primary"
-                size="sm"
-                className={clsx(
-                  'bg-transparent text-theme-black hover:text-theme-white',
-                  {
-                    ['bg-theme-primary-300 text-theme-white']:
-                      pageNumber === currentPage,
-                  },
-                )}
-                onClick={() => onPageChange(pageNumber as number)}
-              >
-                {pageNumber}
-              </Button>
-            </li>
-          );
-        })}
+            return (
+              <li key={index}>
+                <Button
+                  btnType="icon"
+                  variant="primary"
+                  size="sm"
+                  className={clsx(
+                    'bg-transparent text-theme-black hover:text-theme-white',
+                    {
+                      ['bg-theme-primary-300 text-theme-white']:
+                        (pageNumber as number) === currentPage,
+                    },
+                  )}
+                  onClick={() => onChange(pageNumber as number)}
+                >
+                  {pageNumber}
+                </Button>
+              </li>
+            );
+          })}
+        </div>
+
         <li>
           <Button
             btnType="icon"

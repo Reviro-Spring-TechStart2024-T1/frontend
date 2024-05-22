@@ -1,3 +1,1 @@
-import { type TFilters } from './types';
-
-export { TFilters };
+export * from './types';
