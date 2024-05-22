@@ -13,7 +13,7 @@ export interface SearchFilterProps {
 
 export const SearchFilter = ({
   onSearch,
-  onFilter,
+  // onFilter,
   searchPlaceholder,
 }: SearchFilterProps) => {
   const [isOpen, setIsOpen] = useState(false);

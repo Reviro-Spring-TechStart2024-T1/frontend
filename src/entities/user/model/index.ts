@@ -1,4 +1,4 @@
-import type { TFiltersList, TUser } from './types';
+import type { IUserJwtPayload, TFiltersList, TUser } from './types';
 import { users_filters } from './users-filters.data';
 
-export { TFiltersList, TUser, users_filters };
+export { IUserJwtPayload, TFiltersList, TUser, users_filters };

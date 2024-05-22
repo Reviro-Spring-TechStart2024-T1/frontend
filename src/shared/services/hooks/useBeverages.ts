@@ -1,10 +1,8 @@
 'use client';
 
-import useSWR from 'swr';
+import useSWRImmutable from 'swr/immutable';
 
 import { fetcher } from '@/shared';
 
-export const useBeverages = <T>(id: number) =>
-  useSWR<T>(`${process.env.NEXT_PUBLIC_API_URL}/beverages/${id}`, fetcher, {
-    refreshInterval: 0,
-  });
+export const useBeverages = <T>(url: string) =>
+  useSWRImmutable<T>(url, fetcher);

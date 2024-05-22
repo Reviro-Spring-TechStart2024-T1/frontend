@@ -9,15 +9,15 @@ export const metadata: Metadata = {
   title: 'Menu',
 };
 
-export default function Page({
+export default function PartnerMenuPage({
   searchParams,
 }: {
   searchParams: { id: string };
 }) {
   return (
     <Container title="Menu">
+      <BeverageList />
       <Suspense key={searchParams.id} fallback={<div>Loading...</div>}>
-        <BeverageList />
         <Modal />
       </Suspense>
     </Container>

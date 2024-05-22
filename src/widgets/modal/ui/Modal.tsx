@@ -5,13 +5,20 @@ import clsx from 'clsx';
 import { AddBeverageForm } from '@/features/add-beverage-form';
 import { DeleteConfirmation } from '@/features/delete-beverage';
 import { EditBeverageForm } from '@/features/edit-beverage-form';
-import { useCreateModal, useDeleteModal, useEditModal } from '@/shared';
+import {
+  useCategories,
+  useCreateModal,
+  useDeleteModal,
+  useEditModal,
+} from '@/shared';
 import { Typography } from '@/shared/ui';
 
 export const Modal = () => {
   const { isActive: isCreateFormActive } = useCreateModal();
   const { isActive: isEditFormActive } = useEditModal();
   const { isActive: isDeleteModalActive } = useDeleteModal();
+
+  const { categories } = useCategories();
 
   return (
     <>
@@ -20,7 +27,7 @@ export const Modal = () => {
         <div
           id="create-beverage-form"
           className={clsx(
-            'fixed left-2/4 top-2/4 z-50 flex -translate-x-2/4 -translate-y-2/4 flex-col items-center justify-center gap-1 transition-all duration-300',
+            'fixed left-2/4 top-2/4 z-50 flex -translate-x-2/4 -translate-y-2/4 flex-col items-center justify-center gap-1 space-x-0 space-y-0 transition-all duration-300',
             {
               'invisible opacity-0': !isCreateFormActive,
               'visible opacity-100': isCreateFormActive,
@@ -31,7 +38,7 @@ export const Modal = () => {
             <Typography variant="paragraph" weight="medium">
               Add new beverage
             </Typography>
-            <AddBeverageForm />
+            <AddBeverageForm categories={categories} />
           </div>
         </div>
       }
@@ -51,7 +58,7 @@ export const Modal = () => {
             <Typography variant="paragraph" weight="medium">
               Edit beverage
             </Typography>
-            <EditBeverageForm />
+            <EditBeverageForm categories={categories} />
           </div>
         </div>
       }

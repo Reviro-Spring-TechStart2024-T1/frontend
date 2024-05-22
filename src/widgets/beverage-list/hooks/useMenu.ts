@@ -2,13 +2,11 @@
 
 import useSWR from 'swr';
 
-import { fetcher } from '@/shared';
-import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
-
-import { TMenusResponse } from '../model';
+import { fetcher, useLocalStorage } from '@/shared';
+import { TMenusResponse } from '@/widgets/beverage-list';
 
 export const useMenu = () => {
-  const [menuId] = useLocalStorage('menu_id', null);
+  const [menuId] = useLocalStorage('menu_id', null); //FIXME - is null even though on "Create Menu" localStorage gets updated correctly
 
   return useSWR<TMenusResponse>(`/menus/${menuId}`, fetcher, {
     onSuccess: () => {

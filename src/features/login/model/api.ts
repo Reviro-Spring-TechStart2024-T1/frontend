@@ -4,6 +4,7 @@ import { TLoginForm } from '@/features/login';
 
 export const handleLoginSubmit = async (
   currentState: TLoginForm,
+  accessToken: string,
   formData: FormData,
 ) => {
   const values = {
@@ -13,9 +14,12 @@ export const handleLoginSubmit = async (
 
   try {
     const response = await fetch(
-      `http://localhost:8080/api/partner/auth/login`,
+      `${process.env.API_URL}/api/partner/auth/login`,
       {
         method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
         body: JSON.stringify(values),
       },
     );

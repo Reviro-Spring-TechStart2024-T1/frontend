@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useState } from 'react';
+import { ReadonlyURLSearchParams, useRouter } from 'next/navigation';
 
 import { CreateCategory } from '@/features/create-category';
 import { DeleteCategoryConfirmation } from '@/features/delete-category';
@@ -11,6 +11,12 @@ import { Container } from '@/shared/ui';
 import { ColumnsType, Table } from '@/shared/ui/Table';
 import { MoreModal } from '@/widgets/more-modal';
 
+export default function AdminMenuPage({
+  searchParams,
+}: {
+  searchParams: ReadonlyURLSearchParams;
+}) {
+  const { data } = useCategories();
 export default function AdminMenuPage() {
   const [show, setShow] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,15 +53,13 @@ export default function AdminMenuPage() {
   const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
 
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const handleSetId = (id: number) =>
-    router.push(`?${setId(String(id), searchParams)}`);
+    router.push(`?${setId(String(id), searchParams)}`, { scroll: false });
 
   const handleOnEdit = (id: number) => {
     setIsEditModalActive(true);
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     handleSetId(id);
   };
 
@@ -66,7 +70,7 @@ export default function AdminMenuPage() {
   };
 
   return (
-    <>
+    <Suspense fallback="Loading...">
       <EditCategory
         isActive={isEditModalActive}
         setModalState={setIsEditModalActive}
@@ -85,6 +89,6 @@ export default function AdminMenuPage() {
           onChange={offset => setCurrentPage(offset)}
         />
       </Container>
-    </>
+    </Suspense>
   );
 }

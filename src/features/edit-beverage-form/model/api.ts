@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
+import { IUserJwtPayload } from '@/entities/user';
 import { TFormState } from '@/features/edit-beverage-form';
 
 const FormSchema = z.object({
@@ -29,12 +30,15 @@ const FormSchema = z.object({
     .number({ required_error: 'Quantity is required.' })
     .gte(0, { message: 'Please enter an amount greater or equal than 0.' })
     .min(1, { message: 'Quantity should not be empty.' }),
-  // image: z.object({}),
+  image: z.instanceof(File).refine(file => file.size > 0, {
+    message: 'Image file is required and should not be empty.',
+  }),
 });
 
 export const editBeverage = async (
   id: number,
   menuId: number,
+  user: IUserJwtPayload,
   currentState: TFormState,
   formData: FormData,
 ) => {
@@ -43,7 +47,7 @@ export const editBeverage = async (
   const price = formData.get('price') as string;
   const description = formData.get('description') as string;
   const in_stock = formData.get('in_stock') as string;
-  // const image = formData.get('image') as object;
+  const image = formData.get('image');
 
   const validatedFields = FormSchema.safeParse({
     name,
@@ -51,7 +55,7 @@ export const editBeverage = async (
     price: Number(price),
     description,
     in_stock: Number(in_stock),
-    // image,
+    image,
   });
 
   if (!validatedFields.success) {
@@ -68,9 +72,12 @@ export const editBeverage = async (
 
   try {
     const response = await fetch(
-      `http://localhost:8080/api/partner/beverages/${id}`,
+      `${process.env.DEPLOY_URL}/api/partner/beverages/${id}`,
       {
         method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${user.access}`,
+        },
         body: JSON.stringify(reqBody),
       },
     ).then(res => res.json());
@@ -86,7 +93,7 @@ export const editBeverage = async (
         price: '',
         description: '',
         in_stock: '',
-        // image: {},
+        image: null,
       },
     };
   } catch (error) {
@@ -102,7 +109,7 @@ export const editBeverage = async (
         price,
         description,
         in_stock,
-        // image,
+        image,
       },
     };
   } finally {

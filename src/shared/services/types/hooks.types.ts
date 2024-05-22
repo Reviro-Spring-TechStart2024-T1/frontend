@@ -37,3 +37,24 @@ export type TCategory = {
   id: number;
   name: string;
 };
+
+export type TOrdersResponse = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: TOrder[];
+};
+
+export type TOrder = {
+  id: number;
+  user_email: string;
+  user_first_name: string;
+  user_last_name: string;
+  establishment_name: string;
+  beverage_name: string;
+  beverage_price: string;
+  order_date: string;
+  status: 'pending' | 'completed' | 'canceled'; //NOTE - canceled - spelling mistake on backend
+  quantity: number;
+  last_updated: string;
+};
