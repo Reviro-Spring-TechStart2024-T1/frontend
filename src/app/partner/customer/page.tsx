@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Search } from '@/features/search';
@@ -11,6 +12,8 @@ import { ColumnsType, Table } from '@/shared/ui/Table';
 export default function CustomerData() {
   const router = useRouter();
   const { users } = useUsers(1);
+
+  const [search, setSearch] = useState('');
 
   const columns: ColumnsType<UsersResponse> = [
     { key: 'id', title: '№' },
@@ -43,7 +46,10 @@ export default function CustomerData() {
 
   return (
     <Container title="Customers">
-      <Search placeholder="Search by name or email" />
+      <Search
+        onSearch={value => setSearch(value)}
+        placeholder="Search by name or email"
+      />
       <Table columns={columns} data={users} />
     </Container>
   );

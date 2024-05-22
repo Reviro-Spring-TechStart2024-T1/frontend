@@ -5,9 +5,9 @@ import { useFormState } from 'react-dom';
 import { useSearchParams } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
-import { IUserJwtPayload } from '@/entities/user';
 import { deleteBeverage } from '@/features/delete-beverage';
 import { SubmitButton } from '@/features/submit-form';
+import { IUserJwtPayload } from '@/shared';
 import { DELETE_BEVERAGE, useCloseForm, useDeleteModal } from '@/shared';
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
@@ -66,7 +66,7 @@ export const DeleteConfirmation = () => {
         >
           Close
         </Button>
-        <SubmitButton type="delete" />
+        <SubmitButton>Delete</SubmitButton>
       </form>
     </>
   );

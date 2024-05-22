@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import useSWR from 'swr';
 
 import { fetcher } from '@/shared';
@@ -20,12 +21,17 @@ export const useCategories = (page: number, limit: number) => {
 
   useSWR(`/categories/?offset=${offset + limit}&limit=${limit}`, fetcher);
 
+  const memoizedCategories = useMemo(() => {
+    return categoryData?.results;
+  }, [categoryData?.results]);
+
   const data = {
     ...categoryData,
     pages: categoryData && Math.ceil(categoryData.count / limit),
   };
 
   return {
+    categories: memoizedCategories,
     data,
     isLoading,
   };

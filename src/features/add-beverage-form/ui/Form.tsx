@@ -7,14 +7,14 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useSWRConfig } from 'swr';
 
-import { IUserJwtPayload } from '@/entities/user';
+import { Categories, TCategory } from '@/entities/category';
 import { SubmitButton } from '@/features';
 import { createBeverage } from '@/features/add-beverage-form';
+import { IUserJwtPayload, useCategories } from '@/shared';
 import {
   addImage,
   CREATE_BEVERAGE_FORM,
   delete_,
-  TCategory,
   useCloseForm,
   useCreateModal,
 } from '@/shared';
@@ -22,12 +22,14 @@ import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
-export const Form: FC<{ categories: TCategory[] | undefined }> = ({
-  categories,
-}) => {
+export const Form: FC = () => {
   const { isActive, setModalState } = useCreateModal();
 
   const [isCategoryListActive, setIsCategoryListActive] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const { categories } = useCategories(currentPage, 10);
+
   const [category, setCategory] = useState<Partial<TCategory>>({
     id: undefined,
     name: undefined,
@@ -70,12 +72,10 @@ export const Form: FC<{ categories: TCategory[] | undefined }> = ({
     setIsCategoryListActive(true);
   };
 
-  const handleOnCategoryChosen =
-    ({ id, name }: TCategory) =>
-    () => {
-      setCategory({ id, name });
-      setIsCategoryListActive(false);
-    };
+  const handleOnCategoryChosen = ({ id, name }: TCategory) => {
+    setCategory({ id, name });
+    setIsCategoryListActive(false);
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -143,6 +143,8 @@ export const Form: FC<{ categories: TCategory[] | undefined }> = ({
       <div
         className="relative"
         onBlur={() => {
+          console.log('blur');
+
           setIsCategoryListActive(false);
         }}
       >
@@ -154,31 +156,14 @@ export const Form: FC<{ categories: TCategory[] | undefined }> = ({
             'border-red-400': formState.errors?.category,
           })}
           value={category.name}
-          defaultValue={formState.fieldValues?.category}
+          // defaultValue={formState.fieldValues?.category}
           onClick={handleOnCategoryClicked}
         />
-        <ul
-          className={clsx(
-            'absolute -top-2 left-0 z-20 flex min-w-full flex-wrap gap-2 rounded-md bg-theme-blue-100 p-2 transition-all duration-300',
-            {
-              'invisible opacity-0': !isCategoryListActive,
-              'visible opacity-100 shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)]':
-                isCategoryListActive,
-            },
-          )}
-        >
-          {categories?.map(category => {
-            return (
-              <li
-                key={category.id}
-                className="cursor-pointer rounded-xl border border-gray-300 p-2 hover:opacity-80"
-                onClick={handleOnCategoryChosen(category)}
-              >
-                {category.name}
-              </li>
-            );
-          })}
-        </ul>
+        <Categories
+          categories={categories}
+          onCategoryChosen={handleOnCategoryChosen}
+          isListActive={isCategoryListActive}
+        />
       </div>
       <Typography variant="paragraph" className="text-sm text-red-400">
         {formState.errors?.category}
@@ -277,7 +262,7 @@ export const Form: FC<{ categories: TCategory[] | undefined }> = ({
           Close
         </Button>
 
-        <SubmitButton type="create" />
+        <SubmitButton>Create</SubmitButton>
       </div>
     </form>
   );

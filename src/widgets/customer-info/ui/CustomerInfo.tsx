@@ -1,6 +1,6 @@
 import { RiCalendar2Line } from '@remixicon/react';
 
-import { useGetUser } from '@/shared/services/hooks/useGetUser';
+import { useGetUser } from '@/shared';
 import { Section, Typography } from '@/shared/ui';
 
 export const CustomerInfo = ({ id }: { id: string | number }) => {
@@ -14,14 +14,14 @@ export const CustomerInfo = ({ id }: { id: string | number }) => {
             <div className="flex">
               <div className="flex h-24 w-24 items-center justify-center rounded-full bg-theme-grey-300">
                 <Typography variant="h3" weight="medium">
-                  {user?.firstName.slice(0, 1)}
+                  {user?.first_name.slice(0, 1)}
                 </Typography>
               </div>
             </div>
 
             <div className="ml-5 md:ml-0">
               <Typography variant="h3" weight="medium">
-                {user?.firstName} {user?.lastName}
+                {user?.first_name} {user?.last_name}
               </Typography>
               <Typography variant="paragraph" color="grey">
                 {user?.email}

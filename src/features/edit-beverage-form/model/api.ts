@@ -3,8 +3,8 @@
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
-import { IUserJwtPayload } from '@/entities/user';
 import { TFormState } from '@/features/edit-beverage-form';
+import { IUserJwtPayload } from '@/shared';
 
 const FormSchema = z.object({
   name: z

@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { IUserJwtPayload } from '@/entities/user';
+import { IUserJwtPayload } from '@/shared';
 
 export const deleteBeverage = async (id: number, user: IUserJwtPayload) => {
   try {

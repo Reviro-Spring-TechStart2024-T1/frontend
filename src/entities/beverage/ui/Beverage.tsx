@@ -1,8 +1,9 @@
 'use client';
 
 import { FC } from 'react';
+import { RiCheckboxLine } from '@remixicon/react';
 import Image from 'next/image';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { TBeverage } from '@/entities/beverage';
 import {
@@ -27,6 +28,7 @@ export const Beverage: FC<TBeverage> = ({
 
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   const handleSetId = (id: number) =>
     router.push(`?${setId(String(id), searchParams)}`, { scroll: false });
@@ -39,6 +41,14 @@ export const Beverage: FC<TBeverage> = ({
   const handleOnDelete = () => {
     handleSetId(id);
     setDeleteModalState(true);
+  };
+
+  const handleOnBeverageChosenForOrder = (id: number) => {
+    //TODO - Single query param helper
+    const params = new URLSearchParams(searchParams);
+    params.set('bev_id', String(id));
+
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (
@@ -74,37 +84,52 @@ export const Beverage: FC<TBeverage> = ({
             {description}
           </Typography>
         </div>
-        <div className="flex divide-x divide-theme-grey-300 border-t">
-          <Button
-            variant="ghost"
-            btnType="icon"
-            width="full"
-            className="rounded-none"
-            onClick={handleOnEdit}
-          >
-            <Image
-              src={edit}
-              alt="edit"
-              style={{ width: '20px', height: '20px' }}
-              className="mx-auto"
-            />
-          </Button>
+        {pathname === '/partner/menu' && (
+          <div className="flex divide-x divide-theme-grey-300 border-t">
+            <Button
+              variant="ghost"
+              btnType="icon"
+              width="full"
+              className="rounded-none"
+              onClick={handleOnEdit}
+            >
+              <Image
+                src={edit}
+                alt="edit"
+                style={{ width: '20px', height: '20px' }}
+                className="mx-auto"
+              />
+            </Button>
 
-          <Button
-            variant="delete"
-            btnType="icon"
-            width="full"
-            className="rounded-none"
-            onClick={handleOnDelete}
-          >
-            <Image
-              src={delete_}
-              alt="delete"
-              style={{ width: '20px', height: '20px' }}
-              className="mx-auto"
-            />
-          </Button>
-        </div>
+            <Button
+              variant="delete"
+              btnType="icon"
+              width="full"
+              className="rounded-none"
+              onClick={handleOnDelete}
+            >
+              <Image
+                src={delete_}
+                alt="delete"
+                style={{ width: '20px', height: '20px' }}
+                className="mx-auto"
+              />
+            </Button>
+          </div>
+        )}
+        {pathname === '/partner/orders/order-for-client' && (
+          <div className="flex divide-x divide-theme-grey-300 border-t">
+            <Button
+              variant="ghost"
+              btnType="icon"
+              width="full"
+              className="rounded-none"
+              onClick={() => handleOnBeverageChosenForOrder(id)}
+            >
+              <RiCheckboxLine />
+            </Button>
+          </div>
+        )}
       </li>
     </>
   );
