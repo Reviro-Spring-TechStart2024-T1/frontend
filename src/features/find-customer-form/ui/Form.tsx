@@ -42,7 +42,7 @@ export const Form: FC<{ setCategoryListState: (state: boolean) => void }> = ({
       handleCustomerIdQueryParam();
       setCategoryListState(true);
     }
-  }, [user, handleCustomerIdQueryParam]);
+  }, [user]);
 
   return (
     <>

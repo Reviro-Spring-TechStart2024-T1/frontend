@@ -30,7 +30,6 @@ export const OrderForClient: FC<{ bev_id: string; customer_id: string }> = ({
   });
 
   const handleOnCategoryChosen = useCallback(({ id, name }: TCategory) => {
-    console.log('Category chosen:', { id, name });
     setCategory({ id, name });
     setIsCategoryListActive(false);
   }, []);
@@ -43,12 +42,6 @@ export const OrderForClient: FC<{ bev_id: string; customer_id: string }> = ({
       customer_id: +customer_id,
     });
   };
-  console.log(isCategoryListActive);
-  console.log(category);
-
-  useEffect(() => {
-    console.log('Category state updated:', category); // Debugging log
-  }, [category]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -71,7 +64,7 @@ export const OrderForClient: FC<{ bev_id: string; customer_id: string }> = ({
           />
         )}
       </div>
-      {category && <BeverageList category={category} />}
+      {category.id && <BeverageList category={category} />}
 
       {bev_id && customer_id && (
         <form onSubmit={handleSubmit}>
