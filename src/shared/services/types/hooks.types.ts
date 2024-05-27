@@ -61,3 +61,37 @@ export type TOrder = {
   quantity: number;
   last_updated: string;
 };
+export interface Author {
+  id: number;
+  first_name: string;
+  last_name: string;
+  avatar: string;
+}
+export interface Comment {
+  id: number;
+  message: string;
+  post: number;
+  author: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    avatar: string;
+  };
+  created_at: string;
+  updated_at: string;
+}
+export interface Post {
+  id: number;
+  title: string;
+  content: string;
+  created_at: string;
+  updated_at: string;
+  author: Author;
+  comments: Comment[];
+}
+export interface PostsResponse {
+  count: number;
+  next: string;
+  previous: string;
+  results: Post[];
+}

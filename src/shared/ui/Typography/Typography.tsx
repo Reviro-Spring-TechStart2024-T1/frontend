@@ -19,6 +19,7 @@ const typographyVariants = cva('', {
     color: {
       black: 'text-theme-black',
       grey: 'text-theme-grey-500',
+      blue: 'text-theme-blue-300',
     },
     weight: {
       regular: 'font-normal',
