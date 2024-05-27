@@ -1,5 +1,6 @@
 import { RiCalendarEventLine, RiUser4Line } from '@remixicon/react';
 
+import { getFirstLetter } from '@/shared';
 import { Section, Typography } from '@/shared/ui';
 
 interface Customer {
@@ -24,7 +25,7 @@ export const CustomerInfo = ({ customer }: CustomerProps) => {
             <div className="flex">
               <div className="flex h-24 w-24 items-center justify-center rounded-full bg-theme-grey-300">
                 <Typography variant="h3" weight="medium">
-                  {customer?.first_name?.slice(0, 1)}
+                  {getFirstLetter(customer?.first_name)}
                 </Typography>
               </div>
             </div>

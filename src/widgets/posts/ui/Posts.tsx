@@ -6,7 +6,6 @@ import { Section } from '@/shared/ui';
 
 export const Posts = () => {
   const { data } = useGetPosts();
-  console.log(data, 'data');
 
   return (
     <Section>

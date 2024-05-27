@@ -1,14 +1,14 @@
 import { RiChat4Line } from '@remixicon/react';
 import Image from 'next/image';
 
-import { Post as PostType } from '@/shared';
+import { dateToRelative, getFirstLetter, Post as PostType } from '@/shared';
 import { Typography } from '@/shared/ui';
 
 export const Post = (props: PostType) => {
   const { title, content, created_at, author, comments } = props;
 
   return (
-    <div className="cursor-pointer space-y-3 overflow-hidden rounded-md border p-6 shadow-lg">
+    <div className="cursor-pointer space-y-3 overflow-hidden rounded-md border p-6 shadow-lg transition-colors hover:bg-theme-grey-150">
       <div className="space-y-4">
         <Typography variant="h5">{title}</Typography>
 
@@ -34,7 +34,7 @@ export const Post = (props: PostType) => {
               </div>
             ) : (
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-theme-grey-300">
-                N
+                {getFirstLetter(author?.first_name)}
               </div>
             )}
 
@@ -47,7 +47,7 @@ export const Post = (props: PostType) => {
           </div>
 
           <Typography variant="caption" color="grey">
-            {created_at}
+            {dateToRelative(created_at)}
           </Typography>
         </div>
 

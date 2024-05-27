@@ -3,7 +3,7 @@ import { Posts } from '@/widgets/posts';
 
 export default function Page() {
   return (
-    <Container>
+    <Container title="Support">
       <Posts />
     </Container>
   );
