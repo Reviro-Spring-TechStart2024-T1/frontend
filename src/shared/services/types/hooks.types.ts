@@ -69,11 +69,11 @@ export type TOrderStatisticsResponse = {
   this_year: TTimeInterval;
 };
 
-type TTimeInterval = {
+export type TTimeInterval = {
   [key: string]: TTimeIntervalData;
 };
 
-type TTimeIntervalData = {
+export type TTimeIntervalData = {
   count: number;
   sum: number;
 };

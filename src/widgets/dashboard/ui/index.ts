@@ -1,5 +1,5 @@
 import { Card } from './Card';
-import Dashboard from './Dashboard';
+import { CardTitle } from './CardTitle';
+import { Dashboard } from './Dashboard';
 
-export { Card };
-export default Dashboard;
+export { Card, CardTitle, Dashboard };

@@ -1,5 +1,3 @@
-import Dashboard from './ui';
-
-export default Dashboard;
+export * from './lib';
 export * from './model';
 export * from './ui';
