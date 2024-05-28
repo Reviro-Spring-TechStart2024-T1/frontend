@@ -1,6 +1,5 @@
 import { RiLogoutBoxRLine } from '@remixicon/react';
 
-import { QR } from '@/entities/qr';
 import { Logo } from '@/shared/icons/Logo';
 import { Button } from '@/shared/ui';
 import { Navbar } from '@/widgets/navbar';

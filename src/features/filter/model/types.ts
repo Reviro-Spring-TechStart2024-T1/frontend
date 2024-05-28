@@ -1,7 +1,7 @@
-export interface FilterOption {
+export interface FilterOption<T = string> {
   id: number;
   key: string;
-  label: string;
+  label: T;
 }
 export interface FilterItem {
   beverage: FilterOption | null;

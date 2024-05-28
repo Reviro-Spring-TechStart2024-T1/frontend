@@ -32,7 +32,6 @@ export const Categories: FC<TCategories> = memo(function Categories({
               className="cursor-pointer rounded-xl border border-gray-300 p-2 hover:opacity-80"
               onClick={() => {
                 onCategoryChosen!(category);
-                console.log('onCategoryChosen', category);
               }}
             >
               {category.name}

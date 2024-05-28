@@ -57,7 +57,25 @@ export type TOrder = {
   beverage_name: string;
   beverage_price: string;
   order_date: string;
-  status: 'pending' | 'completed' | 'canceled'; //NOTE - canceled - spelling mistake on backend
+  status: 'pending' | 'completed' | 'cancelled';
   quantity: number;
   last_updated: string;
 };
+
+export type TOrderStatisticsResponse = {
+  this_week: TTimeInterval;
+  this_month: TTimeInterval;
+  this_quarter: TTimeInterval;
+  this_year: TTimeInterval;
+};
+
+export type TTimeInterval = {
+  [key: string]: TTimeIntervalData;
+};
+
+export type TTimeIntervalData = {
+  count: number;
+  sum: number;
+};
+
+export type TOrderTimePeriod = 'Weekly' | 'Monthly' | 'Quarterly' | 'Yearly';
