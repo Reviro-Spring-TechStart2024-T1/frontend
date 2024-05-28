@@ -61,3 +61,21 @@ export type TOrder = {
   quantity: number;
   last_updated: string;
 };
+
+export type TOrderStatisticsResponse = {
+  this_week: TTimeInterval;
+  this_month: TTimeInterval;
+  this_quarter: TTimeInterval;
+  this_year: TTimeInterval;
+};
+
+type TTimeInterval = {
+  [key: string]: TTimeIntervalData;
+};
+
+type TTimeIntervalData = {
+  count: number;
+  sum: number;
+};
+
+export type TOrderTimePeriod = 'Weekly' | 'Monthly' | 'Quarterly' | 'Yearly';
