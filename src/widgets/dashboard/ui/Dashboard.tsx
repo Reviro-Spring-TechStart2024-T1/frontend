@@ -1,11 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   CategoryScale,
   Chart,
-  ChartData,
-  ChartOptions,
+  Filler,
   Legend,
   LinearScale,
   LineController,
@@ -14,7 +14,16 @@ import {
   Tooltip,
 } from 'chart.js';
 
-import { Card } from '@/widgets/dashboard';
+import { Filter, FilterOption } from '@/features/filter';
+import { TOrderTimePeriod, useOrdersStatistics } from '@/shared';
+import { Select } from '@/shared/ui/Select';
+import { SelectOption } from '@/shared/ui/Select/types/Select.types';
+import {
+  Card,
+  dashboardData,
+  dashboardOptions,
+  timeOptions,
+} from '@/widgets/dashboard';
 
 Chart.register(
   CategoryScale,
@@ -23,74 +32,50 @@ Chart.register(
   LineElement,
   Tooltip,
   Legend,
+  Filler,
   LineController,
 );
+export const Dashboard = () => {
+  const [filterItems, setFilterItems] = useState<
+    Partial<FilterOption<TOrderTimePeriod>>
+  >({ label: 'Monthly' });
+  const {
+    statistics,
+    chartData,
+    chartLabels,
+    overallOrdersQuantity,
+    overallOrdersSum,
+    isLoading,
+  } = useOrdersStatistics(filterItems.label!);
 
-const Dashboard = () => {
-  const data: ChartData<'line'> = {
-    labels: ['2024-05-25', '2024-05-26', '2024-05-27', '2024-05-28'],
-    datasets: [
-      {
-        label: 'Orders',
-        backgroundColor: 'rgba(41, 43, 116, 0.2)', // Shaded area
-        borderColor: '#292b74',
-        data: [50, 70, 100, 80],
-        fill: true, // Enable the fill for the shaded area
-        tension: 0.4,
-      },
-    ],
-  };
+  const lineChartData = dashboardData(chartLabels, chartData);
 
-  const options: ChartOptions<'line'> = {
-    scales: {
-      x: {
-        border: {
-          display: false,
-        },
-        grid: {
-          display: false,
-        },
-      },
-      y: {
-        beginAtZero: true,
-      },
-    },
-    plugins: {
-      tooltip: {
-        enabled: true,
-        mode: 'index',
-        intersect: false,
-        callbacks: {
-          label: function (context) {
-            let label = context.dataset.label || '';
-
-            if (label) {
-              label += ': ';
-            }
-
-            if (context.parsed.y !== null) {
-              label += context.parsed.y;
-            }
-            return label;
-          },
-        },
-      },
-      legend: {
-        display: true,
-        position: 'top',
-      },
-    },
-  };
+  const handleOnFilterChange = (value: SelectOption | null) =>
+    setFilterItems(prev => ({
+      ...prev,
+      label: value?.label as TOrderTimePeriod,
+    }));
 
   return (
     <>
-      <div className="cards flex gap-1">
-        <Card variant="quantity" data="381" />
-        <Card variant="sum" data="216" />
+      <div className="cards flex gap-1 lg:flex-col">
+        <Card variant="quantity" data={overallOrdersQuantity} />
+        <Card variant="sum" data={overallOrdersSum} />
       </div>
-      <Line data={data} options={options} />
+      {isLoading && <div>Loading...</div>}
+      {statistics && (
+        <>
+          <Filter>
+            <Select
+              options={timeOptions}
+              value={filterItems as SelectOption}
+              onChange={handleOnFilterChange}
+              title="Time period"
+            />
+          </Filter>
+          <Line data={lineChartData} options={dashboardOptions} />
+        </>
+      )}
     </>
   );
 };
-
-export default Dashboard;

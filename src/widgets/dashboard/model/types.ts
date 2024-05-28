@@ -1,7 +1,7 @@
 import { ClassNameValue } from 'tailwind-merge';
 
 export type TCardProps = {
-  data: string;
+  data: number;
   variant: TCardVariant;
   className?: ClassNameValue;
 };
