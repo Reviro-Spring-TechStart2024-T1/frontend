@@ -1,22 +1,21 @@
 import { RiCalendarEventLine, RiUser4Line } from '@remixicon/react';
 
-import { getFirstLetter } from '@/shared';
 import { Section, Typography } from '@/shared/ui';
+import { Avatar } from '@/shared/ui/Avatar';
 
-interface Customer {
-  id: number;
-  first_name: string;
-  last_name: string;
-  email: string;
-  sex: string;
-  date_of_birth: string;
-  orders: [];
-}
 interface CustomerProps {
-  customer?: Customer;
+  id?: number;
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  sex?: string;
+  date_of_birth?: string;
+  orders?: [];
 }
 
-export const CustomerInfo = ({ customer }: CustomerProps) => {
+export const CustomerInfo = (props: CustomerProps) => {
+  const { first_name, last_name, email, sex, date_of_birth } = props;
+
   return (
     <Section>
       <div className="divide-y rounded-md border border-theme-grey-200 bg-theme-white md:text-center">
@@ -25,17 +24,17 @@ export const CustomerInfo = ({ customer }: CustomerProps) => {
             <div className="flex">
               <div className="flex h-24 w-24 items-center justify-center rounded-full bg-theme-grey-300">
                 <Typography variant="h3" weight="medium">
-                  {getFirstLetter(customer?.first_name)}
+                  <Avatar avatar="" alt="Customer" name={first_name} />
                 </Typography>
               </div>
             </div>
 
             <div className="ml-5 md:ml-0">
               <Typography variant="h3" weight="medium">
-                {customer?.first_name} {customer?.last_name}
+                {first_name} {last_name}
               </Typography>
               <Typography variant="paragraph" color="grey">
-                {customer?.email}
+                {email}
               </Typography>
             </div>
           </div>
@@ -51,7 +50,7 @@ export const CustomerInfo = ({ customer }: CustomerProps) => {
                   Birth:
                 </Typography>
                 <Typography variant="paragraph" color="grey">
-                  {customer?.date_of_birth}
+                  {date_of_birth}
                 </Typography>
               </div>
             </div>
@@ -65,7 +64,7 @@ export const CustomerInfo = ({ customer }: CustomerProps) => {
                   Sex:
                 </Typography>
                 <Typography variant="paragraph" color="grey">
-                  {customer?.sex}
+                  {sex}
                 </Typography>
               </div>
             </div>

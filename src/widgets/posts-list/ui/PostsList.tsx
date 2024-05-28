@@ -4,7 +4,7 @@ import { Post } from '@/entities/post';
 import { useGetPosts } from '@/shared';
 import { Section } from '@/shared/ui';
 
-export const Posts = () => {
+export const PostsList = () => {
   const { data } = useGetPosts();
 
   return (

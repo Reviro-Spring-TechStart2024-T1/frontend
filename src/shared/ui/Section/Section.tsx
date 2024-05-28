@@ -5,7 +5,7 @@ import { TitleProps } from './types/Section.types';
 export const Section = (props: TitleProps) => {
   const { children, title } = props;
   return (
-    <section>
+    <section className="w-full">
       {title ? (
         <div className="flex flex-1 items-center justify-between py-5">
           <Typography variant="h5" weight="semibold">

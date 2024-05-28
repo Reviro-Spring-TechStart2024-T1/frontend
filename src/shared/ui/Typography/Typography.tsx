@@ -50,7 +50,7 @@ const Typography: FC<TypographyProps> = props => {
     h4: 'h4',
     h5: 'h5',
     paragraph: 'p',
-    caption: 'span',
+    caption: 'p',
     link: 'a',
   };
 

@@ -3,7 +3,6 @@ import { useCreateEstablishment } from './useCreateEstablishment';
 import { useCreatePartner } from './useCreatePartner';
 import { useDeleteCategory } from './useDeleteCategory';
 import { useEditCategory } from './useEditCategory';
-import { useGetPosts } from './useGetPosts';
 import { useGetUserByEmail } from './useGetUserByEmail';
 import { useLogin } from './useLogin';
 import { useOrderForClient } from './useOrderForClient';
@@ -15,7 +14,6 @@ export {
   useCreatePartner,
   useDeleteCategory,
   useEditCategory,
-  useGetPosts,
   useGetUserByEmail,
   useLogin,
   useOrderForClient,

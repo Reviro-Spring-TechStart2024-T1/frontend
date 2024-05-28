@@ -32,7 +32,7 @@ export default function CustomerProfile() {
 
   return (
     <Container title="Customer Profile">
-      <CustomerInfo customer={customer} />
+      <CustomerInfo {...customer} />
 
       <Section title="Order history">
         <Table<OrderHistoryResponse>

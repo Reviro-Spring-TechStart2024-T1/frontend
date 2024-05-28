@@ -1,10 +1,10 @@
 import { Container } from '@/shared/ui';
-import { Posts } from '@/widgets/posts';
+import { PostsList } from '@/widgets/posts-list';
 
 export default function Page() {
   return (
     <Container title="Support">
-      <Posts />
+      <PostsList />
     </Container>
   );
 }
