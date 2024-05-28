@@ -37,8 +37,9 @@ Chart.register(
 );
 export const Dashboard = () => {
   const [filterItems, setFilterItems] = useState<
-    Partial<FilterOption<TOrderTimePeriod>>
-  >({ label: 'Monthly' });
+    FilterOption<TOrderTimePeriod> | undefined
+  >(() => timeOptions.find(option => option.label === 'Monthly'));
+
   const {
     statistics,
     chartData,
@@ -46,15 +47,12 @@ export const Dashboard = () => {
     overallOrdersQuantity,
     overallOrdersSum,
     isLoading,
-  } = useOrdersStatistics(filterItems.label!);
+  } = useOrdersStatistics(filterItems?.label!);
 
   const lineChartData = dashboardData(chartLabels, chartData);
 
   const handleOnFilterChange = (value: SelectOption | null) =>
-    setFilterItems(prev => ({
-      ...prev,
-      label: value?.label as TOrderTimePeriod,
-    }));
+    setFilterItems(value as FilterOption<TOrderTimePeriod>);
 
   return (
     <>

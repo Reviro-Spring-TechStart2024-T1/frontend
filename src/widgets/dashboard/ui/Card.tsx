@@ -27,7 +27,7 @@ export const Card: FC<TCardProps> = props => {
   return (
     <div className={classNames}>
       <Typography variant="h1" className="text-7xl text-white" weight="bold">
-        {data}
+        {variant === 'sum' ? `${data}⃀` : data}
       </Typography>
       {variant === 'quantity' && <CardTitle>Total number of orders</CardTitle>}
       {variant === 'sum' && <CardTitle>Total sum of beverages sold</CardTitle>}
