@@ -3,14 +3,14 @@ import { cva } from 'cva';
 import { twMerge } from 'tailwind-merge';
 
 import { Typography } from '@/shared/ui';
-import { TCardProps } from '@/widgets/dashboard';
+import { CardTitle, TCardProps } from '@/widgets/dashboard';
 
 export const Card: FC<TCardProps> = props => {
   const { className, data, variant } = props;
 
   const cardVariants = cva(
     [
-      'flex w-2/4 flex-col items-center justify-center gap-6 rounded-md px-[162px] py-[98px]',
+      'flex w-2/4 flex-col items-center justify-center gap-6 rounded-md py-[98px] lg:w-full',
     ],
     {
       variants: {
@@ -29,16 +29,8 @@ export const Card: FC<TCardProps> = props => {
       <Typography variant="h1" className="text-7xl text-white" weight="bold">
         {data}
       </Typography>
-      {variant === 'quantity' && (
-        <Typography variant="paragraph" className="text-center text-white">
-          Total number of orders
-        </Typography>
-      )}
-      {variant === 'sum' && (
-        <Typography variant="paragraph" className="text-center text-white">
-          Total sum of beverages sold
-        </Typography>
-      )}
+      {variant === 'quantity' && <CardTitle>Total number of orders</CardTitle>}
+      {variant === 'sum' && <CardTitle>Total sum of beverages sold</CardTitle>}
     </div>
   );
 };
