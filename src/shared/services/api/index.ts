@@ -1,3 +1,4 @@
+import { addComment } from './addComment';
 import { authorize } from './authorize';
 import { createCategory } from './createCategory';
 import { createOrderForClient } from './createOrderForClient';
@@ -9,6 +10,7 @@ import { createEstablishment } from './establishment';
 import { getUserByEmail } from './getUserByEmail';
 
 export {
+  addComment,
   authorize,
   createCategory,
   createEstablishment,

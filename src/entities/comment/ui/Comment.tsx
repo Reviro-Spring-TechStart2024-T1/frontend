@@ -8,7 +8,12 @@ export const Comment = (props: CommentType) => {
   return (
     <div className="space-y-4">
       <div className="inline-flex space-x-2">
-        <Avatar avatar="" alt="User" name="S" className="mt-1" />
+        <Avatar
+          avatar={author.avatar}
+          alt="User"
+          name={author.first_name}
+          className="mt-1"
+        />
 
         <div>
           <Typography variant="paragraph" color="blue">

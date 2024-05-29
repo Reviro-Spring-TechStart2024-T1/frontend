@@ -41,9 +41,9 @@ export const Post = (props: PostType) => {
               <Typography
                 variant="caption"
                 color="grey"
-                className="line-clamp-1"
+                className="line-clamp-1 flex gap-1"
               >
-                Posted by{' '}
+                Posted by
                 <Typography variant="caption" color="blue">
                   {author.first_name} {author.last_name}
                 </Typography>

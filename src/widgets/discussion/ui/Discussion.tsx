@@ -3,8 +3,9 @@
 import { RiArrowLeftSLine } from '@remixicon/react';
 import { useParams } from 'next/navigation';
 
+import { CommentInput } from '@/features/comment-input';
 import { dateToRelative, useGetPost } from '@/shared';
-import { Input, Section, Typography } from '@/shared/ui';
+import { Section, Typography } from '@/shared/ui';
 import { Avatar } from '@/shared/ui/Avatar';
 import { CommentsList } from '@/widgets/comments-list';
 
@@ -15,7 +16,7 @@ export const Discussion = () => {
   return (
     <Section>
       <div className="space-y-6">
-        <div className="mr-8 space-y-4">
+        <div className="space-y-4 pr-8">
           <div className="flex items-center gap-2">
             <RiArrowLeftSLine className="cursor-pointer text-theme-grey-500" />
             <Typography variant="h5" weight="medium">
@@ -24,7 +25,12 @@ export const Discussion = () => {
           </div>
 
           <div className="inline-flex space-x-2">
-            <Avatar avatar="" alt="User" name="S" className="mt-1" />
+            <Avatar
+              avatar={post?.author.avatar}
+              alt="User"
+              name={post?.author.first_name}
+              className="mt-1"
+            />
 
             <div>
               <Typography variant="paragraph" color="blue">
@@ -39,7 +45,7 @@ export const Discussion = () => {
           <Typography variant="caption">{post?.content}</Typography>
         </div>
 
-        <Input className="w-full" placeholder="Add a comment" />
+        <CommentInput id={params.id} />
       </div>
 
       <CommentsList />

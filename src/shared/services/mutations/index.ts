@@ -1,3 +1,4 @@
+import { useAddComment } from './useAddComment';
 import { useCreateCategory } from './useCreateCategory';
 import { useCreateEstablishment } from './useCreateEstablishment';
 import { useCreatePartner } from './useCreatePartner';
@@ -9,6 +10,7 @@ import { useOrderForClient } from './useOrderForClient';
 import { useOrderStatus } from './useOrderStatus';
 
 export {
+  useAddComment,
   useCreateCategory,
   useCreateEstablishment,
   useCreatePartner,
