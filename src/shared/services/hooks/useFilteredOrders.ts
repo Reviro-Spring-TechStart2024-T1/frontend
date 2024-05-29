@@ -19,7 +19,7 @@ export const useFilteredOrders = (
       filteredData = filteredData.filter(order => order.status === 'completed');
     }
     if (filter.status === 'Cancelled') {
-      filteredData = filteredData.filter(order => order.status === 'canceled');
+      filteredData = filteredData.filter(order => order.status === 'cancelled');
     }
     if (filter.status === 'Pending') {
       filteredData = filteredData.filter(order => order.status === 'pending');

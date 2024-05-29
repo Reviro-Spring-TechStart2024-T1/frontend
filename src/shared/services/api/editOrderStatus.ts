@@ -2,7 +2,7 @@ import { drinkjoyApi } from '../interceptors';
 
 export const editOrderStatus = async (
   url: string,
-  { arg }: { arg: { status: 'pending' | 'completed' | 'canceled' } }, //NOTE - canceled - spelling mistake on backend
+  { arg }: { arg: { status: 'pending' | 'completed' | 'cancelled' } },
 ) => {
   const { status } = await drinkjoyApi.patch(url, { ...arg });
 
