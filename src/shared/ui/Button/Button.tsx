@@ -78,7 +78,8 @@ const buttonVariants = cva(
       },
       size: {
         sm: ['text-sm', 'py-1', 'px-3'],
-        md: ['text-base', 'py-2.5', 'px-6'],
+        md: ['text-sm', 'py-2', 'px-4'],
+        lg: ['text-base', 'py-2.5', 'px-6'],
       },
       btnType: {
         button: '',
@@ -95,14 +96,14 @@ const buttonVariants = cva(
       { variant: 'none', class: 'p-0' },
 
       { btnType: 'icon', size: 'sm', class: 'h-8 w-8' },
-      { btnType: 'icon', size: 'md', class: 'h-11 w-11' },
+      { btnType: 'icon', size: 'lg', class: 'h-11 w-11' },
 
       { btnType: 'icon', size: 'sm', width: 'full', class: 'h-6 w-full' },
-      { btnType: 'icon', size: 'md', width: 'full', class: 'h-11 w-full' },
+      { btnType: 'icon', size: 'lg', width: 'full', class: 'h-11 w-full' },
     ],
     defaultVariants: {
       variant: 'primary',
-      size: 'md',
+      size: 'lg',
       btnType: 'button',
       width: 'auto',
     },

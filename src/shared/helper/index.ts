@@ -2,7 +2,8 @@ import { setId } from './searchParams/setId';
 
 export { fetcher } from './fetcher';
 export { setId };
-export * from './convertData';
+export { dateToDayHour, dateToRelative } from './convertDate';
+export { getFirstLetter } from './convertString';
 export * from './dashboard';
 export * from './data';
 export * from './hooks';

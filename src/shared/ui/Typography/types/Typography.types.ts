@@ -13,7 +13,7 @@ export type TypographyVariants =
 
 export type TypographyFormats = 'capitalize' | 'uppercase';
 
-export type TypographyColors = 'black' | 'grey';
+export type TypographyColors = 'black' | 'grey' | 'blue';
 
 export type TypographyWeights = 'regular' | 'medium' | 'semibold' | 'bold';
 export interface TypographyProps {

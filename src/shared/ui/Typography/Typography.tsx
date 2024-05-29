@@ -7,10 +7,10 @@ import { TypographyProps, TypographyTags } from './types/Typography.types';
 const typographyVariants = cva('', {
   variants: {
     variant: {
-      h1: 'text-5xl',
-      h2: 'text-4xl',
-      h3: 'text-3xl',
-      h4: 'text-2xl',
+      h1: 'text-4xl',
+      h2: 'text-3xl',
+      h3: 'text-2xl',
+      h4: 'text-xl',
       h5: 'text-lg',
       paragraph: 'text-base',
       caption: 'text-sm',
@@ -19,6 +19,7 @@ const typographyVariants = cva('', {
     color: {
       black: 'text-theme-black',
       grey: 'text-theme-grey-500',
+      blue: 'text-theme-blue-300',
     },
     weight: {
       regular: 'font-normal',
@@ -49,7 +50,7 @@ const Typography: FC<TypographyProps> = props => {
     h4: 'h4',
     h5: 'h5',
     paragraph: 'p',
-    caption: 'span',
+    caption: 'p',
     link: 'a',
   };
 
