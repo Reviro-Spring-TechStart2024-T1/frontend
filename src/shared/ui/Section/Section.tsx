@@ -1,11 +1,13 @@
+import clsx from 'clsx';
+
 import { Typography } from '../Typography';
 
 import { TitleProps } from './types/Section.types';
 
 export const Section = (props: TitleProps) => {
-  const { children, title } = props;
+  const { children, title, className } = props;
   return (
-    <section className="w-full">
+    <section className={clsx('w-full', className)}>
       {title ? (
         <div className="flex flex-1 items-center justify-between py-5">
           <Typography variant="h5" weight="semibold">
