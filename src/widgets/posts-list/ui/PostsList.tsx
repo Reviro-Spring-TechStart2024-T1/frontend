@@ -71,7 +71,7 @@ export const PostsList = () => {
         </div>
 
         {data?.results.map(post => {
-          return <Post {...post} key={post.id} />;
+          return <Post post={post} pathname={pathname} key={post.id} />;
         })}
       </Section>
     </>

@@ -1,8 +1,7 @@
 'use client';
 
 import { RiArrowLeftSLine } from '@remixicon/react';
-import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 import { CommentInput } from '@/features/comment-input';
 import { dateToRelative, useGetPost } from '@/shared';
@@ -11,6 +10,7 @@ import { Avatar } from '@/shared/ui/Avatar';
 import { CommentsList } from '@/widgets/comments-list';
 
 export const Discussion = () => {
+  const router = useRouter();
   const params = useParams<{ id: string }>();
   const { post } = useGetPost(params.id);
 
@@ -19,9 +19,10 @@ export const Discussion = () => {
       <div className="space-y-6">
         <div className="space-y-4 pr-8">
           <div className="flex items-center gap-2">
-            <Link href="/admin/support/">
-              <RiArrowLeftSLine className="cursor-pointer text-theme-grey-500" />
-            </Link>
+            <RiArrowLeftSLine
+              className="cursor-pointer text-theme-grey-500"
+              onClick={router.back}
+            />
             <Typography variant="h5" weight="medium">
               {post?.title}
             </Typography>
