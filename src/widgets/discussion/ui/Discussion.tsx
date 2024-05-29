@@ -1,6 +1,7 @@
 'use client';
 
 import { RiArrowLeftSLine } from '@remixicon/react';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
 import { CommentInput } from '@/features/comment-input';
@@ -18,7 +19,9 @@ export const Discussion = () => {
       <div className="space-y-6">
         <div className="space-y-4 pr-8">
           <div className="flex items-center gap-2">
-            <RiArrowLeftSLine className="cursor-pointer text-theme-grey-500" />
+            <Link href="/admin/support/">
+              <RiArrowLeftSLine className="cursor-pointer text-theme-grey-500" />
+            </Link>
             <Typography variant="h5" weight="medium">
               {post?.title}
             </Typography>
