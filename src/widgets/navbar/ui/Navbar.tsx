@@ -55,6 +55,11 @@ export const Navbar = () => {
             icon: <RiQrCodeLine />,
             path: '',
           },
+          {
+            label: 'Support',
+            icon: <RiQuestionAnswerLine />,
+            path: '/partner/support',
+          },
         ]
       : [
           {
