@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-theme-blue-100">
       <body className={clsx(inter.className, sf_pro.className)}>
-        <Toaster position="top-right" />
+        <Toaster position="bottom-right" />
         {children}
       </body>
     </html>

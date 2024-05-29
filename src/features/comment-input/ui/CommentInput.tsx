@@ -14,25 +14,25 @@ interface CommentInput {
 export const CommentInput = (props: CommentInput) => {
   const { id } = props;
   const { trigger } = useAddComment();
-  const [message, setMessage] = useState('');
+  const [comment, setComment] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const sendComment: MouseEventHandler = e => {
     e.preventDefault();
 
-    trigger({ message: message, post: id });
+    trigger({ message: comment, post: id });
     mutate(`/support/posts/${id}`);
 
-    setMessage('');
+    setComment('');
   };
 
   return (
-    <div className="rounded-md border border-theme-grey-200 focus-within:ring focus-within:ring-theme-primary-100">
+    <div className="rounded-md border border-theme-grey-200 focus-within:border-theme-grey-400">
       <TextareaAutosize
         maxRows={10}
         ref={textareaRef}
-        value={message}
-        onChange={e => setMessage(e.target.value)}
+        value={comment}
+        onChange={e => setComment(e.target.value)}
         placeholder="Add a comment"
         className="block w-full resize-none border-0 bg-transparent px-4 py-2.5 text-sm text-theme-black outline-none placeholder:text-sm placeholder:text-theme-grey-400 focus:ring-0 disabled:bg-theme-grey-300 disabled:placeholder:text-theme-grey-400"
       />
@@ -43,7 +43,7 @@ export const CommentInput = (props: CommentInput) => {
       >
         <Button
           size="sm"
-          disabled={!message}
+          disabled={!comment}
           className="border border-theme-grey-200"
           onClick={sendComment}
         >

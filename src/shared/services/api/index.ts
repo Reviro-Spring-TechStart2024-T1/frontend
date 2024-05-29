@@ -3,6 +3,7 @@ import { authorize } from './authorize';
 import { createCategory } from './createCategory';
 import { createOrderForClient } from './createOrderForClient';
 import { createPartner } from './createPartner';
+import { createPost } from './createPost';
 import { deleteCategory } from './deleteCategory';
 import { editCategory } from './editCategory';
 import { editOrderStatus } from './editOrderStatus';
@@ -16,6 +17,7 @@ export {
   createEstablishment,
   createOrderForClient,
   createPartner,
+  createPost,
   deleteCategory,
   editCategory,
   editOrderStatus,

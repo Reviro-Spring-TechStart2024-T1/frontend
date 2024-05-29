@@ -2,6 +2,7 @@ import { useAddComment } from './useAddComment';
 import { useCreateCategory } from './useCreateCategory';
 import { useCreateEstablishment } from './useCreateEstablishment';
 import { useCreatePartner } from './useCreatePartner';
+import { useCreatePost } from './useCreatePost';
 import { useDeleteCategory } from './useDeleteCategory';
 import { useEditCategory } from './useEditCategory';
 import { useGetUserByEmail } from './useGetUserByEmail';
@@ -14,6 +15,7 @@ export {
   useCreateCategory,
   useCreateEstablishment,
   useCreatePartner,
+  useCreatePost,
   useDeleteCategory,
   useEditCategory,
   useGetUserByEmail,

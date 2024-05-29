@@ -10,7 +10,7 @@ export const Input: FC<InputProps> = forwardRef((props, ref) => {
       {...rest}
       ref={ref}
       className={twMerge(
-        'rounded-md border border-theme-grey-200 px-4 py-2.5 text-theme-black outline-none transition-all placeholder:text-sm disabled:bg-theme-grey-300 disabled:placeholder:text-theme-grey-400',
+        'rounded-md border border-theme-grey-200 px-4 py-2 text-sm text-theme-black outline-none transition-all placeholder:text-sm focus-within:border-theme-grey-400 disabled:bg-theme-grey-300 disabled:placeholder:text-theme-grey-400',
         className,
       )}
     />

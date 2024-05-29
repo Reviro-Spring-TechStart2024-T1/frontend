@@ -18,7 +18,7 @@ export const Container = (props: ContainerProps) => {
             Establishment
           </Typography>
 
-          <Typography variant="h3" weight="bold" className="sm:text-2xl">
+          <Typography variant="h2" weight="bold" className="sm:text-2xl">
             {title}
           </Typography>
         </div>
