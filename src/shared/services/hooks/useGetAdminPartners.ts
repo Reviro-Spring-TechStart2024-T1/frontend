@@ -2,24 +2,9 @@ import useSWR from 'swr';
 
 import { fetcher } from '@/shared/helper';
 
-export interface AdminPartners {
-  id: number;
-  first_name: string;
-  last_name: string;
-  email: string;
-  role: 'admin' | 'partner';
-  sex: string;
-  date_of_birth: string;
-}
+import { AdminPartnersResponse } from '../types';
 
-export interface AdminPartnersResponse {
-  count: number;
-  next: string;
-  previous: string;
-  results: AdminPartners[];
-}
-
-export const useAdminPartners = (page: number, limit: number) => {
+export const useGetAdminPartners = (page: number, limit: number) => {
   const offset = (page - 1) * limit;
 
   const { data: partnerData, isLoading } = useSWR<AdminPartnersResponse>(

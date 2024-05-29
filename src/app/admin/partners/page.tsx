@@ -3,16 +3,14 @@
 import { useState } from 'react';
 
 import { CreatePartner } from '@/features/create-partner';
-import {
-  AdminPartners,
-  useAdminPartners,
-} from '@/shared/services/hooks/useAdminPartners';
+import { AdminPartners, useGetAdminPartners } from '@/shared';
 import { Container, Typography } from '@/shared/ui';
 import { ColumnsType, Table } from '@/shared/ui/Table';
+import { Tag } from '@/shared/ui/Tag';
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading } = useAdminPartners(currentPage, 10);
+  const { data, isLoading } = useGetAdminPartners(currentPage, 10);
 
   const columns: ColumnsType<AdminPartners> = [
     { key: 'id', title: '№' },
@@ -28,6 +26,21 @@ export default function Page() {
             <Typography variant="caption" color="grey">
               {record.email}
             </Typography>
+          </div>
+        );
+      },
+    },
+    {
+      key: 'is_blocked',
+      title: 'Status',
+      render: record => {
+        return (
+          <div>
+            {!record.is_blocked ? (
+              <Tag variant="success">Active</Tag>
+            ) : (
+              <Tag variant="danger">Blocked</Tag>
+            )}
           </div>
         );
       },
