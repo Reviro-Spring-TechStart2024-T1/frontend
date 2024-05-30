@@ -74,6 +74,7 @@ export default function Page() {
           <Link href="/partner/orders/order-for-client">Order for client</Link>
         </Button>
       </div>
+
       <SearchFilter
         searchPlaceholder="Search by order id"
         onSearch={value => setSearch(value)}

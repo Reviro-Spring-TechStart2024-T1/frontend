@@ -15,7 +15,7 @@ export const PostsList = () => {
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
 
-  const { data } = useGetPosts();
+  const { data, mutate } = useGetPosts();
   const { trigger } = useCreatePost();
 
   const handleClearState = () => {
@@ -26,6 +26,8 @@ export const PostsList = () => {
   const handleCreatePost = () => {
     if (title && comment) {
       trigger({ title: title, content: comment });
+
+      mutate();
     }
 
     handleClearState();
@@ -70,8 +72,8 @@ export const PostsList = () => {
           </Link>
         </div>
 
-        {data?.results.map(post => {
-          return <Post {...post} key={post.id} />;
+        {data?.results?.map(post => {
+          return <Post post={post} pathname={pathname} key={post.id} />;
         })}
       </Section>
     </>

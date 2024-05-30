@@ -5,6 +5,7 @@ import { useOrdersStatistics } from './useOrdersStatistics';
 
 export { useBeverages } from './useBeverages';
 export { useCloseForm } from './useCloseForm';
+export { useGetAdminPartners } from './useGetAdminPartners';
 export { useGetBeverages } from './useGetBeverages';
 export { useGetCustomers } from './useGetCustomers';
 export { useGetPost } from './useGetPost';

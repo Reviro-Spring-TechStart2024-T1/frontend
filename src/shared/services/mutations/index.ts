@@ -1,4 +1,5 @@
 import { useAddComment } from './useAddComment';
+import { useBlockPartner } from './useBlockPartner';
 import { useCreateCategory } from './useCreateCategory';
 import { useCreateEstablishment } from './useCreateEstablishment';
 import { useCreatePartner } from './useCreatePartner';
@@ -9,9 +10,11 @@ import { useGetUserByEmail } from './useGetUserByEmail';
 import { useLogin } from './useLogin';
 import { useOrderForClient } from './useOrderForClient';
 import { useOrderStatus } from './useOrderStatus';
+import { useUnblockPartner } from './useUnblockPartner';
 
 export {
   useAddComment,
+  useBlockPartner,
   useCreateCategory,
   useCreateEstablishment,
   useCreatePartner,
@@ -22,4 +25,5 @@ export {
   useLogin,
   useOrderForClient,
   useOrderStatus,
+  useUnblockPartner,
 };
