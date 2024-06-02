@@ -13,7 +13,6 @@ export const useMenu = (menuId: number | null) => {
     onError: () => {
       console.log('error');
     },
-    revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
   });
