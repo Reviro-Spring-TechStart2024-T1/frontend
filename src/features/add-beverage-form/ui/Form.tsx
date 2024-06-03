@@ -105,7 +105,7 @@ export const Form: FC = () => {
 
   useEffect(() => {
     if (formState.message === 'success') {
-      mutate(`/menus/${menuId}`);
+      mutate(`/menus/${menuId}/`);
       setModalState(false);
       formRef.current?.reset();
       toast.success('New drink has been successfully added!');

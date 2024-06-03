@@ -36,7 +36,7 @@ export const DeleteConfirmation = () => {
 
   useEffect(() => {
     if (formState.message === 'success') {
-      mutate(`/menus/${menuId}`);
+      mutate(`/menus/${menuId}/`);
       setModalState(false);
     }
   }, [formState, setModalState]);

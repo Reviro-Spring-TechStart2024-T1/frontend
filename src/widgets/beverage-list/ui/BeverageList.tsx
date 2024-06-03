@@ -2,6 +2,7 @@
 
 import { FC, useMemo } from 'react';
 import { RiMenu2Line } from '@remixicon/react';
+import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
@@ -18,12 +19,13 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
   const { setModalState } = useCreateModal();
 
   const [establishmentId] = useLocalStorage('establishment_id', null);
+  const [menuId, setMenuId] = useLocalStorage<number | null>('menu_id', null);
 
   const pathname = usePathname();
 
   const { mutate } = useSWRConfig();
 
-  const { data: menu, isLoading, error } = useMenu();
+  const { data: menu, isLoading, error } = useMenu(menuId);
   const { trigger } = useCreateMenu();
 
   const beverages = useMemo(() => {
@@ -42,9 +44,12 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
         establishment: establishmentId,
       });
 
-      res && mutate(`/menus/${res.id}`);
+      setMenuId(res.id);
+
+      mutate(`/menus/${menuId}/`);
     }
   };
+  console.log(beverages?.length);
 
   return (
     <>
@@ -52,7 +57,7 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
         isLoading && <div>Loading...</div> // TODO - Menu Skeleton
       }
       {error && (
-        <div className="flex flex-col items-center justify-center gap-4">
+        <div className="flex h-full flex-col items-center justify-center gap-4">
           <Typography variant="h2" className="text-center">
             Establishment does not possess any menu.
           </Typography>
@@ -71,8 +76,19 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
               </Button>
             </div>
           )}
-
-          <ul className="grid grid-cols-4 gap-10 xl:grid-cols-3 xl:px-0 lg:grid-cols-2 sm:grid-cols-1">
+          {beverages?.length === 0 && (
+            <Typography variant="h3" className="text-center">
+              No beverages, create some!
+            </Typography>
+          )}
+          <ul
+            className={clsx(
+              'grid grid-cols-4 gap-10 xl:grid-cols-3 xl:px-0 lg:grid-cols-2 sm:grid-cols-1',
+              {
+                'grid-cols-1': beverages?.length === 0,
+              },
+            )}
+          >
             {beverages?.map(beverage => (
               <Beverage key={beverage.id} {...beverage} />
             ))}

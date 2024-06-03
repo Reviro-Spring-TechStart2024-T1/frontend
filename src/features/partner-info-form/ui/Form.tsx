@@ -21,7 +21,7 @@ import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
 export const Form = () => {
-  const { trigger } = useCreateEstablishment(); //NOTE - GET establishment
+  const { trigger, isMutating } = useCreateEstablishment(); //NOTE - GET establishment
 
   const [startTimepicker, setStartTimepicker] = useState<Dayjs | null>(null); //NOTE - MUI Timepicker state in dayjs
   const [endTimepicker, setEndTimepicker] = useState<Dayjs | null>(null);
@@ -319,7 +319,7 @@ export const Form = () => {
           />
         </div>
         <div className="flex justify-end">
-          <SubmitButton>Create</SubmitButton>
+          <SubmitButton isMutating={isMutating}>Create</SubmitButton>
         </div>
       </div>
     </form>
