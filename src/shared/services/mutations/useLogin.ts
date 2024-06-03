@@ -8,8 +8,8 @@ import { authorize } from '../api/authorize';
 export const useLogin = () => {
   const router = useRouter();
   return useSWRMutation('/users/token/', authorize, {
-    onError() {
-      console.log('error');
+    onError(error: string) {
+      console.log('Error:', error);
     },
     onSuccess: data => {
       console.log('success');
