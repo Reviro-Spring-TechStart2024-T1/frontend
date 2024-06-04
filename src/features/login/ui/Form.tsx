@@ -1,15 +1,13 @@
 'use client';
 
-import { ComponentPropsWithoutRef, FC } from 'react';
 import { ErrorMessage, Field, Form as FormikForm, Formik } from 'formik';
 import Image from 'next/image';
-import { twMerge } from 'tailwind-merge';
 import * as Yup from 'yup';
 
 import { SubmitButton } from '@/features/submit-form';
 import { logo } from '@/shared';
 import { useLogin } from '@/shared/services/mutations/useLogin';
-import { Typography } from '@/shared/ui';
+import { Error, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
 type TFormValues = {
@@ -73,8 +71,3 @@ export const Form = () => {
     </div>
   );
 };
-
-const Error: FC<ComponentPropsWithoutRef<'div'>> = ({
-  children,
-  className,
-}) => <div className={twMerge(' text-red-300', className)}>{children}</div>;

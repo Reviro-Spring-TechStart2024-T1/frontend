@@ -1,3 +1,1 @@
-import { submitProfile } from './api';
-
-export { submitProfile };
+export * from './types';

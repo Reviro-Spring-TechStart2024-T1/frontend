@@ -8,8 +8,8 @@ import { createEstablishment } from '../api/establishment';
 export const useCreateEstablishment = () => {
   const router = useRouter();
   return useSWRMutation('/establishments/', createEstablishment, {
-    onError() {
-      console.log('error');
+    onError(error: string[][]) {
+      console.log('Error: ', error);
     },
     onSuccess() {
       console.log('success');

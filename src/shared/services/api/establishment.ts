@@ -21,44 +21,52 @@ export const createEstablishment = async (
     };
   },
 ) => {
-  //TODO - Think of a way to refactor code - need formdata
-  const formData = new FormData();
+  try {
+    //TODO - Think of a way to refactor code - need formdata
+    const formData = new FormData();
 
-  const {
-    owner,
-    name,
-    description,
-    email,
-    latitude,
-    longitude,
-    phone_number,
-    happy_hour_start,
-    happy_hour_end,
-    street_name,
-    street_number,
-    logo,
-  } = arg;
+    const {
+      owner,
+      name,
+      description,
+      email,
+      latitude,
+      longitude,
+      phone_number,
+      happy_hour_start,
+      happy_hour_end,
+      street_name,
+      street_number,
+      logo,
+    } = arg;
 
-  formData.append('owner', owner),
-    formData.append('name', name),
-    formData.append('description', description),
-    formData.append('email', email),
-    formData.append('latitude', latitude),
-    formData.append('longitude', longitude),
-    formData.append('phone_number', phone_number),
-    formData.append('happy_hour_start', happy_hour_start!),
-    formData.append('happy_hour_end', happy_hour_end!),
-    formData.append('street_name', street_name!),
-    formData.append('street_number', street_number!),
-    formData.append('logo', logo);
+    formData.append('owner', owner),
+      formData.append('name', name),
+      formData.append('description', description),
+      formData.append('email', email),
+      formData.append('latitude', latitude),
+      formData.append('longitude', longitude),
+      formData.append('phone_number', phone_number),
+      formData.append('happy_hour_start', happy_hour_start!),
+      formData.append('happy_hour_end', happy_hour_end!),
+      formData.append('street_name', street_name!),
+      formData.append('street_number', street_number!),
+      formData.append('logo', logo);
 
-  const { data } = await drinkjoyApi.post(url, formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
+    const { data } = await drinkjoyApi.post(url, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
 
-  if (data) {
     localStorage.setItem('establishment_id', data.id);
+    return data;
+  } catch (error: any) {
+    throw extractStructuredErrors(error.response.data);
   }
+};
 
-  return data;
+const extractStructuredErrors = (data: Record<string, string[]>) => {
+  return Object.entries(data).map(([key, value]) => {
+    const message = Array.isArray(value) ? value.join(', ') : value; //NOTE - Can also get only the first element value[0]
+    return [key, message];
+  });
 };
