@@ -68,7 +68,7 @@ export default function Page() {
   ];
 
   return (
-    <Container title="Orders">
+    <Container title="Incomin orders">
       <div className="flex justify-end">
         <Button variant="primary">
           <Link href="/partner/orders/order-for-client">Order for client</Link>
