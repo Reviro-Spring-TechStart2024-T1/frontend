@@ -1,10 +1,18 @@
+'use client';
 import { RiLogoutBoxRLine } from '@remixicon/react';
+import { useRouter } from 'next/navigation';
 
 import { Logo } from '@/shared/icons/Logo';
 import { Button } from '@/shared/ui';
 import { Navbar } from '@/widgets/navbar';
 
 export const Sidebar = () => {
+  const router = useRouter();
+  const logout = () => {
+    localStorage.removeItem('current_user');
+    router.replace('/login');
+  };
+
   return (
     <div className="relative bottom-[76px] md:hidden">
       {/* <QR /> */}
@@ -20,6 +28,7 @@ export const Sidebar = () => {
             width="full"
             size="sm"
             className="flex flex-col text-theme-grey-400 md:flex-row md:justify-start md:p-3"
+            onClick={() => logout()}
           >
             <RiLogoutBoxRLine />
             <span>Logout</span>
