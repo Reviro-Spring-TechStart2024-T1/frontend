@@ -31,7 +31,6 @@ export default function Page() {
         );
       },
     },
-    { key: 'date_of_birth', title: 'Birth' },
   ];
 
   return (
