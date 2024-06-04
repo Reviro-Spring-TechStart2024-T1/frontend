@@ -19,7 +19,7 @@ export const MoreModal = ({
   onDelete,
 }: MoreModalProps) => {
   return (
-    <>
+    <div>
       {/* FIX_ME: if the modal is opened next to the end of the tabel it got broken */}
       <Button
         variant="ghost"
@@ -58,6 +58,6 @@ export const MoreModal = ({
           Delete
         </Button>
       </div>
-    </>
+    </div>
   );
 };

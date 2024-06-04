@@ -60,12 +60,14 @@ export default function AdminMenuPage({
     setIsEditModalActive(true);
 
     handleSetId(id);
+    setShow(0);
   };
 
   const handleOnDelete = (id: number) => {
     setIsDeleteModalActive(true);
 
     handleSetId(id);
+    setShow(0);
   };
 
   return (
