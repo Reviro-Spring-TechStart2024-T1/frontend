@@ -6,6 +6,8 @@ import {
   DELETE_CATEGORY,
   EDIT_BEVERAGE_FORM,
   EDIT_CATEGORY,
+  FILE_SIZE,
+  SUPPORTED_FORMATS,
 } from './forms.constants';
 import { NO_INDEX_PAGE } from './seo.constants';
 
@@ -17,5 +19,7 @@ export {
   DELETE_CATEGORY,
   EDIT_BEVERAGE_FORM,
   EDIT_CATEGORY,
+  FILE_SIZE,
   NO_INDEX_PAGE,
+  SUPPORTED_FORMATS,
 };
