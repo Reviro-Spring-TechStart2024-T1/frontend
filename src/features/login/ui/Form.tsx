@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+import { RiEyeCloseLine, RiEyeLine } from '@remixicon/react';
 import { ErrorMessage, Field, Form as FormikForm, Formik } from 'formik';
 import Image from 'next/image';
 import * as Yup from 'yup';
@@ -7,7 +9,7 @@ import * as Yup from 'yup';
 import { SubmitButton } from '@/features/submit-form';
 import { logo } from '@/shared';
 import { useLogin } from '@/shared/services/mutations/useLogin';
-import { Error, Typography } from '@/shared/ui';
+import { Button, Error, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
 type TFormValues = {
@@ -17,6 +19,7 @@ type TFormValues = {
 
 export const Form = () => {
   const { trigger, isMutating, error } = useLogin();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async ({ email, password }: TFormValues) => {
     if (email && password) {
@@ -49,13 +52,23 @@ export const Form = () => {
               placeholder="Email"
             />
             <ErrorMessage name="email" render={msg => <Error>{msg}</Error>} />
-            <Field
-              name="password"
-              type="password"
-              as={Input}
-              className=" w-full"
-              placeholder="Password"
-            />
+            <div className="relative w-full">
+              <Field
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                as={Input}
+                className="w-full"
+                placeholder="Password"
+              />
+              <Button
+                variant="ghost"
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 flex items-center px-2"
+              >
+                {showPassword ? <RiEyeLine /> : <RiEyeCloseLine />}
+              </Button>
+            </div>
             <ErrorMessage
               name="password"
               render={msg => <Error className="mb-6">{msg}</Error>}
