@@ -1,5 +1,13 @@
-.arrow {
-    @apply absolute h-12 w-10 -left-10  bg-white;
+.QRModal {
+    @apply fixed hidden inset-0 z-[10000] items-center transition-[display] duration-300 opacity-0;
 
-    clip-path: polygon(50px 0px, 100% 100%, 0 50%);
-} 
+    transition-behavior: allow-discrete;
+}
+
+.QRModalOpen {
+    @apply flex opacity-100;
+
+    @starting-style {
+        opacity: 0;
+    }
+}

@@ -1,4 +1,5 @@
 'use client';
+
 import { RiLogoutBoxRLine } from '@remixicon/react';
 import { useRouter } from 'next/navigation';
 
@@ -15,8 +16,6 @@ export const Sidebar = () => {
 
   return (
     <div className="relative bottom-[76px] md:hidden">
-      {/* <QR /> */}
-
       <div className="fixed flex h-full w-32 flex-col items-center bg-[#111828] py-6 text-theme-white">
         <Logo />
 
