@@ -22,6 +22,12 @@ export default function Page() {
   const { data: blockedUser, trigger: blockPartner } = useBlockPartner();
   const { data: unblockedUser, trigger: unblockPartner } = useUnblockPartner();
 
+  const handleMoreModal = (id: number) => {
+    if (id === show) return setShow(0);
+
+    setShow(id);
+  };
+
   const columns: ColumnsType<AdminPartners> = [
     { key: 'id', title: '№' },
     {
@@ -55,7 +61,6 @@ export default function Page() {
         );
       },
     },
-    { key: 'date_of_birth', title: 'Birth' },
     {
       key: 'actions',
       title: '',
@@ -68,7 +73,7 @@ export default function Page() {
               variant="ghost"
               size="sm"
               className="font-semibold"
-              onClick={() => setShow(record.id)}
+              onClick={() => handleMoreModal(record.id)}
             >
               <RiMoreLine size={24} className="text-theme-grey-500" />
             </Button>

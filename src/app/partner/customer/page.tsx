@@ -41,7 +41,8 @@ export default function CustomerData() {
         );
       },
     },
-    { key: 'joinedAt', title: 'Joined at' },
+    { key: 'sex', title: 'Sex' },
+    { key: 'date_of_birth', title: 'Date of birth' },
   ];
 
   return (

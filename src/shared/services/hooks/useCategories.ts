@@ -27,6 +27,12 @@ export const useCategories = (page: number, limit: number) => {
 
   const data = {
     ...categoryData,
+    results: categoryData?.results.toSorted((a, b) => {
+      if (a.id > b.id) return 1;
+      if (a.id < b.id) return -1;
+
+      return 0;
+    }),
     pages: categoryData && Math.ceil(categoryData.count / limit),
   };
 
