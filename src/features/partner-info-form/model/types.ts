@@ -1,7 +1,4 @@
-import { MutableRefObject } from 'react';
-import { FieldProps } from 'formik';
-
-export type TFormValues = {
+export type TEstablishmentInfoForm = {
   name: string;
   description: string;
   email: string;
@@ -13,21 +10,4 @@ export type TFormValues = {
   happy_hour_start: string;
   happy_hour_end: string;
   logo: File | null;
-};
-
-export type InputTypes =
-  | 'text'
-  | 'email'
-  | 'number'
-  | 'password'
-  | 'hidden'
-  | 'file';
-
-export type ExtendedFieldProps = FieldProps & {
-  type: InputTypes;
-  placeholder?: string;
-  className?: string;
-  ref?: MutableRefObject<HTMLInputElement | null>;
-  value?: string;
-  onClick?: () => void;
 };

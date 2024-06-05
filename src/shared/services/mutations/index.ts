@@ -11,6 +11,7 @@ import { useLogin } from './useLogin';
 import { useOrderForClient } from './useOrderForClient';
 import { useOrderStatus } from './useOrderStatus';
 import { useUnblockPartner } from './useUnblockPartner';
+import { useUploadBanners } from './useUploadBanners';
 
 export {
   useAddComment,
@@ -26,4 +27,5 @@ export {
   useOrderForClient,
   useOrderStatus,
   useUnblockPartner,
+  useUploadBanners,
 };

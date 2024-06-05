@@ -18,20 +18,19 @@ import Image from 'next/image';
 import { GoogleMap } from '@/entities/map';
 import {
   END_TIME_PICKER,
-  EstablishmentSchema,
-  ExtendedFieldProps,
+  EstablishmentInfoSchema,
   GOOGLE_MAP,
   START_TIME_PICKER,
-  TFormValues,
+  TEstablishmentInfoForm,
   useMonitorTimePicker,
 } from '@/features/partner-info-form';
 import { SubmitButton } from '@/features/submit-form';
 import { addImage, delete_, download, Error, useCloseForm } from '@/shared';
-import { Button, Input, Typography } from '@/shared';
+import { Button, ExtendedFieldProps, Input, Typography } from '@/shared';
 import { useCreateEstablishment } from '@/shared/services/mutations/useCreateEstablishment';
 
 export const Form = () => {
-  const { trigger, isMutating, error } = useCreateEstablishment(); //NOTE - GET establishment
+  const { trigger, isMutating, error } = useCreateEstablishment(); //NOTE - POST establishment
 
   const [startTimepicker, setStartTimepicker] = useState<Dayjs | null>(null); //NOTE - MUI Timepicker state in dayjs
   const [endTimepicker, setEndTimepicker] = useState<Dayjs | null>(null);
@@ -75,7 +74,7 @@ export const Form = () => {
     happy_hour_start,
     happy_hour_end,
     logo,
-  }: TFormValues) => {
+  }: TEstablishmentInfoForm) => {
     if (logo)
       trigger({
         owner: '7', //FIXME - HARDCODE - maybe verify token on server side, send it to client, so we can use user_id which is inside accessToken?
@@ -93,7 +92,7 @@ export const Form = () => {
       });
   };
 
-  const formik = useFormik({
+  const establishmentInfoFormik = useFormik({
     initialValues: {
       name: '',
       description: '',
@@ -108,10 +107,9 @@ export const Form = () => {
       logo: null,
     },
     onSubmit: handleCreateEstablishment,
-    validationSchema: EstablishmentSchema,
+    validationSchema: EstablishmentInfoSchema,
   });
-
-  const { setFieldValue, handleSubmit, handleReset } = formik;
+  const { setFieldValue, handleSubmit, handleReset } = establishmentInfoFormik;
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -174,7 +172,7 @@ export const Form = () => {
   }, [error]);
   //TODO - refactor the form
   return (
-    <FormikProvider value={formik}>
+    <FormikProvider value={establishmentInfoFormik}>
       <div
         id="google-map"
         className={clsx(
@@ -260,8 +258,6 @@ export const Form = () => {
             name="description"
             render={msg => <Error>{msg}</Error>}
           />
-        </div>
-        <div className="grid gap-[25px]">
           <div className="relative flex items-center justify-between rounded-md border border-gray-300 p-3">
             <label>
               <div className="flex items-center gap-2">
@@ -314,6 +310,8 @@ export const Form = () => {
               </Button>
             </div>
           </div>
+        </div>
+        <div className="grid gap-[25px]">
           <div className="flex flex-col gap-2">
             <Typography variant="h5">Add happy hours</Typography>
             <div className="flex w-full justify-between gap-3">

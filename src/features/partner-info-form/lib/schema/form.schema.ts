@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 
-import { FILE_SIZE, SUPPORTED_FORMATS } from '@/shared';
+import { FILE_SIZE } from '@/shared';
 
-export const EstablishmentSchema = Yup.object().shape({
+export const EstablishmentInfoSchema = Yup.object().shape({
   name: Yup.string().required('Required.'),
   description: Yup.string().required('Required.'),
   email: Yup.string().required('Required.').email(),
@@ -20,11 +20,5 @@ export const EstablishmentSchema = Yup.object().shape({
       'File too large',
       //@ts-ignore
       value => value && value.size <= FILE_SIZE,
-    )
-    .test(
-      'fileFormat',
-      'Unsupported Format',
-      //@ts-ignore
-      value => value && SUPPORTED_FORMATS.includes(value.type),
     ),
 });

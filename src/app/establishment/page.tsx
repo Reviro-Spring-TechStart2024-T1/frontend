@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { PartnerProfile } from '@/entities/partner';
+import { PartnerProfile } from '@/widgets/partner-profile';
 
 export default function Page() {
   return (
