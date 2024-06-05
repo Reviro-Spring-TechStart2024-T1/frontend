@@ -1,4 +1,5 @@
-import { Form } from '@/features/partner-info-form';
+import { Form as EstablishmentBannersForm } from '@/features/partner-banners-form';
+import { Form as EstablishmentInfoForm } from '@/features/partner-info-form';
 import { Typography } from '@/shared/ui';
 
 export const PartnerProfile = () => {
@@ -12,7 +13,10 @@ export const PartnerProfile = () => {
         </Typography>
       </div>
 
-      <Form />
+      <div className="flex flex-col gap-5">
+        <EstablishmentInfoForm />
+        <EstablishmentBannersForm />
+      </div>
     </div>
   );
 };

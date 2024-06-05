@@ -11,6 +11,7 @@ import { editOrderStatus } from './editOrderStatus';
 import { createEstablishment } from './establishment';
 import { getUserByEmail } from './getUserByEmail';
 import { unblockPartner } from './unblockPartner';
+import { uploadBanners } from './uploadBanners';
 
 export {
   addComment,
@@ -26,4 +27,5 @@ export {
   editOrderStatus,
   getUserByEmail,
   unblockPartner,
+  uploadBanners,
 };
