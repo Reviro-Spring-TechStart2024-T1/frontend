@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import {
   RiFileListLine,
   RiPieChart2Line,
@@ -13,6 +14,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { QR } from '@/entities/qr';
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button } from '@/shared/ui';
 
@@ -84,34 +86,53 @@ export const Navbar = () => {
           },
         ];
 
+  const [isQRClicked, setIsQRClicked] = useState(false); //TODO - show QR on click
+
+  const handleQRState = () => {
+    setIsQRClicked(true);
+  };
+
   return (
-    <nav className="no-scrollbar mt-9 w-full flex-1 overflow-auto overflow-x-hidden px-4 pb-6 pt-6 md:mt-0 md:block md:border-t md:border-theme-grey-300 md:border-opacity-20">
-      <ul className="space-y-3">
-        {Links.map((link, index) => {
-          return (
-            /* FIX_ME: Use reusable Link component */
-            <li key={index}>
-              <Link href={link.path}>
-                <Button
-                  variant="link"
-                  width="full"
-                  size="sm"
-                  className={clsx(
-                    'flex flex-col text-theme-grey-400 md:flex-row md:justify-start md:p-3',
-                    {
-                      ['bg-theme-blue-400 text-theme-white']:
-                        link.path.length && pathname.includes(link.path),
-                    },
-                  )}
-                >
-                  {link.icon}
-                  <span>{link.label}</span>
-                </Button>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+    <>
+      <QR
+        isModalActive={isQRClicked}
+        closeModal={() => setIsQRClicked(false)}
+      />
+      <nav className="no-scrollbar mt-9 w-full flex-1 overflow-auto overflow-x-hidden px-4 pb-6 pt-6 md:mt-0 md:block md:border-t md:border-theme-grey-300 md:border-opacity-20">
+        <ul className="space-y-3">
+          {Links.map((link, index) => {
+            return (
+              /* FIX_ME: Use reusable Link component */
+              <li
+                key={index}
+                onClick={() => {
+                  if (link.label === 'QR') {
+                    handleQRState();
+                  }
+                }}
+              >
+                <Link href={link.path}>
+                  <Button
+                    variant="link"
+                    width="full"
+                    size="sm"
+                    className={clsx(
+                      'flex flex-col text-theme-grey-400 md:flex-row md:justify-start md:p-3',
+                      {
+                        ['bg-theme-blue-400 text-theme-white']:
+                          link.path.length && pathname.includes(link.path),
+                      },
+                    )}
+                  >
+                    {link.icon}
+                    <span>{link.label}</span>
+                  </Button>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </>
   );
 };
