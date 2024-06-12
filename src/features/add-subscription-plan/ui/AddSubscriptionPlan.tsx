@@ -4,8 +4,8 @@ import { Button, Typography } from '@/shared';
 
 export const AddSubscriptionPlan = () => {
   return (
-    <div className="flex flex-col items-center justify-center space-y-6 rounded-md border border-theme-grey-300 px-4 pb-4 pt-6 text-center">
-      <div className="inline-block rounded-full border border-dashed border-theme-grey-300 p-4 text-center">
+    <div className="flex flex-col items-center justify-center space-y-6 rounded-md border px-4 pb-4 pt-6 text-center shadow-lg">
+      <div className="inline-block rounded-full border border-dashed p-4 text-center">
         <RiAddLine />
       </div>
 

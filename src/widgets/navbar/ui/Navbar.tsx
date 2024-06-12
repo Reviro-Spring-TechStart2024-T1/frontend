@@ -30,6 +30,13 @@ export const Navbar = () => {
 
   const pathname = usePathname();
 
+  const matchPathname = (link: string) => {
+    const modifiedPathname = pathname.split('/').slice(0, 3).join('/');
+    const modifiedLink = link.split('/').slice(0, 3).join('/');
+
+    return modifiedPathname === modifiedLink;
+  };
+
   const Links =
     user?.role === 'partner'
       ? [
@@ -83,7 +90,7 @@ export const Navbar = () => {
           {
             label: 'Subscription',
             icon: <RiExchangeFundsLine />,
-            path: '/admin/subscription',
+            path: '/admin/subscription/active_plans',
           },
           {
             label: 'Support',
@@ -125,8 +132,9 @@ export const Navbar = () => {
                     className={clsx(
                       'flex flex-col text-theme-grey-400 md:flex-row md:justify-start md:p-3',
                       {
-                        ['bg-theme-blue-400 text-theme-white']:
-                          link.path.length && pathname.includes(link.path),
+                        ['bg-theme-blue-400 text-theme-white']: matchPathname(
+                          link.path,
+                        ),
                       },
                     )}
                   >
