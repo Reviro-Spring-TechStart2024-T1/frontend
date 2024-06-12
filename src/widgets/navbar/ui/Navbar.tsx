@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import {
+  RiExchangeFundsLine,
   RiFileListLine,
   RiPieChart2Line,
   RiQrCodeLine,
@@ -78,6 +79,11 @@ export const Navbar = () => {
             label: 'Menu',
             icon: <RiFileListLine />,
             path: '/admin/menu',
+          },
+          {
+            label: 'Subscription',
+            icon: <RiExchangeFundsLine />,
+            path: '/admin/subscription',
           },
           {
             label: 'Support',
