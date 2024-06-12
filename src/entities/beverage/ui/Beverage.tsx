@@ -10,6 +10,8 @@ import {
   beverage,
   delete_,
   edit,
+  PARTNER_MENU_PATH,
+  PARTNER_ORDER_FOR_CLIENT_PATH,
   setId,
   useDeleteModal,
   useEditModal,
@@ -84,7 +86,7 @@ export const Beverage: FC<TBeverage> = ({
             {description}
           </Typography>
         </div>
-        {pathname === '/partner/menu' && (
+        {pathname === PARTNER_MENU_PATH && (
           <div className="flex divide-x divide-theme-grey-300 border-t">
             <Button
               variant="ghost"
@@ -117,7 +119,7 @@ export const Beverage: FC<TBeverage> = ({
             </Button>
           </div>
         )}
-        {pathname === '/partner/orders/order-for-client' && (
+        {pathname === PARTNER_ORDER_FOR_CLIENT_PATH && (
           <div className="flex divide-x divide-theme-grey-300 border-t">
             <Button
               variant="ghost"

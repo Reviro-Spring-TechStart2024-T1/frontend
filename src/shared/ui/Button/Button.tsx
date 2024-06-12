@@ -14,7 +14,6 @@ const buttonVariants = cva(
     'outline-none',
     'focus-visible:ring-4',
     'transition-all',
-    'rounded-md',
     'disabled:cursor-not-allowed',
   ],
   {
@@ -80,6 +79,7 @@ const buttonVariants = cva(
         sm: ['text-sm', 'py-1', 'px-3'],
         md: ['text-sm', 'py-2', 'px-4'],
         lg: ['text-base', 'py-2.5', 'px-6'],
+        xl: ['text-base', 'py-4', 'px-14'],
       },
       btnType: {
         button: '',
@@ -88,6 +88,10 @@ const buttonVariants = cva(
       width: {
         auto: 'w-auto',
         full: 'w-full',
+      },
+      radius: {
+        md: 'rounded-md',
+        full: 'rounded-full',
       },
     },
     compoundVariants: [
@@ -106,13 +110,23 @@ const buttonVariants = cva(
       size: 'lg',
       btnType: 'button',
       width: 'auto',
+      radius: 'md',
     },
   },
 );
 
 const Button = forwardRef<ComponentProps<'button'>, ButtonProps>(props => {
-  const { children, variant, size, btnType, width, className, ref, ...rest } =
-    props;
+  const {
+    children,
+    variant,
+    size,
+    btnType,
+    width,
+    radius,
+    className,
+    ref,
+    ...rest
+  } = props;
 
   const classNameGenerated = twMerge(
     buttonVariants({
@@ -120,6 +134,7 @@ const Button = forwardRef<ComponentProps<'button'>, ButtonProps>(props => {
       size,
       btnType,
       width,
+      radius,
     }),
     className,
   );

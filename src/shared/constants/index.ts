@@ -1,25 +1,3 @@
-import {
-  CREATE_BEVERAGE_FORM,
-  CREATE_CATEGORY,
-  CREATE_PARTNER,
-  DELETE_BEVERAGE,
-  DELETE_CATEGORY,
-  EDIT_BEVERAGE_FORM,
-  EDIT_CATEGORY,
-  FILE_SIZE,
-  SUPPORTED_FORMATS,
-} from './forms.constants';
-import { NO_INDEX_PAGE } from './seo.constants';
-
-export {
-  CREATE_BEVERAGE_FORM,
-  CREATE_CATEGORY,
-  CREATE_PARTNER,
-  DELETE_BEVERAGE,
-  DELETE_CATEGORY,
-  EDIT_BEVERAGE_FORM,
-  EDIT_CATEGORY,
-  FILE_SIZE,
-  NO_INDEX_PAGE,
-  SUPPORTED_FORMATS,
-};
+export * from './forms.constants';
+export * from './links.constants';
+export * from './seo.constants';
