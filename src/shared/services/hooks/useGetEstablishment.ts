@@ -2,18 +2,17 @@
 
 import useSWRImmutable from 'swr/immutable';
 
-import { fetcher } from '@/shared/helper';
-import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
+import { fetcher, TPartnerEstablishment } from '@/shared';
 
 export const useGetEstablishment = () => {
-  const [establishmentId] = useLocalStorage('establishment_id', null);
-
-  const { data } = useSWRImmutable(
-    `/establishments/${establishmentId}`,
+  const { data, isLoading, error } = useSWRImmutable<TPartnerEstablishment>(
+    `/establishments/partner/`,
     fetcher,
   );
 
   return {
     establishment: data,
+    isLoading,
+    error,
   };
 };

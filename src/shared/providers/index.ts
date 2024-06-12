@@ -1,4 +1,8 @@
 import {
+  ChosenEstablishmentProvider,
+  useChosenEstablishmentContext,
+} from './ChosenEstablishmentProvider';
+import {
   CreateModalContextProvider,
   useCreateModal,
 } from './CreateModalFormProvider';
@@ -13,10 +17,12 @@ import {
 } from './EditModalFormProvider';
 
 export {
+  ChosenEstablishmentProvider,
   CreateModalContextProvider,
   CreatePartnerModalContextProvider,
   DeleteModalProvider,
   EditModalContextProvider,
+  useChosenEstablishmentContext,
   useCreateModal,
   useCreatePartnerModal,
   useDeleteModal,
