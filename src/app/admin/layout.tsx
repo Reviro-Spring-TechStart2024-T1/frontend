@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { ChosenEstablishmentProvider } from '@/shared';
 import { Header } from '@/widgets/header';
 import { Sidebar } from '@/widgets/sidebar';
 
@@ -20,14 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <Header />
-      <main className="grid grid-cols-[128px_auto] md:block">
-        <Sidebar />
+      <ChosenEstablishmentProvider>
+        <Header />
+        <main className="grid grid-cols-[128px_auto] md:block">
+          <Sidebar />
 
-        <div className="min-h-main overflow-auto">
-          <Providers>{children}</Providers>
-        </div>
-      </main>
+          <div className="min-h-main overflow-auto">
+            <Providers>{children}</Providers>
+          </div>
+        </main>
+      </ChosenEstablishmentProvider>
     </>
   );
 }
