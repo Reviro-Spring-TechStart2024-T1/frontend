@@ -1,7 +1,7 @@
 import { useCategories } from './useCategories';
 import { useFilteredOrders } from './useFilteredOrders';
 import { useGetCategory } from './useGetCategory';
-import { useGetEstablishment } from './useGetEstablishment';
+import { useGetEstablishments } from './useGetEstablishments';
 import { useGetOrders } from './useGetOrders';
 import { useOrdersStatistics } from './useOrdersStatistics';
 
@@ -16,7 +16,7 @@ export {
   useCategories,
   useFilteredOrders,
   useGetCategory,
-  useGetEstablishment,
+  useGetEstablishments,
   useGetOrders,
   useOrdersStatistics,
 };

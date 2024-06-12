@@ -4,7 +4,7 @@ import useSWRImmutable from 'swr/immutable';
 
 import { fetcher, TPartnerEstablishment } from '@/shared';
 
-export const useGetEstablishment = () => {
+export const useGetEstablishments = () => {
   const { data, isLoading, error } = useSWRImmutable<TPartnerEstablishment>(
     `/establishments/partner/`,
     fetcher,

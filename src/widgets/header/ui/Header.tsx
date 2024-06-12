@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import { useChosenEstablishmentContext, useLocalStorage } from '@/shared';
-import { useGetEstablishment } from '@/shared/services/hooks/useGetEstablishment';
+import { useGetEstablishments } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 import { Dropdown } from '@/widgets/dropdown';
 import { Navbar } from '@/widgets/navbar';
@@ -15,7 +15,7 @@ import { Navbar } from '@/widgets/navbar';
 export const Header = () => {
   const pathname = usePathname();
 
-  const { establishment } = useGetEstablishment();
+  const { establishment } = useGetEstablishments();
   const [_, setEstablishmentId] = useLocalStorage<number | null>(
     'establishment_id',
     null,
