@@ -78,7 +78,6 @@ export const Form: FC = () => {
 
   const handleEditModalOnClose = () => {
     setModalState(false);
-    // router.push('/partner/menu', { scroll: false });
   };
 
   const handleOnCategoryClicked = () => {

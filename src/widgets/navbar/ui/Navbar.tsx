@@ -16,6 +16,18 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { QR } from '@/entities/qr';
+import {
+  ADMIN_MENU_PATH,
+  ADMIN_PARTNERS_PATH,
+  ADMIN_SUBSCRIPTION_ACTIVE_PATH,
+  ADMIN_SUPPORT_PATH,
+  ADMIN_USERS_PATH,
+  PARTNER_CUSTOMERS_PATH,
+  PARTNER_DASHBOARD_PATH,
+  PARTNER_MENU_PATH,
+  PARTNER_ORDERS_PATH,
+  PARTNER_SUPPORT_PATH,
+} from '@/shared';
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button } from '@/shared/ui';
 
@@ -43,22 +55,22 @@ export const Navbar = () => {
           {
             label: 'Dashboard',
             icon: <RiPieChart2Line />,
-            path: '/partner/dashboard',
+            path: PARTNER_DASHBOARD_PATH,
           },
           {
             label: 'Menu',
             icon: <RiFileListLine />,
-            path: '/partner/menu',
+            path: PARTNER_MENU_PATH,
           },
           {
             label: 'Customers',
             icon: <RiUserSmileLine />,
-            path: '/partner/customer',
+            path: PARTNER_CUSTOMERS_PATH,
           },
           {
             label: 'Orders',
             icon: <RiShoppingCartLine />,
-            path: '/partner/orders',
+            path: PARTNER_ORDERS_PATH,
           },
           {
             label: 'QR',
@@ -68,34 +80,34 @@ export const Navbar = () => {
           {
             label: 'Support',
             icon: <RiQuestionAnswerLine />,
-            path: '/partner/support',
+            path: PARTNER_SUPPORT_PATH,
           },
         ]
       : [
           {
             label: 'Users',
             icon: <RiUserSmileLine />,
-            path: '/admin/users',
+            path: ADMIN_USERS_PATH,
           },
           {
             label: 'Partners',
             icon: <RiTeamLine />,
-            path: '/admin/partners',
+            path: ADMIN_PARTNERS_PATH,
           },
           {
             label: 'Menu',
             icon: <RiFileListLine />,
-            path: '/admin/menu',
+            path: ADMIN_MENU_PATH,
           },
           {
             label: 'Subscription',
             icon: <RiExchangeFundsLine />,
-            path: '/admin/subscription/active_plans',
+            path: ADMIN_SUBSCRIPTION_ACTIVE_PATH,
           },
           {
             label: 'Support',
             icon: <RiQuestionAnswerLine />,
-            path: '/admin/support',
+            path: ADMIN_SUPPORT_PATH,
           },
         ];
 

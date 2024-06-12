@@ -7,7 +7,11 @@ import { useRouter } from 'next/navigation';
 import { Categories, TCategory } from '@/entities/category';
 import { SubmitButton } from '@/features';
 import { FindCustomerForm } from '@/features/find-customer-form';
-import { useCategories, useOrderForClient } from '@/shared';
+import {
+  PARTNER_ORDERS_PATH,
+  useCategories,
+  useOrderForClient,
+} from '@/shared';
 import { Container, Input } from '@/shared/ui';
 import { BeverageList } from '@/widgets/beverage-list';
 
@@ -47,7 +51,7 @@ export const OrderForClient: FC<{ bev_id: string; customer_id: string }> = ({
     if (isSuccess) {
       toast.success('Order has been successfully created!');
 
-      router.push('/partner/orders');
+      router.push(PARTNER_ORDERS_PATH);
     }
   }, [isSuccess]);
 

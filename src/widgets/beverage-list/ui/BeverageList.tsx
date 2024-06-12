@@ -8,7 +8,7 @@ import { useSWRConfig } from 'swr';
 
 import { Beverage } from '@/entities/beverage';
 import { TCategory } from '@/entities/category';
-import { useCreateModal } from '@/shared';
+import { PARTNER_ORDER_FOR_CLIENT_PATH, useCreateModal } from '@/shared';
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 import { useCreateMenu, useMenu } from '@/widgets/beverage-list';
@@ -69,7 +69,7 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
       )}
       {menu && (
         <>
-          {pathname !== '/partner/orders/order-for-client' && (
+          {pathname !== PARTNER_ORDER_FOR_CLIENT_PATH && (
             <div className="flex justify-end">
               <Button variant="primary" onClick={() => setModalState(true)}>
                 <Typography variant="paragraph">Create beverage</Typography>

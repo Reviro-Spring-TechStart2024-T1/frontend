@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 
+import { ESTABLISHMENT_PATH, PARTNER_DASHBOARD_PATH } from '@/shared/constants';
 import { useLocalStorage } from '@/shared/helper';
 
 import { authorize } from '../api/authorize';
@@ -20,8 +21,8 @@ export const useLogin = () => {
 
       if (data?.role === 'partner') {
         establishment_id
-          ? router.push('/partner/dashboard')
-          : router.push('/establishment');
+          ? router.push(PARTNER_DASHBOARD_PATH)
+          : router.push(ESTABLISHMENT_PATH);
       } else {
         router.push('/admin/menu');
       }

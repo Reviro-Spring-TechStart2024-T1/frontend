@@ -4,7 +4,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import { FilterItem } from '@/features/filter';
-import { dateToDayHour, TOrder, useGetBeverages, useGetOrders } from '@/shared';
+import {
+  dateToDayHour,
+  PARTNER_ORDER_FOR_CLIENT_PATH,
+  TOrder,
+  useGetBeverages,
+  useGetOrders,
+} from '@/shared';
 import { Button, Container, Typography } from '@/shared/ui';
 import { Select } from '@/shared/ui/Select';
 import { ColumnsType, Table } from '@/shared/ui/Table';
@@ -71,7 +77,7 @@ export default function Page() {
     <Container title="Incoming orders">
       <div className="flex justify-end">
         <Button variant="primary">
-          <Link href="/partner/orders/order-for-client">Order for client</Link>
+          <Link href={PARTNER_ORDER_FOR_CLIENT_PATH}>Order for client</Link>
         </Button>
       </div>
 

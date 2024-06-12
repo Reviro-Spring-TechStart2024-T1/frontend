@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Search } from '@/features/search';
-import { Customer, useGetCustomers } from '@/shared';
+import { Customer, PARTNER_CUSTOMERS_PATH, useGetCustomers } from '@/shared';
 import { Typography } from '@/shared/ui';
 import { Container } from '@/shared/ui/Container/Container';
 import { ColumnsType, Table } from '@/shared/ui/Table';
@@ -24,7 +24,9 @@ export default function CustomerData() {
         return (
           <div
             className="flex flex-col"
-            onClick={() => router.push(`/partner/customer/${record.id}`)}
+            onClick={() =>
+              router.push(`${PARTNER_CUSTOMERS_PATH}/${record.id}`)
+            }
           >
             <Typography
               variant="caption"
