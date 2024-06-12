@@ -10,7 +10,11 @@ import { useSWRConfig } from 'swr';
 import { Categories, TCategory } from '@/entities/category';
 import { SubmitButton } from '@/features';
 import { createBeverage } from '@/features/add-beverage-form';
-import { IUserJwtPayload, useCategories } from '@/shared';
+import {
+  IUserJwtPayload,
+  useCategories,
+  useChosenEstablishmentContext,
+} from '@/shared';
 import {
   addImage,
   CREATE_BEVERAGE_FORM,
@@ -51,10 +55,14 @@ export const Form: FC = () => {
     },
   };
 
-  const [menuId] = useLocalStorage('menu_id', null);
+  const { chosenEstablishment } = useChosenEstablishmentContext();
   const [user] = useLocalStorage<IUserJwtPayload | null>('current_user', null);
 
-  const createBeverageWithId = createBeverage.bind(null, +menuId!, user!);
+  const createBeverageWithId = createBeverage.bind(
+    null,
+    chosenEstablishment?.menu_id!,
+    user!,
+  );
   const [formState, formAction] = useFormState(
     createBeverageWithId,
     initialState,
@@ -105,7 +113,7 @@ export const Form: FC = () => {
 
   useEffect(() => {
     if (formState.message === 'success') {
-      mutate(`/menus/${menuId}/`);
+      mutate(`/menus/${chosenEstablishment?.menu_id}/`);
       setModalState(false);
       formRef.current?.reset();
       toast.success('New drink has been successfully added!');

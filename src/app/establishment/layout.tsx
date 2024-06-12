@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { ChosenEstablishmentProvider } from '@/shared';
+
 import { Providers } from '../providers';
 
 export const metadata: Metadata = {
@@ -17,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <div className="min-h-main overflow-auto">
-      <Providers>{children}</Providers>
+      <Providers>
+        <ChosenEstablishmentProvider>{children}</ChosenEstablishmentProvider>
+      </Providers>
     </div>
   );
 }

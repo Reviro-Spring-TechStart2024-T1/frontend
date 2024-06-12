@@ -8,6 +8,7 @@ import {
   dateToDayHour,
   PARTNER_ORDER_FOR_CLIENT_PATH,
   TOrder,
+  useChosenEstablishmentContext,
   useGetBeverages,
   useGetOrders,
 } from '@/shared';
@@ -24,8 +25,10 @@ export default function Page() {
     status: null,
     time: null,
   });
+  const { chosenEstablishment } = useChosenEstablishmentContext();
   const { beveragesOptions } = useGetBeverages();
   const { data, isLoading } = useGetOrders(
+    chosenEstablishment?.id,
     currentPage,
     10,
     search,

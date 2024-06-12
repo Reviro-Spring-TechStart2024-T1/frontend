@@ -14,6 +14,7 @@ import {
   useFormik,
 } from 'formik';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 import { GoogleMap } from '@/entities/map';
 import {
@@ -25,11 +26,22 @@ import {
   useMonitorTimePicker,
 } from '@/features/partner-info-form';
 import { SubmitButton } from '@/features/submit-form';
-import { addImage, delete_, download, Error, useCloseForm } from '@/shared';
+import {
+  addImage,
+  delete_,
+  Error,
+  ESTABLISHMENT_EDIT_PATH,
+  ImageUploaderWithCrop,
+  useChosenEstablishmentContext,
+  useCloseForm,
+} from '@/shared';
 import { Button, ExtendedFieldProps, Input, Typography } from '@/shared';
 import { useCreateEstablishment } from '@/shared/services/mutations/useCreateEstablishment';
+import { InputProps } from '@/shared/ui/Input/types/Input.types';
 
 export const Form = () => {
+  const pathname = usePathname();
+
   const { trigger, isMutating, error } = useCreateEstablishment(); //NOTE - POST establishment
 
   const [startTimepicker, setStartTimepicker] = useState<Dayjs | null>(null); //NOTE - MUI Timepicker state in dayjs
@@ -43,13 +55,15 @@ export const Form = () => {
 
   const errorRef = useRef<HTMLDivElement | null>(null);
 
+  const { chosenEstablishment } = useChosenEstablishmentContext();
+
   const [latitude, setLatitude] = useState(42.87656); //SECTION - Inputs' data
   const [longitude, setLongitude] = useState(74.588274);
   const [startHappyHours, setStartHappyHours] = useState('');
   const [endHappyHours, setEndHappyHours] = useState(''); //!SECTION
 
   const [selectedImage, setSelectedImage] = useState(''); //NOTE - Image's interactive data
-  const [imageName, setImageName] = useState('Choose image');
+  const [imageName, setImageName] = useState('Choose logo');
 
   const [isGoogleMapActive, setIsGoogleMapActive] = useState(false); //NOTE - Google Map and Timepicker modal windows' states
   const [isStartPickerActive, setIsStartPickerActive] = useState(false);
@@ -77,7 +91,7 @@ export const Form = () => {
   }: TEstablishmentInfoForm) => {
     if (logo)
       trigger({
-        owner: '7', //FIXME - HARDCODE - maybe verify token on server side, send it to client, so we can use user_id which is inside accessToken?
+        owner: '5', //FIXME - HARDCODE - maybe verify token on server side, send it to client, so we can use user_id which is inside accessToken?
         name,
         email,
         description,
@@ -109,7 +123,14 @@ export const Form = () => {
     onSubmit: handleCreateEstablishment,
     validationSchema: EstablishmentInfoSchema,
   });
-  const { setFieldValue, handleSubmit, handleReset } = establishmentInfoFormik;
+  const { setFieldValue, handleSubmit, handleReset, values } =
+    establishmentInfoFormik;
+
+  const handleOnImageCropped = (croppedFile: File) => {
+    setSelectedImage(URL.createObjectURL(croppedFile));
+    setImageName(croppedFile.name);
+    setFieldValue('logo', croppedFile);
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -125,7 +146,7 @@ export const Form = () => {
       URL.revokeObjectURL(selectedImage);
     }
     setSelectedImage('');
-    setImageName('Choose image');
+    setImageName('Choose logo');
     setFieldValue('logo', null);
   };
 
@@ -133,9 +154,11 @@ export const Form = () => {
     field,
     type,
     placeholder,
+    label = placeholder,
     className,
     ref,
     value,
+    defaultValue,
     onClick,
   }: ExtendedFieldProps): JSX.Element => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -147,17 +170,47 @@ export const Form = () => {
     };
 
     return (
-      <Input
-        type={type}
-        placeholder={placeholder}
-        className={className}
-        value={type === 'file' ? undefined : value ? value : field.value}
-        onChange={handleChange}
-        onClick={onClick}
-        ref={ref}
-      />
+      <label>
+        <Typography variant="caption">{label}</Typography>
+        <Input
+          type={type as InputProps['type']}
+          placeholder={placeholder}
+          className={clsx(className, 'w-full')}
+          value={value}
+          onChange={handleChange}
+          onClick={onClick}
+          ref={ref}
+          defaultValue={defaultValue}
+        />
+      </label>
     );
   };
+
+  useEffect(() => {
+    if (chosenEstablishment && pathname === ESTABLISHMENT_EDIT_PATH) {
+      setFieldValue('name', chosenEstablishment.name || '');
+      setFieldValue('latitude', chosenEstablishment.latitude.toString() || '');
+      setFieldValue(
+        'longitude',
+        chosenEstablishment.longitude.toString() || '',
+      );
+      setFieldValue('description', chosenEstablishment.description || '');
+      setFieldValue(
+        'happy_hour_start',
+        chosenEstablishment.happy_hour_start || '',
+      );
+      setFieldValue('happy_hour_end', chosenEstablishment.happy_hour_end || '');
+      setFieldValue('street_name', chosenEstablishment.street_name || '');
+      setFieldValue('street_number', chosenEstablishment.street_number || '');
+      setFieldValue('email', chosenEstablishment.email || '');
+      setFieldValue('phone_number', chosenEstablishment.phone_number || '');
+    }
+  }, [chosenEstablishment]);
+
+  useEffect(() => {
+    setFieldValue('latitude', latitude.toFixed(8));
+    setFieldValue('longitude', longitude.toFixed(8));
+  }, [latitude, latitude]);
 
   useEffect(() => {
     startHappyHours && setFieldValue('happy_hour_start', startHappyHours);
@@ -199,7 +252,7 @@ export const Form = () => {
         className="grid grid-cols-2 gap-10 rounded-md bg-white p-9 lg:grid-cols-1 sm:p-4"
       >
         <div className="flex flex-col gap-[25px]">
-          <Typography variant="paragraph">General</Typography>
+          <Typography variant="h4">General</Typography>
           {error && (
             <div ref={errorRef}>
               <>
@@ -218,40 +271,40 @@ export const Form = () => {
             {(props: FieldProps) =>
               renderInput({
                 ...props,
+                form: props.form as any,
                 type: 'text',
                 placeholder: 'Name',
+                value: props.field.value,
               })
             }
           </Field>
           <ErrorMessage name="name" render={msg => <Error>{msg}</Error>} />
-          <Field name="latitude">
-            {({ field }: FieldProps) => (
-              <Input type="hidden" aria-label="Latitude" {...field} />
-            )}
-          </Field>
+          <label>
+            <Typography variant="caption">Location</Typography>
+            <Input
+              type="text"
+              placeholder="Location"
+              className="w-full cursor-pointer"
+              value={`Lat: ${values.latitude}; Lng: ${values.longitude};`}
+              onClick={() => setIsGoogleMapActive(true)}
+            />
+          </label>
           <ErrorMessage name="latitude" render={msg => <Error>{msg}</Error>} />
-          <Field name="longitude">
-            {({ field }: FieldProps) => (
-              <Input type="hidden" aria-label="Longitude" {...field} />
-            )}
-          </Field>
           <ErrorMessage name="longitude" render={msg => <Error>{msg}</Error>} />
-          <Input
-            type="text"
-            placeholder="Location"
-            readOnly
-            className="cursor-pointer"
-            value={`Lat: ${latitude.toFixed(7) || ''}; Lng: ${longitude.toFixed(7) || ''};`}
-            onClick={() => setIsGoogleMapActive(true)}
-          />
           <Field name="description">
             {(props: FieldProps) => (
-              <TextareaAutosize
-                maxRows={10}
-                onChange={e => setFieldValue(props.field.name, e.target.value)}
-                placeholder="Description"
-                className="resize-none rounded-md border border-theme-grey-200 bg-transparent px-4 py-2.5 text-sm text-theme-black outline-none placeholder:text-sm placeholder:text-theme-grey-400"
-              />
+              <label>
+                <Typography variant="caption">Description</Typography>
+                <TextareaAutosize
+                  maxRows={10}
+                  onChange={e =>
+                    setFieldValue(props.field.name, e.target.value)
+                  }
+                  value={props.field.value}
+                  placeholder="Description"
+                  className="w-full resize-none rounded-md border border-theme-grey-200 bg-transparent px-4 py-2.5 text-sm text-theme-black outline-none placeholder:text-sm placeholder:text-theme-grey-400"
+                />
+              </label>
             )}
           </Field>
           <ErrorMessage
@@ -259,59 +312,43 @@ export const Form = () => {
             render={msg => <Error>{msg}</Error>}
           />
           <div className="relative flex items-center justify-between rounded-md border border-gray-300 p-3">
-            <label>
-              <div className="flex items-center gap-2">
-                <Field name="logo">
-                  {(props: FieldProps) =>
-                    renderInput({
-                      ...props,
-                      type: 'file',
-                      className: 'absolute left-0 top-0 z-10 w-1/4 opacity-0',
-                    })
-                  }
-                </Field>
-                {selectedImage ? (
-                  <Image
-                    src={selectedImage}
-                    alt="selected"
-                    width={40}
-                    height={40}
-                  />
-                ) : (
-                  <Image
-                    src={addImage}
-                    alt="add-image"
-                    width={40}
-                    height={40}
+            <div className="flex items-center gap-2">
+              <Field name="logo">
+                {() => (
+                  <ImageUploaderWithCrop
+                    cropWidth={360}
+                    cropHeight={130}
+                    imageTitle="logo"
+                    onImageCropped={handleOnImageCropped}
                   />
                 )}
-                <Typography variant="paragraph">{imageName}</Typography>
-                <ErrorMessage
-                  name="logo"
-                  render={msg => <Error>{msg}</Error>}
+              </Field>
+              {selectedImage ? (
+                <Image
+                  src={selectedImage}
+                  alt="selected"
+                  width={40}
+                  height={40}
                 />
-              </div>
-            </label>
-            <div className="flex gap-2">
-              {selectedImage && (
-                <Button
-                  variant="none"
-                  size="sm"
-                  btnType="icon"
-                  onClick={handleRemoveImage}
-                >
-                  <Image src={delete_} alt="delete" className="fill-red-500" />
-                </Button>
+              ) : (
+                <Image src={addImage} alt="add-image" width={40} height={40} />
               )}
-              <Button variant="none" size="sm" btnType="button" type="button">
-                {
-                  <Image src={download} alt="download" className="" /> //TODO - Do we need DOWNLOAD button at all?
-                }
-              </Button>
+              <Typography variant="paragraph">{imageName}</Typography>
+              <ErrorMessage name="logo" render={msg => <Error>{msg}</Error>} />
             </div>
+            {selectedImage && (
+              <Button
+                variant="none"
+                size="sm"
+                btnType="icon"
+                onClick={handleRemoveImage}
+              >
+                <Image src={delete_} alt="delete" className="fill-red-500" />
+              </Button>
+            )}
           </div>
         </div>
-        <div className="grid gap-[25px]">
+        <div className="flex flex-col justify-between gap-5">
           <div className="flex flex-col gap-2">
             <Typography variant="h5">Add happy hours</Typography>
             <div className="flex w-full justify-between gap-3">
@@ -344,11 +381,12 @@ export const Form = () => {
                   {(props: FieldProps) =>
                     renderInput({
                       ...props,
+                      form: props.form as any,
                       type: 'text',
                       placeholder: 'Start of happy hours',
                       className: 'w-full',
                       onClick: () => setIsStartPickerActive(true),
-                      value: startHappyHours,
+                      value: props.field.value,
                     })
                   }
                 </Field>
@@ -386,11 +424,12 @@ export const Form = () => {
                   {(props: FieldProps) =>
                     renderInput({
                       ...props,
+                      form: props.form as any,
                       type: 'text',
                       placeholder: 'End of happy hours',
                       className: 'w-full',
                       onClick: () => setIsEndPickerActive(true),
-                      value: endHappyHours,
+                      value: props.field.value,
                     })
                   }
                 </Field>
@@ -407,8 +446,10 @@ export const Form = () => {
               {(props: FieldProps) =>
                 renderInput({
                   ...props,
+                  form: props.form as any,
                   type: 'text',
                   placeholder: 'Street name',
+                  value: props.field.value,
                 })
               }
             </Field>
@@ -420,8 +461,10 @@ export const Form = () => {
               {(props: FieldProps) =>
                 renderInput({
                   ...props,
+                  form: props.form as any,
                   type: 'text',
                   placeholder: 'House number',
+                  value: props.field.value,
                 })
               }
             </Field>
@@ -436,8 +479,10 @@ export const Form = () => {
               {(props: FieldProps) =>
                 renderInput({
                   ...props,
+                  form: props.form as any,
                   type: 'email',
                   placeholder: 'Email',
+                  value: props.field.value,
                 })
               }
             </Field>
@@ -446,9 +491,12 @@ export const Form = () => {
               {(props: FieldProps) =>
                 renderInput({
                   ...props,
+                  form: props.form as any,
                   ref: inputRef,
                   type: 'text',
+                  label: 'Phone',
                   placeholder: '+996-___-______',
+                  value: props.field.value,
                 })
               }
             </Field>
@@ -457,9 +505,7 @@ export const Form = () => {
               render={msg => <Error>{msg}</Error>}
             />
           </div>
-          <div className="flex justify-end">
-            <SubmitButton isMutating={isMutating}>Create</SubmitButton>
-          </div>
+          <SubmitButton isMutating={isMutating}>Create</SubmitButton>
         </div>
       </form>
     </FormikProvider>

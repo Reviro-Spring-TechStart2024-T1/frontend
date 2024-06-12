@@ -129,3 +129,34 @@ export interface AdminPartnersResponse {
 }
 
 export type TOrderTimePeriod = 'Weekly' | 'Monthly' | 'Quarterly' | 'Yearly';
+
+export type TPartnerEstablishment = {
+  count: number;
+  next: string;
+  previous: string;
+  results: TEstablishment[];
+};
+
+export type TEstablishment = {
+  banners: TBanner[];
+  description: string;
+  email: string;
+  happy_hour_start: string;
+  happy_hour_end: string;
+  latitude: string;
+  longitude: string;
+  id: number;
+  logo: string | null;
+  name: string;
+  owner: number;
+  menu_id: number;
+  phone_number: string;
+  street_name: string;
+  street_number: string;
+};
+
+export type TBanner = {
+  establishment: number;
+  id: number;
+  url: string;
+};

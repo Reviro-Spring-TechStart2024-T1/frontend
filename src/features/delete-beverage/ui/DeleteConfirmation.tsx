@@ -7,7 +7,7 @@ import { useSWRConfig } from 'swr';
 
 import { deleteBeverage } from '@/features/delete-beverage';
 import { SubmitButton } from '@/features/submit-form';
-import { IUserJwtPayload } from '@/shared';
+import { IUserJwtPayload, useChosenEstablishmentContext } from '@/shared';
 import { DELETE_BEVERAGE, useCloseForm, useDeleteModal } from '@/shared';
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
@@ -25,7 +25,7 @@ export const DeleteConfirmation = () => {
     setModalState(false);
   };
 
-  const [menuId] = useLocalStorage('menu_id', null);
+  const { chosenEstablishment } = useChosenEstablishmentContext();
   const [user] = useLocalStorage<IUserJwtPayload | null>('current_user', null);
 
   const deleteBeverateWithId = deleteBeverage.bind(null, +id!, user!);
@@ -36,7 +36,7 @@ export const DeleteConfirmation = () => {
 
   useEffect(() => {
     if (formState.message === 'success') {
-      mutate(`/menus/${menuId}/`);
+      mutate(`/menus/${chosenEstablishment?.menu_id}/`);
       setModalState(false);
     }
   }, [formState, setModalState]);

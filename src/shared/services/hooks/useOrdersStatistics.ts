@@ -11,9 +11,16 @@ import {
   TOrderTimePeriod,
 } from '@/shared';
 
-export const useOrdersStatistics = (timePeriod: TOrderTimePeriod) => {
+export const useOrdersStatistics = (
+  establishmentId: number | undefined,
+  timePeriod: TOrderTimePeriod,
+) => {
   const { data: ordersStatistics, isLoading } =
-    useSWR<TOrderStatisticsResponse>(`/orders/partners/stats/`, fetcher);
+    useSWR<TOrderStatisticsResponse>(
+      () =>
+        establishmentId ? `/orders/partners/stats/${establishmentId}/` : null,
+      fetcher,
+    );
 
   const { chartLabels, chartData, overallOrdersQuantity, overallOrdersSum } =
     useMemo(() => {
