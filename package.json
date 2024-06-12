@@ -21,6 +21,7 @@
     "axios": "^1.6.8",
     "chart.js": "^4.4.3",
     "clsx": "^2.1.0",
+    "cropperjs": "^1.6.2",
     "cva": "npm:class-variance-authority",
     "dayjs": "^1.11.10",
     "file-saver": "^2.0.5",
