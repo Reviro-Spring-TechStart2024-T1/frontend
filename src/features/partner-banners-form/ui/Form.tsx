@@ -16,6 +16,8 @@ import {
   Button,
   delete_,
   Error,
+  ESTABLISHMENT_EDIT_PATH,
+  ESTABLISHMENT_PATH,
   ImageUploaderWithCrop,
   Typography,
   useChosenEstablishmentContext,
@@ -83,16 +85,16 @@ export const Form = () => {
               'grid-cols-1 grid-rows-[100px]':
                 !chosenEstablishment ||
                 chosenEstablishment.banners.length === 0 ||
-                pathname === '/establishment',
+                pathname === ESTABLISHMENT_PATH,
               'grid-cols-3':
                 chosenEstablishment?.banners?.length !== undefined &&
                 chosenEstablishment?.banners?.length > 0 &&
-                pathname === '/establishment/edit',
+                pathname === ESTABLISHMENT_EDIT_PATH,
             },
           )}
         >
           {!chosenEstablishment && <div>Loading...</div>}
-          {pathname === '/establishment' ||
+          {pathname === ESTABLISHMENT_PATH ||
             (chosenEstablishment?.banners.length === 0 && (
               <Typography variant="h3">No banners. Upload some!</Typography>
             ))}

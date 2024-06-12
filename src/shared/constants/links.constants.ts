@@ -1,4 +1,5 @@
 export const ESTABLISHMENT_PATH = '/establishment';
+export const ESTABLISHMENT_EDIT_PATH = '/establishment/edit';
 
 export const PARTNER_DASHBOARD_PATH = '/partner/dashboard';
 export const PARTNER_MENU_PATH = '/partner/menu';

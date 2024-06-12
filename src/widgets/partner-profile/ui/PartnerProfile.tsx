@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import { Form as EstablishmentBannersForm } from '@/features/partner-banners-form';
 import { Form as EstablishmentInfoForm } from '@/features/partner-info-form';
+import { ESTABLISHMENT_EDIT_PATH, ESTABLISHMENT_PATH } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 
 export const PartnerProfile = () => {
@@ -16,15 +17,15 @@ export const PartnerProfile = () => {
           <Typography variant="h2">Establishment details</Typography>
 
           <Typography variant="h5" className="text-theme-grey-500">
-            {pathname === '/establishment' && 'Create establishment'}
-            {pathname === '/establishment/edit' && 'Edit establishment'}
+            {pathname === ESTABLISHMENT_PATH && 'Create establishment'}
+            {pathname === ESTABLISHMENT_EDIT_PATH && 'Edit establishment'}
           </Typography>
         </div>
         <Button variant="outline">
           <Link
-            href={`${pathname === '/establishment' ? '/establishment/edit' : '/establishment'}`}
+            href={`${pathname === ESTABLISHMENT_PATH ? ESTABLISHMENT_EDIT_PATH : ESTABLISHMENT_PATH}`}
           >
-            {pathname === '/establishment'
+            {pathname === ESTABLISHMENT_PATH
               ? 'Edit establishments'
               : 'Create an establishment'}
           </Link>

@@ -30,6 +30,7 @@ import {
   addImage,
   delete_,
   Error,
+  ESTABLISHMENT_EDIT_PATH,
   ImageUploaderWithCrop,
   useChosenEstablishmentContext,
   useCloseForm,
@@ -186,7 +187,7 @@ export const Form = () => {
   };
 
   useEffect(() => {
-    if (chosenEstablishment && pathname === '/establishment/edit') {
+    if (chosenEstablishment && pathname === ESTABLISHMENT_EDIT_PATH) {
       setFieldValue('name', chosenEstablishment.name || '');
       setFieldValue('latitude', chosenEstablishment.latitude.toString() || '');
       setFieldValue(
