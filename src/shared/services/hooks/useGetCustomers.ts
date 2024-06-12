@@ -6,17 +6,25 @@ import { fetcher } from '@/shared/helper';
 
 import { CustomersResponse } from '../types';
 
-export const useGetCustomers = (page: number, limit: number, search = '') => {
+export const useGetCustomers = (
+  establishmentId: number | undefined,
+  page: number,
+  limit: number,
+  search = '',
+) => {
   const offset = (page - 1) * limit;
 
   const { data: customersData, isLoading } = useSWR<CustomersResponse>(
-    `/orders/partner-customers/?offset=${offset}&limit=${limit}&search=${search}`,
+    () =>
+      establishmentId
+        ? `/orders/partners-customers/${establishmentId}/?offset=${offset}&limit=${limit}&search=${search}`
+        : null,
     fetcher,
     { keepPreviousData: true },
   );
 
   useSWR(
-    `/orders/partner-customers/?offset=${offset + limit}&limit=${limit}&search=${search}`,
+    `/orders/partners-customers/?offset=${offset + limit}&limit=${limit}&search=${search}`,
     fetcher,
   );
 

@@ -11,7 +11,12 @@ import { TBeverage } from '@/entities/beverage';
 import { TCategory } from '@/entities/category';
 import { SubmitButton } from '@/features';
 import { editBeverage } from '@/features/edit-beverage-form';
-import { IUserJwtPayload, useCategories } from '@/shared';
+import {
+  IUserJwtPayload,
+  useCategories,
+  useChosenEstablishmentContext,
+  useGetCategory,
+} from '@/shared';
 import {
   addImage,
   delete_,
@@ -25,11 +30,15 @@ import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
 export const Form: FC = () => {
-  const [menuId] = useLocalStorage('menu_id', null);
+  const { chosenEstablishment } = useChosenEstablishmentContext();
   const { isActive, setModalState } = useEditModal();
 
+  const [url, setUrl] = useState<string | null>(null);
+
+  const { data: beverage, isLoading } = useBeverages<TBeverage>(url!);
   const [currentPage, setCurrentPage] = useState(1);
   const { categories } = useCategories(currentPage, 10);
+  const { categoryWithId } = useGetCategory(beverage?.id);
 
   const [isCategoryListActive, setIsCategoryListActive] = useState(false);
   const [category, setCategory] = useState<Partial<TCategory>>({
@@ -60,7 +69,12 @@ export const Form: FC = () => {
 
   const [user] = useLocalStorage<IUserJwtPayload | null>('current_user', null);
 
-  const editBeverageWithId = editBeverage.bind(null, +id!, +menuId!, user!);
+  const editBeverageWithId = editBeverage.bind(
+    null,
+    +id!,
+    chosenEstablishment?.menu_id!,
+    user!,
+  );
   const [formState, formAction] = useFormState(
     editBeverageWithId,
     initialState,
@@ -68,12 +82,8 @@ export const Form: FC = () => {
 
   const { mutate } = useSWRConfig();
 
-  const [url, setUrl] = useState<string | null>(null);
-
-  const { data: beverage, isLoading } = useBeverages<TBeverage>(url!);
-
   useLayoutEffect(() => {
-    id && setUrl(`${process.env.NEXT_PUBLIC_API_URL}/beverages/${id}`);
+    id && setUrl(`${process.env.NEXT_PUBLIC_API_URL}/beverages/${id}/`);
   }, [id]);
 
   const handleEditModalOnClose = () => {
@@ -119,7 +129,7 @@ export const Form: FC = () => {
 
   useEffect(() => {
     if (formState.message === 'success') {
-      mutate(`/menus/${menuId}/`);
+      mutate(`/menus/${chosenEstablishment?.menu_id}/`);
       setModalState(false);
     }
     console.log(formState, 'edit');
@@ -169,7 +179,7 @@ export const Form: FC = () => {
                     type="hidden"
                     name="category"
                     value={category.id}
-                    defaultValue={categories[+beverage.category - 1].id}
+                    defaultValue={categoryWithId?.id}
                   />
 
                   <Input
@@ -179,7 +189,7 @@ export const Form: FC = () => {
                       'border-red-400': formState.errors?.category,
                     })}
                     value={category.name}
-                    defaultValue={categories[+beverage.category - 1].name}
+                    defaultValue={categoryWithId?.name}
                     onClick={handleOnCategoryClicked}
                   />
                 </>

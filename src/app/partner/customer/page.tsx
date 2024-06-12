@@ -4,7 +4,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Search } from '@/features/search';
-import { Customer, PARTNER_CUSTOMERS_PATH, useGetCustomers } from '@/shared';
+import {
+  Customer,
+  PARTNER_CUSTOMERS_PATH,
+  useChosenEstablishmentContext,
+  useGetCustomers,
+} from '@/shared';
 import { Typography } from '@/shared/ui';
 import { Container } from '@/shared/ui/Container/Container';
 import { ColumnsType, Table } from '@/shared/ui/Table';
@@ -13,7 +18,13 @@ export default function CustomerData() {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
-  const { data, isLoading } = useGetCustomers(currentPage, 10, search);
+  const { chosenEstablishment } = useChosenEstablishmentContext();
+  const { data, isLoading } = useGetCustomers(
+    chosenEstablishment?.id,
+    currentPage,
+    10,
+    search,
+  );
 
   const columns: ColumnsType<Customer> = [
     { key: 'id', title: '№' },

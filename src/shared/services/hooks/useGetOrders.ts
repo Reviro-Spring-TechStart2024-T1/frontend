@@ -6,6 +6,7 @@ import { fetcher } from '@/shared';
 import { TOrdersResponse } from '@/shared/services';
 
 export const useGetOrders = (
+  establishmentId: number | undefined,
   page: number,
   limit: number,
   search = '',
@@ -16,7 +17,10 @@ export const useGetOrders = (
   const offset = (page - 1) * limit;
 
   const { data: orderData, isLoading } = useSWR<TOrdersResponse>(
-    `/orders/partners/?offset=${offset}&limit=${limit}&id=${search}&beverage__name=${beverage_name}&status=${status}&time=${time}`,
+    () =>
+      establishmentId
+        ? `/orders/partners/establishments/${establishmentId}/?offset=${offset}&limit=${limit}&id=${search}&beverage__name=${beverage_name}&status=${status}&time=${time}`
+        : null,
     fetcher,
     {
       refreshInterval: 5000,

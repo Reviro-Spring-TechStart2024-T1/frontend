@@ -8,7 +8,11 @@ import { useSWRConfig } from 'swr';
 
 import { Beverage } from '@/entities/beverage';
 import { TCategory } from '@/entities/category';
-import { PARTNER_ORDER_FOR_CLIENT_PATH, useCreateModal } from '@/shared';
+import {
+  PARTNER_ORDER_FOR_CLIENT_PATH,
+  useChosenEstablishmentContext,
+  useCreateModal,
+} from '@/shared';
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 import { useCreateMenu, useMenu } from '@/widgets/beverage-list';
@@ -17,15 +21,19 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
   category,
 }) => {
   const { setModalState } = useCreateModal();
+  const { chosenEstablishment } = useChosenEstablishmentContext();
 
-  const [establishmentId] = useLocalStorage('establishment_id', null);
-  const [menuId, setMenuId] = useLocalStorage<number | null>('menu_id', null);
+  const [_, setMenuId] = useLocalStorage<number | null>('menu_id', null);
 
   const pathname = usePathname();
 
   const { mutate } = useSWRConfig();
 
-  const { data: menu, isLoading, error } = useMenu(menuId);
+  const {
+    data: menu,
+    isLoading,
+    error,
+  } = useMenu(chosenEstablishment?.menu_id);
   const { trigger } = useCreateMenu();
 
   const beverages = useMemo(() => {
@@ -39,17 +47,16 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
   }, [category, menu?.beverages]);
 
   const handleOnCreateMenu = async () => {
-    if (establishmentId) {
+    if (chosenEstablishment) {
       const res = await trigger({
-        establishment: establishmentId,
+        establishment: chosenEstablishment.id,
       });
 
       setMenuId(res.id);
 
-      mutate(`/menus/${menuId}/`);
+      mutate(`/menus/${res.id}/`);
     }
   };
-  console.log(beverages?.length);
 
   return (
     <>

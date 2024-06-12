@@ -15,7 +15,11 @@ import {
 } from 'chart.js';
 
 import { Filter, FilterOption } from '@/features/filter';
-import { TOrderTimePeriod, useOrdersStatistics } from '@/shared';
+import {
+  TOrderTimePeriod,
+  useChosenEstablishmentContext,
+  useOrdersStatistics,
+} from '@/shared';
 import { Select } from '@/shared/ui/Select';
 import { SelectOption } from '@/shared/ui/Select/types/Select.types';
 import {
@@ -35,10 +39,13 @@ Chart.register(
   Filler,
   LineController,
 );
+
 export const Dashboard = () => {
   const [filterItems, setFilterItems] = useState<
     FilterOption<TOrderTimePeriod> | undefined
   >(() => timeOptions.find(option => option.label === 'Monthly'));
+
+  const { chosenEstablishment } = useChosenEstablishmentContext();
 
   const {
     statistics,
@@ -47,7 +54,7 @@ export const Dashboard = () => {
     overallOrdersQuantity,
     overallOrdersSum,
     isLoading,
-  } = useOrdersStatistics(filterItems?.label!);
+  } = useOrdersStatistics(chosenEstablishment?.id, filterItems?.label!);
 
   const lineChartData = dashboardData(chartLabels, chartData);
 

@@ -10,7 +10,7 @@ export const createMenu = async (
     arg,
   }: {
     arg: {
-      establishment: string;
+      establishment: number;
     };
   },
 ) => {
