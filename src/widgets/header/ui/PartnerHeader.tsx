@@ -12,7 +12,7 @@ import { Button, Typography } from '@/shared/ui';
 import { Dropdown } from '@/widgets/dropdown';
 import { Navbar } from '@/widgets/navbar';
 
-export const Header = () => {
+export const PartnerHeader = () => {
   const pathname = usePathname();
 
   const { establishment } = useGetEstablishments();
@@ -51,7 +51,7 @@ export const Header = () => {
   };
 
   useEffect(() => {
-    if (establishment) {
+    if (establishment?.results.length) {
       setEstablishmentId(establishment?.results[0].id);
       setChosenEstablishment(establishment?.results[0]);
     }

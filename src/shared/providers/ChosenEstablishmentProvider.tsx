@@ -5,9 +5,9 @@ import { createContext, useContext, useState } from 'react';
 import { TEstablishment } from '@/shared';
 
 type TEstablishmentContextProps = {
-  chosenEstablishment: TEstablishment | null;
+  chosenEstablishment: Partial<TEstablishment> | null;
   setChosenEstablishment: React.Dispatch<
-    React.SetStateAction<TEstablishment | null>
+    React.SetStateAction<Partial<TEstablishment> | null>
   >;
 };
 
@@ -30,7 +30,7 @@ export const ChosenEstablishmentProvider = ({
   children: React.ReactNode;
 }) => {
   const [chosenEstablishment, setChosenEstablishment] =
-    useState<TEstablishment | null>(null);
+    useState<Partial<TEstablishment> | null>(null);
 
   return (
     <ChosenEstablishmentContext.Provider
