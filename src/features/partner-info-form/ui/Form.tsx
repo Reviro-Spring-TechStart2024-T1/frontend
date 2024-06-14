@@ -189,10 +189,10 @@ export const Form = () => {
   useEffect(() => {
     if (chosenEstablishment && pathname === ESTABLISHMENT_EDIT_PATH) {
       setFieldValue('name', chosenEstablishment.name || '');
-      setFieldValue('latitude', chosenEstablishment.latitude.toString() || '');
+      setFieldValue('latitude', chosenEstablishment.latitude?.toString() || '');
       setFieldValue(
         'longitude',
-        chosenEstablishment.longitude.toString() || '',
+        chosenEstablishment.longitude?.toString() || '',
       );
       setFieldValue('description', chosenEstablishment.description || '');
       setFieldValue(

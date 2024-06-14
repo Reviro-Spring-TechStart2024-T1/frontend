@@ -13,6 +13,6 @@ export const useGetCategory = (id: number | undefined) => {
 
   return {
     categoryWithId,
-    isLoading,
+    isCategoryLoading: isLoading,
   };
 };

@@ -84,7 +84,7 @@ export const Form = () => {
             {
               'grid-cols-1 grid-rows-[100px]':
                 !chosenEstablishment ||
-                chosenEstablishment.banners.length === 0 ||
+                chosenEstablishment?.banners?.length === 0 ||
                 pathname === ESTABLISHMENT_PATH,
               'grid-cols-3':
                 chosenEstablishment?.banners?.length !== undefined &&
@@ -95,10 +95,10 @@ export const Form = () => {
         >
           {!chosenEstablishment && <div>Loading...</div>}
           {pathname === ESTABLISHMENT_PATH ||
-            (chosenEstablishment?.banners.length === 0 && (
+            (chosenEstablishment?.banners?.length === 0 && (
               <Typography variant="h3">No banners. Upload some!</Typography>
             ))}
-          {chosenEstablishment?.banners.map(banner => (
+          {chosenEstablishment?.banners?.map(banner => (
             <Image
               key={banner.id}
               src={banner.url}

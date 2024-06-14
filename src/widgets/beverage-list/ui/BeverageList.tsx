@@ -47,7 +47,7 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
   }, [category, menu?.beverages]);
 
   const handleOnCreateMenu = async () => {
-    if (chosenEstablishment) {
+    if (chosenEstablishment?.id) {
       const res = await trigger({
         establishment: chosenEstablishment.id,
       });
