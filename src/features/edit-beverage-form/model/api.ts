@@ -30,9 +30,6 @@ const FormSchema = z.object({
     .number({ required_error: 'Quantity is required.' })
     .gte(0, { message: 'Please enter an amount greater or equal than 0.' })
     .min(1, { message: 'Quantity should not be empty.' }),
-  image: z.instanceof(File).refine(file => file.size > 0, {
-    message: 'Image file is required and should not be empty.',
-  }),
 });
 
 export const editBeverage = async (
