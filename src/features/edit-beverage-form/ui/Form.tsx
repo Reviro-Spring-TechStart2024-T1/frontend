@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useEffect, useLayoutEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -21,9 +21,9 @@ import {
   addImage,
   delete_,
   EDIT_BEVERAGE_FORM,
-  useBeverages,
   useCloseForm,
   useEditModal,
+  useGetBeverage,
 } from '@/shared';
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
@@ -33,25 +33,23 @@ export const Form: FC = () => {
   const { chosenEstablishment } = useChosenEstablishmentContext();
   const { isActive, setModalState } = useEditModal();
 
-  const [url, setUrl] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const beverageId = searchParams.get('id'); //NOTE - Beverage id
 
-  const { data: beverage, isLoading } = useBeverages<TBeverage>(url!);
   const [currentPage, setCurrentPage] = useState(1);
+  const { beverage, isBeverageLoading } = useGetBeverage<TBeverage>(beverageId);
   const { categories } = useCategories(currentPage, 10);
-  const { categoryWithId } = useGetCategory(beverage?.id);
+  const { categoryWithId, isCategoryLoading } = useGetCategory(
+    +beverage?.category!,
+  );
 
   const [isCategoryListActive, setIsCategoryListActive] = useState(false);
   const [category, setCategory] = useState<Partial<TCategory>>({
     id: undefined,
     name: undefined,
   });
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null); //NOTE - On edit form there will have to be the beverage's image (no images on backend for beverages)
   const [imageName, setImageName] = useState('Choose image');
-
-  const searchParams = useSearchParams();
-  const id = searchParams.get('id');
-
-  // const router = useRouter();
 
   const initialState = {
     message: '',
@@ -71,7 +69,7 @@ export const Form: FC = () => {
 
   const editBeverageWithId = editBeverage.bind(
     null,
-    +id!,
+    +beverageId!,
     chosenEstablishment?.menu_id!,
     user!,
   );
@@ -81,10 +79,6 @@ export const Form: FC = () => {
   );
 
   const { mutate } = useSWRConfig();
-
-  useLayoutEffect(() => {
-    id && setUrl(`${process.env.NEXT_PUBLIC_API_URL}/beverages/${id}/`);
-  }, [id]);
 
   const handleEditModalOnClose = () => {
     setModalState(false);
@@ -115,6 +109,11 @@ export const Form: FC = () => {
   };
 
   useEffect(() => {
+    categoryWithId &&
+      setCategory({ name: categoryWithId.name, id: categoryWithId.id });
+  }, [categoryWithId]);
+
+  useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
     if (!isActive) {
@@ -130,6 +129,7 @@ export const Form: FC = () => {
   useEffect(() => {
     if (formState.message === 'success') {
       mutate(`/menus/${chosenEstablishment?.menu_id}/`);
+      mutate(`/beverages/${beverageId}/`);
       setModalState(false);
     }
     console.log(formState, 'edit');
@@ -140,14 +140,17 @@ export const Form: FC = () => {
 
   return (
     <>
-      {isLoading && (
-        <div className="flex  min-h-[631px] items-center justify-center">
-          Loading
+      {isBeverageLoading ? (
+        <div className="flex min-h-[500px] items-center justify-center">
+          Loading...
         </div>
-      )}
-
-      {beverage && (
-        <form action={formAction} className="mt-[16px] flex flex-col gap-2">
+      ) : (
+        <form
+          action={formAction}
+          className={clsx('mt-[16px] flex flex-col gap-2', {
+            'min-h-[500px]': isBeverageLoading,
+          })}
+        >
           {formState.errorMessage && (
             <Typography variant="paragraph" className="text-sm text-red-400">
               {formState.errorMessage}
@@ -161,7 +164,7 @@ export const Form: FC = () => {
               className={clsx({
                 'border-red-400': formState.errors?.name,
               })}
-              defaultValue={beverage.name}
+              defaultValue={beverage?.name}
             />
             <Typography variant="paragraph" className="text-sm text-red-400">
               {formState.errors?.name}
@@ -173,27 +176,24 @@ export const Form: FC = () => {
                 setIsCategoryListActive(false);
               }}
             >
-              {categories && (
-                <>
-                  <Input
-                    type="hidden"
-                    name="category"
-                    value={category.id}
-                    defaultValue={categoryWithId?.id}
-                  />
+              <>
+                <Input
+                  type="hidden"
+                  name="category"
+                  value={category.id}
+                  defaultValue={categoryWithId?.id}
+                />
 
-                  <Input
-                    type="text"
-                    placeholder="Category"
-                    className={clsx('w-full', {
-                      'border-red-400': formState.errors?.category,
-                    })}
-                    value={category.name}
-                    defaultValue={categoryWithId?.name}
-                    onClick={handleOnCategoryClicked}
-                  />
-                </>
-              )}
+                <Input
+                  type="text"
+                  placeholder="Category"
+                  className={clsx('w-full', {
+                    'border-red-400': formState.errors?.category,
+                  })}
+                  value={isCategoryLoading ? 'Loading... ' : category.name}
+                  onClick={handleOnCategoryClicked}
+                />
+              </>
 
               <ul
                 className={clsx(
@@ -229,7 +229,7 @@ export const Form: FC = () => {
               className={clsx({
                 'border-red-400': formState.errors?.price,
               })}
-              defaultValue={beverage.price}
+              defaultValue={beverage?.price}
             />
             <Typography variant="paragraph" className="text-sm text-red-400">
               {formState.errors?.price}
@@ -242,7 +242,7 @@ export const Form: FC = () => {
               className={clsx('pb-[50px]', {
                 'border-red-400': formState.errors?.description,
               })}
-              defaultValue={beverage.description}
+              defaultValue={beverage?.description}
             />
             <Typography variant="paragraph" className="text-sm text-red-400">
               {formState.errors?.description}
@@ -250,10 +250,10 @@ export const Form: FC = () => {
 
             <div
               className={clsx(
-                'relative flex items-center justify-between rounded-md border border-gray-300 p-3',
-                {
-                  'border-red-400': formState.errors?.image,
-                },
+                'relative mb-2 flex items-center justify-between rounded-md border border-gray-300 p-2',
+                // {
+                //   'border-red-400': formState.errors?.image, //TODO - As there is update on backend regarding Images of Beverages
+                // },
               )}
             >
               <label>
@@ -293,9 +293,9 @@ export const Form: FC = () => {
                 </Button>
               )}
             </div>
-            <Typography variant="paragraph" className="text-sm text-red-400">
+            {/* <Typography variant="paragraph" className="text-sm text-red-400">
               {formState.errors?.image}
-            </Typography>
+            </Typography> */}
 
             <Input
               type="text"
@@ -304,7 +304,7 @@ export const Form: FC = () => {
               className={clsx({
                 'border-red-400': formState.errors?.in_stock,
               })}
-              defaultValue={beverage.in_stock}
+              defaultValue={beverage?.in_stock}
             />
             <Typography variant="paragraph" className="text-sm text-red-400">
               {formState.errors?.in_stock}
