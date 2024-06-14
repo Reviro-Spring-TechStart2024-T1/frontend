@@ -100,7 +100,7 @@ export const QR: FC<{ isModalActive: boolean; closeModal: () => void }> = ({
             <QRCode
               size={256}
               style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-              value={menuId}
+              value={String(menuId)}
               viewBox={`0 0 256 256`}
               className="p-4"
             />
