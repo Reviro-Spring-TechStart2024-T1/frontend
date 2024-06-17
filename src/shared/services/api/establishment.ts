@@ -1,3 +1,5 @@
+import { extractStructuredErrors } from '@/shared/helper';
+
 import { drinkjoyApi } from '../interceptors';
 
 export const createEstablishment = async (
@@ -62,11 +64,4 @@ export const createEstablishment = async (
   } catch (error: any) {
     throw extractStructuredErrors(error.response.data);
   }
-};
-
-const extractStructuredErrors = (data: Record<string, string[]>) => {
-  return Object.entries(data).map(([key, value]) => {
-    const message = Array.isArray(value) ? value.join(', ') : value; //NOTE - Can also get only the first element value[0]
-    return [key, message];
-  });
 };
