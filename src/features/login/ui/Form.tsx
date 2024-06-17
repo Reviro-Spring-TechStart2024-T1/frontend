@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { RiEyeCloseLine, RiEyeLine } from '@remixicon/react';
 import { ErrorMessage, Field, Form as FormikForm, Formik } from 'formik';
 import Image from 'next/image';
+import Link from 'next/link';
 import * as Yup from 'yup';
 
 import { SubmitButton } from '@/features/submit-form';
@@ -74,6 +75,9 @@ export const Form = () => {
               render={msg => <Error className="mb-6">{msg}</Error>}
             />
             {error && <Error>{error}</Error>}
+            <Typography variant="caption" color="blue" className="text-right">
+              <Link href="/forgot-password">Forgot password?</Link>
+            </Typography>
             <SubmitButton isMutating={isMutating}>Login</SubmitButton>
           </FormikForm>
         </Formik>
