@@ -6,11 +6,13 @@ import { useCreatePartner } from './useCreatePartner';
 import { useCreatePost } from './useCreatePost';
 import { useDeleteCategory } from './useDeleteCategory';
 import { useEditCategory } from './useEditCategory';
+import { useForgotPassword } from './useForgotPassword';
 import { useGetUserByEmail } from './useGetUserByEmail';
 import { useLogin } from './useLogin';
 import { useOrderForClient } from './useOrderForClient';
 import { useOrderStatus } from './useOrderStatus';
 import { useUnblockPartner } from './useUnblockPartner';
+import { useUpdatePassword } from './useUpdatePassword';
 import { useUploadBanners } from './useUploadBanners';
 
 export {
@@ -22,10 +24,12 @@ export {
   useCreatePost,
   useDeleteCategory,
   useEditCategory,
+  useForgotPassword,
   useGetUserByEmail,
   useLogin,
   useOrderForClient,
   useOrderStatus,
   useUnblockPartner,
+  useUpdatePassword,
   useUploadBanners,
 };
