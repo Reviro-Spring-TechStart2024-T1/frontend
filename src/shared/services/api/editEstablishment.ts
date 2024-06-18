@@ -2,24 +2,24 @@ import { extractStructuredErrors } from '@/shared/helper';
 
 import { drinkjoyApi } from '../interceptors';
 
-export const createEstablishment = async (
+export const editEstablishment = async (
   url: string,
   {
     arg,
   }: {
-    arg: {
+    arg: Partial<{
       name: string;
       description: string;
       email: string;
       latitude: string;
       longitude: string;
       phone_number: string;
-      happy_hour_start?: string;
-      happy_hour_end?: string;
+      happy_hour_start: string;
+      happy_hour_end: string;
       street_name: string;
       street_number: string;
       logo: File;
-    };
+    }>;
   },
 ) => {
   try {
