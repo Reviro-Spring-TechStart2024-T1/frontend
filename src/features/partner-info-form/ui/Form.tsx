@@ -91,7 +91,6 @@ export const Form = () => {
   }: TEstablishmentInfoForm) => {
     if (logo)
       trigger({
-        owner: '5', //FIXME - HARDCODE - maybe verify token on server side, send it to client, so we can use user_id which is inside accessToken?
         name,
         email,
         description,
@@ -505,7 +504,9 @@ export const Form = () => {
               render={msg => <Error>{msg}</Error>}
             />
           </div>
-          <SubmitButton isMutating={isMutating}>Create</SubmitButton>
+          <SubmitButton isMutating={isMutating}>
+            {pathname === ESTABLISHMENT_EDIT_PATH ? 'Edit' : 'Create'}
+          </SubmitButton>
         </div>
       </form>
     </FormikProvider>
