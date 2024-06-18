@@ -12,6 +12,6 @@ export const updatePassword = async (
     return data;
   } catch (error: any) {
     console.error('Update password error:', error);
-    throw error.response.data[0];
+    throw error.response.data.detail;
   }
 };
