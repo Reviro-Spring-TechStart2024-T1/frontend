@@ -2,13 +2,14 @@ import { addComment } from './addComment';
 import { authorize } from './authorize';
 import { blockPartner } from './blockPartner';
 import { createCategory } from './createCategory';
+import { createEstablishment } from './createEstablishment';
 import { createOrderForClient } from './createOrderForClient';
 import { createPartner } from './createPartner';
 import { createPost } from './createPost';
 import { deleteCategory } from './deleteCategory';
 import { editCategory } from './editCategory';
+import { editEstablishment } from './editEstablishment';
 import { editOrderStatus } from './editOrderStatus';
-import { createEstablishment } from './establishment';
 import { forgotPassword } from './forgotPassword';
 import { getUserByEmail } from './getUserByEmail';
 import { unblockPartner } from './unblockPartner';
@@ -26,6 +27,7 @@ export {
   createPost,
   deleteCategory,
   editCategory,
+  editEstablishment,
   editOrderStatus,
   forgotPassword,
   getUserByEmail,

@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 
-import { createEstablishment } from '../api/establishment';
+import { createEstablishment } from '../api/createEstablishment';
 
 export const useCreateEstablishment = () => {
   const router = useRouter();

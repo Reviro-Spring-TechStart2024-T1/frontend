@@ -8,7 +8,6 @@ export const createEstablishment = async (
     arg,
   }: {
     arg: {
-      owner: string;
       name: string;
       description: string;
       email: string;
@@ -28,7 +27,6 @@ export const createEstablishment = async (
     const formData = new FormData();
 
     const {
-      owner,
       name,
       description,
       email,
@@ -42,8 +40,7 @@ export const createEstablishment = async (
       logo,
     } = arg;
 
-    formData.append('owner', owner),
-      formData.append('name', name),
+    formData.append('name', name),
       formData.append('description', description),
       formData.append('email', email),
       formData.append('latitude', latitude),
