@@ -39,7 +39,7 @@ export const Form: FC<{ token: string | undefined }> = ({ token }) => {
       <div className="flex w-2/4 flex-col items-center justify-center gap-10 rounded-xl border border-gray-400 bg-[#fdfdfd] p-10">
         <Typography variant="h2">Enter your new password</Typography>
         <Formik initialValues={{ password: '' }} onSubmit={handleSubmit}>
-          <FormikForm className="relative flex flex-col gap-4">
+          <FormikForm className="relative flex w-full flex-col gap-4">
             <div className="relative w-full">
               <Field
                 name="password"
@@ -58,9 +58,7 @@ export const Form: FC<{ token: string | undefined }> = ({ token }) => {
               </Button>
             </div>
             {error && <Error className="text-center">{error}</Error>}
-            <SubmitButton className="" isMutating={isMutating}>
-              Update password
-            </SubmitButton>
+            <SubmitButton isMutating={isMutating}>Update password</SubmitButton>
           </FormikForm>
         </Formik>
       </div>

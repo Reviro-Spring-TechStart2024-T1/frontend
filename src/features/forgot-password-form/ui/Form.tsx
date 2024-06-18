@@ -40,16 +40,11 @@ export const Form = () => {
                   {error}
                 </Error>
               ))}
-            <SubmitButton className="" isMutating={isMutating}>
-              Next
-            </SubmitButton>
+            <SubmitButton isMutating={isMutating}>Next</SubmitButton>
             {data && (
-              <div className="flex gap-2">
+              <div className="flex justify-center gap-2">
                 <RiCheckboxCircleLine className="fill-green-400" />
-                <Typography
-                  variant="caption"
-                  className="text-center text-green-400"
-                >
+                <Typography variant="caption" className="text-green-400">
                   Please, check your email!
                 </Typography>
               </div>
