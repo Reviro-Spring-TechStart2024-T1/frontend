@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { ErrorMessage, Field, FormikProvider, useFormik } from 'formik';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useSWRConfig } from 'swr';
 
 import {
   EstablishmentBannersSchema,
@@ -26,6 +27,7 @@ import {
 
 export const Form = () => {
   const pathname = usePathname();
+  const { mutate } = useSWRConfig();
 
   const { uploadBanner, bannerUploadError, isBannerUploading } =
     useUploadBanners();
@@ -42,6 +44,8 @@ export const Form = () => {
         banner,
         establishmentId: String(chosenEstablishment?.id),
       });
+
+      mutate('/establishments/partner/');
     }
   };
 
@@ -115,8 +119,8 @@ export const Form = () => {
             <Field name="banner">
               {() => (
                 <ImageUploaderWithCrop
-                  cropWidth={700}
-                  cropHeight={300}
+                  cropWidth={354}
+                  cropHeight={393}
                   imageTitle="banner"
                   onImageCropped={handleOnImageCropped}
                 />
