@@ -1,5 +1,6 @@
 import { FormEvent } from 'react';
 
+import { SubmitButton } from '@/features/submit-form';
 import { useCreatePartnerModal } from '@/shared';
 import { useCreatePartner } from '@/shared/services';
 import { Button, Input } from '@/shared/ui';
@@ -37,7 +38,7 @@ export const Form = () => {
           Close
         </Button>
 
-        <Button>{isMutating ? 'Creating...' : 'Create'}</Button>
+        <SubmitButton isMutating={isMutating}>Create</SubmitButton>
       </div>
     </form>
   );
