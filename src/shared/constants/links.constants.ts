@@ -1,6 +1,7 @@
 export const ESTABLISHMENT_PATH = '/establishment';
 export const ESTABLISHMENT_EDIT_PATH = '/establishment/edit';
 
+export const PARTNER_PROFILE_PATH = '/partner/profile';
 export const PARTNER_DASHBOARD_PATH = '/partner/dashboard';
 export const PARTNER_MENU_PATH = '/partner/menu';
 export const PARTNER_CUSTOMERS_PATH = '/partner/customer';

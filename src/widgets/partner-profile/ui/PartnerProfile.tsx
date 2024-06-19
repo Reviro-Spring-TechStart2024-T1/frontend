@@ -1,40 +1,87 @@
 'use client';
 
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useSWRConfig } from 'swr';
 
-import { Form as EstablishmentBannersForm } from '@/features/partner-banners-form';
-import { Form as EstablishmentInfoForm } from '@/features/partner-info-form';
-import { ESTABLISHMENT_EDIT_PATH, ESTABLISHMENT_PATH } from '@/shared';
-import { Button, Typography } from '@/shared/ui';
+import {
+  Button,
+  ESTABLISHMENT_EDIT_PATH,
+  ESTABLISHMENT_PATH,
+  Typography,
+  useChosenEstablishmentContext,
+  useDeleteEstablishment,
+} from '@/shared';
 
 export const PartnerProfile = () => {
-  const pathname = usePathname();
-  return (
-    <div className="profile min-h-[calc(100dvh-144px)] p-10 lg:mx-[56px] lg:my-[72px] lg:p-0 sm:mx-[24px]">
-      <div className="mb-10 flex justify-between">
-        <div>
-          <Typography variant="h2">Establishment details</Typography>
+  const { chosenEstablishment } = useChosenEstablishmentContext();
+  const { data, trigger, error } = useDeleteEstablishment(
+    chosenEstablishment?.id,
+  );
+  const { mutate } = useSWRConfig();
 
-          <Typography variant="h5" className="text-theme-grey-500">
-            {pathname === ESTABLISHMENT_PATH && 'Create establishment'}
-            {pathname === ESTABLISHMENT_EDIT_PATH && 'Edit establishment'}
-          </Typography>
-        </div>
-        <Button variant="outline">
-          <Link
-            href={`${pathname === ESTABLISHMENT_PATH ? ESTABLISHMENT_EDIT_PATH : ESTABLISHMENT_PATH}`}
-          >
-            {pathname === ESTABLISHMENT_PATH
-              ? 'Edit establishments'
-              : 'Create an establishment'}
-          </Link>
-        </Button>
+  const onDelete = () => {
+    trigger();
+  };
+
+  useEffect(() => {
+    if (data) {
+      toast.success(
+        `${chosenEstablishment?.name} has been successfully deleted!`,
+      );
+
+      localStorage.removeItem('establishment_id');
+
+      mutate('/establishments/partner/');
+    }
+  }, [data]);
+
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
+
+  if (!chosenEstablishment?.name) {
+    return (
+      <div className="flex min-h-full flex-col gap-4 items-center justify-center">
+        <Typography variant="h2">No Establishment!</Typography>
+        <Link
+          href={ESTABLISHMENT_PATH}
+          className="rounded-md bg-theme-grey-150 px-4 py-4 transition-colors duration-200 hover:bg-theme-grey-200 active:bg-theme-grey-300"
+        >
+          <Typography variant="h4">Create Establishment</Typography>
+        </Link>
       </div>
+    );
+  }
 
-      <div className="flex flex-col gap-5">
-        <EstablishmentInfoForm />
-        <EstablishmentBannersForm />
+  return (
+    <div className="flex min-h-full flex-col">
+      <div className="flex flex-1 flex-col gap-2">
+        <Typography variant="paragraph">
+          <strong>Establishment name:</strong> {chosenEstablishment?.name}
+        </Typography>
+        <Typography variant="paragraph">
+          <strong>Description:</strong> {chosenEstablishment?.description}
+        </Typography>
+        <Typography variant="paragraph">
+          <strong> Happy hours:</strong> {chosenEstablishment?.happy_hour_start}{' '}
+          - {chosenEstablishment?.happy_hour_end}
+        </Typography>
+        <Typography variant="paragraph">
+          <strong>Email:</strong> {chosenEstablishment?.email}
+        </Typography>
+      </div>
+      <div className="flex justify-end gap-2">
+        <Link
+          href={ESTABLISHMENT_EDIT_PATH}
+          className="rounded-md bg-theme-grey-150 px-4 py-4 transition-colors duration-200 hover:bg-theme-grey-200 active:bg-theme-grey-300"
+        >
+          Edit establishment
+        </Link>
+        <Button variant="delete" onClick={onDelete}>
+          Delete establishment
+        </Button>
       </div>
     </div>
   );

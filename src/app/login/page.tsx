@@ -1,4 +1,12 @@
+import { Metadata } from 'next';
+
 import { LoginForm } from '@/features/login';
+import { NO_INDEX_PAGE } from '@/shared';
+
+export const metadata: Metadata = {
+  title: 'Login',
+  ...NO_INDEX_PAGE,
+};
 
 export default function Page() {
   return (
