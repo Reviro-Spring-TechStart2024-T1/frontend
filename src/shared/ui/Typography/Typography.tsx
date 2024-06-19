@@ -31,6 +31,7 @@ const typographyVariants = cva('', {
       normal: 'normal-case',
       capitalize: 'capitalize',
       uppercase: 'uppercase',
+      lowercase: 'lowercase',
     },
   },
   defaultVariants: {

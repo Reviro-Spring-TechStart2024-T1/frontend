@@ -11,7 +11,11 @@ export type TypographyVariants =
   | 'caption'
   | 'link';
 
-export type TypographyFormats = 'capitalize' | 'uppercase';
+export type TypographyFormats =
+  | 'normal'
+  | 'capitalize'
+  | 'uppercase'
+  | 'lowercase';
 
 export type TypographyColors = 'black' | 'grey' | 'blue';
 
