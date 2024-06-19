@@ -7,13 +7,24 @@ import { createEstablishment } from '../api/createEstablishment';
 
 export const useCreateEstablishment = () => {
   const router = useRouter();
-  return useSWRMutation('/establishments/', createEstablishment, {
-    onError(error: string[][]) {
-      console.log('Error: ', error);
+  const { data, trigger, error, isMutating } = useSWRMutation(
+    '/establishments/',
+    createEstablishment,
+    {
+      onError(error: string[][]) {
+        console.log('Error: ', error);
+      },
+      onSuccess() {
+        console.log('success');
+        router.push('/partner/menu');
+      },
     },
-    onSuccess() {
-      console.log('success');
-      router.push('/partner/menu');
-    },
-  });
+  );
+
+  return {
+    createEstablishmentData: data,
+    createEstablishment: trigger,
+    createEstablishmentError: error,
+    isCreateEstablishmentMutating: isMutating,
+  };
 };

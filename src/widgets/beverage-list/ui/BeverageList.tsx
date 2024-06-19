@@ -54,16 +54,17 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
 
       setMenuId(res.id);
 
-      mutate(`/menus/${res.id}/`);
+      mutate(`/establishments/partner/`);
     }
   };
 
   return (
     <>
+      {error}
       {
         isLoading && <div>Loading...</div> // TODO - Menu Skeleton
       }
-      {error && (
+      {!chosenEstablishment?.menu_id && (
         <div className="flex h-full flex-col items-center justify-center gap-4">
           <Typography variant="h2" className="text-center">
             Establishment does not possess any menu.

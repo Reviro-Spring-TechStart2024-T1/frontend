@@ -1,3 +1,4 @@
+import { TEstablishmentInfoForm } from '@/features/partner-info-form';
 import { extractStructuredErrors } from '@/shared/helper';
 
 import { drinkjoyApi } from '../interceptors';
@@ -7,29 +8,16 @@ export const editEstablishment = async (
   {
     arg,
   }: {
-    arg: Partial<{
-      name: string;
-      description: string;
-      email: string;
-      latitude: string;
-      longitude: string;
-      phone_number: string;
-      happy_hour_start: string;
-      happy_hour_end: string;
-      street_name: string;
-      street_number: string;
-      logo: File;
-    }>;
+    arg: Partial<TEstablishmentInfoForm>;
   },
 ) => {
   try {
     const formData = createFormData(arg);
 
-    const { data } = await drinkjoyApi.post(url, formData, {
+    const { data } = await drinkjoyApi.patch(url, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
 
-    localStorage.setItem('establishment_id', data.id);
     return data;
   } catch (error: any) {
     throw extractStructuredErrors(error.response.data);

@@ -1,3 +1,4 @@
+import { TEstablishmentInfoForm } from '@/features/partner-info-form';
 import { extractStructuredErrors } from '@/shared/helper';
 
 import { drinkjoyApi } from '../interceptors';
@@ -7,19 +8,7 @@ export const createEstablishment = async (
   {
     arg,
   }: {
-    arg: {
-      name: string;
-      description: string;
-      email: string;
-      latitude: string;
-      longitude: string;
-      phone_number: string;
-      happy_hour_start?: string;
-      happy_hour_end?: string;
-      street_name: string;
-      street_number: string;
-      logo: File;
-    };
+    arg: TEstablishmentInfoForm;
   },
 ) => {
   try {

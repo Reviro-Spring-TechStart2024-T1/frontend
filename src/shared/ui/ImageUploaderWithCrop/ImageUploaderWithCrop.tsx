@@ -16,6 +16,7 @@ type ImageUploaderWithCropProps = {
 };
 
 export const ImageUploaderWithCrop: FC<ImageUploaderWithCropProps> = ({
+  //TODO - Make it exquisite
   cropWidth,
   cropHeight,
   imageTitle,
@@ -40,11 +41,11 @@ export const ImageUploaderWithCrop: FC<ImageUploaderWithCropProps> = ({
 
   const handleCrop = () => {
     if (cropperRef.current) {
-      const croppedCanvas = cropperRef.current.getCroppedCanvas({
-        width: cropWidth,
-        height: cropHeight,
-      });
-      croppedCanvas.toBlob(blob => {
+      // const croppedCanvas = cropperRef.current.getCroppedCanvas({
+      //   width: cropWidth,
+      //   height: cropHeight,
+      // });
+      cropperRef.current.getCroppedCanvas().toBlob(blob => {
         if (blob) {
           const croppedFile = new File([blob], `${imageTitle}.jpg`, {
             type: 'image/jpeg',
@@ -59,9 +60,12 @@ export const ImageUploaderWithCrop: FC<ImageUploaderWithCropProps> = ({
   useEffect(() => {
     if (imageSrc && imageRef.current) {
       cropperRef.current = new Cropper(imageRef.current, {
-        aspectRatio: cropWidth / cropHeight,
+        // aspectRatio: cropWidth / cropHeight,
         viewMode: 1,
         autoCropArea: 1,
+        cropBoxResizable: true,
+        cropBoxMovable: true,
+        dragMode: 'move',
       });
     }
     return () => {
@@ -83,15 +87,17 @@ export const ImageUploaderWithCrop: FC<ImageUploaderWithCropProps> = ({
       />
       {imageSrc && (
         <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-70">
-          <div className="relative rounded-lg bg-white p-6 shadow-lg">
-            <Image
-              ref={imageRef}
-              src={imageSrc}
-              width={360}
-              height={130}
-              alt="Source"
-              className="rounded-md"
-            />
+          <div className="relative h-5/6 w-11/12 rounded-lg bg-white p-6 shadow-lg">
+            <div className="relative h-full w-full">
+              <Image
+                ref={imageRef}
+                src={imageSrc}
+                layout="fill"
+                objectFit="contain"
+                alt="Source"
+                className="rounded-md"
+              />
+            </div>
             <div className="mt-4 flex justify-between">
               <Button
                 type="button"

@@ -19,7 +19,7 @@ import { usePathname } from 'next/navigation';
 import { GoogleMap } from '@/entities/map';
 import {
   END_TIME_PICKER,
-  EstablishmentInfoSchema,
+  getEstablishmentInfoSchema,
   GOOGLE_MAP,
   START_TIME_PICKER,
   TEstablishmentInfoForm,
@@ -31,18 +31,32 @@ import {
   delete_,
   Error,
   ESTABLISHMENT_EDIT_PATH,
+  ESTABLISHMENT_PATH,
   ImageUploaderWithCrop,
   useChosenEstablishmentContext,
   useCloseForm,
+  useEditEstablishment,
 } from '@/shared';
 import { Button, ExtendedFieldProps, Input, Typography } from '@/shared';
 import { useCreateEstablishment } from '@/shared/services/mutations/useCreateEstablishment';
 import { InputProps } from '@/shared/ui/Input/types/Input.types';
 
 export const Form = () => {
+  //TODO - Refactor the form (almost 600 lines of code)
   const pathname = usePathname();
 
-  const { trigger, isMutating, error } = useCreateEstablishment(); //NOTE - POST establishment
+  const { chosenEstablishment } = useChosenEstablishmentContext();
+
+  const {
+    createEstablishment,
+    createEstablishmentError,
+    isCreateEstablishmentMutating,
+  } = useCreateEstablishment(); //NOTE - POST establishment
+  const {
+    editEstablishment,
+    editEstablishmentError,
+    isEditEstablishmentMutating,
+  } = useEditEstablishment(chosenEstablishment?.id); //NOTE - PATCH establishment
 
   const [startTimepicker, setStartTimepicker] = useState<Dayjs | null>(null); //NOTE - MUI Timepicker state in dayjs
   const [endTimepicker, setEndTimepicker] = useState<Dayjs | null>(null);
@@ -54,8 +68,6 @@ export const Form = () => {
   });
 
   const errorRef = useRef<HTMLDivElement | null>(null);
-
-  const { chosenEstablishment } = useChosenEstablishmentContext();
 
   const [latitude, setLatitude] = useState(42.87656); //SECTION - Inputs' data
   const [longitude, setLongitude] = useState(74.588274);
@@ -76,33 +88,36 @@ export const Form = () => {
   useCloseForm(START_TIME_PICKER, setIsStartPickerActive);
   useCloseForm(END_TIME_PICKER, setIsEndPickerActive);
 
-  const handleCreateEstablishment = ({
-    name,
-    description,
-    email,
-    phone_number,
-    street_name,
-    street_number,
-    latitude,
-    longitude,
-    happy_hour_start,
-    happy_hour_end,
-    logo,
-  }: TEstablishmentInfoForm) => {
-    if (logo)
-      trigger({
-        name,
-        email,
-        description,
-        phone_number,
-        latitude,
-        longitude,
-        happy_hour_start,
-        happy_hour_end,
-        street_name,
-        street_number,
-        logo,
-      });
+  const [initialValues, setInitialValues] = useState({
+    //SECTION - Initial values of each field for further check to Edit or to Create
+    name: '',
+    description: '',
+    street_name: '',
+    street_number: '',
+    email: '',
+    phone_number: '',
+    latitude: latitude.toString(),
+    longitude: longitude.toString(),
+    happy_hour_start: '',
+    happy_hour_end: '',
+    logo: null,
+  }); //!SECTION
+
+  const handleCreateEstablishment = (values: TEstablishmentInfoForm) => {
+    const changedFields = Object.keys(values).reduce((acc, key) => {
+      const typedKey = key as keyof TEstablishmentInfoForm;
+      if (values[typedKey] !== initialValues[typedKey]) {
+        //@ts-ignore
+        acc[typedKey] = values[typedKey]; //FIXME - key type regarding logo
+      }
+      return acc;
+    }, {} as Partial<TEstablishmentInfoForm>);
+
+    if (pathname === ESTABLISHMENT_EDIT_PATH) {
+      editEstablishment(changedFields);
+    } else {
+      createEstablishment(values);
+    }
   };
 
   const establishmentInfoFormik = useFormik({
@@ -120,7 +135,9 @@ export const Form = () => {
       logo: null,
     },
     onSubmit: handleCreateEstablishment,
-    validationSchema: EstablishmentInfoSchema,
+    validationSchema: getEstablishmentInfoSchema(
+      pathname === ESTABLISHMENT_PATH,
+    ),
   });
   const { setFieldValue, handleSubmit, handleReset, values } =
     establishmentInfoFormik;
@@ -203,6 +220,20 @@ export const Form = () => {
       setFieldValue('street_number', chosenEstablishment.street_number || '');
       setFieldValue('email', chosenEstablishment.email || '');
       setFieldValue('phone_number', chosenEstablishment.phone_number || '');
+
+      setInitialValues({
+        name: chosenEstablishment.name || '',
+        description: chosenEstablishment.description || '',
+        street_name: chosenEstablishment.street_name || '',
+        street_number: chosenEstablishment.street_number || '',
+        email: chosenEstablishment.email || '',
+        phone_number: chosenEstablishment.phone_number || '',
+        latitude: chosenEstablishment.latitude?.toString() || '',
+        longitude: chosenEstablishment.longitude?.toString() || '',
+        happy_hour_start: chosenEstablishment.happy_hour_start || '',
+        happy_hour_end: chosenEstablishment.happy_hour_end || '',
+        logo: null,
+      });
     }
   }, [chosenEstablishment]);
 
@@ -220,9 +251,15 @@ export const Form = () => {
   }, [endHappyHours]);
 
   useEffect(() => {
-    error && errorRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [error]);
-  //TODO - refactor the form
+    createEstablishmentError &&
+      errorRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [createEstablishmentError]);
+
+  useEffect(() => {
+    createEstablishmentError &&
+      errorRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [editEstablishmentError]);
+
   return (
     <FormikProvider value={establishmentInfoFormik}>
       <div
@@ -252,10 +289,26 @@ export const Form = () => {
       >
         <div className="flex flex-col gap-[25px]">
           <Typography variant="h4">General</Typography>
-          {error && (
+          {createEstablishmentError && (
             <div ref={errorRef}>
               <>
-                {error.map(([key, value]) => (
+                Create errors:
+                {createEstablishmentError?.map(([key, value]) => (
+                  <Error key={key}>
+                    <Typography variant="caption" weight="semibold">
+                      {key}
+                    </Typography>
+                    {value}
+                  </Error>
+                ))}
+              </>
+            </div>
+          )}
+          {editEstablishmentError && (
+            <div ref={errorRef}>
+              <>
+                Edit errors:
+                {createEstablishmentError?.map(([key, value]) => (
                   <Error key={key}>
                     <Typography variant="caption" weight="semibold">
                       {key}
@@ -315,8 +368,8 @@ export const Form = () => {
               <Field name="logo">
                 {() => (
                   <ImageUploaderWithCrop
-                    cropWidth={360}
-                    cropHeight={130}
+                    cropWidth={1024}
+                    cropHeight={768}
                     imageTitle="logo"
                     onImageCropped={handleOnImageCropped}
                   />
@@ -504,7 +557,11 @@ export const Form = () => {
               render={msg => <Error>{msg}</Error>}
             />
           </div>
-          <SubmitButton isMutating={isMutating}>
+          <SubmitButton
+            isMutating={
+              isEditEstablishmentMutating || isCreateEstablishmentMutating
+            }
+          >
             {pathname === ESTABLISHMENT_EDIT_PATH ? 'Edit' : 'Create'}
           </SubmitButton>
         </div>
