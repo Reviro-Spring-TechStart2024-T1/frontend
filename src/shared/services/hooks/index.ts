@@ -3,6 +3,7 @@ import { useFilteredOrders } from './useFilteredOrders';
 import { useGetCategory } from './useGetCategory';
 import { useGetEstablishments } from './useGetEstablishments';
 import { useGetOrders } from './useGetOrders';
+import { useGetPlans } from './useGetPlans';
 import { useOrdersStatistics } from './useOrdersStatistics';
 
 export { useCloseForm } from './useCloseForm';
@@ -18,5 +19,6 @@ export {
   useGetCategory,
   useGetEstablishments,
   useGetOrders,
+  useGetPlans,
   useOrdersStatistics,
 };

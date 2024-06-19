@@ -11,6 +11,7 @@ export const Select = ({
   options,
   title,
   any,
+  placeholder,
   onChange,
 }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,8 +32,19 @@ export const Select = ({
         onClick={() => setIsOpen(!isOpen)}
         tabIndex={0}
       >
-        <div className="flex cursor-pointer items-center justify-between rounded-md border border-theme-grey-300 bg-theme-white p-2">
-          <Typography variant="caption">{label}</Typography>
+        <div
+          className={clsx(
+            'flex cursor-pointer items-center justify-between rounded-md border border-theme-grey-200 bg-theme-white p-2',
+            { ['border-theme-grey-300']: isOpen },
+          )}
+        >
+          {label ? (
+            <Typography variant="caption">{label}</Typography>
+          ) : (
+            <Typography variant="caption" color="grey">
+              {placeholder}
+            </Typography>
+          )}
           <RiArrowDownSLine
             size={20}
             className={clsx('text-theme-grey-500', { ['rotate-180']: isOpen })}
@@ -41,7 +53,7 @@ export const Select = ({
 
         <div
           className={clsx(
-            'absolute left-0 z-10 mt-2 hidden max-h-52 w-full overflow-auto rounded-md border border-theme-grey-300 bg-theme-white py-2 shadow-lg',
+            'absolute left-0 z-10 mt-2 hidden max-h-52 w-full overflow-auto rounded-md border border-theme-grey-200 bg-theme-white py-2 shadow-lg',
             { ['!block']: isOpen },
           )}
         >

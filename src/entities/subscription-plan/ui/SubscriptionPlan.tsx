@@ -1,37 +1,28 @@
 import { RiArchiveLine, RiDeleteBinLine, RiEditLine } from '@remixicon/react';
 
-import { Button, Typography } from '@/shared';
+import { Button, Plan, Typography } from '@/shared';
 
-export const SubscriptionPlan = () => {
+export const SubscriptionPlan = (props: Plan) => {
+  const { name, description, price, period } = props;
+
   return (
     <div className="rounded-md border px-4 pb-4 pt-6 shadow-lg">
       <div className="space-y-6">
-        <Typography variant="paragraph" weight="medium">
-          MONTHLY PLAN
+        <Typography variant="paragraph" weight="medium" format="uppercase">
+          {name}
         </Typography>
 
-        <div className="inline-flex gap-10">
-          <div>
-            <Typography variant="h3" weight="medium">
-              $199
-            </Typography>
-            <Typography variant="caption" color="grey">
-              per daily
-            </Typography>
-          </div>
-          <div>
-            <Typography variant="h3" weight="medium">
-              $199
-            </Typography>
-            <Typography variant="caption" color="grey">
-              per month
-            </Typography>
-          </div>
+        <div>
+          <Typography variant="h3" weight="medium">
+            ${price}
+          </Typography>
+          <Typography variant="caption" color="grey" format="lowercase">
+            per {period}
+          </Typography>
         </div>
 
         <Typography variant="caption" color="grey">
-          You’ll get access to all NCAAB Inner Circle Picks, as well as
-          exclusive intel into my top two bets for both march.
+          {description}
         </Typography>
       </div>
 

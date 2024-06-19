@@ -1,4 +1,5 @@
 import { addComment } from './addComment';
+import { addPlan } from './addPlan';
 import { authorize } from './authorize';
 import { blockPartner } from './blockPartner';
 import { createCategory } from './createCategory';
@@ -20,6 +21,7 @@ import { uploadBanners } from './uploadBanners';
 
 export {
   addComment,
+  addPlan,
   authorize,
   blockPartner,
   createCategory,

@@ -1,4 +1,5 @@
 import { useAddComment } from './useAddComment';
+import { useAddPlan } from './useAddPlan';
 import { useBlockPartner } from './useBlockPartner';
 import { useCreateCategory } from './useCreateCategory';
 import { useCreateEstablishment } from './useCreateEstablishment';
@@ -20,6 +21,7 @@ import { useUploadBanners } from './useUploadBanners';
 
 export {
   useAddComment,
+  useAddPlan,
   useBlockPartner,
   useCreateCategory,
   useCreateEstablishment,

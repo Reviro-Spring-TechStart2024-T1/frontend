@@ -5,4 +5,5 @@ export * from './ImageUploaderWithCrop';
 export * from './Input';
 export * from './Pagination';
 export * from './Section';
+export * from './Textarea';
 export * from './Typography';

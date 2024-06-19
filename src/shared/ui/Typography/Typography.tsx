@@ -20,6 +20,7 @@ const typographyVariants = cva('', {
       black: 'text-theme-black',
       grey: 'text-theme-grey-500',
       blue: 'text-theme-blue-300',
+      red: 'text-theme-red-500',
     },
     weight: {
       regular: 'font-normal',
@@ -31,6 +32,7 @@ const typographyVariants = cva('', {
       normal: 'normal-case',
       capitalize: 'capitalize',
       uppercase: 'uppercase',
+      lowercase: 'lowercase',
     },
   },
   defaultVariants: {
