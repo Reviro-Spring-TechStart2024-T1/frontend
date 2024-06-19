@@ -6,7 +6,11 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-import { useChosenEstablishmentContext, useLocalStorage } from '@/shared';
+import {
+  ESTABLISHMENT_EDIT_PATH,
+  useChosenEstablishmentContext,
+  useLocalStorage,
+} from '@/shared';
 import { useGetEstablishments } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 import { Dropdown } from '@/widgets/dropdown';
@@ -15,7 +19,7 @@ import { Navbar } from '@/widgets/navbar';
 export const PartnerHeader = () => {
   const pathname = usePathname();
 
-  const { establishment } = useGetEstablishments();
+  const { establishment, isLoading } = useGetEstablishments();
   const [_, setEstablishmentId] = useLocalStorage<number | null>(
     'establishment_id',
     null,
@@ -127,14 +131,28 @@ export const PartnerHeader = () => {
         </Dropdown>
       ) : null}
 
-      <div className="mx-auto flex h-[76px] max-w-7xl items-center px-8 md:hidden ">
+      <div
+        className={clsx(
+          'mx-auto flex h-[76px] max-w-7xl items-center px-8 md:hidden',
+          {
+            'mx-0 max-w-full justify-between':
+              pathname === ESTABLISHMENT_EDIT_PATH,
+          },
+        )}
+      >
         <div className="flex-1">
           <Typography variant="caption" color="grey">
             Establishment
           </Typography>
         </div>
 
-        {chosenEstablishment ? (
+        {isLoading && <Typography variant="caption">Loading...</Typography>}
+
+        {establishment?.results.length === 0 && (
+          <Typography variant="caption">There is no establishment.</Typography>
+        )}
+
+        {chosenEstablishment && (
           <Button
             variant="none"
             className="flex flex-1 items-center justify-end gap-2"
@@ -166,8 +184,6 @@ export const PartnerHeader = () => {
               <RiProfileLine />
             )}
           </Button>
-        ) : (
-          <div>Loading...</div>
         )}
       </div>
     </header>
