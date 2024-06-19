@@ -1,13 +1,3 @@
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: {
-    template: 'Login | DrinkJoy',
-    default: 'DrinkJoy',
-  },
-  description: '',
-};
-
 export default function LoginLayout({
   children,
 }: Readonly<{
