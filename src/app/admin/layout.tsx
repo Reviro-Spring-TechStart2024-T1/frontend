@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { ChosenEstablishmentProvider } from '@/shared';
 import { AdminHeader } from '@/widgets/header';
 import { Sidebar } from '@/widgets/sidebar';
 
@@ -22,7 +23,9 @@ export default function RootLayout({
     <>
       <AdminHeader />
       <main className="grid grid-cols-[128px_auto] md:block">
-        <Sidebar />
+        <ChosenEstablishmentProvider>
+          <Sidebar />
+        </ChosenEstablishmentProvider>
 
         <div className="min-h-main overflow-auto">
           <Providers>{children}</Providers>

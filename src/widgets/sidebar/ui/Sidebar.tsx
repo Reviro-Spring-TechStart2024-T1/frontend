@@ -3,14 +3,18 @@
 import { RiLogoutBoxRLine } from '@remixicon/react';
 import { useRouter } from 'next/navigation';
 
+import { useChosenEstablishmentContext } from '@/shared';
 import { Logo } from '@/shared/icons/Logo';
 import { Button } from '@/shared/ui';
 import { Navbar } from '@/widgets/navbar';
 
 export const Sidebar = () => {
   const router = useRouter();
+  const { setChosenEstablishment } = useChosenEstablishmentContext();
+
   const logout = () => {
     localStorage.removeItem('current_user');
+    setChosenEstablishment(null);
     router.replace('/login');
   };
 
