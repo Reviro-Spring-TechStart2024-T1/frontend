@@ -6,7 +6,7 @@ import { Providers } from '../providers';
 
 export const metadata: Metadata = {
   title: {
-    template: 'Establishment | DrinkJoy',
+    template: '%s | DrinkJoy',
     default: 'DrinkJoy',
   },
   description: '',
