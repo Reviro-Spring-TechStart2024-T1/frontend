@@ -1,6 +1,6 @@
 'use client';
 
-import { ComponentProps, ReactNode } from 'react';
+import { ComponentProps } from 'react';
 import { RiCloseFill } from '@remixicon/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -8,13 +8,10 @@ import { Button, Typography } from '@/shared/ui';
 
 interface DialogProps extends ComponentProps<'dialog'> {
   title: string;
-  required?: ReactNode;
-  onSubmit?: () => void;
-  onClose?: () => void;
 }
 
 export const Dialog = (props: DialogProps) => {
-  const { title, required = true, onSubmit, onClose, children } = props;
+  const { title, children } = props;
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -22,14 +19,6 @@ export const Dialog = (props: DialogProps) => {
 
   const handleCloseDialog = () => {
     router.back();
-    onClose && onClose();
-  };
-
-  const handleSubmit = () => {
-    if (required) {
-      onSubmit && onSubmit();
-      handleCloseDialog();
-    }
   };
 
   const dialog: JSX.Element | null =
@@ -55,7 +44,7 @@ export const Dialog = (props: DialogProps) => {
             </Button>
           </div>
 
-          <div className="space-y-6 px-9 py-8">{children}</div>
+          <div className="px-9 py-8">{children}</div>
 
           <div className="flex justify-end gap-2 border border-t bg-theme-grey-100 px-9 py-4">
             <Button
@@ -66,7 +55,9 @@ export const Dialog = (props: DialogProps) => {
             >
               Cancel
             </Button>
-            <Button onClick={handleSubmit} size="md" className="font-medium">
+
+            {/* FIX_ME: Close modal on success */}
+            <Button type="submit" form="form" size="md" className="font-medium">
               Create
             </Button>
           </div>

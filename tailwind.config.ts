@@ -35,9 +35,10 @@ const config: Config = {
 
         'theme-red-100': '#e718181a',
         'theme-red-200': '#e7181829',
-        'theme-red-300': '#FFBBBB',
+        'theme-red-300': '#fee2e2',
         'theme-red-400': '#e7181875',
         'theme-red-500': '#E71818',
+        'theme-red-600': '#b91c1c',
 
         'theme-blue-100': '#EBF2FA',
         'theme-blue-200': '#292b7475',

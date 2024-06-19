@@ -1,7 +1,12 @@
 import { ComponentPropsWithoutRef, FC } from 'react';
-import { twMerge } from 'tailwind-merge';
+
+import { Typography } from '../Typography';
 
 export const Error: FC<ComponentPropsWithoutRef<'div'>> = ({
   children,
   className,
-}) => <div className={twMerge(' text-red-300', className)}>{children}</div>;
+}) => (
+  <Typography variant="caption" color="red" className={className}>
+    {children}
+  </Typography>
+);
