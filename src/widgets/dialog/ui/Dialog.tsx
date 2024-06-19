@@ -31,9 +31,10 @@ export const Dialog = (props: DialogProps) => {
 
         <div className="z-50 w-full max-w-lg overflow-hidden rounded-md bg-theme-white">
           <div className="flex px-9 pt-6">
-            <Typography variant="h4" className="flex-1">
+            <Typography variant="h4" className="flex-1" weight="medium">
               {title}
             </Typography>
+
             <Button
               btnType="icon"
               variant="outline"

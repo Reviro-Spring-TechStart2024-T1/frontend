@@ -6,7 +6,7 @@ import { PlansResponse } from '../types';
 
 export const useGetPlans = () => {
   const { data: planData } = useSWR<PlansResponse>(
-    '/subscriptions/plans',
+    '/subscriptions/plans/',
     fetcher,
   );
 
