@@ -5,7 +5,7 @@ import useSWRMutation from 'swr/mutation';
 import { uploadBanners } from '@/shared';
 
 export const useUploadBanners = () => {
-  const { trigger, error, isMutating } = useSWRMutation(
+  const { data, trigger, error, isMutating } = useSWRMutation(
     '/establishments/banners/',
     uploadBanners,
     {
@@ -19,6 +19,7 @@ export const useUploadBanners = () => {
   );
 
   return {
+    data,
     uploadBanner: trigger,
     bannerUploadError: error,
     isBannerUploading: isMutating,

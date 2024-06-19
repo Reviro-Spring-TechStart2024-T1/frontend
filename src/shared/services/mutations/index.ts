@@ -4,8 +4,11 @@ import { useCreateCategory } from './useCreateCategory';
 import { useCreateEstablishment } from './useCreateEstablishment';
 import { useCreatePartner } from './useCreatePartner';
 import { useCreatePost } from './useCreatePost';
+import { useDeleteBanner } from './useDeleteBanner';
 import { useDeleteCategory } from './useDeleteCategory';
+import { useDeleteEstablishment } from './useDeleteEstablishment';
 import { useEditCategory } from './useEditCategory';
+import { useEditEstablishment } from './useEditEstablishment';
 import { useForgotPassword } from './useForgotPassword';
 import { useGetUserByEmail } from './useGetUserByEmail';
 import { useLogin } from './useLogin';
@@ -22,8 +25,11 @@ export {
   useCreateEstablishment,
   useCreatePartner,
   useCreatePost,
+  useDeleteBanner,
   useDeleteCategory,
+  useDeleteEstablishment,
   useEditCategory,
+  useEditEstablishment,
   useForgotPassword,
   useGetUserByEmail,
   useLogin,

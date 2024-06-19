@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { RiCloseLargeLine } from '@remixicon/react';
 import clsx from 'clsx';
 import { ErrorMessage, Field, FormikProvider, useFormik } from 'formik';
 import Image from 'next/image';
@@ -22,6 +24,7 @@ import {
   ImageUploaderWithCrop,
   Typography,
   useChosenEstablishmentContext,
+  useDeleteBanner,
   useUploadBanners,
 } from '@/shared';
 
@@ -29,10 +32,20 @@ export const Form = () => {
   const pathname = usePathname();
   const { mutate } = useSWRConfig();
 
-  const { uploadBanner, bannerUploadError, isBannerUploading } =
+  const [bannerId, setBannerId] = useState('');
+
+  const { data, uploadBanner, bannerUploadError, isBannerUploading } =
     useUploadBanners();
+  const {
+    isBannerDeletionSuccessful,
+    deleteBanner,
+    bannerDeletionError,
+    isBannerDeleting,
+  } = useDeleteBanner(bannerId);
+
   const { chosenEstablishment } = useChosenEstablishmentContext();
 
+  // const [isBannerDeletionActive, setIsBannerDeletionActive] = useState(false);
   const [selectedBanner, setSelectedBanner] = useState(''); //NOTE - Banner's interactive data
   const [bannerName, setBannerName] = useState('Choose banner');
 
@@ -44,8 +57,6 @@ export const Form = () => {
         banner,
         establishmentId: String(chosenEstablishment?.id),
       });
-
-      mutate('/establishments/partner/');
     }
   };
 
@@ -58,6 +69,15 @@ export const Form = () => {
   });
   const { setFieldValue, handleSubmit, handleReset } =
     establishmentBannersFormik;
+
+  const onBannerDeletion = (bannerId: number) => {
+    setBannerId(String(bannerId));
+
+    deleteBanner();
+  };
+  // const onBannerDeletionUnfocus = useCallback(() => {
+  //   setIsBannerDeletionActive(false);
+  // }, []);
 
   const handleOnImageCropped = (croppedFile: File) => {
     setSelectedBanner(URL.createObjectURL(croppedFile));
@@ -74,8 +94,26 @@ export const Form = () => {
     setFieldValue('banner', null);
   };
 
+  useEffect(() => {
+    if (data) {
+      toast.success('Banner has been successfully uploaded!');
+      mutate('/establishments/partner/');
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (isBannerDeletionSuccessful) {
+      toast.success('Banner has been successfully deleted!');
+      mutate('/establishments/partner/');
+    }
+  }, [isBannerDeletionSuccessful]);
+
   return (
     <FormikProvider value={establishmentBannersFormik}>
+      {/* <DeleteBannerModal
+        isActive={isBannerDeletionActive}
+        close={onBannerDeletionUnfocus}
+      /> */}
       <form
         onSubmit={handleSubmit}
         onReset={handleReset}
@@ -97,21 +135,36 @@ export const Form = () => {
             },
           )}
         >
-          {!chosenEstablishment && <div>Loading...</div>}
-          {pathname === ESTABLISHMENT_PATH ||
-            (chosenEstablishment?.banners?.length === 0 && (
-              <Typography variant="h3">No banners. Upload some!</Typography>
+          {!chosenEstablishment && pathname === ESTABLISHMENT_EDIT_PATH && (
+            <Typography variant="h3">Loading...</Typography>
+          )}
+          {pathname === ESTABLISHMENT_PATH && (
+            <Typography variant="h3">Upload some!</Typography>
+          )}
+          {chosenEstablishment?.banners?.length === 0 && (
+            <Typography variant="h3">No banners. Upload some!</Typography>
+          )}
+          {pathname === ESTABLISHMENT_EDIT_PATH &&
+            chosenEstablishment?.banners?.map(banner => (
+              <div key={banner.id} className="relative">
+                <Image
+                  key={banner.id}
+                  src={banner.url}
+                  className="object-cover"
+                  width={300}
+                  height={100}
+                  alt="Banner"
+                />
+                <Button
+                  onClick={() => onBannerDeletion(banner.id)}
+                  variant="ghost"
+                  type="button"
+                  className="group absolute right-0 top-0 rounded-tr-none bg-theme-grey-200 px-2 transition-colors hover:bg-red-300"
+                >
+                  <RiCloseLargeLine className="fill-red-400 group-hover:fill-white" />
+                </Button>
+              </div>
             ))}
-          {chosenEstablishment?.banners?.map(banner => (
-            <Image
-              key={banner.id}
-              src={banner.url}
-              className="object-cover"
-              width={300}
-              height={100}
-              alt="Banner"
-            />
-          ))}
         </div>
 
         <div className="relative flex items-center justify-between rounded-md border border-gray-300 p-3">
@@ -145,13 +198,14 @@ export const Form = () => {
               variant="none"
               size="sm"
               btnType="icon"
+              type="button"
               onClick={handleRemoveImage}
             >
               <Image src={delete_} alt="delete" className="fill-red-500" />
             </Button>
           )}
         </div>
-        <SubmitButton isMutating={isBannerUploading}>
+        <SubmitButton isMutating={isBannerUploading || isBannerDeleting}>
           Upload banner
         </SubmitButton>
         {bannerUploadError && (
@@ -159,6 +213,13 @@ export const Form = () => {
             {bannerUploadError === typeof Object
               ? JSON.stringify(bannerUploadError)
               : bannerUploadError}
+          </Error>
+        )}
+        {bannerDeletionError && (
+          <Error>
+            {bannerDeletionError === typeof Object
+              ? JSON.stringify(bannerDeletionError)
+              : bannerDeletionError}
           </Error>
         )}
       </form>
