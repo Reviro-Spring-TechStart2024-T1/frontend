@@ -6,7 +6,9 @@ import { createEstablishment } from './createEstablishment';
 import { createOrderForClient } from './createOrderForClient';
 import { createPartner } from './createPartner';
 import { createPost } from './createPost';
+import { deleteBanner } from './deleteBanner';
 import { deleteCategory } from './deleteCategory';
+import { deleteEstablishment } from './deleteEstablishment';
 import { editCategory } from './editCategory';
 import { editEstablishment } from './editEstablishment';
 import { editOrderStatus } from './editOrderStatus';
@@ -25,7 +27,9 @@ export {
   createOrderForClient,
   createPartner,
   createPost,
+  deleteBanner,
   deleteCategory,
+  deleteEstablishment,
   editCategory,
   editEstablishment,
   editOrderStatus,
