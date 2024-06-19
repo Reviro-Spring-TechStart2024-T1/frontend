@@ -1,3 +1,1 @@
-import { PartnerProfile } from './ui';
-
-export { PartnerProfile };
+export * from './ui';

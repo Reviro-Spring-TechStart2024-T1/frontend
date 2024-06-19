@@ -9,6 +9,7 @@ import {
   RiQuestionAnswerLine,
   RiShoppingCartLine,
   RiTeamLine,
+  RiUser2Line,
   RiUserSmileLine,
 } from '@remixicon/react';
 import clsx from 'clsx';
@@ -26,6 +27,7 @@ import {
   PARTNER_DASHBOARD_PATH,
   PARTNER_MENU_PATH,
   PARTNER_ORDERS_PATH,
+  PARTNER_PROFILE_PATH,
   PARTNER_SUPPORT_PATH,
 } from '@/shared';
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
@@ -52,6 +54,11 @@ export const Navbar = () => {
   const Links =
     user?.role === 'partner'
       ? [
+          {
+            label: 'Profile',
+            icon: <RiUser2Line />,
+            path: PARTNER_PROFILE_PATH,
+          },
           {
             label: 'Dashboard',
             icon: <RiPieChart2Line />,
