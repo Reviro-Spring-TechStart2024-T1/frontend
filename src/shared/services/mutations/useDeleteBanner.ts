@@ -4,7 +4,7 @@ import useSWRMutation from 'swr/mutation';
 
 import { deleteBanner } from '@/shared';
 
-export const useDeleteBanner = (id: string | null) => {
+export const useDeleteBanner = (id: number | null) => {
   const { data, trigger, error, isMutating } = useSWRMutation(
     () => (id ? `/establishments/banners/${id}/` : null),
     deleteBanner,
