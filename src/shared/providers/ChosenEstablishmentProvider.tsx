@@ -9,6 +9,8 @@ type TEstablishmentContextProps = {
   setChosenEstablishment: React.Dispatch<
     React.SetStateAction<Partial<TEstablishment> | null>
   >;
+  isChosenEstablishmentLoading: boolean;
+  setIsChosenEstablishmentLoading: (state: boolean) => void;
 };
 
 export const ChosenEstablishmentContext =
@@ -31,12 +33,15 @@ export const ChosenEstablishmentProvider = ({
 }) => {
   const [chosenEstablishment, setChosenEstablishment] =
     useState<Partial<TEstablishment> | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <ChosenEstablishmentContext.Provider
       value={{
         chosenEstablishment,
         setChosenEstablishment,
+        isChosenEstablishmentLoading: isLoading,
+        setIsChosenEstablishmentLoading: setIsLoading,
       }}
     >
       {children}
