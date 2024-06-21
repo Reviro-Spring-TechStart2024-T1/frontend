@@ -91,9 +91,9 @@ export const QR: FC<{ isModalActive: boolean; closeModal: () => void }> = ({
           maxWidth: 300,
           width: '100%',
         }}
-        className={clsx('flex flex-col rounded-md bg-white', {
-          [styles.QRModalOpen]: 'shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)]',
-        })}
+        className={clsx(
+          'flex flex-col rounded-md bg-white shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)]',
+        )}
       >
         {menuId && (
           <div ref={qrRef}>
@@ -113,6 +113,7 @@ export const QR: FC<{ isModalActive: boolean; closeModal: () => void }> = ({
             onClick={handlePrint}
             variant="primary"
             width="full"
+            title="Print"
           >
             <RiPrinterLine />
           </Button>
@@ -121,6 +122,7 @@ export const QR: FC<{ isModalActive: boolean; closeModal: () => void }> = ({
             onClick={handleDownload}
             variant="primary"
             width="full"
+            title="Download"
           >
             <RiDownloadLine />
           </Button>
@@ -129,6 +131,7 @@ export const QR: FC<{ isModalActive: boolean; closeModal: () => void }> = ({
             onClick={handleShare}
             variant="primary"
             width="full"
+            title="Share"
           >
             <RiShareLine />
           </Button>

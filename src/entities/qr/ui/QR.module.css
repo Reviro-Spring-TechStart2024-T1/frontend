@@ -1,11 +1,11 @@
 .QRModal {
-    @apply fixed hidden inset-0 z-[10000] items-center transition-[display] duration-300 opacity-0;
+    @apply fixed hidden inset-0 z-[10000] transition-[display] duration-300 opacity-0;
 
     transition-behavior: allow-discrete;
 }
 
 .QRModalOpen {
-    @apply flex opacity-100;
+    @apply flex items-center opacity-100;
 
     @starting-style {
         opacity: 0;
