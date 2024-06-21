@@ -3,12 +3,14 @@
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
 import {
   Button,
   ESTABLISHMENT_EDIT_PATH,
   ESTABLISHMENT_PATH,
+  Modal,
   Typography,
   useChosenEstablishmentContext,
   useDeleteEstablishment,
@@ -17,13 +19,26 @@ import {
 export const PartnerProfile = () => {
   const { chosenEstablishment, isChosenEstablishmentLoading } =
     useChosenEstablishmentContext();
-  const { data, trigger, error } = useDeleteEstablishment(
+  const { data, trigger, error, isMutating } = useDeleteEstablishment(
     chosenEstablishment?.id,
   );
   const { mutate } = useSWRConfig();
+  const pathname = usePathname();
+  const { push } = useRouter();
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+  const establishmentId = 'establishmentId';
 
-  const onDelete = () => {
+  const onEstablishmentDelete = () => {
     trigger();
+  };
+  const onModalOpen = () => {
+    params.set(establishmentId, String(chosenEstablishment?.id));
+    push(`${pathname}?${params.toString()}`);
+  };
+  const onModalClose = () => {
+    params.delete(establishmentId, '');
+    push(pathname);
   };
 
   useEffect(() => {
@@ -32,14 +47,21 @@ export const PartnerProfile = () => {
         `${chosenEstablishment?.name} has been successfully deleted!`,
       );
 
-      localStorage.removeItem('establishment_id');
+      params.delete(establishmentId, '');
+      push(pathname);
 
       mutate('/establishments/partner/');
+      localStorage.removeItem('establishment_id');
     }
   }, [data]);
 
   useEffect(() => {
-    error && toast.error(error);
+    if (error) {
+      toast.error(error);
+
+      params.delete(establishmentId, '');
+      push(pathname);
+    }
   }, [error]);
 
   if (isChosenEstablishmentLoading) {
@@ -88,9 +110,17 @@ export const PartnerProfile = () => {
         >
           Edit establishment
         </Link>
-        <Button variant="delete" onClick={onDelete}>
+        <Button variant="delete" onClick={onModalOpen}>
           Delete establishment
         </Button>
+        <Modal
+          query={establishmentId}
+          isSubmitting={isMutating}
+          onModalSubmit={onEstablishmentDelete}
+          close={onModalClose}
+        >
+          Delete establishment
+        </Modal>
       </div>
     </div>
   );

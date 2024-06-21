@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { RiCloseLargeLine } from '@remixicon/react';
 import clsx from 'clsx';
@@ -10,6 +10,7 @@ import { usePathname } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
 import {
+  DeleteBannerModal,
   EstablishmentBannersSchema,
   TEstablishmentBannersForm,
 } from '@/features/partner-banners-form';
@@ -24,7 +25,6 @@ import {
   ImageUploaderWithCrop,
   Typography,
   useChosenEstablishmentContext,
-  useDeleteBanner,
   useUploadBanners,
 } from '@/shared';
 
@@ -32,20 +32,15 @@ export const Form = () => {
   const pathname = usePathname();
   const { mutate } = useSWRConfig();
 
-  const [bannerId, setBannerId] = useState('');
-
   const { data, uploadBanner, bannerUploadError, isBannerUploading } =
     useUploadBanners();
-  const {
-    isBannerDeletionSuccessful,
-    deleteBanner,
-    bannerDeletionError,
-    isBannerDeleting,
-  } = useDeleteBanner(bannerId);
 
   const { chosenEstablishment } = useChosenEstablishmentContext();
 
-  // const [isBannerDeletionActive, setIsBannerDeletionActive] = useState(false);
+  const [bannerIdForDeletion, setBannerIdForDeletion] = useState<number | null>(
+    null,
+  );
+  const [isBannerDeletionActive, setIsBannerDeletionActive] = useState(false);
   const [selectedBanner, setSelectedBanner] = useState(''); //NOTE - Banner's interactive data
   const [bannerName, setBannerName] = useState('Choose banner');
 
@@ -71,13 +66,12 @@ export const Form = () => {
     establishmentBannersFormik;
 
   const onBannerDeletion = (bannerId: number) => {
-    setBannerId(String(bannerId));
-
-    deleteBanner();
+    setBannerIdForDeletion(bannerId);
+    setIsBannerDeletionActive(true);
   };
-  // const onBannerDeletionUnfocus = useCallback(() => {
-  //   setIsBannerDeletionActive(false);
-  // }, []);
+  const onBannerDeletionUnfocus = useCallback(() => {
+    setIsBannerDeletionActive(false);
+  }, []);
 
   const handleOnImageCropped = (croppedFile: File) => {
     setSelectedBanner(URL.createObjectURL(croppedFile));
@@ -101,19 +95,13 @@ export const Form = () => {
     }
   }, [data]);
 
-  useEffect(() => {
-    if (isBannerDeletionSuccessful) {
-      toast.success('Banner has been successfully deleted!');
-      mutate('/establishments/partner/');
-    }
-  }, [isBannerDeletionSuccessful]);
-
   return (
     <FormikProvider value={establishmentBannersFormik}>
-      {/* <DeleteBannerModal
+      <DeleteBannerModal //TODO - Make use of new Modal reusable component
         isActive={isBannerDeletionActive}
         close={onBannerDeletionUnfocus}
-      /> */}
+        bannerId={bannerIdForDeletion!}
+      />
       <form
         onSubmit={handleSubmit}
         onReset={handleReset}
@@ -205,7 +193,7 @@ export const Form = () => {
             </Button>
           )}
         </div>
-        <SubmitButton isMutating={isBannerUploading || isBannerDeleting}>
+        <SubmitButton isMutating={isBannerUploading}>
           Upload banner
         </SubmitButton>
         {bannerUploadError && (
@@ -213,13 +201,6 @@ export const Form = () => {
             {bannerUploadError === typeof Object
               ? JSON.stringify(bannerUploadError)
               : bannerUploadError}
-          </Error>
-        )}
-        {bannerDeletionError && (
-          <Error>
-            {bannerDeletionError === typeof Object
-              ? JSON.stringify(bannerDeletionError)
-              : bannerDeletionError}
           </Error>
         )}
       </form>
