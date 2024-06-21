@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { saveAs } from 'file-saver';
 import { toPng } from 'html-to-image';
 
+import { useChosenEstablishmentContext } from '@/shared';
 import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button } from '@/shared/ui';
 
@@ -17,6 +18,7 @@ export const QR: FC<{ isModalActive: boolean; closeModal: () => void }> = ({
   closeModal,
 }) => {
   const [menuId] = useLocalStorage('menu_id', null);
+  const { chosenEstablishment } = useChosenEstablishmentContext();
 
   const qrRef = useRef<HTMLDivElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -100,7 +102,7 @@ export const QR: FC<{ isModalActive: boolean; closeModal: () => void }> = ({
             <QRCode
               size={256}
               style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-              value={String(menuId)}
+              value={String(chosenEstablishment?.menu_id)}
               viewBox={`0 0 256 256`}
               className="p-4"
             />
