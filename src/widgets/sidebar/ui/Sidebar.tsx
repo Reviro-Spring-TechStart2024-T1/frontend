@@ -19,7 +19,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <div className="relative bottom-[76px] md:hidden">
+    <div className="relative bottom-[76px] z-10 md:hidden">
       <div className="fixed flex h-full w-32 flex-col items-center bg-[#111828] py-6 text-theme-white">
         <Logo />
 
