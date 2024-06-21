@@ -2,10 +2,10 @@
 
 import { createContext, ReactNode, useContext, useState } from 'react';
 
-type TCreateFormContext = {
+interface TCreateFormContext {
   isActive: boolean;
   setModalState: (bool: boolean) => void;
-};
+}
 
 export const CreateModalContext = createContext<TCreateFormContext | undefined>(
   undefined,

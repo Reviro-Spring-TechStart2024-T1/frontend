@@ -19,12 +19,12 @@ export default function CustomerData() {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
   const { chosenEstablishment } = useChosenEstablishmentContext();
-  const { data, isLoading } = useGetCustomers(
-    chosenEstablishment?.id,
-    currentPage,
-    10,
-    search,
-  );
+  const { data, isLoading } = useGetCustomers({
+    establishmentId: chosenEstablishment?.id,
+    page: currentPage,
+    limit: 10,
+    search: search,
+  });
 
   const columns: ColumnsType<Customer> = [
     { key: 'id', title: '№' },

@@ -1,0 +1,1 @@
+export { useDeleteEstablishment } from './useDeleteEstablishment';

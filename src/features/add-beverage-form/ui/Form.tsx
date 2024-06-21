@@ -32,7 +32,7 @@ export const Form: FC = () => {
   const [isCategoryListActive, setIsCategoryListActive] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const { categories } = useCategories(currentPage, 10);
+  const { categories } = useCategories({ page: currentPage, limit: 10 });
 
   const [category, setCategory] = useState<Partial<TCategory>>({
     id: undefined,
@@ -122,7 +122,7 @@ export const Form: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState]);
 
-  useCloseForm(CREATE_BEVERAGE_FORM, setModalState);
+  useCloseForm({ elementId: CREATE_BEVERAGE_FORM, setter: setModalState });
 
   return (
     <form

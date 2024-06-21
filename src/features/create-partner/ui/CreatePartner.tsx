@@ -10,7 +10,7 @@ export const CreatePartner = () => {
   const { isActive: isCreatePartnerModalActive, setModalState } =
     useCreatePartnerModal();
 
-  useCloseForm(CREATE_PARTNER, setModalState);
+  useCloseForm({ elementId: CREATE_PARTNER, setter: setModalState });
 
   return (
     <>

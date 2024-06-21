@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 
 import { SubmitButton } from '@/features/submit-form';
 import { logo } from '@/shared';
-import { useLogin } from '@/shared/services/mutations/useLogin';
+import { useLogin } from '@/shared/services/mutations/useLogin/useLogin';
 import { Button, Error, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 

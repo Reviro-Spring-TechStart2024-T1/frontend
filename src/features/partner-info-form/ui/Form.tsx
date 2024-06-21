@@ -38,7 +38,7 @@ import {
   useEditEstablishment,
 } from '@/shared';
 import { Button, ExtendedFieldProps, Input, Typography } from '@/shared';
-import { useCreateEstablishment } from '@/shared/services/mutations/useCreateEstablishment';
+import { useCreateEstablishment } from '@/shared/services/mutations/useCreateEstablishment/useCreateEstablishment';
 import { InputProps } from '@/shared/ui/Input/types/Input.types';
 
 export const Form = () => {
@@ -56,7 +56,7 @@ export const Form = () => {
     editEstablishment,
     editEstablishmentError,
     isEditEstablishmentMutating,
-  } = useEditEstablishment(chosenEstablishment?.id); //NOTE - PATCH establishment
+  } = useEditEstablishment({ id: chosenEstablishment?.id }); //NOTE - PATCH establishment
 
   const [startTimepicker, setStartTimepicker] = useState<Dayjs | null>(null); //NOTE - MUI Timepicker state in dayjs
   const [endTimepicker, setEndTimepicker] = useState<Dayjs | null>(null);
@@ -84,9 +84,12 @@ export const Form = () => {
   useMonitorTimePicker(startTimepicker, setStartHappyHours); //NOTE - For time formatting (dayjs => HH:mm)
   useMonitorTimePicker(endTimepicker, setEndHappyHours);
 
-  useCloseForm(GOOGLE_MAP, setIsGoogleMapActive); //NOTE - 'close' listeners for modal windows
-  useCloseForm(START_TIME_PICKER, setIsStartPickerActive);
-  useCloseForm(END_TIME_PICKER, setIsEndPickerActive);
+  useCloseForm({ elementId: GOOGLE_MAP, setter: setIsGoogleMapActive }); //NOTE - 'close' listeners for modal windows
+  useCloseForm({
+    elementId: START_TIME_PICKER,
+    setter: setIsStartPickerActive,
+  });
+  useCloseForm({ elementId: END_TIME_PICKER, setter: setIsEndPickerActive });
 
   const [initialValues, setInitialValues] = useState({
     //SECTION - Initial values of each field for further check to Edit or to Create
@@ -111,7 +114,7 @@ export const Form = () => {
         acc[typedKey] = values[typedKey]; //FIXME - key type regarding logo
       }
       return acc;
-    }, {} as Partial<TEstablishmentInfoForm>);
+    }, {} as TEstablishmentInfoForm);
 
     if (pathname === ESTABLISHMENT_EDIT_PATH) {
       editEstablishment(changedFields);

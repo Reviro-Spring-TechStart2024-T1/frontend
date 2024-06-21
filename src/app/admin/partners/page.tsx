@@ -18,7 +18,10 @@ import { Tag } from '@/shared/ui/Tag';
 export default function Page() {
   const [show, setShow] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, mutate, isLoading } = useGetAdminPartners(currentPage, 10);
+  const { data, mutate, isLoading } = useGetAdminPartners({
+    page: currentPage,
+    limit: 10,
+  });
   const { data: blockedUser, trigger: blockPartner } = useBlockPartner();
   const { data: unblockedUser, trigger: unblockPartner } = useUnblockPartner();
 

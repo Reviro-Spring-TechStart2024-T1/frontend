@@ -54,7 +54,10 @@ export const Dashboard = () => {
     overallOrdersQuantity,
     overallOrdersSum,
     isLoading,
-  } = useOrdersStatistics(chosenEstablishment?.id, filterItems?.label!);
+  } = useOrdersStatistics({
+    establishmentId: chosenEstablishment?.id,
+    timePeriod: filterItems?.label!,
+  });
 
   const lineChartData = dashboardData(chartLabels, chartData);
 

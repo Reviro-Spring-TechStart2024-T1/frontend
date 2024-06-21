@@ -41,7 +41,7 @@ export const Form = () => {
     deleteBanner,
     bannerDeletionError,
     isBannerDeleting,
-  } = useDeleteBanner(bannerId);
+  } = useDeleteBanner({ id: bannerId });
 
   const { chosenEstablishment } = useChosenEstablishmentContext();
 

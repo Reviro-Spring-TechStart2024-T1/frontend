@@ -1,0 +1,1 @@
+export { useBlockPartner } from './useBlockPartner';

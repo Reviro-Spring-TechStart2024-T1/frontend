@@ -2,8 +2,7 @@
 
 import { useParams } from 'next/navigation';
 
-import { dateToDayHour, OrderHistoryResponse } from '@/shared';
-import { useGetCustomer } from '@/shared/services/hooks/useGetCustomer';
+import { dateToDayHour, OrderHistory, useGetCustomer } from '@/shared';
 import { Section, Typography } from '@/shared/ui';
 import { Container } from '@/shared/ui/Container/Container';
 import { ColumnsType, Table } from '@/shared/ui/Table';
@@ -11,9 +10,9 @@ import { CustomerInfo } from '@/widgets/customer-info';
 
 export default function CustomerProfile() {
   const params = useParams<{ id: string }>();
-  const { customer, isLoading } = useGetCustomer(params.id);
+  const { customer, isLoading } = useGetCustomer({ id: params.id });
 
-  const columns: ColumnsType<OrderHistoryResponse> = [
+  const columns: ColumnsType<OrderHistory> = [
     { key: 'id', title: '№' },
     { key: 'beverage_name', title: 'Beverage' },
     { key: 'price', title: 'Price' },
@@ -35,7 +34,7 @@ export default function CustomerProfile() {
       <CustomerInfo {...customer} />
 
       <Section title="Order history">
-        <Table<OrderHistoryResponse>
+        <Table<OrderHistory>
           columns={columns}
           data={customer?.orders}
           loading={isLoading}

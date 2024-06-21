@@ -1,17 +1,10 @@
 import { RiCalendarEventLine, RiUser4Line } from '@remixicon/react';
 
+import { CustomerResponse } from '@/shared';
 import { Section, Typography } from '@/shared/ui';
 import { Avatar } from '@/shared/ui/Avatar';
 
-interface CustomerProps {
-  id?: number;
-  first_name?: string;
-  last_name?: string;
-  email?: string;
-  sex?: string;
-  date_of_birth?: string;
-  orders?: [];
-}
+type CustomerProps = CustomerResponse;
 
 export const CustomerInfo = (props: CustomerProps) => {
   const { first_name, last_name, email, sex, date_of_birth } = props;

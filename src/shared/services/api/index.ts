@@ -1,43 +1,19 @@
-import { addComment } from './addComment';
-import { addPlan } from './addPlan';
-import { authorize } from './authorize';
-import { blockPartner } from './blockPartner';
-import { createCategory } from './createCategory';
-import { createEstablishment } from './createEstablishment';
-import { createOrderForClient } from './createOrderForClient';
-import { createPartner } from './createPartner';
-import { createPost } from './createPost';
-import { deleteBanner } from './deleteBanner';
-import { deleteCategory } from './deleteCategory';
-import { deleteEstablishment } from './deleteEstablishment';
-import { editCategory } from './editCategory';
-import { editEstablishment } from './editEstablishment';
-import { editOrderStatus } from './editOrderStatus';
-import { forgotPassword } from './forgotPassword';
-import { getUserByEmail } from './getUserByEmail';
-import { unblockPartner } from './unblockPartner';
-import { updatePassword } from './updatePassword';
-import { uploadBanners } from './uploadBanners';
-
-export {
-  addComment,
-  addPlan,
-  authorize,
-  blockPartner,
-  createCategory,
-  createEstablishment,
-  createOrderForClient,
-  createPartner,
-  createPost,
-  deleteBanner,
-  deleteCategory,
-  deleteEstablishment,
-  editCategory,
-  editEstablishment,
-  editOrderStatus,
-  forgotPassword,
-  getUserByEmail,
-  unblockPartner,
-  updatePassword,
-  uploadBanners,
-};
+export * from './addComment';
+export * from './addPlan';
+export * from './authorize';
+export * from './blockPartner';
+export * from './createCategory';
+export * from './createEstablishment';
+export * from './createOrderForClient';
+export * from './createPartner';
+export * from './createPost';
+export * from './deleteBanner';
+export * from './deleteCategory';
+export * from './deleteEstablishment';
+export * from './editCategory';
+export * from './editEstablishment';
+export * from './forgotPassword';
+export * from './getUserByEmail';
+export * from './unblockPartner';
+export * from './updatePassword';
+export * from './uploadBanners';

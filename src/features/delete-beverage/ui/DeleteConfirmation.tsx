@@ -45,7 +45,7 @@ export const DeleteConfirmation = () => {
     setId(searchParams.get('id'));
   }, [searchParams]);
 
-  useCloseForm(DELETE_BEVERAGE, setModalState);
+  useCloseForm({ elementId: DELETE_BEVERAGE, setter: setModalState });
 
   return (
     <>

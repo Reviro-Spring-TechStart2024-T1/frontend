@@ -2,16 +2,13 @@
 
 import { useState } from 'react';
 
-import {
-  AdminUsers,
-  useAdminUsers,
-} from '@/shared/services/hooks/useAdminUsers';
+import { AdminUsers, useAdminUsers } from '@/shared';
 import { Container, Typography } from '@/shared/ui';
 import { ColumnsType, Table } from '@/shared/ui/Table';
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading } = useAdminUsers(currentPage, 10);
+  const { data, isLoading } = useAdminUsers({ page: currentPage, limit: 10 });
 
   const columns: ColumnsType<AdminUsers> = [
     { key: 'id', title: '№' },

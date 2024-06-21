@@ -37,11 +37,13 @@ export const Form: FC = () => {
   const beverageId = searchParams.get('id'); //NOTE - Beverage id
 
   const [currentPage, setCurrentPage] = useState(1);
-  const { beverage, isBeverageLoading } = useGetBeverage<TBeverage>(beverageId);
-  const { categories } = useCategories(currentPage, 10);
-  const { categoryWithId, isCategoryLoading } = useGetCategory(
-    +beverage?.category!,
-  );
+  const { beverage, isBeverageLoading } = useGetBeverage<TBeverage>({
+    id: beverageId,
+  });
+  const { categories } = useCategories({ page: currentPage, limit: 10 });
+  const { categoryWithId, isCategoryLoading } = useGetCategory({
+    id: +beverage?.category!,
+  });
 
   const [isCategoryListActive, setIsCategoryListActive] = useState(false);
   const [category, setCategory] = useState<Partial<TCategory>>({
@@ -136,7 +138,7 @@ export const Form: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState]);
 
-  useCloseForm(EDIT_BEVERAGE_FORM, setModalState);
+  useCloseForm({ elementId: EDIT_BEVERAGE_FORM, setter: setModalState });
 
   return (
     <>

@@ -27,15 +27,15 @@ export default function Page() {
   });
   const { chosenEstablishment } = useChosenEstablishmentContext();
   const { beveragesOptions } = useGetBeverages();
-  const { data, isLoading } = useGetOrders(
-    chosenEstablishment?.id,
-    currentPage,
-    10,
-    search,
-    filterItems.beverage?.key,
-    filterItems.status?.key,
-    filterItems.time?.key,
-  );
+  const { data, isLoading } = useGetOrders({
+    establishmentId: chosenEstablishment?.id,
+    page: currentPage,
+    limit: 10,
+    search: search,
+    beverage_name: filterItems.beverage?.key,
+    status: filterItems.status?.key,
+    time: filterItems.time?.key,
+  });
 
   const statusOptions = [
     { id: 1, key: 'pending', label: 'Pending' },
