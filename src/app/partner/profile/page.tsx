@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 
 import { Container, NO_INDEX_PAGE } from '@/shared';
@@ -11,7 +12,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <Container title="Profile">
-      <PartnerProfile />
+      <Suspense fallback={<div className="fixed inset-1/2">Loading...</div>}>
+        <PartnerProfile />
+      </Suspense>
     </Container>
   );
 }
