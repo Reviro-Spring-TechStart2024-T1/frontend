@@ -1,5 +1,6 @@
 'use client';
 
+import { mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
 
 import { editEstablishment } from '@/shared';
@@ -14,6 +15,7 @@ export const useEditEstablishment = (id: number | undefined) => {
       },
       onSuccess() {
         console.log('success');
+        mutate('/establishments/partner/');
       },
     },
   );
