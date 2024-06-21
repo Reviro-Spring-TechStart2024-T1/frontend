@@ -8,7 +8,6 @@ import { saveAs } from 'file-saver';
 import { toPng } from 'html-to-image';
 
 import { useChosenEstablishmentContext } from '@/shared';
-import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button } from '@/shared/ui';
 
 import styles from './QR.module.css';
@@ -17,7 +16,6 @@ export const QR: FC<{ isModalActive: boolean; closeModal: () => void }> = ({
   isModalActive,
   closeModal,
 }) => {
-  const [menuId] = useLocalStorage('menu_id', null);
   const { chosenEstablishment } = useChosenEstablishmentContext();
 
   const qrRef = useRef<HTMLDivElement | null>(null);
@@ -85,60 +83,66 @@ export const QR: FC<{ isModalActive: boolean; closeModal: () => void }> = ({
       })}
       onMouseDown={e => handleClickOutside(e as MouseEvent)}
     >
-      <div
-        ref={modalRef}
-        style={{
-          height: 'auto',
-          margin: '0 auto',
-          maxWidth: 300,
-          width: '100%',
-        }}
-        className={clsx(
-          'flex flex-col rounded-md bg-white shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)]',
-        )}
-      >
-        {menuId && (
-          <div ref={qrRef}>
-            <QRCode
-              size={256}
-              style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-              value={String(chosenEstablishment?.menu_id)}
-              viewBox={`0 0 256 256`}
-              className="p-4"
-            />
-          </div>
-        )}
+      {chosenEstablishment?.menu_id ? (
+        <div
+          ref={modalRef}
+          style={{
+            height: 'auto',
+            margin: '0 auto',
+            maxWidth: 300,
+            width: '100%',
+          }}
+          className={clsx(
+            'flex flex-col rounded-md bg-white shadow-[0px_0px_30px_3000px_rgba(0,0,0,0.7)]',
+          )}
+        >
+          <>
+            <div ref={qrRef}>
+              <QRCode
+                size={256}
+                style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
+                value={String(chosenEstablishment.menu_id)}
+                viewBox={`0 0 256 256`}
+                className="p-4"
+              />
+            </div>
 
-        <div className="flex flex-col gap-2 rounded-md border-t-[0.5px] border-gray-300 p-4">
-          <Button
-            type="button"
-            onClick={handlePrint}
-            variant="primary"
-            width="full"
-            title="Print"
-          >
-            <RiPrinterLine />
-          </Button>
-          <Button
-            type="button"
-            onClick={handleDownload}
-            variant="primary"
-            width="full"
-            title="Download"
-          >
-            <RiDownloadLine />
-          </Button>
-          <Button
-            type="button"
-            onClick={handleShare}
-            variant="primary"
-            width="full"
-            title="Share"
-          >
-            <RiShareLine />
-          </Button>
+            <div className="flex flex-col gap-2 rounded-md border-t-[0.5px] border-gray-300 p-4">
+              <Button
+                type="button"
+                onClick={handlePrint}
+                variant="primary"
+                width="full"
+                title="Print"
+              >
+                <RiPrinterLine />
+              </Button>
+              <Button
+                type="button"
+                onClick={handleDownload}
+                variant="primary"
+                width="full"
+                title="Download"
+              >
+                <RiDownloadLine />
+              </Button>
+              <Button
+                type="button"
+                onClick={handleShare}
+                variant="primary"
+                width="full"
+                title="Share"
+              >
+                <RiShareLine />
+              </Button>
+            </div>
+          </>
         </div>
-      </div>
+      ) : (
+        <div className="p-10">
+          Apparently the establishment does not have menu registered.
+        </div>
+      )}
     </div>
   );
 };

@@ -87,7 +87,10 @@ export const PartnerProfile = () => {
   }
 
   return (
-    <div className="flex h-full flex-col gap-4">
+    <div
+      className="scroll flex h-full flex-col gap-4 overflow-y-scroll"
+      style={{ scrollbarWidth: 'none' }}
+    >
       <div className="flex flex-1 flex-col gap-2">
         <Typography variant="paragraph">
           <strong>Establishment name:</strong> {chosenEstablishment?.name}
