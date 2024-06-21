@@ -15,7 +15,8 @@ import {
 } from '@/shared';
 
 export const PartnerProfile = () => {
-  const { chosenEstablishment } = useChosenEstablishmentContext();
+  const { chosenEstablishment, isChosenEstablishmentLoading } =
+    useChosenEstablishmentContext();
   const { data, trigger, error } = useDeleteEstablishment(
     chosenEstablishment?.id,
   );
@@ -41,9 +42,17 @@ export const PartnerProfile = () => {
     error && toast.error(error);
   }, [error]);
 
-  if (!chosenEstablishment?.name) {
+  if (isChosenEstablishmentLoading) {
     return (
-      <div className="flex min-h-full flex-col gap-4 items-center justify-center">
+      <div className="flex min-h-full flex-col items-center justify-center">
+        <Typography variant="h2">Loading...</Typography>
+      </div>
+    );
+  }
+
+  if (!isChosenEstablishmentLoading && !chosenEstablishment) {
+    return (
+      <div className="flex min-h-full flex-col items-center justify-center gap-4">
         <Typography variant="h2">No Establishment!</Typography>
         <Link
           href={ESTABLISHMENT_PATH}
@@ -56,7 +65,7 @@ export const PartnerProfile = () => {
   }
 
   return (
-    <div className="flex min-h-full flex-col">
+    <div className="flex min-h-full flex-col gap-4">
       <div className="flex flex-1 flex-col gap-2">
         <Typography variant="paragraph">
           <strong>Establishment name:</strong> {chosenEstablishment?.name}
