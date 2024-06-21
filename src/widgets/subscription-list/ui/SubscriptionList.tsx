@@ -61,7 +61,7 @@ export const SubscriptionList = () => {
           </Link>
         </nav>
 
-        <div className="grid gap-6 rounded-md rounded-tl-none rounded-tr-none border border-t-0 px-8 py-14 auto-fill-80">
+        <div className="grid gap-6 overflow-hidden rounded-md rounded-tl-none rounded-tr-none border border-t-0 px-8 py-14 auto-fill-80">
           {data?.results.map(item => {
             return <SubscriptionPlan {...item} key={item.id} />;
           })}
