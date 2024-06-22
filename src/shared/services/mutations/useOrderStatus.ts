@@ -5,16 +5,20 @@ import useSWRMutation from 'swr/mutation';
 
 import { editOrderStatus } from '@/shared';
 
-export const useOrderStatus = (id: number) => {
+export const useOrderStatus = (id: number | null) => {
   const { mutate } = useSWRConfig();
 
-  return useSWRMutation(`/orders/partners/${id}/`, editOrderStatus, {
-    onSuccess() {
-      console.log('success');
-      mutate('/orders/partners/');
+  return useSWRMutation(
+    () => (id ? `/orders/partners/${id}/` : null),
+    editOrderStatus,
+    {
+      onSuccess() {
+        console.log('success');
+        mutate('/orders/partners/'); //TODO - set queryParams together with the key
+      },
+      onError() {
+        console.log('error');
+      },
     },
-    onError() {
-      console.log('error');
-    },
-  });
+  );
 };
