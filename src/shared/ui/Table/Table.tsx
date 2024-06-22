@@ -29,6 +29,9 @@ export const Table = <T extends { id: string | number }>({
                     className={clsx(
                       'p-[14px] text-left first:w-20 first:text-center',
                       header.width,
+                      {
+                        'w-24': header.key === 'actions',
+                      },
                     )}
                   >
                     <Typography variant="caption" color="grey" weight="medium">
