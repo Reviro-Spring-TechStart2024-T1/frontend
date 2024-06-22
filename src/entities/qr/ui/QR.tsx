@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import { saveAs } from 'file-saver';
 import { toPng } from 'html-to-image';
 
-import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
+import { useLocalStorage } from '@/shared';
 import { Button } from '@/shared/ui';
 
 import styles from './QR.module.css';

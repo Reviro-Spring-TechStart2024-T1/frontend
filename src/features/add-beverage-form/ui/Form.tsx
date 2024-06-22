@@ -7,22 +7,20 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useSWRConfig } from 'swr';
 
+import {
+  useChosenEstablishmentContext,
+  useCreateModal,
+} from '@/app/_providers';
 import { Categories, TCategory } from '@/entities/category';
 import { SubmitButton } from '@/features';
 import { createBeverage } from '@/features/add-beverage-form';
-import {
-  IUserJwtPayload,
-  useCategories,
-  useChosenEstablishmentContext,
-} from '@/shared';
+import { IUserJwtPayload, useCategories, useLocalStorage } from '@/shared';
 import {
   addImage,
   CREATE_BEVERAGE_FORM,
   delete_,
   useCloseForm,
-  useCreateModal,
 } from '@/shared';
-import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 

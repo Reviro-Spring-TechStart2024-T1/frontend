@@ -3,13 +3,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+import { useChosenEstablishmentContext } from '@/app/_providers';
 import { Search } from '@/features/search';
-import {
-  Customer,
-  PARTNER_CUSTOMERS_PATH,
-  useChosenEstablishmentContext,
-  useGetCustomers,
-} from '@/shared';
+import { Customer, PARTNER_CUSTOMERS_PATH, useGetCustomers } from '@/shared';
 import { Typography } from '@/shared/ui';
 import { Container } from '@/shared/ui/Container/Container';
 import { ColumnsType, Table } from '@/shared/ui/Table';

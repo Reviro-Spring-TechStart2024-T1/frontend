@@ -14,12 +14,9 @@ import {
   Tooltip,
 } from 'chart.js';
 
+import { useChosenEstablishmentContext } from '@/app/_providers';
 import { Filter, FilterOption } from '@/features/filter';
-import {
-  TOrderTimePeriod,
-  useChosenEstablishmentContext,
-  useOrdersStatistics,
-} from '@/shared';
+import { TOrderTimePeriod, useOrdersStatistics } from '@/shared';
 import { Select } from '@/shared/ui/Select';
 import { SelectOption } from '@/shared/ui/Select/types/Select.types';
 import {

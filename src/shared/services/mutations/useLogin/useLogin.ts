@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 
 import { ESTABLISHMENT_PATH, PARTNER_DASHBOARD_PATH } from '@/shared/constants';
-import { useLocalStorage } from '@/shared/helper';
+import { useLocalStorage } from '@/shared/lib';
 
 import { authorize } from '../../api';
 

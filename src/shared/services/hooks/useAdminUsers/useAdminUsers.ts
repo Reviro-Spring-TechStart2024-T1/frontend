@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 
-import { fetcher } from '@/shared/helper';
+import { fetcher } from '@/shared/lib';
 
 import { AdminUsersProps, AdminUsersResponse } from './types';
 

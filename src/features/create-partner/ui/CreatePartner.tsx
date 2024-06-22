@@ -2,8 +2,9 @@
 
 import clsx from 'clsx';
 
+import { useCreatePartnerModal } from '@/app/_providers';
 import { Form } from '@/features/create-partner';
-import { CREATE_PARTNER, useCloseForm, useCreatePartnerModal } from '@/shared';
+import { CREATE_PARTNER, useCloseForm } from '@/shared';
 import { Button, Section, Typography } from '@/shared/ui';
 
 export const CreatePartner = () => {

@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
-import { ChosenEstablishmentProvider } from '@/shared';
+import { ChosenEstablishmentProvider } from '@/app/_providers';
+import { Providers } from '@/app/providers';
 import { PartnerHeader } from '@/widgets/header';
 import { Sidebar } from '@/widgets/sidebar';
-
-import { Providers } from '../providers';
 
 export const metadata: Metadata = {
   title: {

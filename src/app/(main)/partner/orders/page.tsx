@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+import { useChosenEstablishmentContext } from '@/app/_providers';
 import { FilterItem } from '@/features/filter';
 import {
   dateToDayHour,
   PARTNER_ORDER_FOR_CLIENT_PATH,
   TOrder,
-  useChosenEstablishmentContext,
   useGetBeverages,
   useGetOrders,
 } from '@/shared';

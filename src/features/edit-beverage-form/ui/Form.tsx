@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
+import { useChosenEstablishmentContext, useEditModal } from '@/app/_providers';
 import { TBeverage } from '@/entities/beverage';
 import { TCategory } from '@/entities/category';
 import { SubmitButton } from '@/features';
@@ -14,18 +15,16 @@ import { editBeverage } from '@/features/edit-beverage-form';
 import {
   IUserJwtPayload,
   useCategories,
-  useChosenEstablishmentContext,
   useGetCategory,
+  useLocalStorage,
 } from '@/shared';
 import {
   addImage,
   delete_,
   EDIT_BEVERAGE_FORM,
   useCloseForm,
-  useEditModal,
   useGetBeverage,
 } from '@/shared';
-import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 

@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 
-import { fetcher } from '@/shared/helper';
+import { fetcher } from '@/shared/lib';
 
 import { CustomersProps, CustomersResponse } from './types';
 

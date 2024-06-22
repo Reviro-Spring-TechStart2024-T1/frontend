@@ -6,11 +6,8 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-import {
-  ESTABLISHMENT_EDIT_PATH,
-  useChosenEstablishmentContext,
-  useLocalStorage,
-} from '@/shared';
+import { useChosenEstablishmentContext } from '@/app/_providers';
+import { ESTABLISHMENT_EDIT_PATH, useLocalStorage } from '@/shared';
 import { useGetEstablishments } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 import { Dropdown } from '@/widgets/dropdown';

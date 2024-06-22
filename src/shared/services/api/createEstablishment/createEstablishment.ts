@@ -1,4 +1,4 @@
-import { extractStructuredErrors } from '@/shared/helper';
+import { extractStructuredErrors } from '@/shared/lib';
 
 import { drinkjoyApi } from '../../interceptors/interceptors';
 

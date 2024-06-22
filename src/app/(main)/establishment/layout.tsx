@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 
-import { ChosenEstablishmentProvider } from '@/shared';
-
-import { Providers } from '../providers';
+import { ChosenEstablishmentProvider } from '@/app/_providers';
+import { Providers } from '@/app/providers';
 
 export const metadata: Metadata = {
   title: {

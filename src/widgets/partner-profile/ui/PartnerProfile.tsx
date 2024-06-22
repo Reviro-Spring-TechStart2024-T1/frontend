@@ -5,20 +5,20 @@ import toast from 'react-hot-toast';
 import Link from 'next/link';
 import { useSWRConfig } from 'swr';
 
+import { useChosenEstablishmentContext } from '@/app/_providers';
 import {
   Button,
   ESTABLISHMENT_EDIT_PATH,
   ESTABLISHMENT_PATH,
   Typography,
-  useChosenEstablishmentContext,
   useDeleteEstablishment,
 } from '@/shared';
 
 export const PartnerProfile = () => {
   const { chosenEstablishment } = useChosenEstablishmentContext();
-  const { data, trigger, error } = useDeleteEstablishment(
-    chosenEstablishment?.id,
-  );
+  const { data, trigger, error } = useDeleteEstablishment({
+    id: chosenEstablishment?.id,
+  });
   const { mutate } = useSWRConfig();
 
   const onDelete = () => {
@@ -43,7 +43,7 @@ export const PartnerProfile = () => {
 
   if (!chosenEstablishment?.name) {
     return (
-      <div className="flex min-h-full flex-col gap-4 items-center justify-center">
+      <div className="flex min-h-full flex-col items-center justify-center gap-4">
         <Typography variant="h2">No Establishment!</Typography>
         <Link
           href={ESTABLISHMENT_PATH}

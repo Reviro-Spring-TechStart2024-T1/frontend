@@ -6,14 +6,13 @@ import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
-import { Beverage } from '@/entities/beverage';
-import { TCategory } from '@/entities/category';
 import {
-  PARTNER_ORDER_FOR_CLIENT_PATH,
   useChosenEstablishmentContext,
   useCreateModal,
-} from '@/shared';
-import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
+} from '@/app/_providers';
+import { Beverage } from '@/entities/beverage';
+import { TCategory } from '@/entities/category';
+import { PARTNER_ORDER_FOR_CLIENT_PATH, useLocalStorage } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 import { useCreateMenu, useMenu } from '@/widgets/beverage-list';
 

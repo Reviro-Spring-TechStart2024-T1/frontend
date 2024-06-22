@@ -16,6 +16,7 @@ import {
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
+import { useChosenEstablishmentContext } from '@/app/_providers';
 import { GoogleMap } from '@/entities/map';
 import {
   END_TIME_PICKER,
@@ -33,7 +34,6 @@ import {
   ESTABLISHMENT_EDIT_PATH,
   ESTABLISHMENT_PATH,
   ImageUploaderWithCrop,
-  useChosenEstablishmentContext,
   useCloseForm,
   useEditEstablishment,
 } from '@/shared';

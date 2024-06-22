@@ -5,7 +5,7 @@ import {
 } from '@remixicon/react';
 import clsx from 'clsx';
 
-import { usePagination } from '@/shared/helper';
+import { usePagination } from '@/shared/lib';
 
 import { Button } from '../Button';
 
