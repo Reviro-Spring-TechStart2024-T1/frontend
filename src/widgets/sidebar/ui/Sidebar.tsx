@@ -4,7 +4,7 @@ import { RiLogoutBoxRLine } from '@remixicon/react';
 import { useRouter } from 'next/navigation';
 
 import { useChosenEstablishmentContext } from '@/app/_providers';
-import { Logo } from '@/shared/icons/Logo';
+import { Logo } from '@/shared';
 import { Button } from '@/shared/ui';
 import { Navbar } from '@/widgets/navbar';
 
