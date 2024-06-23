@@ -11,3 +11,9 @@ export type ExtendedFieldProps = ComponentPropsWithRef<'input'> &
     label?: string;
     onClick?: () => void;
   };
+
+export type TChangePassForm = {
+  old_password: '';
+  password: '';
+  confirm_password: '';
+};

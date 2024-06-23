@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ComponentPropsWithoutRef, FC } from 'react';
+import React, { ComponentPropsWithoutRef, FC, memo } from 'react';
 import clsx from 'clsx';
 import { useSearchParams } from 'next/navigation';
 
@@ -15,13 +15,13 @@ type TProps = ComponentPropsWithoutRef<'div'> & {
   close: () => void;
 };
 
-export const Modal: FC<TProps> = ({
+export const Modal: FC<TProps> = memo(function Modal({
   query,
   isSubmitting,
   onModalSubmit,
   close,
   children,
-}) => {
+}) {
   const ref = useClickOutside(close);
   const searchParams = useSearchParams();
   const queryParam = searchParams.get(query);
@@ -66,4 +66,4 @@ export const Modal: FC<TProps> = ({
       </div>
     </div>
   );
-};
+});

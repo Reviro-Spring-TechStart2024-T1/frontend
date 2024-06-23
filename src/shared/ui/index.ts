@@ -6,5 +6,6 @@ export * from './Input';
 export * from './Modal';
 export * from './Pagination';
 export * from './Section';
+export * from './ShowPassword';
 export * from './Textarea';
 export * from './Typography';

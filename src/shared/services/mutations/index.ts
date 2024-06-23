@@ -1,6 +1,7 @@
 import { useAddComment } from './useAddComment';
 import { useAddPlan } from './useAddPlan';
 import { useBlockPartner } from './useBlockPartner';
+import { useChangePassword } from './useChangePassword';
 import { useCreateCategory } from './useCreateCategory';
 import { useCreateEstablishment } from './useCreateEstablishment';
 import { useCreatePartner } from './useCreatePartner';
@@ -23,6 +24,7 @@ export {
   useAddComment,
   useAddPlan,
   useBlockPartner,
+  useChangePassword,
   useCreateCategory,
   useCreateEstablishment,
   useCreatePartner,
