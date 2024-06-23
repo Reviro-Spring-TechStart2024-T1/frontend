@@ -4,8 +4,10 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { SubscriptionPlan } from '@/entities/subscription-plan';
-import { AddSubscriptionPlan } from '@/features/add-subscription-plan';
+import {
+  AddSubscriptionPlan,
+  SubscriptionPlan,
+} from '@/entities/subscription-plan';
 import {
   ADMIN_SUBSCRIPTION_ACTIVE_PATH,
   ADMIN_SUBSCRIPTION_ARCHIEVE_PATH,
@@ -63,7 +65,7 @@ export const SubscriptionList = () => {
 
         <div className="grid gap-6 overflow-hidden rounded-md rounded-tl-none rounded-tr-none border border-t-0 px-8 py-14 auto-fill-80">
           {data?.results.map(item => {
-            return <SubscriptionPlan type={1} plan={item} key={item.id} />;
+            return <SubscriptionPlan {...item} key={item.id} />;
           })}
           <AddSubscriptionPlan />
         </div>

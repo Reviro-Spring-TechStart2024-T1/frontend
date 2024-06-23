@@ -10,7 +10,7 @@ export const Input: FC<InputProps> = forwardRef((props, ref) => {
 
   return (
     <div className="space-y-2">
-      {title ? <Typography variant="caption">{title}:</Typography> : null}
+      {title ? <Typography variant="caption">{title}</Typography> : null}
 
       <input
         {...rest}

@@ -28,3 +28,5 @@ export {
   useDeleteModal,
   useEditModal,
 };
+
+export { ModalProvider } from './modal-provider';
