@@ -27,7 +27,7 @@ export default function RootLayout({
         <main className="grid grid-cols-[128px_auto] md:block">
           <Sidebar />
 
-          <div className="h-[1px] min-h-main overflow-auto">
+          <div className="min-h-main overflow-auto">
             <Providers>{children}</Providers>
           </div>
         </main>
