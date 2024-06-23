@@ -2,6 +2,7 @@ import { addComment } from './addComment';
 import { addPlan } from './addPlan';
 import { authorize } from './authorize';
 import { blockPartner } from './blockPartner';
+import { changePassword } from './changePassword';
 import { createCategory } from './createCategory';
 import { createEstablishment } from './createEstablishment';
 import { createOrderForClient } from './createOrderForClient';
@@ -24,6 +25,7 @@ export {
   addPlan,
   authorize,
   blockPartner,
+  changePassword,
   createCategory,
   createEstablishment,
   createOrderForClient,
