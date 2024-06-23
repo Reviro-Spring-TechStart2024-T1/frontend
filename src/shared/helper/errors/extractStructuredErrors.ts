@@ -4,9 +4,21 @@ export const extractStructuredErrors = (
 ) => {
   return Object.entries(data).map(([key, value]) => {
     if (isKeyNeeded) {
-      const message = Array.isArray(value) ? value.join(', ') : value; //NOTE - Can also get only the first element value[0]
+      let message;
+
+      if (Array.isArray(value)) {
+        message = value.join(', ');
+      }
+      if (value !== null && typeof value === 'object') {
+        message = Object.entries(value)
+          .map(([_, value]) => value)
+          .join(', '); //NOTE - Can also get only the first element value[0]
+      } else {
+        message = value;
+      }
       return [key, message];
-    } else {
+    }
+    if (!isKeyNeeded) {
       return Array.isArray(value) ? value.join(', ') : value;
     }
   });
