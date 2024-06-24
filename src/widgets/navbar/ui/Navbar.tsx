@@ -29,8 +29,8 @@ import {
   PARTNER_ORDERS_PATH,
   PARTNER_PROFILE_PATH,
   PARTNER_SUPPORT_PATH,
+  useLocalStorage,
 } from '@/shared';
-import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button } from '@/shared/ui';
 
 interface User {

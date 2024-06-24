@@ -8,6 +8,8 @@ import { SelectOption, SelectProps } from './types/Select.types';
 
 export const Select = ({
   value,
+  name,
+  errors,
   options,
   title,
   any,
@@ -23,7 +25,7 @@ export const Select = ({
   };
 
   return (
-    <div className="flex-1 space-y-1">
+    <div className="flex-1 space-y-2">
       {title ? <Typography variant="caption">{title}</Typography> : null}
 
       <div
@@ -36,6 +38,7 @@ export const Select = ({
           className={clsx(
             'flex cursor-pointer items-center justify-between rounded-md border border-theme-grey-200 bg-theme-white p-2',
             { ['border-theme-grey-300']: isOpen },
+            { ['border-theme-red-500']: name && errors?.[name] },
           )}
         >
           {label ? (

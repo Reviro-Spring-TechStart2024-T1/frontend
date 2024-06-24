@@ -5,11 +5,14 @@ import { useFormState } from 'react-dom';
 import { useSearchParams } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
+import {
+  useChosenEstablishmentContext,
+  useDeleteModal,
+} from '@/app/_providers';
 import { deleteBeverage } from '@/features/delete-beverage';
 import { SubmitButton } from '@/features/submit-form';
-import { IUserJwtPayload, useChosenEstablishmentContext } from '@/shared';
-import { DELETE_BEVERAGE, useCloseForm, useDeleteModal } from '@/shared';
-import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
+import { IUserJwtPayload, useLocalStorage } from '@/shared';
+import { DELETE_BEVERAGE, useCloseForm } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 
 export const DeleteConfirmation = () => {
@@ -45,7 +48,7 @@ export const DeleteConfirmation = () => {
     setId(searchParams.get('id'));
   }, [searchParams]);
 
-  useCloseForm(DELETE_BEVERAGE, setModalState);
+  useCloseForm({ elementId: DELETE_BEVERAGE, setter: setModalState });
 
   return (
     <>

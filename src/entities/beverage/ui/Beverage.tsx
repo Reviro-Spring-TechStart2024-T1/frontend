@@ -5,16 +5,14 @@ import { RiCheckboxLine } from '@remixicon/react';
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
+import { useDeleteModal, useEditModal } from '@/app/_providers';
 import { TBeverage } from '@/entities/beverage';
 import {
-  beverage,
   delete_,
   edit,
   PARTNER_MENU_PATH,
   PARTNER_ORDER_FOR_CLIENT_PATH,
   setId,
-  useDeleteModal,
-  useEditModal,
 } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 
@@ -57,12 +55,6 @@ export const Beverage: FC<TBeverage> = ({
     <>
       <li className="flex flex-col justify-between overflow-hidden rounded-lg border border-gray-300 bg-white">
         <div className="relative shrink-0">
-          <Image
-            src={beverage}
-            alt="Beverage"
-            className="rounded-l-lg rounded-bl-lg object-cover"
-            style={{ width: '100%', height: '300px' }}
-          />
           <div className="absolute bottom-[6px] right-[6px] rounded-md bg-[#00b3ff78] p-2">
             <Typography variant="caption" className="   text-white ">
               quantity: {in_stock}

@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react';
-
-type InputTypes = 'text' | 'number' | 'password' | 'email' | 'file' | 'hidden';
+import { FormikErrors } from 'formik';
 
 export interface InputProps extends ComponentProps<'input'> {
   title?: string;
+  errors?: FormikErrors<any>;
 }

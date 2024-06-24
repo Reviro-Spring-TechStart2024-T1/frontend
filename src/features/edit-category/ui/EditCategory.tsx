@@ -8,7 +8,7 @@ import { EDIT_CATEGORY, TFormProps, useCloseForm } from '@/shared';
 import { Typography } from '@/shared/ui';
 
 export const EditCategory: FC<TFormProps> = ({ isActive, setModalState }) => {
-  useCloseForm(EDIT_CATEGORY, setModalState);
+  useCloseForm({ elementId: EDIT_CATEGORY, setter: setModalState });
 
   return (
     <div

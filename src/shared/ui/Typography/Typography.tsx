@@ -14,7 +14,7 @@ const typographyVariants = cva('', {
       h5: 'text-lg',
       paragraph: 'text-base',
       caption: 'text-sm',
-      link: 'text-base',
+      link: 'text-sm hover:underline cursor-pointer',
     },
     color: {
       black: 'text-theme-black',

@@ -2,10 +2,10 @@
 
 import clsx from 'clsx';
 
+import { useCreateModal, useDeleteModal, useEditModal } from '@/app/_providers';
 import { AddBeverageForm } from '@/features/add-beverage-form';
 import { DeleteConfirmation } from '@/features/delete-beverage';
 import { EditBeverageForm } from '@/features/edit-beverage-form';
-import { useCreateModal, useDeleteModal, useEditModal } from '@/shared';
 import { Typography } from '@/shared/ui';
 
 export const Modal = () => {

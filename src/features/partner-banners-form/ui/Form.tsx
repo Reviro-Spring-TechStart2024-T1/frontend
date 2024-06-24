@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
+import { useChosenEstablishmentContext } from '@/app/_providers';
 import {
   DeleteBannerModal,
   EstablishmentBannersSchema,
@@ -24,7 +25,6 @@ import {
   ESTABLISHMENT_PATH,
   ImageUploaderWithCrop,
   Typography,
-  useChosenEstablishmentContext,
   useUploadBanners,
 } from '@/shared';
 

@@ -24,7 +24,7 @@ export const OrderForClient: FC<{ bev_id: string; customer_id: string }> = ({
   // eslint-disable-next-line unused-imports/no-unused-vars
   const [currentPage, setCurrentPage] = useState(1); //TODO - Consider pagination for categories in OrderForClient
 
-  const { categories } = useCategories(currentPage, 10);
+  const { categories } = useCategories({ page: currentPage, limit: 10 });
   const { isSuccess, trigger, isMutating } = useOrderForClient();
 
   const [isCategoryListActive, setIsCategoryListActive] = useState(true);

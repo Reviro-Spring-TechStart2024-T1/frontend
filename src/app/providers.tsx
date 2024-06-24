@@ -9,7 +9,7 @@ import {
   CreatePartnerModalContextProvider,
   DeleteModalProvider,
   EditModalContextProvider,
-} from '@/shared';
+} from './_providers';
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
