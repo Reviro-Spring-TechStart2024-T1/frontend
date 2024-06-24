@@ -1,2 +1,2 @@
+export * from './types';
 export { updatePassword } from './updatePassword';
-export * from './types'

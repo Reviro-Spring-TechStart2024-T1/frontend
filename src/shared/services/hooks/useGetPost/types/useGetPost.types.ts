@@ -1,3 +1,5 @@
+import { IComment } from '@/entities/comment';
+
 export interface Author {
   id: number;
   first_name: string;
@@ -12,7 +14,7 @@ export interface Post {
   created_at: string;
   updated_at: string;
   author: Author;
-  comments: Comment[];
+  comments: IComment[];
 }
 
 export interface PostProps {
