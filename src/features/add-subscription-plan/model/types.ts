@@ -1,6 +1,6 @@
 import { SelectOption } from '@/shared/ui/Select/types/Select.types';
 
-export interface PlanArg {
+export interface FormValues {
   title: string;
   description: string;
   period: SelectOption | null;

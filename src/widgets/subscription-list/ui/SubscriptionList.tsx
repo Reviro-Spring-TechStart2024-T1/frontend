@@ -58,7 +58,7 @@ export const SubscriptionList = () => {
                 ['font-medium']: pathname === ADMIN_SUBSCRIPTION_ARCHIEVE_PATH,
               })}
             >
-              Archieve plans
+              Archive plans
             </Typography>
           </Link>
         </nav>

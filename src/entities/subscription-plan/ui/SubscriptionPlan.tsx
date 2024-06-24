@@ -44,7 +44,7 @@ export const SubscriptionPlan = (props: Plan) => {
           </Button>
           <Button className="gap-1" variant="outline" size="md" radius="full">
             <RiArchiveLine size={16} />
-            Archieve
+            Archive
           </Button>
           <Button className="gap-1" variant="outline" size="md" radius="full">
             <RiDeleteBinLine size={16} />

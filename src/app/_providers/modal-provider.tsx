@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { AddSubscriptionPlan } from '@/features/add-subscription-plan';
+import { AddSubscriptionPlanModal } from '@/features/add-subscription-plan';
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -17,7 +17,7 @@ export const ModalProvider = () => {
 
   return (
     <>
-      <AddSubscriptionPlan />
+      <AddSubscriptionPlanModal />
     </>
   );
 };

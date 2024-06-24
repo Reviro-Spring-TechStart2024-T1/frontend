@@ -10,29 +10,68 @@ export const addPlan = async (
     arg: PlanArg;
   },
 ) => {
-  // FIX_ME: use dynamic data
+  const intervalUnit =
+    arg?.period?.key === 'QUARTER' ? 'MONTH' : arg.period?.key;
+  const intervalCount = arg?.period?.key === 'QUARTER' ? 3 : 1;
+  const isTrial = arg.days;
+  const productId = 'PROD-9L12605115881351F';
+
   const { data } = await drinkjoyApi.post(url, {
-    product_id: 'PROD-9L12605115881351F',
+    product_id: productId,
     name: arg.title,
     description: arg.description,
     status: 'ACTIVE',
-    billing_cycles: [
-      {
-        frequency: {
-          interval_unit: arg.period.key,
-          interval_count: 1,
-        },
-        tenure_type: 'REGULAR',
-        sequence: 1,
-        total_cycles: 0,
-        pricing_scheme: {
-          fixed_price: {
-            value: arg.price,
-            currency_code: 'USD',
+
+    billing_cycles: isTrial
+      ? [
+          {
+            frequency: {
+              interval_unit: 'DAY',
+              interval_count: arg.days,
+            },
+            tenure_type: 'TRIAL',
+            sequence: 1,
+            total_cycles: 1,
+            pricing_scheme: {
+              fixed_price: {
+                value: arg.price,
+                currency_code: 'USD',
+              },
+            },
           },
-        },
-      },
-    ],
+          {
+            frequency: {
+              interval_unit: intervalUnit,
+              interval_count: intervalCount,
+            },
+            tenure_type: 'REGULAR',
+            sequence: 2,
+            total_cycles: 0,
+            pricing_scheme: {
+              fixed_price: {
+                value: arg.price,
+                currency_code: 'USD',
+              },
+            },
+          },
+        ]
+      : [
+          {
+            frequency: {
+              interval_unit: intervalUnit,
+              interval_count: intervalCount,
+            },
+            tenure_type: 'REGULAR',
+            sequence: 1,
+            total_cycles: 0,
+            pricing_scheme: {
+              fixed_price: {
+                value: arg.price,
+                currency_code: 'USD',
+              },
+            },
+          },
+        ],
     payment_preferences: {
       auto_bill_outstanding: true,
       setup_fee: {

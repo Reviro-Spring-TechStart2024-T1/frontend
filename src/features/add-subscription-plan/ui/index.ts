@@ -1,1 +1,1 @@
-export { AddSubscriptionPlan } from './AddSubscriptionPlan';
+export { AddSubscriptionPlanModal } from './AddSubscriptionPlanModal';
