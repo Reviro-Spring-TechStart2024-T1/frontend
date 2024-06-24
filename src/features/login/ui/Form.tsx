@@ -3,12 +3,11 @@
 import { useState } from 'react';
 import { RiEyeCloseLine, RiEyeLine } from '@remixicon/react';
 import { ErrorMessage, Field, Form as FormikForm, Formik } from 'formik';
-import Image from 'next/image';
 import Link from 'next/link';
 import * as Yup from 'yup';
 
 import { SubmitButton } from '@/features/submit-form';
-import { logo } from '@/shared';
+import { Logo } from '@/shared';
 import { useLogin } from '@/shared/services/mutations/useLogin/useLogin';
 import { Button, Error, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
@@ -83,7 +82,7 @@ export const Form = () => {
         </Formik>
       </div>
       <div className="w-2/4 rounded-r-xl bg-[#292B74] px-[70px] py-[56px]">
-        <Image src={logo} alt="logo" width={240} height={400} />
+        <Logo />
       </div>
     </div>
   );

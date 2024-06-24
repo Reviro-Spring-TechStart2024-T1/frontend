@@ -25,7 +25,7 @@ export const DeleteBannerModal: FC<TProps> = memo(function DeleteBannerModal({
     deleteBanner,
     bannerDeletionError,
     isBannerDeleting,
-  } = useDeleteBanner(bannerId);
+  } = useDeleteBanner({ id: String(bannerId) });
 
   const modalRef = useRef<HTMLDivElement | null>(null);
 

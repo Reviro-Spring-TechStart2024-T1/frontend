@@ -1,2 +1,2 @@
-export { uploadBanners } from './uploadBanners';
 export * from './types';
+export { uploadBanners } from './uploadBanners';

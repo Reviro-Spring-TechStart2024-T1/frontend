@@ -1,2 +1,2 @@
+export * from './types';
 export { unblockPartner } from './unblockPartner';
-export * from './types'
