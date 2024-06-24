@@ -1,6 +1,7 @@
 export * from './useAddComment';
 export * from './useAddPlan';
 export * from './useBlockPartner';
+export * from './useChangePassword';
 export * from './useCreateCategory';
 export * from './useCreateEstablishment';
 export * from './useCreatePartner';
@@ -14,6 +15,7 @@ export * from './useForgotPassword';
 export * from './useGetUserByEmail';
 export * from './useLogin';
 export * from './useOrderForClient';
+export * from './useOrderStatus';
 export * from './useUnblockPartner';
 export * from './useUpdatePassword';
 export * from './useUploadBanners';

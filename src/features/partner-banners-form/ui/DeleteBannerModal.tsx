@@ -1,26 +1,31 @@
 'use client';
 
-import { FC, memo, useRef } from 'react';
+import { FC, memo, useEffect, useRef } from 'react';
+import toast from 'react-hot-toast';
 import clsx from 'clsx';
+import { mutate } from 'swr';
 
 import { SubmitButton } from '@/features/submit-form';
-import { Button, Typography } from '@/shared';
+import { Button, Error, Typography, useDeleteBanner } from '@/shared';
 
 type TProps = {
   isActive: boolean;
   close: () => void;
+  bannerId: number;
 };
 
 export const DeleteBannerModal: FC<TProps> = memo(function DeleteBannerModal({
   //TODO - Think of a way, make time, not to repeat modals over and over (refactor)
   isActive,
   close,
+  bannerId,
 }) {
-  // const searchParams = useSearchParams();
-  // const bannerId = searchParams.get('bannerId');
-
-  // const { deleteBanner, bannerDeletionError, isBannerDeleting } =
-  //   useDeleteBanner(bannerId);
+  const {
+    isBannerDeletionSuccessful,
+    deleteBanner,
+    bannerDeletionError,
+    isBannerDeleting,
+  } = useDeleteBanner(bannerId);
 
   const modalRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,6 +34,14 @@ export const DeleteBannerModal: FC<TProps> = memo(function DeleteBannerModal({
       close();
     }
   };
+
+  useEffect(() => {
+    if (isBannerDeletionSuccessful) {
+      close();
+      toast.success('Banner has been successfully deleted!');
+      mutate('/establishments/partner/');
+    }
+  }, [isBannerDeletionSuccessful]);
 
   return (
     <div
@@ -54,14 +67,20 @@ export const DeleteBannerModal: FC<TProps> = memo(function DeleteBannerModal({
         >
           Irreversible action.
         </Typography>
-        {/* {bannerDeletionError && <Error>{bannerDeletionError}</Error>} */}
+        {bannerDeletionError && (
+          <Error>
+            {bannerDeletionError === typeof Object
+              ? JSON.stringify(bannerDeletionError)
+              : bannerDeletionError}
+          </Error>
+        )}
         <div className="flex gap-2">
           <Button variant="outline" className="w-full" onClick={() => close()}>
             Close
           </Button>
           <SubmitButton
-          // onClick={() => deleteBanner()}
-          // isMutating={isBannerDeleting}
+            onClick={() => deleteBanner()}
+            isMutating={isBannerDeleting}
           >
             Delete
           </SubmitButton>

@@ -4,11 +4,16 @@ import { useEffect, useState } from 'react';
 import { RiMenuFill, RiProfileLine } from '@remixicon/react';
 import clsx from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { useChosenEstablishmentContext } from '@/app/_providers';
-import { ESTABLISHMENT_EDIT_PATH, useLocalStorage } from '@/shared';
-import { useGetEstablishments } from '@/shared';
+import {
+  ESTABLISHMENT_EDIT_PATH,
+  PARTNER_PROFILE_PATH,
+  useGetEstablishments,
+  useLocalStorage,
+} from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 import { Dropdown } from '@/widgets/dropdown';
 import { Navbar } from '@/widgets/navbar';
@@ -25,8 +30,11 @@ export const PartnerHeader = () => {
   const [showNavbarDropDown, setShowNavbarDropDown] = useState(false);
   const [showEstablishmentsDropDown, setShowEstablishmentsDropDown] =
     useState(false);
-  const { chosenEstablishment, setChosenEstablishment } =
-    useChosenEstablishmentContext();
+  const {
+    chosenEstablishment,
+    setChosenEstablishment,
+    setIsChosenEstablishmentLoading,
+  } = useChosenEstablishmentContext();
 
   const filteredEstablishments = establishment?.results
     .filter(establishment => establishment.id !== chosenEstablishment?.id)
@@ -52,6 +60,17 @@ export const PartnerHeader = () => {
   };
 
   useEffect(() => {
+    if (isLoading) {
+      setIsChosenEstablishmentLoading(true);
+    } else {
+      setIsChosenEstablishmentLoading(false);
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (!establishment?.results.length) {
+      setChosenEstablishment(null);
+    }
     if (establishment?.results.length) {
       setEstablishmentId(establishment?.results[0].id);
       setChosenEstablishment(establishment?.results[0]);
@@ -137,10 +156,18 @@ export const PartnerHeader = () => {
           },
         )}
       >
-        <div className="flex-1">
+        <div className="flex flex-1 items-center gap-2">
           <Typography variant="caption" color="grey">
             Establishment
           </Typography>
+          {pathname === ESTABLISHMENT_EDIT_PATH && (
+            <Link
+              href={PARTNER_PROFILE_PATH}
+              className="rounded-md bg-theme-white px-2 py-2 transition-colors duration-200 hover:bg-theme-grey-200 active:bg-theme-grey-300"
+            >
+              To profile page
+            </Link>
+          )}
         </div>
 
         {isLoading && <Typography variant="caption">Loading...</Typography>}

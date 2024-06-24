@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import toast from 'react-hot-toast';
 import { TextareaAutosize } from '@mui/material';
 import { StaticTimePicker } from '@mui/x-date-pickers';
 import { useMask } from '@react-input/mask';
@@ -48,11 +49,13 @@ export const Form = () => {
   const { chosenEstablishment } = useChosenEstablishmentContext();
 
   const {
+    createEstablishmentData,
     createEstablishment,
     createEstablishmentError,
     isCreateEstablishmentMutating,
   } = useCreateEstablishment(); //NOTE - POST establishment
   const {
+    editEstablishmentData,
     editEstablishment,
     editEstablishmentError,
     isEditEstablishmentMutating,
@@ -67,7 +70,8 @@ export const Form = () => {
     replacement: { _: /\d/ },
   });
 
-  const errorRef = useRef<HTMLDivElement | null>(null);
+  const editErrorRef = useRef<HTMLDivElement | null>(null);
+  const createErrorRef = useRef<HTMLDivElement | null>(null);
 
   const [latitude, setLatitude] = useState(42.87656); //SECTION - Inputs' data
   const [longitude, setLongitude] = useState(74.588274);
@@ -206,6 +210,19 @@ export const Form = () => {
   };
 
   useEffect(() => {
+    createEstablishmentData &&
+      toast.success(
+        `${createEstablishmentData.name} has been successfully edited!`,
+      );
+  }, [createEstablishmentData]);
+  useEffect(() => {
+    editEstablishmentData &&
+      toast.success(
+        `${chosenEstablishment?.name} has been successfully edited!`,
+      );
+  }, [editEstablishmentData]);
+
+  useEffect(() => {
     if (chosenEstablishment && pathname === ESTABLISHMENT_EDIT_PATH) {
       setFieldValue('name', chosenEstablishment.name || '');
       setFieldValue('latitude', chosenEstablishment.latitude?.toString() || '');
@@ -255,12 +272,12 @@ export const Form = () => {
 
   useEffect(() => {
     createEstablishmentError &&
-      errorRef.current?.scrollIntoView({ behavior: 'smooth' });
+      createErrorRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [createEstablishmentError]);
 
   useEffect(() => {
     createEstablishmentError &&
-      errorRef.current?.scrollIntoView({ behavior: 'smooth' });
+      editErrorRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [editEstablishmentError]);
 
   return (
@@ -291,9 +308,8 @@ export const Form = () => {
         className="grid grid-cols-2 gap-10 rounded-md bg-white p-9 lg:grid-cols-1 sm:p-4"
       >
         <div className="flex flex-col gap-[25px]">
-          <Typography variant="h4">General</Typography>
           {createEstablishmentError && (
-            <div ref={errorRef}>
+            <div ref={createErrorRef}>
               <>
                 Create errors:
                 {createEstablishmentError?.map(([key, value]) => (
@@ -308,10 +324,10 @@ export const Form = () => {
             </div>
           )}
           {editEstablishmentError && (
-            <div ref={errorRef}>
+            <div ref={editErrorRef}>
               <>
                 Edit errors:
-                {createEstablishmentError?.map(([key, value]) => (
+                {editEstablishmentError?.map(([key, value]) => (
                   <Error key={key}>
                     <Typography variant="caption" weight="semibold">
                       {key}
@@ -322,6 +338,7 @@ export const Form = () => {
               </>
             </div>
           )}
+          <Typography variant="h4">General</Typography>
           <Field name="name">
             {(props: FieldProps) =>
               renderInput({

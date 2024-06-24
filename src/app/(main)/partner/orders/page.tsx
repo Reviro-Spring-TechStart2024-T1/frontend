@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { RiCheckboxCircleLine, RiDeleteBinLine } from '@remixicon/react';
 import Link from 'next/link';
 
 import { useChosenEstablishmentContext } from '@/app/_providers';
@@ -12,10 +14,26 @@ import {
   useGetBeverages,
   useGetOrders,
 } from '@/shared';
+import { useOrderStatus } from '@/shared/services/mutations/useOrderStatus';
 import { Button, Container, Typography } from '@/shared/ui';
 import { Select } from '@/shared/ui/Select';
 import { ColumnsType, Table } from '@/shared/ui/Table';
 import { SearchFilter } from '@/widgets/search-filter';
+
+const statusOptions = [
+  { id: 1, key: 'pending', label: 'Pending' },
+  { id: 2, key: 'completed', label: 'Completed' },
+  { id: 3, key: 'cancelled', label: 'Cancelled' },
+];
+const timeOptions = [
+  { id: 1, key: 'today', label: 'Today' },
+  { id: 2, key: 'yesterday', label: 'Yesterday' },
+  { id: 3, key: 'this_month', label: 'This month' },
+  { id: 4, key: 'last_month', label: 'Last month' },
+  { id: 5, key: 'last_6_months', label: 'Last 6 months' },
+  { id: 6, key: 'this_year', label: 'This year' },
+  { id: 7, key: 'last_year', label: 'Last year' },
+];
 
 export default function Page() {
   const [search, setSearch] = useState('');
@@ -36,21 +54,35 @@ export default function Page() {
     status: filterItems.status?.key,
     time: filterItems.time?.key,
   });
+  const [orderToEdit, setOrderToEdit] = useState<{
+    id: number | null;
+    status: 'pending' | 'completed' | 'cancelled' | null;
+  }>({ id: null, status: null });
+  const { trigger, error } = useOrderStatus(orderToEdit.id);
 
-  const statusOptions = [
-    { id: 1, key: 'pending', label: 'Pending' },
-    { id: 2, key: 'completed', label: 'Completed' },
-    { id: 3, key: 'cancelled', label: 'Cancelled' },
-  ];
-  const timeOptions = [
-    { id: 1, key: 'today', label: 'Today' },
-    { id: 2, key: 'yesterday', label: 'Yesterday' },
-    { id: 3, key: 'this_month', label: 'This month' },
-    { id: 4, key: 'last_month', label: 'Last month' },
-    { id: 5, key: 'last_6_months', label: 'Last 6 months' },
-    { id: 6, key: 'this_year', label: 'This year' },
-    { id: 7, key: 'last_year', label: 'Last year' },
-  ];
+  const onComplete = async () => {
+    const res = await trigger({
+      status: 'completed',
+    });
+
+    if (res) {
+      toast.success(`The order ${orderToEdit.id} has been set completed!`);
+    } else {
+      toast.error(JSON.stringify(error));
+    }
+  };
+
+  const onCancel = async () => {
+    const res = await trigger({
+      status: 'cancelled',
+    });
+
+    if (res) {
+      toast.success(`The order ${orderToEdit.id} has been set cancelled!`);
+    } else {
+      toast.error(JSON.stringify(error));
+    }
+  };
 
   const columns: ColumnsType<TOrder> = [
     { key: 'id', title: 'ID' },
@@ -74,7 +106,50 @@ export default function Page() {
       },
     },
     { key: 'status', title: 'Status' },
+    {
+      key: 'actions',
+      title: 'Actions',
+      render: order => {
+        if (order.status === 'pending') {
+          return (
+            <div className="flex gap-2">
+              <Button
+                onClick={() =>
+                  setOrderToEdit({ id: order.id, status: 'completed' })
+                }
+                variant="outline"
+                className="group/complete p-1"
+                title="Complete"
+              >
+                <RiCheckboxCircleLine className="group-hover/complete:fill-green-400" />
+              </Button>
+              <Button
+                onClick={() =>
+                  setOrderToEdit({ id: order.id, status: 'cancelled' })
+                }
+                variant="delete"
+                className="group/cancel p-1"
+                title="Cancel"
+              >
+                <RiDeleteBinLine className="fill-black group-hover/cancel:fill-red-400" />
+              </Button>
+            </div>
+          );
+        } else {
+          return null;
+        }
+      },
+    },
   ];
+
+  useEffect(() => {
+    if (orderToEdit.status === 'completed') {
+      onComplete();
+    }
+    if (orderToEdit.status === 'cancelled') {
+      onCancel();
+    }
+  }, [orderToEdit]);
 
   return (
     <Container title="Incoming orders">

@@ -1,5 +1,6 @@
 'use client';
 
+import { mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
 
 import { editEstablishment } from '../../api';
@@ -16,6 +17,7 @@ export const useEditEstablishment = ({ id }: EditEstablishmentProps) => {
       },
       onSuccess() {
         console.log('success');
+        mutate('/establishments/partner/');
       },
     },
   );

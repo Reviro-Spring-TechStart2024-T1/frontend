@@ -1,3 +1,4 @@
+import { TEstablishment } from '@/shared';
 import { extractStructuredErrors } from '@/shared/lib';
 
 import { drinkjoyApi } from '../../interceptors/interceptors';
@@ -15,11 +16,11 @@ export const createEstablishment = async (
   try {
     const formData = createFormData(arg);
 
-    const { data } = await drinkjoyApi.post(url, formData, {
+    const { data } = await drinkjoyApi.post<TEstablishment>(url, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
 
-    localStorage.setItem('establishment_id', data.id);
+    localStorage.setItem('establishment_id', String(data.id));
     return data;
   } catch (error: any) {
     throw extractStructuredErrors(error.response.data);
