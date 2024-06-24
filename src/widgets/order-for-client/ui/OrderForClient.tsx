@@ -5,8 +5,7 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
 import { Categories, TCategory } from '@/entities/category';
-import { SubmitButton } from '@/features';
-import { FindCustomerForm } from '@/features/find-customer-form';
+import { FindCustomerForm, SubmitButton } from '@/features';
 import {
   PARTNER_ORDERS_PATH,
   useCategories,

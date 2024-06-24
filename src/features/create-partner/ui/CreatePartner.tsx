@@ -3,9 +3,10 @@
 import clsx from 'clsx';
 
 import { useCreatePartnerModal } from '@/app/_providers';
-import { Form } from '@/features/create-partner';
 import { CREATE_PARTNER, useCloseForm } from '@/shared';
 import { Button, Section, Typography } from '@/shared/ui';
+
+import { CreatePartnerForm } from '.';
 
 export const CreatePartner = () => {
   const { isActive: isCreatePartnerModalActive, setModalState } =
@@ -37,7 +38,7 @@ export const CreatePartner = () => {
           <Typography variant="paragraph" weight="medium">
             Create Partner
           </Typography>
-          <Form />
+          <CreatePartnerForm />
         </div>
       </div>
     </>

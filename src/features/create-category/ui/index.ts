@@ -1,4 +1,2 @@
-import { CreateCategory } from './CreateCategory';
-import { Form } from './Form';
-
-export { CreateCategory, Form };
+export { CreateCategory } from './CreateCategory';
+export { Form as CreateCategoryForm } from './Form';

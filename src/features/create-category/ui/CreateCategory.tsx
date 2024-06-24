@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 
-import { Form } from '@/features/create-category';
 import { CREATE_CATEGORY, useCloseForm } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
+
+import { CreateCategoryForm } from '.';
 
 export const CreateCategory = () => {
   const [isModalActive, setIsModalActive] = useState(false);
@@ -38,7 +39,7 @@ export const CreateCategory = () => {
           <Typography variant="paragraph" weight="medium">
             Create Category
           </Typography>
-          <Form setModalState={setIsModalActive} />
+          <CreateCategoryForm setModalState={setIsModalActive} />
         </div>
       </div>
     </>

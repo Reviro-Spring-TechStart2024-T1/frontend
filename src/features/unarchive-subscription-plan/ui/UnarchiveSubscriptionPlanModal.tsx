@@ -21,8 +21,8 @@ export const UnarchiveSubscriptionPlanModal = () => {
     <Dialog
       open={isModalOpen}
       onOpenChange={onClose}
-      title="Are you sure?"
       onSubmit={handleUnarchivePlan}
+      title="Are you sure?"
       btnLabel="Yes, unarchive"
     >
       <div>

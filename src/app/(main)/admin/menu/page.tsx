@@ -4,9 +4,9 @@ import { Suspense, useState } from 'react';
 import { ReadonlyURLSearchParams, useRouter } from 'next/navigation';
 
 import { TCategory } from '@/entities/category';
+import { EditCategory } from '@/features';
 import { CreateCategory } from '@/features/create-category';
 import { DeleteCategoryConfirmation } from '@/features/delete-category';
-import { EditCategory } from '@/features/edit-category';
 import { setId, useCategories } from '@/shared';
 import { Container } from '@/shared/ui';
 import { ColumnsType, Table } from '@/shared/ui/Table';

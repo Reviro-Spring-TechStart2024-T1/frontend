@@ -1,3 +1,5 @@
+'use client';
+
 import toast from 'react-hot-toast';
 import { Field, Form, Formik } from 'formik';
 import { useSWRConfig } from 'swr';

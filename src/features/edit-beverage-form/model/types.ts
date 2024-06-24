@@ -1,6 +1,6 @@
 import { TBeverage } from '@/entities/beverage';
 
-export type TFormState = {
+export type TFormEditBeverageState = {
   message?: 'success' | 'error' | '' | string;
   errors?: {
     name?: string[];

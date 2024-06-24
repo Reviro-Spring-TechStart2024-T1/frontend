@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { Form as EstablishmentBannersForm } from '@/features/partner-banners-form';
-import { Form as EstablishmentInfoForm } from '@/features/partner-info-form';
+import { BannerForm } from '@/features';
+import { PartnerInfoForm } from '@/features/partner-info-form/ui';
 import { ESTABLISHMENT_EDIT_PATH, ESTABLISHMENT_PATH } from '@/shared';
 import { Typography } from '@/shared/ui';
 
@@ -32,8 +32,8 @@ export const EstablishmentForms = () => {
       </div>
 
       <div className="flex flex-col gap-5">
-        <EstablishmentInfoForm />
-        <EstablishmentBannersForm />
+        <PartnerInfoForm />
+        <BannerForm />
       </div>
     </div>
   );

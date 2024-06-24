@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { LoginForm } from '@/features/login';
+import { LoginForm } from '@/features';
 import { NO_INDEX_PAGE } from '@/shared';
 
 export const metadata: Metadata = {

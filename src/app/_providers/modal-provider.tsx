@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
-import { AddSubscriptionPlanModal } from '@/features/add-subscription-plan';
-import { ArchiveSubscriptionPlanModal } from '@/features/archive-subscription-plan/ui/ArchiveSubscriptionPlanModal';
-import { CreatePostModal } from '@/features/create-post';
-import { UnarchiveSubscriptionPlanModal } from '@/features/unarchive-subscription-plan';
+import {
+  AddSubscriptionPlanModal,
+  ArchiveSubscriptionPlanModal,
+  CreatePostModal,
+  UnarchiveSubscriptionPlanModal,
+} from '@/features';
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);

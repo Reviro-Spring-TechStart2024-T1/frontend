@@ -1,3 +1,1 @@
-import { Form as FindCustomerForm } from './Form';
-
-export { FindCustomerForm };
+export { Form as FindCustomerForm } from './Form';
