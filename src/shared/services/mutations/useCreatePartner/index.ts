@@ -1,0 +1,1 @@
+export { useCreatePartner } from './useCreatePartner';

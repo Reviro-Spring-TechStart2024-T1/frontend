@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
-import { getFirstLetter } from '@/shared/helper';
+import { getFirstLetter } from '@/shared/lib';
 
 import { AvatarProps } from './types/Avatar.types';
 

@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { useSearchParams } from 'next/navigation';
 
 import { SubmitButton } from '@/features';
-import { useClickOutside } from '@/shared/helper';
+import { useClickOutside } from '@/shared/lib';
 import { Button, Typography } from '@/shared/ui';
 
 type TProps = ComponentPropsWithoutRef<'div'> & {

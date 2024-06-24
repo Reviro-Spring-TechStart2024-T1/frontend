@@ -1,6 +1,8 @@
-import { Comment as CommentType, dateToRelative } from '@/shared';
+import { dateToRelative } from '@/shared';
 import { Typography } from '@/shared/ui';
 import { Avatar } from '@/shared/ui/Avatar';
+
+import { Comment as CommentType } from '../types';
 
 export const Comment = (props: CommentType) => {
   const { message, author, created_at } = props;

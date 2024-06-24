@@ -1,24 +1,15 @@
-import { useCategories } from './useCategories';
-import { useFilteredOrders } from './useFilteredOrders';
-import { useGetCategory } from './useGetCategory';
-import { useGetEstablishments } from './useGetEstablishments';
-import { useGetOrders } from './useGetOrders';
-import { useGetPlans } from './useGetPlans';
-import { useOrdersStatistics } from './useOrdersStatistics';
-
-export { useCloseForm } from './useCloseForm';
-export { useGetAdminPartners } from './useGetAdminPartners';
-export { useGetBeverage } from './useGetBeverage';
-export { useGetBeverages } from './useGetBeverages';
-export { useGetCustomers } from './useGetCustomers';
-export { useGetPost } from './useGetPost';
-export { useGetPosts } from './useGetPosts';
-export {
-  useCategories,
-  useFilteredOrders,
-  useGetCategory,
-  useGetEstablishments,
-  useGetOrders,
-  useGetPlans,
-  useOrdersStatistics,
-};
+export * from './useAdminUsers';
+export * from './useCategories';
+export * from './useCloseForm';
+export * from './useGetAdminPartners';
+export * from './useGetBeverage';
+export * from './useGetBeverages';
+export * from './useGetCategory';
+export * from './useGetCustomer';
+export * from './useGetCustomers';
+export * from './useGetEstablishments';
+export * from './useGetOrders';
+export * from './useGetPlans';
+export * from './useGetPost';
+export * from './useGetPosts';
+export * from './useOrdersStatistics';

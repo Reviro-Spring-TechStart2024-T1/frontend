@@ -3,8 +3,8 @@
 import { RiLogoutBoxRLine } from '@remixicon/react';
 import { useRouter } from 'next/navigation';
 
-import { useChosenEstablishmentContext } from '@/shared';
-import { Logo } from '@/shared/icons/Logo';
+import { useChosenEstablishmentContext } from '@/app/_providers';
+import { Logo } from '@/shared';
 import { Button } from '@/shared/ui';
 import { Navbar } from '@/widgets/navbar';
 

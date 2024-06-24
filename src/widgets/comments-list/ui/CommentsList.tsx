@@ -6,7 +6,7 @@ import { Typography } from '@/shared/ui';
 
 export const CommentsList = () => {
   const params = useParams<{ id: string }>();
-  const { post } = useGetPost(params.id);
+  const { post } = useGetPost({ id: params.id });
 
   return (
     <div className="rounded-md border border-theme-grey-200 p-6">

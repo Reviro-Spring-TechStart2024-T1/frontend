@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
+import { useChosenEstablishmentContext } from '@/app/_providers';
 import { SubmitButton } from '@/features';
 import {
   Button,
@@ -20,7 +21,6 @@ import {
   TChangePassForm,
   Typography,
   useChangePassword,
-  useChosenEstablishmentContext,
   useDeleteEstablishment,
 } from '@/shared';
 
@@ -30,9 +30,9 @@ type TPassword = 'old' | 'new' | 'confirm';
 export const PartnerProfile = () => {
   const { chosenEstablishment, isChosenEstablishmentLoading } =
     useChosenEstablishmentContext();
-  const { data, trigger, error, isMutating } = useDeleteEstablishment(
-    chosenEstablishment?.id,
-  );
+  const { data, trigger, error, isMutating } = useDeleteEstablishment({
+    id: chosenEstablishment?.id,
+  });
   const { changePassword, changePasswordError, isPasswordChanging } =
     useChangePassword();
   const [chosenTab, setChosenTab] = useState<TTab>('info');

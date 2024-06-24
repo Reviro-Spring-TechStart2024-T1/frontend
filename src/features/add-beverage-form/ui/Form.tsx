@@ -7,22 +7,20 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useSWRConfig } from 'swr';
 
+import {
+  useChosenEstablishmentContext,
+  useCreateModal,
+} from '@/app/_providers';
 import { Categories, TCategory } from '@/entities/category';
 import { SubmitButton } from '@/features';
 import { createBeverage } from '@/features/add-beverage-form';
-import {
-  IUserJwtPayload,
-  useCategories,
-  useChosenEstablishmentContext,
-} from '@/shared';
+import { IUserJwtPayload, useCategories, useLocalStorage } from '@/shared';
 import {
   addImage,
   CREATE_BEVERAGE_FORM,
   delete_,
   useCloseForm,
-  useCreateModal,
 } from '@/shared';
-import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
@@ -32,7 +30,7 @@ export const Form: FC = () => {
   const [isCategoryListActive, setIsCategoryListActive] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const { categories } = useCategories(currentPage, 10);
+  const { categories } = useCategories({ page: currentPage, limit: 10 });
 
   const [category, setCategory] = useState<Partial<TCategory>>({
     id: undefined,
@@ -122,7 +120,7 @@ export const Form: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState]);
 
-  useCloseForm(CREATE_BEVERAGE_FORM, setModalState);
+  useCloseForm({ elementId: CREATE_BEVERAGE_FORM, setter: setModalState });
 
   return (
     <form
