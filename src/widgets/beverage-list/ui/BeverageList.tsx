@@ -60,21 +60,32 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
 
   return (
     <>
-      {error}
+      {error && !isLoading && (
+        <div className="flex h-full flex-col items-center justify-center gap-4">
+          <Typography variant="h2" className="text-center">
+            {error}
+          </Typography>
+          <Typography variant="h5" className="text-center">
+            There might be some serious trouble on the server...
+          </Typography>
+        </div>
+      )}
       {
         isChosenEstablishmentLoading || isLoading ? <div>Loading...</div> : null // TODO - Menu Skeleton
       }
-      {!isChosenEstablishmentLoading && !chosenEstablishment?.menu_id && (
-        <div className="flex h-full flex-col items-center justify-center gap-4">
-          <Typography variant="h2" className="text-center">
-            Establishment does not possess any menu.
-          </Typography>
-          <RiMenu2Line className="h-[70px] w-[70px]" />
-          <Button onClick={handleOnCreateMenu} className="w-2/4 text-xl">
-            Create Menu
-          </Button>
-        </div>
-      )}
+      {!isChosenEstablishmentLoading &&
+        !chosenEstablishment?.menu_id &&
+        !error && (
+          <div className="flex h-full flex-col items-center justify-center gap-4">
+            <Typography variant="h2" className="text-center">
+              Establishment does not possess any menu.
+            </Typography>
+            <RiMenu2Line className="h-[70px] w-[70px]" />
+            <Button onClick={handleOnCreateMenu} className="w-2/4 text-xl">
+              Create Menu
+            </Button>
+          </div>
+        )}
       {menu && (
         <>
           {pathname !== PARTNER_ORDER_FOR_CLIENT_PATH && (
