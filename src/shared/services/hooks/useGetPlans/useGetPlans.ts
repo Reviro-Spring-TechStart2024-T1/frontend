@@ -2,7 +2,8 @@
 
 import useSWR from 'swr';
 
-import { fetcher } from '@/shared/lib';
+import { ADMIN_SUBSCRIPTION_ACTIVE_PATH } from '@/shared/constants';
+import { fetcher, useComparePath } from '@/shared/lib';
 
 import { PlansResponse } from './types';
 
@@ -11,23 +12,22 @@ export const useGetPlans = () => {
     '/subscriptions/plans/',
     fetcher,
   );
+  const isActivePlan = useComparePath(ADMIN_SUBSCRIPTION_ACTIVE_PATH);
 
-  const data = {
-    ...planData,
-
-    results: planData
-      ? planData.results.map(item => {
-          const regular_type = item.billing_cycles.find(
-            item => item.tenure_type === 'REGULAR',
-          );
-          return {
-            ...item,
-            price: regular_type?.pricing_scheme.fixed_price.value,
-            period: regular_type?.frequency.interval_unit,
-          };
-        })
-      : [],
-  };
+  const data = planData
+    ?.map(item => {
+      const regular_type = item.billing_cycles.find(
+        item => item.tenure_type === 'REGULAR',
+      );
+      return {
+        ...item,
+        price: regular_type?.pricing_scheme.fixed_price.value,
+        period: regular_type?.frequency.interval_unit,
+      };
+    })
+    .filter(item =>
+      isActivePlan ? item.status === 'ACTIVE' : item.status === 'INACTIVE',
+    );
 
   return {
     data,

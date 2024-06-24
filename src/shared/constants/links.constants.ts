@@ -15,5 +15,5 @@ export const ADMIN_MENU_PATH = '/admin/menu';
 export const ADMIN_SUPPORT_PATH = '/admin/support';
 export const ADMIN_SUBSCRIPTION_ACTIVE_PATH =
   '/admin/subscription/active_plans';
-export const ADMIN_SUBSCRIPTION_ARCHIEVE_PATH =
+export const ADMIN_SUBSCRIPTION_ARCHIVE_PATH =
   '/admin/subscription/archieve_plans';

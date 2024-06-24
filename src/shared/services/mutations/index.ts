@@ -1,3 +1,4 @@
+export * from './useActionPlan';
 export * from './useAddComment';
 export * from './useAddPlan';
 export * from './useBlockPartner';

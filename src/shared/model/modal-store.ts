@@ -1,20 +1,26 @@
 import { create } from 'zustand';
 
-type ModalType = 'createPost' | 'createPlan';
+type ModalType = 'createPost' | 'createPlan' | 'archivePlan' | 'unarchivePlan';
 
 interface ModalStore {
   type: ModalType | null;
   isOpen: boolean;
-  onOpen: (type: ModalType) => void;
+  data: ModalData;
+  onOpen: (type: ModalType, data?: ModalData) => void;
   onClose: () => void;
+}
+
+interface ModalData {
+  plan_id?: string;
 }
 
 export const useModal = create<ModalStore>(set => ({
   type: null,
   isOpen: false,
-  onOpen: type => {
+  data: {},
+  onOpen: (type, data = {}) => {
     document.body.style.overflow = 'hidden';
-    set({ isOpen: true, type });
+    set({ isOpen: true, type, data });
   },
   onClose: () => {
     document.body.style.overflow = 'auto';

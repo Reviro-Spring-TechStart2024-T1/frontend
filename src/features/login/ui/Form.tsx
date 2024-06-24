@@ -82,7 +82,7 @@ export const Form = () => {
         </Formik>
       </div>
       <div className="w-2/4 rounded-r-xl bg-[#292B74] px-[70px] py-[56px]">
-        <Logo />
+        <Logo width={240} height={400} />
       </div>
     </div>
   );
