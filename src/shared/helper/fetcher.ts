@@ -1,7 +1,11 @@
 import { drinkjoyApi } from '../services';
 
 export const fetcher = async (url: string) => {
-  const { data } = await drinkjoyApi(url);
+  try {
+    const { data } = await drinkjoyApi(url);
 
-  return data;
+    return data;
+  } catch (error: any) {
+    throw error.response.data.detail;
+  }
 };
