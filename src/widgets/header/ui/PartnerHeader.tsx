@@ -7,13 +7,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { useChosenEstablishmentContext } from '@/app/_providers';
 import {
   ESTABLISHMENT_EDIT_PATH,
   PARTNER_PROFILE_PATH,
-  useChosenEstablishmentContext,
+  useGetEstablishments,
   useLocalStorage,
 } from '@/shared';
-import { useGetEstablishments } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 import { Dropdown } from '@/widgets/dropdown';
 import { Navbar } from '@/widgets/navbar';

@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 
+import { ModalProvider } from './_providers';
+
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -51,6 +53,7 @@ export default function RootLayout({
     <html lang="en" className="bg-theme-blue-100">
       <body className={clsx(inter.className, sf_pro.className)}>
         <Toaster position="bottom-right" />
+        <ModalProvider />
         {children}
       </body>
     </html>

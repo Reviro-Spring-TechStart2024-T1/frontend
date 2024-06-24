@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
+import { useChosenEstablishmentContext, useEditModal } from '@/app/_providers';
 import { TBeverage } from '@/entities/beverage';
 import { TCategory } from '@/entities/category';
 import { SubmitButton } from '@/features';
@@ -14,18 +15,16 @@ import { editBeverage } from '@/features/edit-beverage-form';
 import {
   IUserJwtPayload,
   useCategories,
-  useChosenEstablishmentContext,
   useGetCategory,
+  useLocalStorage,
 } from '@/shared';
 import {
   addImage,
   delete_,
   EDIT_BEVERAGE_FORM,
   useCloseForm,
-  useEditModal,
   useGetBeverage,
 } from '@/shared';
-import useLocalStorage from '@/shared/helper/hooks/useLocalStorage';
 import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
@@ -37,11 +36,13 @@ export const Form: FC = () => {
   const beverageId = searchParams.get('id'); //NOTE - Beverage id
 
   const [currentPage, setCurrentPage] = useState(1);
-  const { beverage, isBeverageLoading } = useGetBeverage<TBeverage>(beverageId);
-  const { categories } = useCategories(currentPage, 10);
-  const { categoryWithId, isCategoryLoading } = useGetCategory(
-    +beverage?.category!,
-  );
+  const { beverage, isBeverageLoading } = useGetBeverage<TBeverage>({
+    id: beverageId,
+  });
+  const { categories } = useCategories({ page: currentPage, limit: 10 });
+  const { categoryWithId, isCategoryLoading } = useGetCategory({
+    id: +beverage?.category!,
+  });
 
   const [isCategoryListActive, setIsCategoryListActive] = useState(false);
   const [category, setCategory] = useState<Partial<TCategory>>({
@@ -136,7 +137,7 @@ export const Form: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState]);
 
-  useCloseForm(EDIT_BEVERAGE_FORM, setModalState);
+  useCloseForm({ elementId: EDIT_BEVERAGE_FORM, setter: setModalState });
 
   return (
     <>

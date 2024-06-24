@@ -3,7 +3,7 @@
 import { useSWRConfig } from 'swr';
 import useSWRMutation from 'swr/mutation';
 
-import { editOrderStatus } from '@/shared';
+import { editOrderStatus } from '../api/editOrderStatus';
 
 export const useOrderStatus = (id: number | null) => {
   const { mutate } = useSWRConfig();

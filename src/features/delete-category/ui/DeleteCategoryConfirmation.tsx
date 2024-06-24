@@ -21,7 +21,7 @@ export const DeleteCategoryConfirmation: FC<TFormProps> = ({
 
   const categoryId = searchParams.get('id');
 
-  const { trigger, isMutating, data } = useDeleteCategory(categoryId!);
+  const { trigger, isMutating, data } = useDeleteCategory({ id: categoryId! });
 
   const { mutate } = useSWRConfig();
 
@@ -42,7 +42,7 @@ export const DeleteCategoryConfirmation: FC<TFormProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  useCloseForm(DELETE_CATEGORY, setModalState);
+  useCloseForm({ elementId: DELETE_CATEGORY, setter: setModalState });
 
   return (
     <div

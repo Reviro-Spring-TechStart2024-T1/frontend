@@ -1,7 +1,7 @@
 import { FormEvent } from 'react';
 
+import { useCreatePartnerModal } from '@/app/_providers';
 import { SubmitButton } from '@/features/submit-form';
-import { useCreatePartnerModal } from '@/shared';
 import { useCreatePartner } from '@/shared/services';
 import { Button, Input } from '@/shared/ui';
 

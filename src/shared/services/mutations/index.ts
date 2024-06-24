@@ -1,45 +1,21 @@
-import { useAddComment } from './useAddComment';
-import { useAddPlan } from './useAddPlan';
-import { useBlockPartner } from './useBlockPartner';
-import { useChangePassword } from './useChangePassword';
-import { useCreateCategory } from './useCreateCategory';
-import { useCreateEstablishment } from './useCreateEstablishment';
-import { useCreatePartner } from './useCreatePartner';
-import { useCreatePost } from './useCreatePost';
-import { useDeleteBanner } from './useDeleteBanner';
-import { useDeleteCategory } from './useDeleteCategory';
-import { useDeleteEstablishment } from './useDeleteEstablishment';
-import { useEditCategory } from './useEditCategory';
-import { useEditEstablishment } from './useEditEstablishment';
-import { useForgotPassword } from './useForgotPassword';
-import { useGetUserByEmail } from './useGetUserByEmail';
-import { useLogin } from './useLogin';
-import { useOrderForClient } from './useOrderForClient';
-import { useOrderStatus } from './useOrderStatus';
-import { useUnblockPartner } from './useUnblockPartner';
-import { useUpdatePassword } from './useUpdatePassword';
-import { useUploadBanners } from './useUploadBanners';
-
-export {
-  useAddComment,
-  useAddPlan,
-  useBlockPartner,
-  useChangePassword,
-  useCreateCategory,
-  useCreateEstablishment,
-  useCreatePartner,
-  useCreatePost,
-  useDeleteBanner,
-  useDeleteCategory,
-  useDeleteEstablishment,
-  useEditCategory,
-  useEditEstablishment,
-  useForgotPassword,
-  useGetUserByEmail,
-  useLogin,
-  useOrderForClient,
-  useOrderStatus,
-  useUnblockPartner,
-  useUpdatePassword,
-  useUploadBanners,
-};
+export * from './useAddComment';
+export * from './useAddPlan';
+export * from './useBlockPartner';
+export * from './useChangePassword';
+export * from './useCreateCategory';
+export * from './useCreateEstablishment';
+export * from './useCreatePartner';
+export * from './useCreatePost';
+export * from './useDeleteBanner';
+export * from './useDeleteCategory';
+export * from './useDeleteEstablishment';
+export * from './useEditCategory';
+export * from './useEditEstablishment';
+export * from './useForgotPassword';
+export * from './useGetUserByEmail';
+export * from './useLogin';
+export * from './useOrderForClient';
+export * from './useOrderStatus';
+export * from './useUnblockPartner';
+export * from './useUpdatePassword';
+export * from './useUploadBanners';

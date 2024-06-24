@@ -14,7 +14,7 @@ export const CreateCategory = () => {
     setIsModalActive(true);
   };
 
-  useCloseForm(CREATE_CATEGORY, setIsModalActive);
+  useCloseForm({ elementId: CREATE_CATEGORY, setter: setIsModalActive });
 
   return (
     <>

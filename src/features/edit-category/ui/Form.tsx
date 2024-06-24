@@ -12,7 +12,7 @@ export const Form: FC<TFormProps> = ({ setModalState }) => {
 
   const categoryId = searchParams.get('id');
 
-  const { trigger, isMutating, data } = useEditCategory(categoryId!);
+  const { trigger, isMutating, data } = useEditCategory({ id: categoryId! });
 
   const { mutate } = useSWRConfig();
 

@@ -12,7 +12,7 @@ import { CommentsList } from '@/widgets/comments-list';
 export const Discussion = () => {
   const router = useRouter();
   const params = useParams<{ id: string }>();
-  const { post } = useGetPost(params.id);
+  const { post } = useGetPost({ id: params.id });
 
   return (
     <Section>

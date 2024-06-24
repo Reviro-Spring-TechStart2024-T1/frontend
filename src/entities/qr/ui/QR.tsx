@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import { saveAs } from 'file-saver';
 import { toPng } from 'html-to-image';
 
-import { useChosenEstablishmentContext } from '@/shared';
+import { useChosenEstablishmentContext } from '@/app/_providers';
 import { Button } from '@/shared/ui';
 
 import styles from './QR.module.css';
