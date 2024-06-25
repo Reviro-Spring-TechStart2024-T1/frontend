@@ -51,10 +51,24 @@ export const SubscriptionPlan = (props: Plan) => {
         <hr className="my-6" />
 
         <div className="flex justify-between">
-          <Button className="gap-1" variant="outline" size="md" radius="full">
+          <Button
+            className="gap-1"
+            variant="outline"
+            size="md"
+            radius="full"
+            onClick={() =>
+              onOpen('editPlan', {
+                plan_id: plan_id,
+                title: name,
+                description: description,
+                price: price,
+              })
+            }
+          >
             <RiEditLine size={16} />
             Edit
           </Button>
+
           <Button
             className="gap-1"
             variant="outline"
@@ -69,6 +83,7 @@ export const SubscriptionPlan = (props: Plan) => {
             <RiArchiveLine size={16} />
             {isActivePlan ? 'Archive' : 'Unarchive'}
           </Button>
+
           <Button className="gap-1" variant="outline" size="md" radius="full">
             <RiDeleteBinLine size={16} />
             Delete

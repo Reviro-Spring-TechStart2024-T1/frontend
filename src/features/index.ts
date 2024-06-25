@@ -9,6 +9,7 @@ export * from './delete-beverage';
 export * from './delete-category';
 export * from './edit-beverage-form';
 export * from './edit-category';
+export * from './edit-subscription-plan';
 export * from './filter';
 export * from './find-customer-form';
 export * from './forgot-password-form';

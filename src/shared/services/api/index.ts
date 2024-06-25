@@ -15,6 +15,8 @@ export * from './deleteEstablishment';
 export * from './editCategory';
 export * from './editEstablishment';
 export * from './editOrderStatus';
+export * from './editPlan';
+export * from './editPricePlan';
 export * from './forgotPassword';
 export * from './getUserByEmail';
 export * from './unblockPartner';

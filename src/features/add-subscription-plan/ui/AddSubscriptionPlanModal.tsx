@@ -54,8 +54,8 @@ export const AddSubscriptionPlanModal = () => {
     title: '',
     description: '',
     period: null,
-    price: null,
-    days: null,
+    price: 0,
+    days: 0,
   };
 
   return (

@@ -1,6 +1,12 @@
 import { create } from 'zustand';
 
-type ModalType = 'createPost' | 'createPlan' | 'archivePlan' | 'unarchivePlan';
+type ModalType =
+  | 'createPost'
+  | 'createPlan'
+  | 'archivePlan'
+  | 'unarchivePlan'
+  | 'editPlan'
+  | 'deletePlan';
 
 interface ModalStore {
   type: ModalType | null;
@@ -12,6 +18,9 @@ interface ModalStore {
 
 interface ModalData {
   plan_id?: string;
+  title?: string;
+  description?: string;
+  price?: number;
 }
 
 export const useModal = create<ModalStore>(set => ({

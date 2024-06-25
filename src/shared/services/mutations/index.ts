@@ -12,6 +12,7 @@ export * from './useDeleteCategory';
 export * from './useDeleteEstablishment';
 export * from './useEditCategory';
 export * from './useEditEstablishment';
+export * from './useEditPricePlan';
 export * from './useForgotPassword';
 export * from './useGetUserByEmail';
 export * from './useLogin';
