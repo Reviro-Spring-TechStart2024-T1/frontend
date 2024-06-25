@@ -5,5 +5,5 @@ export const Dropdown: FC<ComponentPropsWithoutRef<'div'>> = ({
   children,
   className,
 }) => {
-  return <div className={clsx('dropdown relative', className)}>{children}</div>;
+  return <div className={clsx('dropdown', className)}>{children}</div>;
 };
