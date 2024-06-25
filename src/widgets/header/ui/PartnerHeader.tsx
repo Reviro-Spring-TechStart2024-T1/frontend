@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { RiMenuFill, RiProfileLine } from '@remixicon/react';
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -36,17 +36,32 @@ export const PartnerHeader = () => {
     setIsChosenEstablishmentLoading,
   } = useChosenEstablishmentContext();
 
-  const filteredEstablishments = establishment?.results
-    .filter(establishment => establishment.id !== chosenEstablishment?.id)
-    .map(filteredEstablishment => (
-      <li
-        key={filteredEstablishment.id}
-        className="cursor-pointer rounded-md bg-gray-300 p-2 text-center transition-opacity duration-200 hover:opacity-80"
-        onClick={() => handleOnEstablishmentChosen(filteredEstablishment.id)}
-      >
-        {filteredEstablishment.name}
-      </li>
-    ));
+  const filteredEstablishments = useMemo(() => {
+    return (
+      chosenEstablishment?.name &&
+      establishment?.results
+        .filter(establishment => establishment.id !== chosenEstablishment?.id)
+        .map(filteredEstablishment => (
+          <li
+            key={filteredEstablishment.id}
+            className="flex cursor-pointer items-center gap-1 rounded-md bg-gray-300 px-2 py-5 text-center transition-opacity duration-200 hover:opacity-80"
+            onClick={() =>
+              handleOnEstablishmentChosen(filteredEstablishment.id)
+            }
+          >
+            <Image
+              src={filteredEstablishment.logo!}
+              alt="logo"
+              width={60}
+              height={100}
+            />
+            <Typography className="flex-1" variant="caption">
+              {filteredEstablishment.name}
+            </Typography>
+          </li>
+        ))
+    );
+  }, [establishment]);
 
   const handleOnEstablishmentChosen = (id: number) => {
     setEstablishmentId(id);

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
+import toast from 'react-hot-toast';
 import { useSearchParams } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
@@ -39,6 +40,7 @@ export const DeleteConfirmation = () => {
 
   useEffect(() => {
     if (formState.message === 'success') {
+      toast.success('The beverage has been deleted!');
       mutate(`/menus/${chosenEstablishment?.menu_id}/`);
       setModalState(false);
     }
