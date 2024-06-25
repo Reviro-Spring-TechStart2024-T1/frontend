@@ -1,3 +1,5 @@
+'use client';
+
 import { Field, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 
