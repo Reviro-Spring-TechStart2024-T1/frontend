@@ -8,7 +8,7 @@ export const Container = (props: ContainerProps) => {
   const { children, title, className, ...rest } = props;
   return (
     <div {...rest} className="h-full min-h-[inherit] pb-14 pt-6">
-      <div className="mx-auto flex h-full w-full max-w-7xl flex-col gap-8 pl-16 pr-10 md:min-h-main md:max-w-none md:px-4">
+      <div className="mx-auto flex h-full max-w-7xl flex-col gap-8 px-8 md:max-w-none md:px-4">
         <div className="md:space-y-2">
           <Typography
             variant="caption"

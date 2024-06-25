@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 
-import { ADMIN_SUBSCRIPTION_ACTIVE_PATH } from '@/shared/constants';
+import { SUBSCRIPTION_ACTIVE_PATH } from '@/shared/constants';
 import { fetcher, useComparePath } from '@/shared/lib';
 
 import { PlansResponse } from './types';
@@ -12,7 +12,7 @@ export const useGetPlans = () => {
     '/subscriptions/plans/',
     fetcher,
   );
-  const isActivePlan = useComparePath(ADMIN_SUBSCRIPTION_ACTIVE_PATH);
+  const isActivePlan = useComparePath(SUBSCRIPTION_ACTIVE_PATH);
   const isExceeded =
     (planData?.filter(item => item.status === 'ACTIVE').length ?? 0) >= 5;
 

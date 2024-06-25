@@ -9,7 +9,7 @@ import { useChosenEstablishmentContext } from '@/app/_providers';
 import { FilterItem } from '@/features/filter';
 import {
   dateToDayHour,
-  PARTNER_ORDER_FOR_CLIENT_PATH,
+  ORDER_FOR_CLIENT_PATH,
   TOrder,
   useGetBeverages,
   useGetOrders,
@@ -155,7 +155,7 @@ export default function Page() {
     <Container title="Incoming orders">
       <div className="flex justify-end">
         <Button variant="primary">
-          <Link href={PARTNER_ORDER_FOR_CLIENT_PATH}>Order for client</Link>
+          <Link href={ORDER_FOR_CLIENT_PATH}>Order for client</Link>
         </Button>
       </div>
 

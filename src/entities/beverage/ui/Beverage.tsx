@@ -10,8 +10,8 @@ import { TBeverage } from '@/entities/beverage';
 import {
   delete_,
   edit,
-  PARTNER_MENU_PATH,
-  PARTNER_ORDER_FOR_CLIENT_PATH,
+  MENU_PATH,
+  ORDER_FOR_CLIENT_PATH,
   setId,
 } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
@@ -78,7 +78,7 @@ export const Beverage: FC<TBeverage> = ({
             {description}
           </Typography>
         </div>
-        {pathname === PARTNER_MENU_PATH && (
+        {pathname === MENU_PATH && (
           <div className="flex divide-x divide-theme-grey-300 border-t">
             <Button
               variant="ghost"
@@ -111,7 +111,7 @@ export const Beverage: FC<TBeverage> = ({
             </Button>
           </div>
         )}
-        {pathname === PARTNER_ORDER_FOR_CLIENT_PATH && (
+        {pathname === ORDER_FOR_CLIENT_PATH && (
           <div className="flex divide-x divide-theme-grey-300 border-t">
             <Button
               variant="ghost"

@@ -4,9 +4,9 @@ import toast from 'react-hot-toast';
 import { RiArchiveLine, RiDeleteBinLine, RiEditLine } from '@remixicon/react';
 
 import {
-  ADMIN_SUBSCRIPTION_ACTIVE_PATH,
   Button,
   Plan,
+  SUBSCRIPTION_ACTIVE_PATH,
   Typography,
   useComparePath,
   useGetPlans,
@@ -18,7 +18,7 @@ export const SubscriptionPlan = (props: Plan) => {
   const { data } = useGetPlans();
   const { plan_id, name, description, price, period } = props;
 
-  const isActivePlan = useComparePath(ADMIN_SUBSCRIPTION_ACTIVE_PATH);
+  const isActivePlan = useComparePath(SUBSCRIPTION_ACTIVE_PATH);
 
   const handleExceededPlan = () => {
     if (isActivePlan) {

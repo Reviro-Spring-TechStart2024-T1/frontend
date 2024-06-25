@@ -8,9 +8,9 @@ import {
   SubscriptionPlan,
 } from '@/entities/subscription-plan';
 import {
-  ADMIN_SUBSCRIPTION_ACTIVE_PATH,
-  ADMIN_SUBSCRIPTION_ARCHIVE_PATH,
   Section,
+  SUBSCRIPTION_ACTIVE_PATH,
+  SUBSCRIPTION_ARCHIVE_PATH,
   Typography,
   useComparePath,
   useGetPlans,
@@ -19,15 +19,15 @@ import {
 export const SubscriptionList = () => {
   const { data } = useGetPlans();
 
-  const isActivePlan = useComparePath(ADMIN_SUBSCRIPTION_ACTIVE_PATH);
-  const isArchivePlan = useComparePath(ADMIN_SUBSCRIPTION_ARCHIVE_PATH);
+  const isActivePlan = useComparePath(SUBSCRIPTION_ACTIVE_PATH);
+  const isArchivePlan = useComparePath(SUBSCRIPTION_ARCHIVE_PATH);
 
   return (
     <Section>
       <div>
         <nav className="relative z-10 -mb-px flex border-b bg-theme-white">
           <Link
-            href={ADMIN_SUBSCRIPTION_ACTIVE_PATH}
+            href={SUBSCRIPTION_ACTIVE_PATH}
             className={clsx('cursor-pointer bg-theme-white px-4 py-5', {
               ['-mb-px rounded-md rounded-bl-none rounded-br-none border border-b-0']:
                 isActivePlan,
@@ -45,7 +45,7 @@ export const SubscriptionList = () => {
           </Link>
 
           <Link
-            href={ADMIN_SUBSCRIPTION_ARCHIVE_PATH}
+            href={SUBSCRIPTION_ARCHIVE_PATH}
             className={clsx('cursor-pointer bg-theme-white px-4 py-5', {
               ['-mb-px rounded-md rounded-bl-none rounded-br-none border border-b-0 font-bold']:
                 isArchivePlan,

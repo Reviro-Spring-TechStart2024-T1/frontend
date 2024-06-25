@@ -45,10 +45,10 @@ export const Table = <T extends { id: string | number }>({
 
           <tbody>
             {tableData?.length ? (
-              tableData?.map(item => {
+              tableData?.map((item, index) => {
                 return (
                   <tr
-                    key={item.id}
+                    key={index}
                     className="group cursor-pointer border-t border-theme-grey-200 bg-theme-white hover:bg-theme-grey-100"
                   >
                     {columns.map(header => {

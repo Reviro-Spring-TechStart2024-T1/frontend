@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { ChosenEstablishmentProvider } from '@/app/_providers';
 import { Providers } from '@/app/providers';
-import { PartnerHeader } from '@/widgets/header';
+import { Header } from '@/widgets/header';
 import { Sidebar } from '@/widgets/sidebar';
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <>
       <ChosenEstablishmentProvider>
-        <PartnerHeader />
+        <Header />
         <main className="grid grid-cols-[128px_auto] md:block">
           <Sidebar />
 

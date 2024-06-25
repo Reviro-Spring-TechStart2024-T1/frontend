@@ -1,19 +1,17 @@
 export const ESTABLISHMENT_PATH = '/establishment';
 export const ESTABLISHMENT_EDIT_PATH = '/establishment/edit';
 
-export const PARTNER_PROFILE_PATH = '/partner/profile';
-export const PARTNER_DASHBOARD_PATH = '/partner/dashboard';
-export const PARTNER_MENU_PATH = '/partner/menu';
-export const PARTNER_CUSTOMERS_PATH = '/partner/customer';
-export const PARTNER_ORDERS_PATH = '/partner/orders';
-export const PARTNER_SUPPORT_PATH = '/partner/support';
-export const PARTNER_ORDER_FOR_CLIENT_PATH = '/partner/orders/order-for-client';
+export const SUPPORT_PATH = '/support';
 
-export const ADMIN_USERS_PATH = '/admin/users';
-export const ADMIN_PARTNERS_PATH = '/admin/partners';
-export const ADMIN_MENU_PATH = '/admin/menu';
-export const ADMIN_SUPPORT_PATH = '/admin/support';
-export const ADMIN_SUBSCRIPTION_ACTIVE_PATH =
-  '/admin/subscription/active_plans';
-export const ADMIN_SUBSCRIPTION_ARCHIVE_PATH =
-  '/admin/subscription/archieve_plans';
+export const PROFILE_PATH = '/profile';
+export const DASHBOARD_PATH = '/dashboard';
+export const MENU_PATH = '/menu';
+export const CUSTOMERS_PATH = '/customer';
+export const ORDERS_PATH = '/orders';
+export const ORDER_FOR_CLIENT_PATH = '/orders/order-for-client';
+
+export const USERS_PATH = '/users';
+export const PARTNERS_PATH = '/partners';
+export const CATEGORIES_PATH = '/categories';
+export const SUBSCRIPTION_ACTIVE_PATH = '/subscription/active_plans';
+export const SUBSCRIPTION_ARCHIVE_PATH = '/subscription/archieve_plans';

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import { useChosenEstablishmentContext } from '@/app/_providers';
 import { Search } from '@/features/search';
-import { Customer, PARTNER_CUSTOMERS_PATH, useGetCustomers } from '@/shared';
+import { Customer, CUSTOMERS_PATH, useGetCustomers } from '@/shared';
 import { Typography } from '@/shared/ui';
 import { Container } from '@/shared/ui/Container/Container';
 import { ColumnsType, Table } from '@/shared/ui/Table';
@@ -31,9 +31,7 @@ export default function CustomerData() {
         return (
           <div
             className="flex flex-col"
-            onClick={() =>
-              router.push(`${PARTNER_CUSTOMERS_PATH}/${record.id}`)
-            }
+            onClick={() => router.push(`${CUSTOMERS_PATH}/${record.id}`)}
           >
             <Typography
               variant="caption"
