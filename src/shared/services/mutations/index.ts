@@ -10,6 +10,7 @@ export * from './useCreatePost';
 export * from './useDeleteBanner';
 export * from './useDeleteCategory';
 export * from './useDeleteEstablishment';
+export * from './useDeletePlan';
 export * from './useEditCategory';
 export * from './useEditEstablishment';
 export * from './useEditPricePlan';

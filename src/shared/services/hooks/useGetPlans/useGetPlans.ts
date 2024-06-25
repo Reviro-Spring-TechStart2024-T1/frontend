@@ -13,6 +13,8 @@ export const useGetPlans = () => {
     fetcher,
   );
   const isActivePlan = useComparePath(ADMIN_SUBSCRIPTION_ACTIVE_PATH);
+  const isExceeded =
+    (planData?.filter(item => item.status === 'ACTIVE').length ?? 0) >= 5;
 
   const data = planData
     ?.map(item => {
@@ -23,6 +25,7 @@ export const useGetPlans = () => {
         ...item,
         price: regular_type?.pricing_scheme.fixed_price.value,
         period: regular_type?.frequency.interval_unit,
+        isExceeded,
       };
     })
     .filter(item =>

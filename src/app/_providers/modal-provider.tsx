@@ -6,6 +6,7 @@ import {
   AddSubscriptionPlanModal,
   ArchiveSubscriptionPlanModal,
   CreatePostModal,
+  DeleteSubscriptionPlanModal,
   EditSubscriptionPlanModal,
   UnarchiveSubscriptionPlanModal,
 } from '@/features';
@@ -28,6 +29,7 @@ export const ModalProvider = () => {
       <ArchiveSubscriptionPlanModal />
       <UnarchiveSubscriptionPlanModal />
       <EditSubscriptionPlanModal />
+      <DeleteSubscriptionPlanModal />
     </>
   );
 };

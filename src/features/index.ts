@@ -7,6 +7,7 @@ export * from './create-partner';
 export * from './create-post';
 export * from './delete-beverage';
 export * from './delete-category';
+export * from './delete-subscription-plan';
 export * from './edit-beverage-form';
 export * from './edit-category';
 export * from './edit-subscription-plan';

@@ -9,12 +9,14 @@ interface DialogProps extends ComponentProps<'dialog'> {
   title: string;
   open: boolean;
   btnLabel?: string;
+  isDelete?: boolean;
   onOpenChange: () => void;
   onSubmit?: () => void;
 }
 
 export const Dialog = (props: DialogProps) => {
-  const { title, open, children, btnLabel, onOpenChange, onSubmit } = props;
+  const { title, open, children, btnLabel, isDelete, onOpenChange, onSubmit } =
+    props;
 
   const dialog: JSX.Element | null = open ? (
     <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center">
@@ -52,6 +54,7 @@ export const Dialog = (props: DialogProps) => {
           </Button>
 
           <Button
+            variant={!isDelete ? 'primary' : 'delete'}
             type="submit"
             form="form"
             size="md"

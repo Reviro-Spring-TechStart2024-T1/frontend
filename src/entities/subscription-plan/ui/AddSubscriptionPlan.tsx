@@ -10,14 +10,12 @@ export const AddSubscriptionPlan = () => {
   const { onOpen } = useModal();
 
   const handleOpenModal = () => {
-    const length = data?.filter(item => item.status === 'ACTIVE').length;
-
-    if (!length || length < 6) {
+    if (!data?.[0].isExceeded) {
       return onOpen('createPlan');
     }
 
     return toast.error(
-      'The max amount of plan is exceeded. Please archive or delete plan',
+      'The max amount of plan is exceeded. Please archive or delete the active plan',
     );
   };
 

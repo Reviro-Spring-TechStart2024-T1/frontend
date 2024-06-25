@@ -1,5 +1,6 @@
 'use client';
 
+import toast from 'react-hot-toast';
 import { RiArchiveLine, RiDeleteBinLine, RiEditLine } from '@remixicon/react';
 
 import {
@@ -8,14 +9,29 @@ import {
   Plan,
   Typography,
   useComparePath,
+  useGetPlans,
   useModal,
 } from '@/shared';
 
 export const SubscriptionPlan = (props: Plan) => {
   const { onOpen } = useModal();
+  const { data } = useGetPlans();
   const { plan_id, name, description, price, period } = props;
 
   const isActivePlan = useComparePath(ADMIN_SUBSCRIPTION_ACTIVE_PATH);
+
+  const handleExceededPlan = () => {
+    if (isActivePlan) {
+      return 'archivePlan';
+    }
+    if (data?.[0].isExceeded) {
+      toast.error(
+        'The max amount of plan is exceeded. Please archive or delete the active plan',
+      );
+      return null;
+    }
+    return 'unarchivePlan';
+  };
 
   return (
     <div className="flex h-80 flex-col justify-between rounded-md border px-4 pb-4 pt-6 shadow-lg">
@@ -75,7 +91,7 @@ export const SubscriptionPlan = (props: Plan) => {
             size="md"
             radius="full"
             onClick={() =>
-              onOpen(isActivePlan ? 'archivePlan' : 'unarchivePlan', {
+              onOpen(handleExceededPlan(), {
                 plan_id: plan_id,
               })
             }
@@ -84,7 +100,13 @@ export const SubscriptionPlan = (props: Plan) => {
             {isActivePlan ? 'Archive' : 'Unarchive'}
           </Button>
 
-          <Button className="gap-1" variant="outline" size="md" radius="full">
+          <Button
+            className="gap-1"
+            variant="outline"
+            size="md"
+            radius="full"
+            onClick={() => onOpen('deletePlan', { plan_id: plan_id })}
+          >
             <RiDeleteBinLine size={16} />
             Delete
           </Button>

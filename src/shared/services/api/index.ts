@@ -12,6 +12,7 @@ export * from './createPost';
 export * from './deleteBanner';
 export * from './deleteCategory';
 export * from './deleteEstablishment';
+export * from './deletePlan';
 export * from './editCategory';
 export * from './editEstablishment';
 export * from './editOrderStatus';
