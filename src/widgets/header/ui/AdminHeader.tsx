@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import { Button, Typography } from '@/shared/ui';
 import { Dropdown } from '@/widgets/dropdown';
+import { Navbar } from '@/widgets/navbar';
 
 export const AdminHeader = () => {
   const pathname = usePathname();
@@ -34,7 +35,11 @@ export const AdminHeader = () => {
         </div>
       </div>
 
-      {showDropDown ? <Dropdown /> : null}
+      {showDropDown ? (
+        <Dropdown>
+          <Navbar />
+        </Dropdown>
+      ) : null}
 
       <div className="mx-auto flex h-[76px] max-w-7xl items-center px-8 md:hidden ">
         <div className="flex-1">
