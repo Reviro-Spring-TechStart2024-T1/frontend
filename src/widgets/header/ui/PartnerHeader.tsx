@@ -37,31 +37,26 @@ export const PartnerHeader = () => {
   } = useChosenEstablishmentContext();
 
   const filteredEstablishments = useMemo(() => {
-    return (
-      chosenEstablishment?.name &&
-      establishment?.results
-        .filter(establishment => establishment.id !== chosenEstablishment?.id)
-        .map(filteredEstablishment => (
-          <li
-            key={filteredEstablishment.id}
-            className="flex cursor-pointer items-center gap-1 rounded-md bg-gray-300 px-2 py-5 text-center transition-opacity duration-200 hover:opacity-80"
-            onClick={() =>
-              handleOnEstablishmentChosen(filteredEstablishment.id)
-            }
-          >
-            <Image
-              src={filteredEstablishment.logo!}
-              alt="logo"
-              width={60}
-              height={100}
-            />
-            <Typography className="flex-1" variant="caption">
-              {filteredEstablishment.name}
-            </Typography>
-          </li>
-        ))
-    );
-  }, [establishment]);
+    return establishment?.results
+      .filter(establishment => establishment.id !== chosenEstablishment?.id)
+      .map(filteredEstablishment => (
+        <li
+          key={filteredEstablishment.id}
+          className="flex min-h-[80px] cursor-pointer items-center gap-1 rounded-md bg-gray-300 p-2 text-center transition-opacity duration-200 hover:opacity-80"
+          onClick={() => handleOnEstablishmentChosen(filteredEstablishment.id)}
+        >
+          <Image
+            src={filteredEstablishment.logo!}
+            alt="logo"
+            width={60}
+            height={100}
+          />
+          <Typography className="flex-1" variant="caption">
+            {filteredEstablishment.name}
+          </Typography>
+        </li>
+      ));
+  }, [establishment, chosenEstablishment]);
 
   const handleOnEstablishmentChosen = (id: number) => {
     setEstablishmentId(id);
@@ -105,7 +100,7 @@ export const PartnerHeader = () => {
         },
       )}
     >
-      <div className="mx-auto hidden h-[60px] max-w-none items-center px-4 md:flex">
+      <div className="relative mx-auto hidden h-[60px] max-w-none items-center px-4 md:flex">
         <div className="flex flex-1 gap-4">
           <Button
             variant="none"
@@ -128,13 +123,10 @@ export const PartnerHeader = () => {
               onBlur={() => setShowEstablishmentsDropDown(false)}
             >
               {showEstablishmentsDropDown && (
-                <Dropdown className="w-2/4">
-                  <ul className="absolute top-0 z-10 w-full p-2">
-                    {filteredEstablishments}
-                  </ul>
+                <Dropdown className="absolute right-0 top-10 z-10 w-[300px]">
+                  <ul className="p-1">{filteredEstablishments}</ul>
                 </Dropdown>
               )}
-
               <Typography variant="paragraph">
                 {chosenEstablishment?.name}
               </Typography>
@@ -164,7 +156,7 @@ export const PartnerHeader = () => {
 
       <div
         className={clsx(
-          'mx-auto flex h-[76px] max-w-7xl items-center px-8 md:hidden',
+          'relative mx-auto flex h-[76px] max-w-7xl items-center px-8 md:hidden',
           {
             'mx-0 max-w-full justify-between':
               pathname === ESTABLISHMENT_EDIT_PATH,
@@ -192,37 +184,36 @@ export const PartnerHeader = () => {
         )}
 
         {chosenEstablishment && (
-          <Button
-            variant="none"
-            className="flex flex-1 items-center justify-end gap-2"
-            onClick={() =>
-              setShowEstablishmentsDropDown(!showEstablishmentsDropDown)
-            }
-            onBlur={() => setShowEstablishmentsDropDown(false)}
-          >
-            {showEstablishmentsDropDown && (
-              <Dropdown className="w-2/4">
-                <ul className="absolute top-0 z-10 w-full p-2">
-                  {filteredEstablishments}
-                </ul>
-              </Dropdown>
-            )}
+          <>
+            <Button
+              variant="none"
+              className="flex flex-1 items-center justify-end gap-2"
+              onClick={() =>
+                setShowEstablishmentsDropDown(!showEstablishmentsDropDown)
+              }
+              onBlur={() => setShowEstablishmentsDropDown(false)}
+            >
+              {showEstablishmentsDropDown && (
+                <Dropdown className="absolute right-0 top-10 z-10 w-[300px]">
+                  <ul className="p-2">{filteredEstablishments}</ul>
+                </Dropdown>
+              )}
+              <Typography variant="paragraph" color="grey">
+                {chosenEstablishment?.name}
+              </Typography>
 
-            <Typography variant="paragraph" color="grey">
-              {chosenEstablishment?.name}
-            </Typography>
-
-            {chosenEstablishment.logo ? (
-              <Image
-                src={chosenEstablishment.logo}
-                alt="Logo"
-                width={50}
-                height={50}
-              />
-            ) : (
-              <RiProfileLine />
-            )}
-          </Button>
+              {chosenEstablishment.logo ? (
+                <Image
+                  src={chosenEstablishment.logo}
+                  alt="Logo"
+                  width={50}
+                  height={50}
+                />
+              ) : (
+                <RiProfileLine />
+              )}
+            </Button>
+          </>
         )}
       </div>
     </header>
