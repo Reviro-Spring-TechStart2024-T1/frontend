@@ -101,7 +101,7 @@ export const PartnerHeader = () => {
       )}
     >
       <div className="relative mx-auto hidden h-[60px] max-w-none items-center px-4 md:flex">
-        <div className="flex flex-1 gap-4">
+        <div className="flex flex-1 gap-4 md:flex-none">
           <Button
             variant="none"
             onClick={() => setShowNavbarDropDown(!showNavbarDropDown)}
@@ -127,7 +127,7 @@ export const PartnerHeader = () => {
                   <ul className="p-1">{filteredEstablishments}</ul>
                 </Dropdown>
               )}
-              <Typography variant="paragraph">
+              <Typography variant="paragraph" className="md:text-xs">
                 {chosenEstablishment?.name}
               </Typography>
 
