@@ -8,11 +8,15 @@ import { Button, Typography } from '@/shared/ui';
 interface DialogProps extends ComponentProps<'dialog'> {
   title: string;
   open: boolean;
+  btnLabel?: string;
+  isDelete?: boolean;
   onOpenChange: () => void;
+  onSubmit?: () => void;
 }
 
 export const Dialog = (props: DialogProps) => {
-  const { title, open, children, onOpenChange } = props;
+  const { title, open, children, btnLabel, isDelete, onOpenChange, onSubmit } =
+    props;
 
   const dialog: JSX.Element | null = open ? (
     <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center">
@@ -49,9 +53,15 @@ export const Dialog = (props: DialogProps) => {
             Cancel
           </Button>
 
-          {/* FIX_ME: Close modal on success */}
-          <Button type="submit" form="form" size="md" className="font-medium">
-            Create
+          <Button
+            variant={!isDelete ? 'primary' : 'delete'}
+            type="submit"
+            form="form"
+            size="md"
+            className="font-medium"
+            onClick={onSubmit}
+          >
+            {btnLabel || 'Create'}
           </Button>
         </div>
       </div>

@@ -10,8 +10,7 @@ import { useSWRConfig } from 'swr';
 import { useChosenEstablishmentContext, useEditModal } from '@/app/_providers';
 import { TBeverage } from '@/entities/beverage';
 import { TCategory } from '@/entities/category';
-import { SubmitButton } from '@/features';
-import { editBeverage } from '@/features/edit-beverage-form';
+import { editBeverage, SubmitButton } from '@/features';
 import {
   IUserJwtPayload,
   useCategories,

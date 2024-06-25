@@ -1,3 +1,5 @@
+'use client';
+
 import { FC, FormEvent, useEffect } from 'react';
 import { useSWRConfig } from 'swr';
 

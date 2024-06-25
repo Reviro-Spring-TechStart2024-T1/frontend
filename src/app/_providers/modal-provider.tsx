@@ -2,8 +2,14 @@
 
 import { useEffect, useState } from 'react';
 
-import { AddSubscriptionPlanModal } from '@/features/add-subscription-plan';
-import { CreatePostModal } from '@/features/create-post';
+import {
+  AddSubscriptionPlanModal,
+  ArchiveSubscriptionPlanModal,
+  CreatePostModal,
+  DeleteSubscriptionPlanModal,
+  EditSubscriptionPlanModal,
+  UnarchiveSubscriptionPlanModal,
+} from '@/features';
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -20,6 +26,10 @@ export const ModalProvider = () => {
     <>
       <AddSubscriptionPlanModal />
       <CreatePostModal />
+      <ArchiveSubscriptionPlanModal />
+      <UnarchiveSubscriptionPlanModal />
+      <EditSubscriptionPlanModal />
+      <DeleteSubscriptionPlanModal />
     </>
   );
 };

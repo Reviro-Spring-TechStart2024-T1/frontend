@@ -1,6 +1,6 @@
 'use server';
 
-import { TLoginForm } from '@/features/login';
+import { TLoginForm } from './types';
 
 export const handleLoginSubmit = async (
   currentState: TLoginForm,

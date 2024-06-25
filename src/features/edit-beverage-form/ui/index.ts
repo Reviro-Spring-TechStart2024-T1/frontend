@@ -1,3 +1,1 @@
-import { Form } from './Form';
-
-export { Form };
+export { Form as EditBeverageForm } from './Form';

@@ -3,9 +3,10 @@
 import { FC } from 'react';
 import clsx from 'clsx';
 
-import { Form } from '@/features/edit-category';
 import { EDIT_CATEGORY, TFormProps, useCloseForm } from '@/shared';
 import { Typography } from '@/shared/ui';
+
+import { EditCategoryForm } from '.';
 
 export const EditCategory: FC<TFormProps> = ({ isActive, setModalState }) => {
   useCloseForm({ elementId: EDIT_CATEGORY, setter: setModalState });
@@ -25,7 +26,7 @@ export const EditCategory: FC<TFormProps> = ({ isActive, setModalState }) => {
         <Typography variant="paragraph" weight="medium">
           Edit Category
         </Typography>
-        <Form setModalState={setModalState} />
+        <EditCategoryForm setModalState={setModalState} />
       </div>
     </div>
   );

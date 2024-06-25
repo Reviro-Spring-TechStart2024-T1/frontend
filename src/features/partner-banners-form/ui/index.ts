@@ -1,2 +1,2 @@
-export * from './DeleteBannerModal';
-export * from './Form';
+export { DeleteBannerModal } from './DeleteBannerModal';
+export { Form as BannerForm } from './Form';

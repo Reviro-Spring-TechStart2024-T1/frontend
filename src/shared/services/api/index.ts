@@ -1,3 +1,4 @@
+export * from './actionPlan';
 export * from './addComment';
 export * from './addPlan';
 export * from './authorize';
@@ -11,9 +12,12 @@ export * from './createPost';
 export * from './deleteBanner';
 export * from './deleteCategory';
 export * from './deleteEstablishment';
+export * from './deletePlan';
 export * from './editCategory';
 export * from './editEstablishment';
 export * from './editOrderStatus';
+export * from './editPlan';
+export * from './editPricePlan';
 export * from './forgotPassword';
 export * from './getUserByEmail';
 export * from './unblockPartner';

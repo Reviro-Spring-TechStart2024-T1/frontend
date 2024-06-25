@@ -1,3 +1,1 @@
-import { Form as ForgotPasswordForm } from './Form';
-
-export { ForgotPasswordForm };
+export { Form as ForgotPasswordForm } from './Form';

@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
-import { TFormState } from '@/features/edit-beverage-form';
+import { TFormEditBeverageState } from '@/features/edit-beverage-form';
 import { IUserJwtPayload } from '@/shared';
 
 const FormSchema = z.object({
@@ -36,7 +36,7 @@ export const editBeverage = async (
   id: number,
   menuId: number,
   user: IUserJwtPayload,
-  currentState: TFormState,
+  currentState: TFormEditBeverageState,
   formData: FormData,
 ) => {
   const name = formData.get('name') as string;

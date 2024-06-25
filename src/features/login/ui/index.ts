@@ -1,3 +1,1 @@
-import { Form as LoginForm } from './Form';
-
-export { LoginForm };
+export { Form as LoginForm } from './Form';
