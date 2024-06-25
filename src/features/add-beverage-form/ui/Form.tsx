@@ -115,6 +115,9 @@ export const Form: FC = () => {
       setModalState(false);
       formRef.current?.reset();
       toast.success('New drink has been successfully added!');
+      setCategory({});
+      setSelectedImage(null);
+      setImageName('Choose image');
     }
     console.log(formState, 'create');
     // eslint-disable-next-line react-hooks/exhaustive-deps
