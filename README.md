@@ -26,6 +26,10 @@ This README focuses on the **Partner** and **Admin** modules.
 ## Deploy
 * [Vercel](https://drinkjoy-frontend.vercel.app/)
 
+## User manuals
+* [Partner](https://docs.google.com/document/d/1xzAezJ3pjV-cu_KvR9dq4KsJ7ztfinTB25aPZsSU1y8/edit?usp=drive_link)
+* [Admin](https://docs.google.com/document/d/1Vs4UgrI5Gcc-euIxD_I0fb9Z6UMEA8CbFrbnO3UUbug/edit?usp=drive_link)
+
 ## Setup Instructions
 ### Clone the Repository: 
 ```js
