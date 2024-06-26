@@ -26,11 +26,7 @@ export const BreadcrumbItem = ({
   return (
     <li {...props}>
       <Link href={href} passHref>
-        <Typography
-          variant="caption"
-          format="capitalize"
-          className="hover:text-theme-blue-300"
-        >
+        <Typography variant="caption" className="hover:text-theme-blue-300">
           {children}
         </Typography>
       </Link>
@@ -77,6 +73,25 @@ export const BreadCrumbs = () => {
     }
   };
 
+  const filterParams = (path: string) => {
+    if (pathNames.includes('support') && path.includes(params.id)) {
+      return 'discussion';
+    }
+    if (pathNames.includes('customer') && path.includes(params.id)) {
+      return 'profile';
+    }
+    if (path === 'order-for-client') {
+      return 'order for client';
+    }
+    if (path === 'edit-establishment') {
+      return 'edit establishment';
+    }
+    if (path === 'create-establishment') {
+      return 'create establishment';
+    }
+    return path;
+  };
+
   const pathItems = pathNames
     .map((path, index) => {
       const modifiedPath = filterPath(path);
@@ -87,10 +102,7 @@ export const BreadCrumbs = () => {
       if (modifiedPath) {
         return {
           path: getPath,
-          name:
-            pathNames.includes('support') && modifiedPath.includes(params.id)
-              ? 'discussion'
-              : modifiedPath,
+          name: filterParams(modifiedPath),
         };
       }
     })
