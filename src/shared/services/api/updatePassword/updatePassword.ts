@@ -1,3 +1,5 @@
+import { extractStructuredErrors } from '@/shared';
+
 import { drinkjoyApi } from '../../interceptors/interceptors';
 
 import { UpdatePasswordArg } from './types';
@@ -14,6 +16,6 @@ export const updatePassword = async (
     return data;
   } catch (error: any) {
     console.error('Update password error:', error);
-    throw error.response.data.detail;
+    throw extractStructuredErrors(error.response.data);
   }
 };
