@@ -39,4 +39,9 @@ export interface Plan {
   };
 }
 
-export type PlansResponse = Plan[];
+export type PlansResponse = {
+  count: number;
+  next: string;
+  previous: string;
+  results: Plan[];
+};

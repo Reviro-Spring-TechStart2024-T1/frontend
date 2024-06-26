@@ -9,14 +9,20 @@ import {
   SUBSCRIPTION_ACTIVE_PATH,
   Typography,
   useComparePath,
-  useGetPlans,
   useModal,
 } from '@/shared';
 
-export const SubscriptionPlan = (props: Plan) => {
+interface SubscriptionPlanProps {
+  isExceeded?: boolean;
+  plan: Plan;
+}
+
+export const SubscriptionPlan = ({
+  isExceeded,
+  plan,
+}: SubscriptionPlanProps) => {
   const { onOpen } = useModal();
-  const { data } = useGetPlans();
-  const { plan_id, name, description, price, period } = props;
+  const { plan_id, name, description, price, period } = plan;
 
   const isActivePlan = useComparePath(SUBSCRIPTION_ACTIVE_PATH);
 
@@ -24,7 +30,7 @@ export const SubscriptionPlan = (props: Plan) => {
     if (isActivePlan) {
       return 'archivePlan';
     }
-    if (data?.isExceeded) {
+    if (isExceeded) {
       toast.error(
         'The max amount of plan is exceeded. Please archive or delete the active plan',
       );

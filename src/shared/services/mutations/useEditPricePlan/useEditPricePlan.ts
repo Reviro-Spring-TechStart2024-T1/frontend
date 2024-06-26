@@ -16,9 +16,11 @@ export const useEditPricePlan = () => {
         toast.error('The error occurred');
       },
       onSuccess() {
-        toast.success('The price was edited');
-
-        mutate('/subscriptions/plans/');
+        mutate(
+          key =>
+            typeof key === 'string' && key.startsWith('/subscriptions/plans/'),
+          undefined,
+        );
       },
     },
   );

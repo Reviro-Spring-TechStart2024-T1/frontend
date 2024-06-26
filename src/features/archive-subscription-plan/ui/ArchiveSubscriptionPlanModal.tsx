@@ -13,7 +13,7 @@ export const ArchiveSubscriptionPlanModal = () => {
 
   const handleArchivePlan = () => {
     if (data.id) {
-      trigger({ id: data.id, action: 'deactivate' });
+      trigger({ plan_id: data.id, action: 'deactivate' });
     }
 
     onClose();

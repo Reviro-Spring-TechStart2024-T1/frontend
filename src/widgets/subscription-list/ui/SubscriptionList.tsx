@@ -13,11 +13,11 @@ import {
   SUBSCRIPTION_ARCHIVE_PATH,
   Typography,
   useComparePath,
-  useGetPlans,
+  useGetActivePlans,
 } from '@/shared';
 
 export const SubscriptionList = () => {
-  const { data } = useGetPlans();
+  const { data } = useGetActivePlans({ page: 1, limit: 5 });
 
   const isActivePlan = useComparePath(SUBSCRIPTION_ACTIVE_PATH);
   const isArchivePlan = useComparePath(SUBSCRIPTION_ARCHIVE_PATH);
@@ -65,9 +65,17 @@ export const SubscriptionList = () => {
 
         <div className="grid gap-6 overflow-hidden rounded-md rounded-tl-none rounded-tr-none border border-t-0 px-8 py-14 auto-fill-80">
           {data?.results?.map(item => {
-            return <SubscriptionPlan {...item} key={item.id} />;
+            return (
+              <SubscriptionPlan
+                isExceeded={data.isExceeded}
+                plan={item}
+                key={item.id}
+              />
+            );
           })}
-          {isActivePlan ? <AddSubscriptionPlan /> : null}
+          {isActivePlan ? (
+            <AddSubscriptionPlan isExceeded={data.isExceeded} />
+          ) : null}
         </div>
       </div>
     </Section>

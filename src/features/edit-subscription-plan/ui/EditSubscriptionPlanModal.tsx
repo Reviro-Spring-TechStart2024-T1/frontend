@@ -1,5 +1,6 @@
 'use client';
 
+import toast from 'react-hot-toast';
 import { Field, Form, Formik } from 'formik';
 import { number, object, string } from 'yup';
 
@@ -30,7 +31,9 @@ export const EditSubscriptionPlanModal = () => {
         : null;
       data.price !== price ? updatePrice({ plan_id: data.id, price }) : null;
     }
+
     onClose();
+    toast.success('The plan was updated');
   };
 
   const initialValues: FormValues = {

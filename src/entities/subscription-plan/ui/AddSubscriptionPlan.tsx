@@ -3,20 +3,23 @@
 import toast from 'react-hot-toast';
 import { RiAddLine } from '@remixicon/react';
 
-import { Button, Typography, useGetPlans, useModal } from '@/shared';
+import { Button, Typography, useModal } from '@/shared';
 
-export const AddSubscriptionPlan = () => {
-  const { data } = useGetPlans();
+export const AddSubscriptionPlan = ({
+  isExceeded,
+}: {
+  isExceeded?: boolean;
+}) => {
   const { onOpen } = useModal();
 
   const handleOpenModal = () => {
-    if (!data?.isExceeded) {
-      return onOpen('createPlan');
+    if (isExceeded) {
+      return toast.error(
+        'The max amount of plan is exceeded. Please archive or delete the active plan',
+      );
     }
 
-    return toast.error(
-      'The max amount of plan is exceeded. Please archive or delete the active plan',
-    );
+    return onOpen('createPlan');
   };
 
   return (
