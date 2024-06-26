@@ -1,3 +1,3 @@
 export interface EditCategoryProps {
-  id: string;
+  id?: string | number;
 }

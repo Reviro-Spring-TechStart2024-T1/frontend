@@ -4,27 +4,33 @@ import toast from 'react-hot-toast';
 import { RiArchiveLine, RiDeleteBinLine, RiEditLine } from '@remixicon/react';
 
 import {
-  ADMIN_SUBSCRIPTION_ACTIVE_PATH,
   Button,
   Plan,
+  SUBSCRIPTION_ACTIVE_PATH,
   Typography,
   useComparePath,
-  useGetPlans,
   useModal,
 } from '@/shared';
 
-export const SubscriptionPlan = (props: Plan) => {
-  const { onOpen } = useModal();
-  const { data } = useGetPlans();
-  const { plan_id, name, description, price, period } = props;
+interface SubscriptionPlanProps {
+  isExceeded?: boolean;
+  plan: Plan;
+}
 
-  const isActivePlan = useComparePath(ADMIN_SUBSCRIPTION_ACTIVE_PATH);
+export const SubscriptionPlan = ({
+  isExceeded,
+  plan,
+}: SubscriptionPlanProps) => {
+  const { onOpen } = useModal();
+  const { plan_id, name, description, price, period } = plan;
+
+  const isActivePlan = useComparePath(SUBSCRIPTION_ACTIVE_PATH);
 
   const handleExceededPlan = () => {
     if (isActivePlan) {
       return 'archivePlan';
     }
-    if (data?.[0].isExceeded) {
+    if (isExceeded) {
       toast.error(
         'The max amount of plan is exceeded. Please archive or delete the active plan',
       );
@@ -74,7 +80,7 @@ export const SubscriptionPlan = (props: Plan) => {
             radius="full"
             onClick={() =>
               onOpen('editPlan', {
-                plan_id: plan_id,
+                id: plan_id,
                 title: name,
                 description: description,
                 price: price,
@@ -92,7 +98,7 @@ export const SubscriptionPlan = (props: Plan) => {
             radius="full"
             onClick={() =>
               onOpen(handleExceededPlan(), {
-                plan_id: plan_id,
+                id: plan_id,
               })
             }
           >
@@ -105,7 +111,7 @@ export const SubscriptionPlan = (props: Plan) => {
             variant="outline"
             size="md"
             radius="full"
-            onClick={() => onOpen('deletePlan', { plan_id: plan_id })}
+            onClick={() => onOpen('deletePlan', { id: plan_id })}
           >
             <RiDeleteBinLine size={16} />
             Delete

@@ -28,8 +28,7 @@ type TTab = 'info' | 'security';
 type TPassword = 'old' | 'new' | 'confirm';
 
 export const PartnerProfile = () => {
-  const { chosenEstablishment, isChosenEstablishmentLoading } =
-    useChosenEstablishmentContext();
+  const { chosenEstablishment } = useChosenEstablishmentContext();
   const { data, trigger, error, isMutating } = useDeleteEstablishment({
     id: chosenEstablishment?.id,
   });
@@ -100,15 +99,7 @@ export const PartnerProfile = () => {
     }
   }, [error]);
 
-  if (isChosenEstablishmentLoading) {
-    return (
-      <div className="flex h-full min-h-[500px] flex-col items-center justify-center">
-        <Typography variant="h2">Loading...</Typography>
-      </div>
-    );
-  }
-
-  if (!isChosenEstablishmentLoading && !chosenEstablishment) {
+  if (!chosenEstablishment) {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-4">
         <Typography variant="h2">No Establishment!</Typography>

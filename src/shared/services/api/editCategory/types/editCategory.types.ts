@@ -1,3 +1,3 @@
 export interface EditCategoryArg {
-  name: FormDataEntryValue | null;
+  name?: string | null;
 }

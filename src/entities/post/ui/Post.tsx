@@ -14,7 +14,7 @@ export const Post = ({ post, pathname }: PostProps) => {
   const { id, title, content, created_at, author, comments } = post;
 
   return (
-    <Link href={`${pathname}/discussion/${id}`} className="block">
+    <Link href={`${pathname}/${id}`} className="block">
       <div className="cursor-pointer space-y-3 overflow-hidden rounded-md border p-6 shadow-lg transition-colors hover:bg-theme-grey-100">
         <div className="space-y-4">
           <Typography variant="h5" className="line-clamp-1">
@@ -41,6 +41,7 @@ export const Post = ({ post, pathname }: PostProps) => {
                 avatar={author.avatar}
                 alt="User"
                 name={author.first_name}
+                isAdmin={!author.first_name}
               />
 
               <Typography
@@ -49,9 +50,15 @@ export const Post = ({ post, pathname }: PostProps) => {
                 className="line-clamp-1 flex gap-1"
               >
                 Posted by
-                <Typography variant="caption" color="blue">
-                  {author.first_name} {author.last_name}
-                </Typography>
+                {author.first_name || author.last_name ? (
+                  <Typography variant="caption" color="blue">
+                    {author.first_name} {author.last_name}
+                  </Typography>
+                ) : (
+                  <Typography variant="caption" color="blue">
+                    Admin
+                  </Typography>
+                )}
               </Typography>
             </div>
 

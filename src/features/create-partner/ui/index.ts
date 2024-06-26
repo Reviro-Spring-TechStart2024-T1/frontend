@@ -1,4 +1,1 @@
-import { CreatePartner } from './CreatePartner';
-import { Form } from './Form';
-
-export { CreatePartner, Form as CreatePartnerForm };
+export { CreatePartnerModal } from './CreatePartnerModal';

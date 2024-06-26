@@ -1,6 +1,7 @@
 export * from './useAdminUsers';
 export * from './useCategories';
 export * from './useCloseForm';
+export * from './useGetActivePlans';
 export * from './useGetAdminPartners';
 export * from './useGetBeverage';
 export * from './useGetBeverages';
@@ -9,7 +10,6 @@ export * from './useGetCustomer';
 export * from './useGetCustomers';
 export * from './useGetEstablishments';
 export * from './useGetOrders';
-export * from './useGetPlans';
 export * from './useGetPost';
 export * from './useGetPosts';
 export * from './useOrdersStatistics';

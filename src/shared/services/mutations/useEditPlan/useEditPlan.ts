@@ -14,9 +14,11 @@ export const useEditPlan = () => {
       toast.error('The error occurred');
     },
     onSuccess() {
-      toast.success('The plan was edited');
-
-      mutate('/subscriptions/plans/');
+      mutate(
+        key =>
+          typeof key === 'string' && key.startsWith('/subscriptions/plans/'),
+        undefined,
+      );
     },
   });
 };

@@ -4,4 +4,5 @@ export interface AvatarProps extends ComponentProps<'div'> {
   avatar?: string;
   alt: string;
   name?: string;
+  isAdmin?: boolean;
 }

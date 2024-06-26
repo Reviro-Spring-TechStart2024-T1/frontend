@@ -1,3 +1,1 @@
-import { DeleteCategoryConfirmation } from './DeleteCategoryConfirmation';
-
-export { DeleteCategoryConfirmation };
+export { DeleteCategoryModal } from './DeleteCategoryModal';

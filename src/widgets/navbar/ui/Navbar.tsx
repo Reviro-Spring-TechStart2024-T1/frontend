@@ -18,18 +18,17 @@ import { usePathname } from 'next/navigation';
 
 import { QR } from '@/entities/qr';
 import {
-  ADMIN_MENU_PATH,
-  ADMIN_PARTNERS_PATH,
-  ADMIN_SUBSCRIPTION_ACTIVE_PATH,
-  ADMIN_SUPPORT_PATH,
-  ADMIN_USERS_PATH,
-  PARTNER_CUSTOMERS_PATH,
-  PARTNER_DASHBOARD_PATH,
-  PARTNER_MENU_PATH,
-  PARTNER_ORDERS_PATH,
-  PARTNER_PROFILE_PATH,
-  PARTNER_SUPPORT_PATH,
+  CATEGORIES_PATH,
+  CUSTOMERS_PATH,
+  DASHBOARD_PATH,
+  MENU_PATH,
+  ORDERS_PATH,
+  PARTNERS_PATH,
+  PROFILE_PATH,
+  SUBSCRIPTION_ACTIVE_PATH,
+  SUPPORT_PATH,
   useLocalStorage,
+  USERS_PATH,
 } from '@/shared';
 import { Button } from '@/shared/ui';
 
@@ -45,8 +44,8 @@ export const Navbar = () => {
   const pathname = usePathname();
 
   const matchPathname = (link: string) => {
-    const modifiedPathname = pathname.split('/').slice(0, 3).join('/');
-    const modifiedLink = link.split('/').slice(0, 3).join('/');
+    const modifiedPathname = pathname.split('/').slice(1, 2).join('/');
+    const modifiedLink = link.split('/').slice(1, 2).join('/');
 
     return modifiedPathname === modifiedLink;
   };
@@ -57,27 +56,27 @@ export const Navbar = () => {
           {
             label: 'Profile',
             icon: <RiUser2Line />,
-            path: PARTNER_PROFILE_PATH,
+            path: PROFILE_PATH,
           },
           {
             label: 'Dashboard',
             icon: <RiPieChart2Line />,
-            path: PARTNER_DASHBOARD_PATH,
+            path: DASHBOARD_PATH,
           },
           {
             label: 'Menu',
             icon: <RiFileListLine />,
-            path: PARTNER_MENU_PATH,
+            path: MENU_PATH,
           },
           {
             label: 'Customers',
             icon: <RiUserSmileLine />,
-            path: PARTNER_CUSTOMERS_PATH,
+            path: CUSTOMERS_PATH,
           },
           {
             label: 'Orders',
             icon: <RiShoppingCartLine />,
-            path: PARTNER_ORDERS_PATH,
+            path: ORDERS_PATH,
           },
           {
             label: 'QR',
@@ -87,34 +86,34 @@ export const Navbar = () => {
           {
             label: 'Support',
             icon: <RiQuestionAnswerLine />,
-            path: PARTNER_SUPPORT_PATH,
+            path: SUPPORT_PATH,
           },
         ]
       : [
           {
             label: 'Users',
             icon: <RiUserSmileLine />,
-            path: ADMIN_USERS_PATH,
+            path: USERS_PATH,
           },
           {
             label: 'Partners',
             icon: <RiTeamLine />,
-            path: ADMIN_PARTNERS_PATH,
+            path: PARTNERS_PATH,
           },
           {
-            label: 'Menu',
+            label: 'Categories',
             icon: <RiFileListLine />,
-            path: ADMIN_MENU_PATH,
+            path: CATEGORIES_PATH,
           },
           {
             label: 'Subscription',
             icon: <RiExchangeFundsLine />,
-            path: ADMIN_SUBSCRIPTION_ACTIVE_PATH,
+            path: SUBSCRIPTION_ACTIVE_PATH,
           },
           {
             label: 'Support',
             icon: <RiQuestionAnswerLine />,
-            path: ADMIN_SUPPORT_PATH,
+            path: SUPPORT_PATH,
           },
         ];
 

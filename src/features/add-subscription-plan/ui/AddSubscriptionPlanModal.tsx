@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import toast from 'react-hot-toast';
 import { Field, Form, Formik } from 'formik';
 import { number, object, string } from 'yup';
 
@@ -29,7 +28,6 @@ export const AddSubscriptionPlanModal = () => {
   const handleAddSubscriptionPlan = (props: FormValues) => {
     trigger({ ...props });
     onClose();
-    toast.success('The plan was created');
   };
 
   const handleAddTrial = () => {

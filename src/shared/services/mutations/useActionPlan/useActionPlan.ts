@@ -14,7 +14,11 @@ export const useActionPlan = () => {
       toast.error('The error occurred');
     },
     onSuccess() {
-      mutate('/subscriptions/plans/');
+      mutate(
+        key =>
+          typeof key === 'string' && key.startsWith('/subscriptions/plans/'),
+        undefined,
+      );
     },
   });
 };

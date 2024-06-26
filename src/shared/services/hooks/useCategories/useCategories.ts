@@ -14,13 +14,13 @@ export const useCategories = ({ page, limit }: CategoriesProps) => {
     `/categories/?offset=${offset}&limit=${limit}`,
     fetcher,
     {
-      refreshInterval: 20000,
-      revalidateOnFocus: false,
       keepPreviousData: true,
     },
   );
 
-  useSWR(`/categories/?offset=${offset + limit}&limit=${limit}`, fetcher);
+  useSWR(`/categories/?offset=${offset + limit}&limit=${limit}`, fetcher, {
+    keepPreviousData: true,
+  });
 
   const memoizedCategories = useMemo(() => {
     return categoryData?.results;
@@ -29,6 +29,12 @@ export const useCategories = ({ page, limit }: CategoriesProps) => {
   const data = {
     ...categoryData,
     pages: categoryData && Math.ceil(categoryData.count / limit),
+    results: categoryData?.results.toSorted((a, b) => {
+      if (a.id < b.id) return -1;
+      if (a.id > b.id) return 1;
+
+      return 0;
+    }),
   };
 
   return {

@@ -1,5 +1,6 @@
-'use client'
+'use client';
 
+import toast from 'react-hot-toast';
 import { Field, Form, Formik } from 'formik';
 import { number, object, string } from 'yup';
 
@@ -8,7 +9,7 @@ import { useEditPlan } from '@/shared/services/mutations/useEditPlan';
 import { Dialog } from '@/widgets/dialog';
 
 export interface FormValues {
-  plan_id?: string;
+  plan_id?: string | number;
   title?: string;
   description?: string;
   price?: number;
@@ -24,15 +25,15 @@ export const EditSubscriptionPlanModal = () => {
   const handleEditSubscriptionPlan = (props: FormValues) => {
     const { title, description, price } = props;
 
-    if (data.plan_id) {
+    if (data.id) {
       data.title !== title || data.description !== description
-        ? updatePlan({ plan_id: data.plan_id, name: title, description })
+        ? updatePlan({ plan_id: data.id, name: title, description })
         : null;
-      data.price !== price
-        ? updatePrice({ plan_id: data.plan_id, price })
-        : null;
+      data.price !== price ? updatePrice({ plan_id: data.id, price }) : null;
     }
+
     onClose();
+    toast.success('The plan was updated');
   };
 
   const initialValues: FormValues = {

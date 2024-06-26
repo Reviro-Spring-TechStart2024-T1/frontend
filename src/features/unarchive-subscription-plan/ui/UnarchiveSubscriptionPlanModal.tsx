@@ -10,8 +10,8 @@ export const UnarchiveSubscriptionPlanModal = () => {
   const isModalOpen = isOpen && type === 'unarchivePlan';
 
   const handleUnarchivePlan = () => {
-    if (data.plan_id) {
-      trigger({ plan_id: data.plan_id, action: 'activate' });
+    if (data.id) {
+      trigger({ plan_id: data.id, action: 'activate' });
       onClose();
       toast.success('The plan was unarchived');
     }

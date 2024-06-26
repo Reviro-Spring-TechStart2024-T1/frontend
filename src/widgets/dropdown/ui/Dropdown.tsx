@@ -1,9 +1,9 @@
-import { ComponentPropsWithoutRef, FC } from 'react';
-import clsx from 'clsx';
+import { Navbar } from '@/widgets/navbar';
 
-export const Dropdown: FC<ComponentPropsWithoutRef<'div'>> = ({
-  children,
-  className,
-}) => {
-  return <div className={clsx('dropdown', className)}>{children}</div>;
+export const Dropdown = () => {
+  return (
+    <div className="hidden md:block">
+      <Navbar />
+    </div>
+  );
 };

@@ -1,7 +1,7 @@
 import { drinkjoyApi } from '../../interceptors';
 
 interface editPlanArg {
-  plan_id?: string;
+  plan_id?: string | number;
   name?: string;
   description?: string;
 }

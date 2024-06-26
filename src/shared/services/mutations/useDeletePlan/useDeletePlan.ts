@@ -7,7 +7,7 @@ import useSWRMutation from 'swr/mutation';
 import { deletePlan } from '../../api';
 
 interface DeletePlanProps {
-  plan_id?: string;
+  plan_id?: string | number;
 }
 
 export const useDeletePlan = ({ plan_id }: DeletePlanProps) => {
@@ -20,7 +20,11 @@ export const useDeletePlan = ({ plan_id }: DeletePlanProps) => {
     onSuccess() {
       toast.success('The plan was deleted');
 
-      mutate('/subscriptions/plans/');
+      mutate(
+        key =>
+          typeof key === 'string' && key.startsWith('/subscriptions/plans/'),
+        undefined,
+      );
     },
   });
 };

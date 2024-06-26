@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 
-import { ESTABLISHMENT_PATH, PARTNER_DASHBOARD_PATH } from '@/shared/constants';
+import { DASHBOARD_PATH, ESTABLISHMENT_PATH } from '@/shared/constants';
 import { useLocalStorage } from '@/shared/lib';
 
 import { authorize } from '../../api';
@@ -21,10 +21,10 @@ export const useLogin = () => {
 
       if (data?.role === 'partner') {
         establishment_id
-          ? router.push(PARTNER_DASHBOARD_PATH)
+          ? router.push(DASHBOARD_PATH)
           : router.push(ESTABLISHMENT_PATH);
       } else {
-        router.push('/admin/menu');
+        router.push('/categories');
       }
     },
   });

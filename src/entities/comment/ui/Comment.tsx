@@ -15,12 +15,20 @@ export const Comment = (props: CommentType) => {
           alt="User"
           name={author.first_name}
           className="mt-1"
+          isAdmin={!author.first_name}
         />
 
         <div>
-          <Typography variant="paragraph" color="blue">
-            {author.first_name} {author.last_name}
-          </Typography>
+          {author.first_name || author.last_name ? (
+            <Typography variant="paragraph" color="blue">
+              {author.first_name} {author.last_name}
+            </Typography>
+          ) : (
+            <Typography variant="paragraph" color="blue">
+              Admin
+            </Typography>
+          )}
+
           <Typography variant="caption" color="grey">
             {dateToRelative(created_at)}
           </Typography>

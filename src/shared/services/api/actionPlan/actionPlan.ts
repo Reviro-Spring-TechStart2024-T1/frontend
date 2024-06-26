@@ -1,7 +1,7 @@
 import { drinkjoyApi } from '../../interceptors';
 
 export interface actionPlanArg {
-  plan_id: string;
+  plan_id: string | number;
   action: 'activate' | 'deactivate';
 }
 

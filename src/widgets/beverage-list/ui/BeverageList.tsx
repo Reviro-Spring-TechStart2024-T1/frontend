@@ -12,7 +12,7 @@ import {
 } from '@/app/_providers';
 import { Beverage } from '@/entities/beverage';
 import { TCategory } from '@/entities/category';
-import { PARTNER_ORDER_FOR_CLIENT_PATH, useLocalStorage } from '@/shared';
+import { ORDER_FOR_CLIENT_PATH, useLocalStorage } from '@/shared';
 import { Button, Typography } from '@/shared/ui';
 import { useCreateMenu, useMenu } from '@/widgets/beverage-list';
 
@@ -20,8 +20,7 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
   category,
 }) => {
   const { setModalState } = useCreateModal();
-  const { chosenEstablishment, isChosenEstablishmentLoading } =
-    useChosenEstablishmentContext();
+  const { chosenEstablishment } = useChosenEstablishmentContext();
 
   const [_, setMenuId] = useLocalStorage<number | null>('menu_id', null);
 
@@ -71,24 +70,22 @@ export const BeverageList: FC<{ category?: Partial<TCategory> }> = ({
         </div>
       )}
       {
-        isChosenEstablishmentLoading || isLoading ? <div>Loading...</div> : null // TODO - Menu Skeleton
+        isLoading ? <div>Loading...</div> : null // TODO - Menu Skeleton
       }
-      {!isChosenEstablishmentLoading &&
-        !chosenEstablishment?.menu_id &&
-        !error && (
-          <div className="flex h-full flex-col items-center justify-center gap-4">
-            <Typography variant="h2" className="text-center">
-              Establishment does not possess any menu.
-            </Typography>
-            <RiMenu2Line className="h-[70px] w-[70px]" />
-            <Button onClick={handleOnCreateMenu} className="w-2/4 text-xl">
-              Create Menu
-            </Button>
-          </div>
-        )}
+      {!chosenEstablishment?.menu_id && !error && (
+        <div className="flex h-full flex-col items-center justify-center gap-4">
+          <Typography variant="h2" className="text-center">
+            Establishment does not possess any menu.
+          </Typography>
+          <RiMenu2Line className="h-[70px] w-[70px]" />
+          <Button onClick={handleOnCreateMenu} className="w-2/4 text-xl">
+            Create Menu
+          </Button>
+        </div>
+      )}
       {menu && (
         <>
-          {pathname !== PARTNER_ORDER_FOR_CLIENT_PATH && (
+          {pathname !== ORDER_FOR_CLIENT_PATH && (
             <div className="flex justify-end">
               <Button variant="primary" onClick={() => setModalState(true)}>
                 <Typography variant="paragraph">Create beverage</Typography>
