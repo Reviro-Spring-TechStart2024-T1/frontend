@@ -1,5 +1,6 @@
 export const ESTABLISHMENT_PATH = '/establishment';
-export const ESTABLISHMENT_EDIT_PATH = '/establishment/edit';
+export const ESTABLISHMENT_CREATE_PATH = '/profile/create-establishment';
+export const ESTABLISHMENT_EDIT_PATH = '/profile/edit-establishment';
 
 export const SUPPORT_PATH = '/support';
 
