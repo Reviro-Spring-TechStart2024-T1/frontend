@@ -27,6 +27,12 @@ export const useGetAdminPartners = ({ page, limit }: AdminPartnersProps) => {
   const data = {
     ...partnerData,
     pages: partnerData && Math.ceil(partnerData.count / limit),
+    results: partnerData?.results.toSorted((a, b) => {
+      if (a.id < b.id) return -1;
+      if (a.id > b.id) return 1;
+
+      return 0;
+    }),
   };
 
   return {

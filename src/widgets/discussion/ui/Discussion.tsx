@@ -27,12 +27,20 @@ export const Discussion = () => {
               alt="User"
               name={post?.author.first_name}
               className="mt-1"
+              isAdmin={!post?.author.first_name}
             />
 
             <div>
-              <Typography variant="paragraph" color="blue">
-                {post?.author.first_name} {post?.author.last_name}
-              </Typography>
+              {post?.author.first_name || post?.author.last_name ? (
+                <Typography variant="paragraph" color="blue">
+                  {post?.author.first_name} {post?.author.last_name}
+                </Typography>
+              ) : (
+                <Typography variant="paragraph" color="blue">
+                  Admin
+                </Typography>
+              )}
+
               <Typography variant="caption" color="grey">
                 {dateToRelative(post?.created_at)}
               </Typography>

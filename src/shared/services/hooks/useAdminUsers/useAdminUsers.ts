@@ -20,6 +20,12 @@ export const useAdminUsers = ({ page, limit }: AdminUsersProps) => {
   const data = {
     ...userData,
     pages: userData && Math.ceil(userData.count / limit),
+    results: userData?.results.toSorted((a, b) => {
+      if (a.id < b.id) return -1;
+      if (a.id > b.id) return 1;
+
+      return 0;
+    }),
   };
 
   return {

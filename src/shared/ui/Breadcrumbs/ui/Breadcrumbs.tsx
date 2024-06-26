@@ -66,7 +66,7 @@ export const BreadCrumbs = () => {
 
   const pathNames = paths.split('/').filter(path => path);
 
-  const modifiedPath = (path: string) => {
+  const filterPath = (path: string) => {
     switch (path) {
       case 'active_plans':
         return null;
@@ -79,18 +79,18 @@ export const BreadCrumbs = () => {
 
   const pathItems = pathNames
     .map((path, index) => {
-      const test = modifiedPath(path);
-      const pathik = pathNames.includes('subscription')
+      const modifiedPath = filterPath(path);
+      const getPath = pathNames.includes('subscription')
         ? pathNames.slice(0, 2).join('/')
         : pathNames.slice(0, index + 1).join('/');
 
-      if (test) {
+      if (modifiedPath) {
         return {
-          path: pathik,
+          path: getPath,
           name:
-            pathNames.includes('support') && test.includes(params.id)
+            pathNames.includes('support') && modifiedPath.includes(params.id)
               ? 'discussion'
-              : test,
+              : modifiedPath,
         };
       }
     })
