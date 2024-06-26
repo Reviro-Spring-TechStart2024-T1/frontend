@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 import { CommentInput } from '@/features/comment-input';
 import { dateToRelative, useGetPost } from '@/shared';
@@ -9,7 +9,6 @@ import { Avatar } from '@/shared/ui/Avatar';
 import { CommentsList } from '@/widgets/comments-list';
 
 export const Discussion = () => {
-  const router = useRouter();
   const params = useParams<{ id: string }>();
   const { post } = useGetPost({ id: params.id });
 
