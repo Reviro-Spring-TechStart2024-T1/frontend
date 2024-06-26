@@ -7,8 +7,8 @@ import { Field, Form as FormikForm, Formik } from 'formik';
 import { useRouter } from 'next/navigation';
 
 import { SubmitButton } from '@/features/submit-form';
-import { useUpdatePassword } from '@/shared';
-import { Button, Error, Typography } from '@/shared/ui';
+import { Error, useUpdatePassword } from '@/shared';
+import { Button, Typography } from '@/shared/ui';
 import { Input } from '@/shared/ui/Input/Input';
 
 type TFormValues = {
@@ -57,7 +57,15 @@ export const Form: FC<{ token: string | undefined }> = ({ token }) => {
                 {showPassword ? <RiEyeLine /> : <RiEyeCloseLine />}
               </Button>
             </div>
-            {error && <Error className="text-center">{error}</Error>}
+            {error &&
+              error.map(([key, value]) => (
+                <Error className="text-center" key={key}>
+                  <Typography variant="caption" weight="semibold">
+                    {key}
+                  </Typography>
+                  {value}
+                </Error>
+              ))}
             <SubmitButton isMutating={isMutating}>Update password</SubmitButton>
           </FormikForm>
         </Formik>

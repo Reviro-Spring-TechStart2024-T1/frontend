@@ -104,7 +104,7 @@ export const Header = () => {
                   <ul className="p-1">{filteredEstablishments}</ul>
                 </div>
               )}
-              <Typography variant="paragraph">
+              <Typography variant="paragraph" className="md:text-xs">
                 {chosenEstablishment?.name}
               </Typography>
 

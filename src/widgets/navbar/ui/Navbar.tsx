@@ -117,7 +117,7 @@ export const Navbar = () => {
           },
         ];
 
-  const [isQRClicked, setIsQRClicked] = useState(false); //TODO - show QR on click
+  const [isQRClicked, setIsQRClicked] = useState(false);
 
   const handleQRState = () => {
     setIsQRClicked(true);
@@ -125,10 +125,12 @@ export const Navbar = () => {
 
   return (
     <>
-      <QR
-        isModalActive={isQRClicked}
-        closeModal={() => setIsQRClicked(false)}
-      />
+      {pathname.includes('partner') && (
+        <QR
+          isModalActive={isQRClicked}
+          closeModal={() => setIsQRClicked(false)}
+        />
+      )}
       <nav className="no-scrollbar mt-9 w-full flex-1 overflow-auto overflow-x-hidden px-4 pb-6 pt-6 md:mt-0 md:block md:border-t md:border-theme-grey-300 md:border-opacity-20">
         <ul className="space-y-3">
           {Links.map((link, index) => {
