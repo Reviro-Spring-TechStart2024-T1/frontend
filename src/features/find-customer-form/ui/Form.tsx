@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { SubmitButton } from '@/features/submit-form';
 import { useGetUserByEmail } from '@/shared';
-import { Input } from '@/shared/ui';
+import { Error, Input } from '@/shared/ui';
 
 export const Form: FC<{ setCategoryListState: (state: boolean) => void }> = ({
   setCategoryListState,
@@ -51,10 +51,12 @@ export const Form: FC<{ setCategoryListState: (state: boolean) => void }> = ({
           type="email"
           name="email"
           placeholder="Email"
-          className="w-full"
+          className="h-full w-full"
           onChange={handleEmailOnChange}
         />
-        <SubmitButton isMutating={isMutating}>Check</SubmitButton>
+        <SubmitButton className="w-1/4" isMutating={isMutating}>
+          Check
+        </SubmitButton>
         {user ? (
           <RiCheckDoubleLine className="h-[50px] w-[50px] fill-green-500" />
         ) : null}
@@ -63,7 +65,9 @@ export const Form: FC<{ setCategoryListState: (state: boolean) => void }> = ({
         ) : null}
       </form>
 
-      {error && <div>User with provided email does not exist.</div>}
+      {error && (
+        <Error className="my-1">User with provided email does not exist.</Error>
+      )}
     </>
   );
 };
