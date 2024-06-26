@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { RiMoreLine, RiUserForbidLine } from '@remixicon/react';
 import clsx from 'clsx';
 
-import { CreatePartner } from '@/features/create-partner';
 import {
   AdminPartners,
   useBlockPartner,
   useGetAdminPartners,
+  useModal,
   useUnblockPartner,
 } from '@/shared';
 import { Button, Container, Typography } from '@/shared/ui';
@@ -18,12 +18,13 @@ import { Tag } from '@/shared/ui/Tag';
 export default function Page() {
   const [show, setShow] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, mutate, isLoading } = useGetAdminPartners({
+  const { data, isLoading } = useGetAdminPartners({
     page: currentPage,
     limit: 10,
   });
-  const { data: blockedUser, trigger: blockPartner } = useBlockPartner();
-  const { data: unblockedUser, trigger: unblockPartner } = useUnblockPartner();
+  const { onOpen } = useModal();
+  const { trigger: blockPartner } = useBlockPartner();
+  const { trigger: unblockPartner } = useUnblockPartner();
 
   const handleMoreModal = (id: number) => {
     if (id === show) return setShow(0);
@@ -123,7 +124,9 @@ export default function Page() {
 
   return (
     <Container title="Partners">
-      <CreatePartner />
+      <div className="flex justify-end">
+        <Button onClick={() => onOpen('createPartner')}>Create partner</Button>
+      </div>
       <Table<AdminPartners>
         columns={columns}
         data={data?.results}

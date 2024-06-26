@@ -24,7 +24,7 @@ export const SubscriptionPlan = (props: Plan) => {
     if (isActivePlan) {
       return 'archivePlan';
     }
-    if (data?.[0].isExceeded) {
+    if (data?.isExceeded) {
       toast.error(
         'The max amount of plan is exceeded. Please archive or delete the active plan',
       );
@@ -74,7 +74,7 @@ export const SubscriptionPlan = (props: Plan) => {
             radius="full"
             onClick={() =>
               onOpen('editPlan', {
-                plan_id: plan_id,
+                id: plan_id,
                 title: name,
                 description: description,
                 price: price,
@@ -92,7 +92,7 @@ export const SubscriptionPlan = (props: Plan) => {
             radius="full"
             onClick={() =>
               onOpen(handleExceededPlan(), {
-                plan_id: plan_id,
+                id: plan_id,
               })
             }
           >
@@ -105,7 +105,7 @@ export const SubscriptionPlan = (props: Plan) => {
             variant="outline"
             size="md"
             radius="full"
-            onClick={() => onOpen('deletePlan', { plan_id: plan_id })}
+            onClick={() => onOpen('deletePlan', { id: plan_id })}
           >
             <RiDeleteBinLine size={16} />
             Delete

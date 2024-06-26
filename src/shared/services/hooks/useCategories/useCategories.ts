@@ -14,13 +14,13 @@ export const useCategories = ({ page, limit }: CategoriesProps) => {
     `/categories/?offset=${offset}&limit=${limit}`,
     fetcher,
     {
-      refreshInterval: 20000,
-      revalidateOnFocus: false,
       keepPreviousData: true,
     },
   );
 
-  useSWR(`/categories/?offset=${offset + limit}&limit=${limit}`, fetcher);
+  useSWR(`/categories/?offset=${offset + limit}&limit=${limit}`, fetcher, {
+    keepPreviousData: true,
+  });
 
   const memoizedCategories = useMemo(() => {
     return categoryData?.results;

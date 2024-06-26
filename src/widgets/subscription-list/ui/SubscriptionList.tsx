@@ -64,7 +64,7 @@ export const SubscriptionList = () => {
         </nav>
 
         <div className="grid gap-6 overflow-hidden rounded-md rounded-tl-none rounded-tr-none border border-t-0 px-8 py-14 auto-fill-80">
-          {data?.map(item => {
+          {data?.results?.map(item => {
             return <SubscriptionPlan {...item} key={item.id} />;
           })}
           {isActivePlan ? <AddSubscriptionPlan /> : null}

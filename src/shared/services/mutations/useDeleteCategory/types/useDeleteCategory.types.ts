@@ -1,3 +1,3 @@
 export interface DeleteCategoryProps {
-  id: string;
+  id?: string | number;
 }

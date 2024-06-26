@@ -6,7 +6,11 @@ type ModalType =
   | 'archivePlan'
   | 'unarchivePlan'
   | 'editPlan'
-  | 'deletePlan';
+  | 'deletePlan'
+  | 'createCategory'
+  | 'editCategory'
+  | 'deleteCategory'
+  | 'createPartner';
 
 interface ModalStore {
   type: ModalType | null;
@@ -17,7 +21,7 @@ interface ModalStore {
 }
 
 interface ModalData {
-  plan_id?: string;
+  id?: string | number;
   title?: string;
   description?: string;
   price?: number;

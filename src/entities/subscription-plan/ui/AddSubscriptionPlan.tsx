@@ -10,7 +10,7 @@ export const AddSubscriptionPlan = () => {
   const { onOpen } = useModal();
 
   const handleOpenModal = () => {
-    if (!data?.[0].isExceeded) {
+    if (!data?.isExceeded) {
       return onOpen('createPlan');
     }
 

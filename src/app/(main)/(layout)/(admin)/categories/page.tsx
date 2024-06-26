@@ -1,14 +1,11 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { ReadonlyURLSearchParams, useRouter } from 'next/navigation';
 
 import { TCategory } from '@/entities/category';
-import { EditCategory } from '@/features';
-import { CreateCategory } from '@/features/create-category';
-import { DeleteCategoryConfirmation } from '@/features/delete-category';
-import { setId, useCategories } from '@/shared';
-import { Container } from '@/shared/ui';
+import { setId, useCategories, useModal } from '@/shared';
+import { Button, Container } from '@/shared/ui';
 import { ColumnsType, Table } from '@/shared/ui/Table';
 import { MoreModal } from '@/widgets/more-modal';
 
@@ -20,6 +17,7 @@ export default function AdminMenuPage({
   const [show, setShow] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const { data, isLoading } = useCategories({ page: currentPage, limit: 10 });
+  const { onOpen } = useModal();
 
   const columns: ColumnsType<TCategory> = [
     { key: 'id', title: '№' },
@@ -34,7 +32,7 @@ export default function AdminMenuPage({
             id={record.id}
             show={show}
             onShow={id => handleMoreModal(id)}
-            onEdit={() => handleOnEdit(record.id)}
+            onEdit={() => handleOnEdit(record.id, record.name)}
             onDelete={() => handleOnDelete(record.id)}
           />
         );
@@ -48,49 +46,40 @@ export default function AdminMenuPage({
     setShow(id);
   };
 
-  const [isEditModalActive, setIsEditModalActive] = useState(false);
-  const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
-
   const router = useRouter();
 
   const handleSetId = (id: number) =>
     router.push(`?${setId(String(id), searchParams)}`, { scroll: false });
 
-  const handleOnEdit = (id: number) => {
-    setIsEditModalActive(true);
+  const handleOnEdit = (id: number, name: string) => {
+    onOpen('editCategory', { id: id, title: name });
 
     handleSetId(id);
     setShow(0);
   };
 
   const handleOnDelete = (id: number) => {
-    setIsDeleteModalActive(true);
+    onOpen('deleteCategory', { id: id });
 
     handleSetId(id);
     setShow(0);
   };
 
   return (
-    <Suspense fallback="Loading...">
-      <EditCategory
-        isActive={isEditModalActive}
-        setModalState={setIsEditModalActive}
+    <Container title="Categories">
+      <div className="flex justify-end">
+        <Button onClick={() => onOpen('createCategory')}>
+          Create category
+        </Button>
+      </div>
+      <Table<TCategory>
+        columns={columns}
+        data={data?.results}
+        currentPage={currentPage}
+        pages={data.pages}
+        loading={isLoading}
+        onChange={offset => setCurrentPage(offset)}
       />
-      <DeleteCategoryConfirmation
-        isActive={isDeleteModalActive}
-        setModalState={setIsDeleteModalActive}
-      />
-      <Container title="Categories">
-        <CreateCategory />
-        <Table<TCategory>
-          columns={columns}
-          data={data?.results}
-          currentPage={currentPage}
-          pages={data.pages}
-          loading={isLoading}
-          onChange={offset => setCurrentPage(offset)}
-        />
-      </Container>
-    </Suspense>
+    </Container>
   );
 }

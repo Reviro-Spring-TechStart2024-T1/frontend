@@ -1,7 +1,7 @@
 import { drinkjoyApi } from '../../interceptors';
 
 interface editPricePlanArg {
-  plan_id?: string;
+  plan_id?: string | number;
   price?: number;
 }
 

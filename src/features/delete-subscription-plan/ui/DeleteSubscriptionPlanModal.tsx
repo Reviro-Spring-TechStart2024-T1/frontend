@@ -12,7 +12,7 @@ interface FormValues {
 
 export const DeleteSubscriptionPlanModal = () => {
   const { isOpen, type, onClose, data } = useModal();
-  const { trigger } = useDeletePlan({ plan_id: data?.plan_id });
+  const { trigger } = useDeletePlan({ plan_id: data?.id });
 
   const isModalOpen = isOpen && type === 'deletePlan';
 

@@ -12,8 +12,8 @@ export const ArchiveSubscriptionPlanModal = () => {
   const isModalOpen = isOpen && type === 'archivePlan';
 
   const handleArchivePlan = () => {
-    if (data.plan_id) {
-      trigger({ plan_id: data.plan_id, action: 'deactivate' });
+    if (data.id) {
+      trigger({ id: data.id, action: 'deactivate' });
     }
 
     onClose();
