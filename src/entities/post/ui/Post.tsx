@@ -14,7 +14,7 @@ export const Post = ({ post, pathname }: PostProps) => {
   const { id, title, content, created_at, author, comments } = post;
 
   return (
-    <Link href={`${pathname}/discussion/${id}`} className="block">
+    <Link href={`${pathname}/${id}`} className="block">
       <div className="cursor-pointer space-y-3 overflow-hidden rounded-md border p-6 shadow-lg transition-colors hover:bg-theme-grey-100">
         <div className="space-y-4">
           <Typography variant="h5" className="line-clamp-1">

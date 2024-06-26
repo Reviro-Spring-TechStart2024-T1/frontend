@@ -14,4 +14,4 @@ export const USERS_PATH = '/users';
 export const PARTNERS_PATH = '/partners';
 export const CATEGORIES_PATH = '/categories';
 export const SUBSCRIPTION_ACTIVE_PATH = '/subscription/active_plans';
-export const SUBSCRIPTION_ARCHIVE_PATH = '/subscription/archieve_plans';
+export const SUBSCRIPTION_ARCHIVE_PATH = '/subscription/archive_plans';

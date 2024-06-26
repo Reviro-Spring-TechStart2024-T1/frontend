@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 
 import { useChosenEstablishmentContext } from '@/app/_providers';
 import { useGetEstablishments, useLocalStorage } from '@/shared';
-import { Button, Typography } from '@/shared/ui';
+import { BreadCrumbs, Button, Typography } from '@/shared/ui';
 import { Dropdown } from '@/widgets/dropdown';
 
 export const Header = () => {
@@ -58,6 +58,10 @@ export const Header = () => {
       return establishmentFound || null;
     });
   };
+
+  useEffect(() => {
+    setShowDropDown(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (!establishment?.results.length) {
@@ -123,14 +127,13 @@ export const Header = () => {
 
       <div className="relative mx-auto flex h-[76px] max-w-7xl items-center px-8 md:hidden">
         <div className="flex flex-1 items-center gap-2">
-          <Typography variant="caption" color="grey">
-            Establishment
-          </Typography>
+          <BreadCrumbs />
         </div>
 
-        {establishment?.results.length === 0 && (
+        {/* FIX_ME: Show establishment */}
+        {/* {establishment?.results.length === 0 && (
           <Typography variant="caption">There is no establishment.</Typography>
-        )}
+        )} */}
 
         {chosenEstablishment && (
           <>

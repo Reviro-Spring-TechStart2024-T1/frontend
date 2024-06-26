@@ -1,6 +1,5 @@
 'use client';
 
-import { RiArrowLeftSLine } from '@remixicon/react';
 import { useParams, useRouter } from 'next/navigation';
 
 import { CommentInput } from '@/features/comment-input';
@@ -18,15 +17,9 @@ export const Discussion = () => {
     <Section>
       <div className="space-y-6">
         <div className="space-y-4 pr-8">
-          <div className="flex items-center gap-2">
-            <RiArrowLeftSLine
-              className="cursor-pointer text-theme-grey-500"
-              onClick={router.back}
-            />
-            <Typography variant="h5" weight="medium">
-              {post?.title}
-            </Typography>
-          </div>
+          <Typography variant="h5" weight="medium">
+            {post?.title}
+          </Typography>
 
           <div className="inline-flex space-x-2">
             <Avatar
