@@ -44,6 +44,10 @@ export const Form: FC<{ setCategoryListState: (state: boolean) => void }> = ({
     }
   }, [user]);
 
+  useEffect(() => {
+    error && setCategoryListState(false);
+  }, [error]);
+
   return (
     <>
       <form onSubmit={handleSubmit} className="flex gap-2">
@@ -57,7 +61,7 @@ export const Form: FC<{ setCategoryListState: (state: boolean) => void }> = ({
         <SubmitButton className="w-1/4" isMutating={isMutating}>
           Check
         </SubmitButton>
-        {user ? (
+        {user && !error ? (
           <RiCheckDoubleLine className="h-[50px] w-[50px] fill-green-500" />
         ) : null}
         {error ? (
